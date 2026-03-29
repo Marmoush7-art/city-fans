@@ -69,97 +69,42 @@
 
         .box-info { 
             background-color: var(--city-sky-blue); 
-            color: #000000; 
-            padding: 30px; 
+            color: #000; 
+            padding: 25px; 
             border-radius: 15px; 
-            margin-top: 25px; 
+            margin-top: 20px; 
             box-shadow: 0 6px 18px rgba(0,0,0,0.1); 
         }
 
-        #joueur-solo .box-info table { color: #000000 !important; font-weight: bold; }
-        #joueur-solo .box-info th { color: #000000 !important; background-color: rgba(255,255,255,0.4); padding: 15px; border-bottom: 2px solid rgba(0,0,0,0.1); }
-        #joueur-solo .box-info td { color: #000000 !important; border-bottom: 1px solid rgba(0,0,0,0.1); padding: 15px; background-color: rgba(255,255,255,0.2); }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left; }
+        th { padding: 12px; border-bottom: 2px solid rgba(0,0,0,0.1); background: rgba(255,255,255,0.3); }
+        td { padding: 12px; border-bottom: 1px solid rgba(0,0,0,0.1); font-weight: bold; }
         
         .bio-box {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255,255,255,0.8); 
-            border-radius: 10px;
-            text-align: left;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            color: #000000; 
+            margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.8); border-radius: 10px;
+            text-align: left; line-height: 1.5; font-size: 0.95rem; color: #000;
         }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; text-align: left; }
-        
         #photo { 
-            max-width: 280px; 
-            width: 100%; 
-            border-radius: 15px; 
-            border: 6px solid var(--city-sky-blue); 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
-            margin-bottom: 25px; 
+            max-width: 280px; width: 100%; border-radius: 15px; border: 6px solid var(--city-sky-blue); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2); margin-bottom: 20px; 
         }
 
         .transfert-card {
-            background-color: var(--city-white);
-            border: 2px solid var(--city-sky-blue);
-            border-radius: 15px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            text-align: left;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: transform 0.2s;
+            background: white; border: 2px solid var(--city-sky-blue); border-radius: 15px;
+            margin-bottom: 15px; display: flex; align-items: center; overflow: hidden; cursor: pointer;
         }
-        .transfert-card:hover { transform: scale(1.02); }
-        .transfert-card img { width: 100px; height: 130px; object-fit: cover; border-right: 3px solid var(--city-sky-blue); }
-        .transfert-info { padding: 15px; color: #000; font-weight: bold; }
-        
-        /* --- Styles du Chat --- */
-        #chat-messages {
-            height: 300px;
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 10px;
-            background: #fff;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-        .msg {
-            background: var(--city-sky-blue);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 18px;
-            margin-bottom: 10px;
-            align-self: flex-start;
-            max-width: 80%;
-            font-weight: 500;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .emoji-bar {
-            display: flex;
-            gap: 10px;
-            padding: 10px;
-            background: #eee;
-            border-radius: 8px 8px 0 0;
-            justify-content: center;
-        }
-        .emoji-btn {
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: transform 0.1s;
-        }
-        .emoji-btn:hover { transform: scale(1.3); }
+        .transfert-card img { width: 100px; height: 120px; object-fit: cover; border-right: 3px solid var(--city-sky-blue); }
+        .transfert-info { padding: 15px; text-align: left; color: #000; }
+
+        /* CHAT SYSTEM */
+        #chat-messages { height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 15px; background: #fff; border-radius: 10px; display: flex; flex-direction: column; }
+        .msg { background: var(--city-sky-blue); color: white; padding: 8px 15px; border-radius: 15px; margin-bottom: 8px; align-self: flex-start; max-width: 80%; }
+        .emoji-bar { display: flex; gap: 10px; padding: 10px; background: #eee; border-radius: 8px 8px 0 0; justify-content: center; }
+        .emoji-btn { font-size: 1.4rem; cursor: pointer; }
         .chat-input-area { display: flex; gap: 5px; background: #eee; padding: 10px; border-radius: 0 0 8px 8px; }
-        .chat-input-area input { flex: 1; padding: 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 1rem; }
-        .chat-input-area button { background: var(--city-dark-blue); color: white; border: none; padding: 0 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .chat-input-area input { flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+        .chat-input-area button { background: var(--city-dark-blue); color: white; border: none; padding: 0 15px; border-radius: 5px; cursor: pointer; }
 
         .btn-menu { font-size: 35px; background: none; border: none; color: var(--city-white); cursor: pointer; }
     </style>
@@ -215,23 +160,15 @@
 
     <main>
         <div id="accueil" class="content-section active">
-            <h2 style="color: var(--city-dark-blue);">🩵 BIENVENUE CITYZENS 🩵</h2>
-            <img src="static/images/mancityecussonclasse.jpg" style="width: 100%; max-width: 550px; border-radius: 20px; margin-bottom: 20px;">
-            <div class="box-info">
-                <p style="font-weight: bold;">Toutes les actus sur le club en direct de l'Etihad.</p>
-            </div>
+            <h2>🩵 BIENVENUE CITYZENS 🩵</h2>
+            <img src="static/images/mancityecussonclasse.jpg" style="width: 100%; max-width: 500px; border-radius: 20px;">
+            <div class="box-info"><p>L'actualité des Sky Blues en temps réel.</p></div>
         </div>
 
         <div id="mercato-recap" class="content-section">
-            <h2 style="color: var(--city-dark-blue);">📥 Historique Arrivées</h2>
-            <div class="transfert-card">
-                <img src="static/images/15.jpg">
-                <div class="transfert-info"><h3>Marc Guéhi <span class="badge-arrivee">Recrue</span></h3><p>Prix : 23M €</p></div>
-            </div>
-            <div class="transfert-card">
-                <img src="static/images/42.jpg">
-                <div class="transfert-info"><h3>Antoine Semenyo <span class="badge-arrivee">Recrue</span></h3><p>Prix : 72M €</p></div>
-            </div>
+            <h2>📥 Historique Arrivées</h2>
+            <div class="transfert-card"><img src="static/images/15.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Prix : 23M €</p></div></div>
+            <div class="transfert-card"><img src="static/images/42.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Prix : 72M €</p></div></div>
         </div>
 
         <div id="joueur-solo" class="content-section">
@@ -245,41 +182,29 @@
                     <tr><th>Fin de contrat</th><td id="s-fin"></td></tr>
                     <tr><th>Valeur</th><td id="s-valeur"></td></tr>
                 </table>
-                <div class="bio-box">
-                    <strong style="color: var(--city-dark-blue);">Biographie :</strong><br>
-                    <span id="s-bio"></span>
-                </div>
+                <div class="bio-box"><strong>Bio :</strong> <span id="s-bio"></span></div>
             </div>
         </div>
 
         <div id="transferts" class="content-section">
             <h2>Dernières Rumeurs</h2>
             <div class="transfert-card" onclick="ouvrirChat('John Stones')">
-                <img src="static/images/5.jpg">
-                <div class="transfert-info"><h3>John Stones</h3><p>Départ possible vers Wrexham ?</p></div>
-            </div>
-            <div class="transfert-card" onclick="ouvrirChat('Sean Steur')">
-                <img src="static/images/sean.jpg">
-                <div class="transfert-info"><h3>Sean Steur</h3><p>La pépite de l'Ajax ciblée (6M€)</p></div>
+                <img src="static/images/5.jpg"><div class="transfert-info"><h3>John Stones</h3><p>Départ vers Wrexham ?</p></div>
             </div>
         </div>
 
         <div id="chat-section" class="content-section">
-            <button onclick="showSection('transferts')" style="margin-bottom: 10px; cursor: pointer;">⬅ Retour</button>
+            <button onclick="showSection('transferts')">⬅ Retour</button>
             <h2 id="chat-titre">Chat</h2>
             <div id="chat-messages"></div>
-            
             <div class="emoji-bar">
                 <span class="emoji-btn" onclick="addEmoji('🩵')">🩵</span>
                 <span class="emoji-btn" onclick="addEmoji('⚽')">⚽</span>
                 <span class="emoji-btn" onclick="addEmoji('🔥')">🔥</span>
-                <span class="emoji-btn" onclick="addEmoji('😮')">😮</span>
                 <span class="emoji-btn" onclick="addEmoji('💸')">💸</span>
-                <span class="emoji-btn" onclick="addEmoji('🤝')">🤝</span>
             </div>
-
             <div class="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Donnez votre avis...">
+                <input type="text" id="chat-input" placeholder="Votre avis...">
                 <button onclick="envoyerMessage()">Envoyer</button>
             </div>
         </div>
@@ -287,10 +212,37 @@
 
     <script>
         const effectif = {
-            'haaland': { nom: "Erling Haaland", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Le cyborg norvégien continue de briser tous les records de buts." },
-            'stones': { nom: "John Stones", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000€", fin: "30/06/2026", valeur: "15M €", img: "5.jpg", bio: "Le pilier technique de la défense mancunienne." },
-            'foden': { nom: "Phil Foden", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "Le joyau de l'académie, désormais leader technique." }
-            // Ajoute les autres joueurs ici avec le même format...
+            // GARDIENS
+            'donnaruma': { nom: "Gianluigi Donnarumma", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 800 000 €", fin: "2029", valeur: "80M €", img: "donnaruma.jpg", bio: "Gardien titulaire indiscutable." },
+            'trafford': { nom: "James Trafford", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "450 000 €", fin: "2028", valeur: "20M €", img: "trafford.jpg", bio: "Jeune talent de retour au club." },
+            'bettinelli': { nom: "Marcus Bettinelli", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "200 000 €", fin: "2026", valeur: "2M €", img: "bettinelli.jpg", bio: "Expérience au service du groupe." },
+            // DEFENSEURS
+            'stones': { nom: "John Stones", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1.2M €", fin: "2026", valeur: "15M €", img: "5.jpg", bio: "Défenseur central polyvalent." },
+            'nunes': { nom: "Matheus Nunes", age: "26 ans", nat: "Portugal 🇵🇹", paye: "800k €", fin: "2028", valeur: "40M €", img: "27.jpg", bio: "Milieu défensif reconverti." },
+            'ake': { nom: "Nathan Aké", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "900k €", fin: "2027", valeur: "35M €", img: "6.jpg", bio: "Le mur néerlandais." },
+            'guehi': { nom: "Marc Guéhi", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "850k €", fin: "2029", valeur: "70M €", img: "15.jpg", bio: "Recrue solide." },
+            'alleyne': { nom: "Max Alleyne", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "50k €", fin: "2027", valeur: "2M €", img: "alleyne.jpg", bio: "Avenir du club." },
+            'aitnouri': { nom: "Rayan Ait-Nouri", age: "24 ans", nat: "Algérie 🇩🇿", paye: "600k €", fin: "2028", valeur: "45M €", img: "aitnouri.jpg", bio: "Latéral offensif de classe." },
+            'dias': { nom: "Ruben Dias", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1.1M €", fin: "2027", valeur: "75M €", img: "3.jpg", bio: "Le patron de la défense." },
+            'oreilly': { nom: "Nico O'Reilly", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "100k €", fin: "2028", valeur: "8M €", img: "oreilly.jpg", bio: "Milieu athlétique." },
+            'gvardiol': { nom: "Josko Gvardiol", age: "23 ans", nat: "Croatie 🇭🇷", paye: "1M €", fin: "2028", valeur: "75M €", img: "24.jpg", bio: "Le futur meilleur du monde." },
+            'khusanov': { nom: "Abdukodir Khusanov", age: "21 ans", nat: "Ouzbékistan 🇺🇿", paye: "300k €", fin: "2028", valeur: "12M €", img: "khusanov.jpg", bio: "La révélation défensive." },
+            'lewis': { nom: "Rico Lewis", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "400k €", fin: "2028", valeur: "35M €", img: "82.jpg", bio: "Pur produit de l'académie." },
+            // MILIEUX
+            'rodri': { nom: "Rodri", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1.3M €", fin: "2027", valeur: "110M €", img: "16.jpg", bio: "Meilleur milieu du monde." },
+            'silva': { nom: "Bernardo Silva", age: "31 ans", nat: "Portugal 🇵🇹", paye: "1.2M €", fin: "2026", valeur: "60M €", img: "20.jpg", bio: "Le magicien portugais." },
+            'reijnders': { nom: "Tijjani Reijnders", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "700k €", fin: "2029", valeur: "45M €", img: "reijnders.jpg", bio: "Volume de jeu incroyable." },
+            'gonzalez': { nom: "Nico Gonzalez", age: "24 ans", nat: "Espagne 🇪🇸", paye: "500k €", fin: "2028", valeur: "25M €", img: "nico.jpg", bio: "Le métronome espagnol." },
+            'kovacic': { nom: "Matéo Kovacic", age: "31 ans", nat: "Croatie 🇭🇷", paye: "900k €", fin: "2027", valeur: "30M €", img: "8.jpg", bio: "Maître du dribble sous pression." },
+            'foden': { nom: "Phil Foden", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1.1M €", fin: "2027", valeur: "110M €", img: "47.jpg", bio: "Le prince de Manchester." },
+            'cherki': { nom: "Rayan Cherki", age: "22 ans", nat: "France 🇫🇷", paye: "400k €", fin: "2028", valeur: "25M €", img: "cherki.jpg", bio: "Technique hors norme." },
+            'nypan': { nom: "Sverre Nypan", age: "19 ans", nat: "Norvège 🇳🇴", paye: "50k €", fin: "2027", valeur: "15M €", img: "nypan.jpg", bio: "Le futur Odegaard." },
+            // ATTAQUANTS
+            'haaland': { nom: "Erling Haaland", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2.5M €", fin: "2034", valeur: "180M €", img: "9.jpg", bio: "Le meilleur buteur de l'histoire ?" },
+            'savinho': { nom: "Sávinho", age: "21 ans", nat: "Brésil 🇧🇷", paye: "500k €", fin: "2029", valeur: "50M €", img: "26.jpg", bio: "Dribbleur fou." },
+            'marmoush': { nom: "Omar Marmoush", age: "26 ans", nat: "Égypte 🇪🇬", paye: "600k €", fin: "2028", valeur: "35M €", img: "marmoush.jpg", bio: "Vitesse et finition." },
+            'doku': { nom: "Jérémy Doku", age: "23 ans", nat: "Belgique 🇧🇪", paye: "700k €", fin: "2028", valeur: "65M €", img: "11.jpg", bio: "Cauchemar des défenseurs." },
+            'semenyo': { nom: "Antoine Semenyo", age: "26 ans", nat: "Ghana 🇬🇭", paye: "400k €", fin: "2029", valeur: "72M €", img: "42.jpg", bio: "Puissance et explosivité." }
         };
 
         function toggleMenu() { document.getElementById('menu').classList.toggle('ouvert'); }
@@ -304,7 +256,7 @@
 
         function afficherJoueur(id) {
             const j = effectif[id];
-            if(!j) return;
+            if(!j) { console.log("Joueur non trouvé : " + id); return; }
             document.getElementById('nom-joueur').innerText = j.nom;
             document.getElementById('s-age').innerText = j.age;
             document.getElementById('s-nat').innerText = j.nat;
@@ -318,31 +270,22 @@
 
         function ouvrirChat(nom) {
             document.getElementById('chat-titre').innerText = "Avis sur " + nom;
-            document.getElementById('chat-messages').innerHTML = "<div class='msg'>Bienvenue ! Que pensez-vous de la rumeur " + nom + " ?</div>";
+            document.getElementById('chat-messages').innerHTML = "<div class='msg'>Fan : Je pense que " + nom + " devrait rester !</div>";
             showSection('chat-section');
         }
 
-        function addEmoji(emoji) {
-            document.getElementById('chat-input').value += emoji;
-            document.getElementById('chat-input').focus();
-        }
+        function addEmoji(e) { document.getElementById('chat-input').value += e; document.getElementById('chat-input').focus(); }
 
         function envoyerMessage() {
-            const input = document.getElementById('chat-input');
-            if(input.value.trim() == "") return;
-            const msg = document.createElement('div');
-            msg.className = "msg";
-            msg.innerText = "Fan : " + input.value;
-            document.getElementById('chat-messages').appendChild(msg);
-            input.value = "";
-            const box = document.getElementById('chat-messages');
-            box.scrollTop = box.scrollHeight;
+            const i = document.getElementById('chat-input');
+            if(!i.value.trim()) return;
+            const m = document.createElement('div');
+            m.className = "msg"; m.innerText = "Moi : " + i.value;
+            document.getElementById('chat-messages').appendChild(m);
+            i.value = "";
+            const b = document.getElementById('chat-messages');
+            b.scrollTop = b.scrollHeight;
         }
-
-        // Permet d'envoyer avec la touche Entrée
-        document.getElementById('chat-input')?.addEventListener("keypress", function(e) {
-            if (e.key === "Enter") envoyerMessage();
-        });
     </script>
 </body>
 </html>
