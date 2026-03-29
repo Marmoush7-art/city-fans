@@ -140,11 +140,9 @@
 
     <script>
         const effectif = {
-            // GARDIENS (Change les chiffres .jpg selon tes fichiers)
             'donnaruma': { nom: "Gianluigi Donnarumma", age: "27 ans", nat: "Italie 🇮🇹", paye: "1.8M€", fin: "2029", valeur: "80M€", img: "25.jpg", bio: "Gardien n°1." },
             'trafford': { nom: "James Trafford", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "450k€", fin: "2028", valeur: "20M€", img: "1.jpg", bio: "Espoir." },
             'bettinelli': { nom: "Marcus Bettinelli", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "200k€", fin: "2026", valeur: "2M€", img: "13.jpg", bio: "Doublure." },
-            // DÉFENSEURS
             'stones': { nom: "John Stones", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1.2M€", fin: "2026", valeur: "15M€", img: "5.jpg", bio: "Le patron." },
             'nunes': { nom: "Matheus Nunes", age: "26 ans", nat: "Portugal 🇵🇹", paye: "800k€", fin: "2028", valeur: "40M€", img: "27.jpg", bio: "Milieu/Défenseur." },
             'ake': { nom: "Nathan Aké", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "900k€", fin: "2027", valeur: "35M€", img: "6.jpg", bio: "Roc défensif." },
@@ -156,22 +154,22 @@
             'gvardiol': { nom: "Josko Gvardiol", age: "23 ans", nat: "Croatie 🇭🇷", paye: "1M€", fin: "2028", valeur: "75M€", img: "24.jpg", bio: "Futur top mondial." },
             'khusanov': { nom: "Abdukodir Khusanov", age: "21 ans", nat: "Ouzbékistan 🇺🇿", paye: "300k€", fin: "2028", valeur: "12M€", img: "45.jpg", bio: "Révélation." },
             'lewis': { nom: "Rico Lewis", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "400k€", fin: "2028", valeur: "35M€", img: "82.jpg", bio: "Polyvalent." },
-            // MILIEUX
             'rodri': { nom: "Rodri", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1.3M€", fin: "2027", valeur: "110M€", img: "16.jpg", bio: "Le moteur." },
             'silva': { nom: "Bernardo Silva", age: "31 ans", nat: "Portugal 🇵🇹", paye: "1.2M€", fin: "2026", valeur: "60M€", img: "20.jpg", bio: "Magicien." },
             'reijnders': { nom: "Tijjani Reijnders", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "700k€", fin: "2029", valeur: "45M€", img: "4.jpg", bio: "Relanceur." },
-            'gonzalez': { nom: "Nico Gonzalez", age: "24 ans", nat: "Espagne 🇪🇸", paye: "500k€", fin: "2028", valeur: "25M€", img: "16.jpg", bio: "Technicien." },
+            'gonzalez': { nom: "Nico Gonzalez", age: "24 ans", nat: "Espagne 🇪🇸", paye: "500k€", fin: "2028", valeur: "25M€", img: "14.jpg", bio: "Technicien." },
             'kovacic': { nom: "Matéo Kovacic", age: "31 ans", nat: "Croatie 🇭🇷", paye: "900k€", fin: "2027", valeur: "30M€", img: "8.jpg", bio: "Expérimenté." },
             'foden': { nom: "Phil Foden", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1.1M€", fin: "2027", valeur: "110M€", img: "47.jpg", bio: "Star locale." },
             'cherki': { nom: "Rayan Cherki", age: "22 ans", nat: "France 🇫🇷", paye: "400k€", fin: "2028", valeur: "25M€", img: "10.jpg", bio: "Dribbleur." },
             'nypan': { nom: "Sverre Nypan", age: "19 ans", nat: "Norvège 🇳🇴", paye: "50k€", fin: "2027", valeur: "15M€", img: "41.jpg", bio: "Pépite norvégienne." },
-            // ATTAQUANTS
             'haaland': { nom: "Erling Haaland", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2.5M€", fin: "2034", valeur: "180M€", img: "9.jpg", bio: "Cyborg." },
             'savinho': { nom: "Sávinho", age: "21 ans", nat: "Brésil 🇧🇷", paye: "500k€", fin: "2029", valeur: "50M€", img: "26.jpg", bio: "Percutant." },
             'marmoush': { nom: "Omar Marmoush", age: "26 ans", nat: "Égypte 🇪🇬", paye: "600k€", fin: "2028", valeur: "35M€", img: "7.jpg", bio: "Vitesse." },
             'doku': { nom: "Jérémy Doku", age: "23 ans", nat: "Belgique 🇧🇪", paye: "700k€", fin: "2028", valeur: "65M€", img: "11.jpg", bio: "Éclair." },
             'semenyo': { nom: "Antoine Semenyo", age: "26 ans", nat: "Ghana 🇬🇭", paye: "400k€", fin: "2029", valeur: "72M€", img: "42.jpg", bio: "Puissant." }
         };
+
+        let currentChatTopic = "";
 
         function toggleMenu() { document.getElementById('menu').classList.toggle('ouvert'); }
         function toggleSubMenu() { document.getElementById('sub-effectif').classList.toggle('show'); }
@@ -181,6 +179,7 @@
             document.getElementById('menu').classList.remove('ouvert');
             window.scrollTo(0,0);
         }
+
         function afficherJoueur(id) {
             const j = effectif[id];
             if(!j) return;
@@ -194,21 +193,48 @@
             document.getElementById('photo').src = "static/images/" + j.img;
             showSection('joueur-solo');
         }
+
         function ouvrirChat(nom) {
+            currentChatTopic = nom;
             document.getElementById('chat-titre').innerText = "Avis : " + nom;
-            document.getElementById('chat-messages').innerHTML = "<div class='msg'>Fan : Que penses-tu de " + nom + " ?</div>";
+            loadMessages();
             showSection('chat-section');
         }
+
         function addEmoji(e) { document.getElementById('chat-input').value += e; }
+
         function envoyerMessage() {
             const i = document.getElementById('chat-input');
-            if(!i.value.trim()) return;
-            const m = document.createElement('div');
-            m.className = "msg"; m.innerText = "Moi : " + i.value;
-            document.getElementById('chat-messages').appendChild(m);
+            const val = i.value.trim();
+            if(!val) return;
+            
+            // Sauvegarder dans le localStorage
+            let allMessages = JSON.parse(localStorage.getItem('cityChat') || "{}");
+            if(!allMessages[currentChatTopic]) allMessages[currentChatTopic] = [];
+            allMessages[currentChatTopic].push(val);
+            localStorage.setItem('cityChat', JSON.stringify(allMessages));
+            
             i.value = "";
-            const b = document.getElementById('chat-messages');
-            b.scrollTop = b.scrollHeight;
+            loadMessages();
+        }
+
+        function loadMessages() {
+            const container = document.getElementById('chat-messages');
+            container.innerHTML = "";
+            let allMessages = JSON.parse(localStorage.getItem('cityChat') || "{}");
+            let msgs = allMessages[currentChatTopic] || [];
+            
+            // Message de bienvenue par défaut
+            const intro = document.createElement('div');
+            intro.className = "msg"; intro.innerText = "Fan : Que penses-tu de " + currentChatTopic + " ?";
+            container.appendChild(intro);
+
+            msgs.forEach(text => {
+                const m = document.createElement('div');
+                m.className = "msg"; m.innerText = "Moi : " + text;
+                container.appendChild(m);
+            });
+            container.scrollTop = container.scrollHeight;
         }
     </script>
 </body>
