@@ -3,289 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Fans 🩵 - Site Officiel Fan</title>
+    <title>City Fans 🩵</title>
     <style>
-        :root { 
-            --city-sky-blue: #6CABDD; 
-            --city-dark-blue: #1C2C5B; 
-            --city-white: #FFFFFF;
-            --dark-bg: #1a1a1a;
-            --light-bg: #F0F7FF; 
-        }
-
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            background: linear-gradient(135deg, #fdfbfb 0%, var(--light-bg) 100%);
-            color: var(--city-dark-blue); 
-            overflow-x: hidden; 
-        }
-        
-        nav { 
-            background-color: var(--city-sky-blue); 
-            color: var(--city-white); 
-            height: 65px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 0 25px; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1001; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-        }
-        nav h1 { text-shadow: 1px 1px 2px rgba(0,0,0,0.2); margin:0; cursor:pointer;}
-        
-        #menu { 
-            position: fixed; 
-            right: -280px; 
-            top: 0; 
-            width: 280px; 
-            height: 100%; 
-            background-color: var(--dark-bg); 
-            color: var(--city-white); 
-            transition: 0.4s; 
-            padding-top: 70px; 
-            z-index: 1000; 
-            box-shadow: -5px 0 15px rgba(0,0,0,0.3); 
-        }
+        :root { --city-sky-blue: #6CABDD; --city-dark-blue: #1C2C5B; --city-white: #FFFFFF; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f4f8; color: var(--city-dark-blue); }
+        nav { background: var(--city-sky-blue); color: white; height: 60px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        #menu { position: fixed; right: -280px; top: 0; width: 280px; height: 100%; background: #1a1a1a; color: white; transition: 0.4s; padding-top: 60px; z-index: 999; overflow-y: auto; }
         #menu.ouvert { right: 0; }
-        #menu ul { list-style: none; padding: 0; margin: 0; height: 90vh; overflow-y: auto; }
-        
-        .menu-item { padding: 18px 25px; border-bottom: 1px solid #333; cursor: pointer; font-weight: bold; display: block; color: var(--city-white); text-decoration: none; }
-        .menu-item:hover { color: var(--city-sky-blue); background-color: #222; }
-
-        .sous-menu { display: none; background-color: #111; padding-bottom: 10px; }
+        .menu-item { padding: 15px; border-bottom: 1px solid #333; cursor: pointer; display: block; color: white; text-decoration: none; font-weight: bold; }
+        .sous-menu { display: none; background: #000; }
         .show { display: block !important; }
-        .cat-titre { color: #888; font-size: 0.75rem; font-weight: bold; padding: 12px 25px 5px 35px; text-transform: uppercase; }
-        .joueur-link { color: var(--city-sky-blue); display: block; padding: 8px 45px; cursor: pointer; font-size: 0.9rem; }
-        .joueur-link:hover { color: var(--city-white); background-color: #222; }
-
-        main { text-align: center; padding: 30px 15px; max-width: 750px; margin: 0 auto; min-height: 80vh; }
-        .content-section { display: none; position: relative; }
-        .active { display: block !important; }
-        
-        main h2 { color: var(--city-sky-blue); font-size: 2rem; margin-bottom: 20px; text-transform: uppercase; }
-
-        .box-info { 
-            background-color: var(--city-sky-blue); 
-            color: #000; 
-            padding: 25px; 
-            border-radius: 15px; 
-            margin-top: 20px; 
-            box-shadow: 0 6px 18px rgba(0,0,0,0.1); 
-        }
-
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left; }
-        th { padding: 12px; border-bottom: 2px solid rgba(0,0,0,0.1); background: rgba(255,255,255,0.3); }
-        td { padding: 12px; border-bottom: 1px solid rgba(0,0,0,0.1); font-weight: bold; }
-        
-        .bio-box {
-            margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.8); border-radius: 10px;
-            text-align: left; line-height: 1.5; font-size: 0.95rem; color: #000;
-        }
-
-        #photo { 
-            max-width: 280px; width: 100%; border-radius: 15px; border: 6px solid var(--city-sky-blue); 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2); margin-bottom: 20px; 
-        }
-
-        .transfert-card {
-            background: white; border: 2px solid var(--city-sky-blue); border-radius: 15px;
-            margin-bottom: 15px; display: flex; align-items: center; overflow: hidden; cursor: pointer;
-        }
-        .transfert-card img { width: 100px; height: 120px; object-fit: cover; border-right: 3px solid var(--city-sky-blue); }
-        .transfert-info { padding: 15px; text-align: left; color: #000; }
-
-        /* CHAT SYSTEM */
-        #chat-messages { height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 15px; background: #fff; border-radius: 10px; display: flex; flex-direction: column; }
-        .msg { background: var(--city-sky-blue); color: white; padding: 8px 15px; border-radius: 15px; margin-bottom: 8px; align-self: flex-start; max-width: 80%; }
-        .emoji-bar { display: flex; gap: 10px; padding: 10px; background: #eee; border-radius: 8px 8px 0 0; justify-content: center; }
-        .emoji-btn { font-size: 1.4rem; cursor: pointer; }
-        .chat-input-area { display: flex; gap: 5px; background: #eee; padding: 10px; border-radius: 0 0 8px 8px; }
-        .chat-input-area input { flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
-        .chat-input-area button { background: var(--city-dark-blue); color: white; border: none; padding: 0 15px; border-radius: 5px; cursor: pointer; }
-
-        .btn-menu { font-size: 35px; background: none; border: none; color: var(--city-white); cursor: pointer; }
+        .joueur-link { display: block; padding: 10px 30px; color: var(--city-sky-blue); cursor: pointer; font-size: 0.9rem; border-bottom: 1px solid #222; }
+        main { text-align: center; padding: 20px; max-width: 800px; margin: auto; }
+        .content-section { display: none; }
+        .active { display: block; }
+        .box-info { background: var(--city-sky-blue); padding: 20px; border-radius: 15px; margin-top: 20px; color: #000; font-weight: 500; }
+        #photo { max-width: 300px; width: 100%; border-radius: 15px; border: 5px solid var(--city-sky-blue); margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .transfert-card { background: white; border: 2px solid var(--city-sky-blue); border-radius: 10px; margin-bottom: 15px; display: flex; align-items: center; cursor: pointer; overflow: hidden; transition: 0.2s; }
+        .transfert-card:hover { transform: scale(1.02); }
+        .transfert-card img { width: 80px; height: 100px; object-fit: cover; }
+        .transfert-info { padding: 10px; text-align: left; }
+        #chat-messages { height: 250px; overflow-y: auto; border: 1px solid #ccc; background: white; padding: 10px; margin-bottom: 10px; border-radius: 5px; text-align: left; }
+        .msg { background: var(--city-sky-blue); color: white; padding: 8px 12px; border-radius: 15px; margin-bottom: 5px; display: inline-block; clear: both; }
+        .emoji-bar { padding: 8px; background: #ddd; display: flex; gap: 10px; justify-content: center; border-radius: 5px 5px 0 0; }
+        .emoji-bar button { font-size: 1.2rem; cursor: pointer; border: none; background: none; }
+        .chat-area { display: flex; gap: 5px; padding: 10px; background: #eee; border-radius: 0 0 5px 5px; }
+        .chat-area input { flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+        .chat-area button { background: var(--city-dark-blue); color: white; border: none; padding: 0 15px; border-radius: 5px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
-        <button class="btn-menu" onclick="toggleMenu()">☰</button>
-    </nav>
+<nav>
+    <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
+    <button style="font-size:30px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu()">☰</button>
+</nav>
 
-    <div id="menu">
-        <ul>
-            <li class="menu-item" onclick="showSection('accueil')">🏠 Accueil</li>
-            <li class="menu-item" onclick="toggleSubMenu()">⚽ Effectif ▾</li>
-            <div id="sub-effectif" class="sous-menu">
-                <div class="cat-titre">Gardiens🧤</div>
-                <span class="joueur-link" onclick="afficherJoueur('donnaruma')">Gianluigi Donnaruma</span>
-                <span class="joueur-link" onclick="afficherJoueur('trafford')">James Trafford</span>
-                <span class="joueur-link" onclick="afficherJoueur('bettinelli')">Marcus Bettinelli</span>
-                <div class="cat-titre">Défenseurs🛡️</div>
-                <span class="joueur-link" onclick="afficherJoueur('stones')">John Stones</span>
-                <span class="joueur-link" onclick="afficherJoueur('nunes')">Matheus Nunes</span>
-                <span class="joueur-link" onclick="afficherJoueur('ake')">Nathan Aké</span>
-                <span class="joueur-link" onclick="afficherJoueur('guehi')">Marc guéhi</span>
-                <span class="joueur-link" onclick="afficherJoueur('alleyne')">Max Alleyne</span>
-                <span class="joueur-link" onclick="afficherJoueur('aitnouri')">Rayan Ait-Nouri</span>
-                <span class="joueur-link" onclick="afficherJoueur('dias')">Ruben Dias</span>
-                <span class="joueur-link" onclick="afficherJoueur('oreilly')">Nico O'Reilly</span>
-                <span class="joueur-link" onclick="afficherJoueur('gvardiol')">Josko Gvardiol</span>
-                <span class="joueur-link" onclick="afficherJoueur('khusanov')">Abdukodir Khusanov</span>
-                <span class="joueur-link" onclick="afficherJoueur('lewis')">Rico Lewis</span>
-                <div class="cat-titre">Milieux⚡</div>
-                <span class="joueur-link" onclick="afficherJoueur('rodri')">Rodri</span>
-                <span class="joueur-link" onclick="afficherJoueur('silva')">Bernardo Silva</span>
-                <span class="joueur-link" onclick="afficherJoueur('reijnders')">Tijjani Reijnders</span>
-                <span class="joueur-link" onclick="afficherJoueur('gonzalez')">Nico Gonzalez</span>
-                <span class="joueur-link" onclick="afficherJoueur('kovacic')">Matéo Kovacic</span>
-                <span class="joueur-link" onclick="afficherJoueur('foden')">Phil Foden</span>
-                <span class="joueur-link" onclick="afficherJoueur('cherki')">Rayan Cherki</span>
-                <span class="joueur-link" onclick="afficherJoueur('nypan')">Sverre Nypan</span>
-                <div class="cat-titre">Attaquants⚔️</div>
-                <span class="joueur-link" onclick="afficherJoueur('haaland')">Erling Haaland</span>
-                <span class="joueur-link" onclick="afficherJoueur('savinho')">Sávinho</span>
-                <span class="joueur-link" onclick="afficherJoueur('marmoush')">Omar Marmoush</span>
-                <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
-                <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
-            </div>
-            <li class="menu-item" onclick="showSection('mercato-recap')">🔄 Historique Transferts</li>
-            <li class="menu-item" onclick="showSection('transferts')">📝 Actus Mercato</li>
-        </ul>
+<div id="menu">
+    <ul>
+        <li class="menu-item" onclick="showSection('accueil')">🏠 Accueil</li>
+        <li class="menu-item" onclick="toggleSubMenu()">⚽ Effectif ▾</li>
+        <div id="sub-effectif" class="sous-menu">
+            <span class="joueur-link" onclick="afficherJoueur('donnaruma')">Donnaruma</span>
+            <span class="joueur-link" onclick="afficherJoueur('stones')">Stones</span>
+            <span class="joueur-link" onclick="afficherJoueur('haaland')">Haaland</span>
+            <span class="joueur-link" onclick="afficherJoueur('savinho')">Savinho</span>
+        </div>
+        <li class="menu-item" onclick="showSection('mercato-recap')">🔄 Transferts</li>
+        <li class="menu-item" onclick="showSection('transferts')">📝 Rumeurs</li>
+    </ul>
+</div>
+
+<main>
+    <div id="accueil" class="content-section active">
+        <h2>BIENVENUE 🩵</h2>
+        <img src="static/images/mancityecussonclasse.jpg" style="width:100%; max-width:400px; border-radius: 10px;">
     </div>
 
-    <main>
-        <div id="accueil" class="content-section active">
-            <h2>🩵 BIENVENUE CITYZENS 🩵</h2>
-            <img src="static/images/mancityecussonclasse.jpg" style="width: 100%; max-width: 500px; border-radius: 20px;">
-            <div class="box-info"><p>L'actualité des Sky Blues en temps réel.</p></div>
+    <div id="joueur-solo" class="content-section">
+        <h2 id="nom-joueur"></h2>
+        <img id="photo" src="">
+        <div class="box-info">
+            <p>Âge: <span id="s-age"></span> | Nat: <span id="s-nat"></span></p>
+            <p>Salaire: <span id="s-paye"></span> | Valeur: <span id="s-valeur"></span></p>
+            <div id="s-bio" style="background:white; padding:15px; border-radius:10px; text-align: left; margin-top: 10px;"></div>
         </div>
+    </div>
 
-        <div id="mercato-recap" class="content-section">
-            <h2>📥 Historique Arrivées</h2>
-            <div class="transfert-card"><img src="static/images/15.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Prix : 23M €</p></div></div>
-            <div class="transfert-card"><img src="static/images/42.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Prix : 72M €</p></div></div>
+    <div id="mercato-recap" class="content-section">
+        <h2>Historique Arrivées</h2>
+        <div class="transfert-card"><img src="static/images/15.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>23M €</p></div></div>
+        <div class="transfert-card"><img src="static/images/42.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>72M €</p></div></div>
+    </div>
+
+    <div id="transferts" class="content-section">
+        <h2>Dernières Rumeurs</h2>
+        <div class="transfert-card" onclick="ouvrirChat('John Stones')">
+            <img src="static/images/5.jpg"><div class="transfert-info"><h3>John Stones</h3><p>Départ vers Wrexham ?</p></div>
         </div>
-
-        <div id="joueur-solo" class="content-section">
-            <h2 id="nom-joueur">Joueur</h2>
-            <img id="photo" src="">
-            <div class="box-info">
-                <table>
-                    <tr><th>Âge</th><td id="s-age"></td></tr>
-                    <tr><th>Nationalité</th><td id="s-nat"></td></tr>
-                    <tr><th>Salaire / mois</th><td id="s-paye"></td></tr>
-                    <tr><th>Fin de contrat</th><td id="s-fin"></td></tr>
-                    <tr><th>Valeur</th><td id="s-valeur"></td></tr>
-                </table>
-                <div class="bio-box"><strong>Bio :</strong> <span id="s-bio"></span></div>
-            </div>
+        <div class="transfert-card" onclick="ouvrirChat('Sean Steur')">
+            <img src="static/images/sean.jpg"><div class="transfert-info"><h3>Sean Steur</h3><p>La pépite de l'Ajax (6M€)</p></div>
         </div>
+    </div>
 
-        <div id="transferts" class="content-section">
-            <h2>Dernières Rumeurs</h2>
-            <div class="transfert-card" onclick="ouvrirChat('John Stones')">
-                <img src="static/images/5.jpg"><div class="transfert-info"><h3>John Stones</h3><p>Départ vers Wrexham ?</p></div>
-            </div>
+    <div id="chat-section" class="content-section">
+        <button onclick="showSection('transferts')" style="margin-bottom: 10px;">⬅ Retour</button>
+        <h2 id="chat-titre">Chat</h2>
+        <div id="chat-messages"></div>
+        <div class="emoji-bar">
+            <button onclick="addEmoji('🩵')">🩵</button>
+            <button onclick="addEmoji('⚽')">⚽</button>
+            <button onclick="addEmoji('🔥')">🔥</button>
+            <button onclick="addEmoji('😮')">😮</button>
         </div>
-
-        <div id="chat-section" class="content-section">
-            <button onclick="showSection('transferts')">⬅ Retour</button>
-            <h2 id="chat-titre">Chat</h2>
-            <div id="chat-messages"></div>
-            <div class="emoji-bar">
-                <span class="emoji-btn" onclick="addEmoji('🩵')">🩵</span>
-                <span class="emoji-btn" onclick="addEmoji('⚽')">⚽</span>
-                <span class="emoji-btn" onclick="addEmoji('🔥')">🔥</span>
-                <span class="emoji-btn" onclick="addEmoji('💸')">💸</span>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Votre avis...">
-                <button onclick="envoyerMessage()">Envoyer</button>
-            </div>
+        <div class="chat-area">
+            <input type="text" id="chat-input" placeholder="Donnez votre avis...">
+            <button onclick="envoyerMessage()">OK</button>
         </div>
-    </main>
+    </div>
+</main>
 
-    <script>
-        const effectif = {
-            // GARDIENS
-            'donnaruma': { nom: "Gianluigi Donnarumma", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 800 000 €", fin: "2029", valeur: "80M €", img: "donnaruma.jpg", bio: "Gardien titulaire indiscutable." },
-            'trafford': { nom: "James Trafford", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "450 000 €", fin: "2028", valeur: "20M €", img: "trafford.jpg", bio: "Jeune talent de retour au club." },
-            'bettinelli': { nom: "Marcus Bettinelli", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "200 000 €", fin: "2026", valeur: "2M €", img: "bettinelli.jpg", bio: "Expérience au service du groupe." },
-            // DEFENSEURS
-            'stones': { nom: "John Stones", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1.2M €", fin: "2026", valeur: "15M €", img: "5.jpg", bio: "Défenseur central polyvalent." },
-            'nunes': { nom: "Matheus Nunes", age: "26 ans", nat: "Portugal 🇵🇹", paye: "800k €", fin: "2028", valeur: "40M €", img: "27.jpg", bio: "Milieu défensif reconverti." },
-            'ake': { nom: "Nathan Aké", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "900k €", fin: "2027", valeur: "35M €", img: "6.jpg", bio: "Le mur néerlandais." },
-            'guehi': { nom: "Marc Guéhi", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "850k €", fin: "2029", valeur: "70M €", img: "15.jpg", bio: "Recrue solide." },
-            'alleyne': { nom: "Max Alleyne", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "50k €", fin: "2027", valeur: "2M €", img: "alleyne.jpg", bio: "Avenir du club." },
-            'aitnouri': { nom: "Rayan Ait-Nouri", age: "24 ans", nat: "Algérie 🇩🇿", paye: "600k €", fin: "2028", valeur: "45M €", img: "aitnouri.jpg", bio: "Latéral offensif de classe." },
-            'dias': { nom: "Ruben Dias", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1.1M €", fin: "2027", valeur: "75M €", img: "3.jpg", bio: "Le patron de la défense." },
-            'oreilly': { nom: "Nico O'Reilly", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "100k €", fin: "2028", valeur: "8M €", img: "oreilly.jpg", bio: "Milieu athlétique." },
-            'gvardiol': { nom: "Josko Gvardiol", age: "23 ans", nat: "Croatie 🇭🇷", paye: "1M €", fin: "2028", valeur: "75M €", img: "24.jpg", bio: "Le futur meilleur du monde." },
-            'khusanov': { nom: "Abdukodir Khusanov", age: "21 ans", nat: "Ouzbékistan 🇺🇿", paye: "300k €", fin: "2028", valeur: "12M €", img: "khusanov.jpg", bio: "La révélation défensive." },
-            'lewis': { nom: "Rico Lewis", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "400k €", fin: "2028", valeur: "35M €", img: "82.jpg", bio: "Pur produit de l'académie." },
-            // MILIEUX
-            'rodri': { nom: "Rodri", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1.3M €", fin: "2027", valeur: "110M €", img: "16.jpg", bio: "Meilleur milieu du monde." },
-            'silva': { nom: "Bernardo Silva", age: "31 ans", nat: "Portugal 🇵🇹", paye: "1.2M €", fin: "2026", valeur: "60M €", img: "20.jpg", bio: "Le magicien portugais." },
-            'reijnders': { nom: "Tijjani Reijnders", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "700k €", fin: "2029", valeur: "45M €", img: "reijnders.jpg", bio: "Volume de jeu incroyable." },
-            'gonzalez': { nom: "Nico Gonzalez", age: "24 ans", nat: "Espagne 🇪🇸", paye: "500k €", fin: "2028", valeur: "25M €", img: "nico.jpg", bio: "Le métronome espagnol." },
-            'kovacic': { nom: "Matéo Kovacic", age: "31 ans", nat: "Croatie 🇭🇷", paye: "900k €", fin: "2027", valeur: "30M €", img: "8.jpg", bio: "Maître du dribble sous pression." },
-            'foden': { nom: "Phil Foden", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1.1M €", fin: "2027", valeur: "110M €", img: "47.jpg", bio: "Le prince de Manchester." },
-            'cherki': { nom: "Rayan Cherki", age: "22 ans", nat: "France 🇫🇷", paye: "400k €", fin: "2028", valeur: "25M €", img: "cherki.jpg", bio: "Technique hors norme." },
-            'nypan': { nom: "Sverre Nypan", age: "19 ans", nat: "Norvège 🇳🇴", paye: "50k €", fin: "2027", valeur: "15M €", img: "nypan.jpg", bio: "Le futur Odegaard." },
-            // ATTAQUANTS
-            'haaland': { nom: "Erling Haaland", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2.5M €", fin: "2034", valeur: "180M €", img: "9.jpg", bio: "Le meilleur buteur de l'histoire ?" },
-            'savinho': { nom: "Sávinho", age: "21 ans", nat: "Brésil 🇧🇷", paye: "500k €", fin: "2029", valeur: "50M €", img: "26.jpg", bio: "Dribbleur fou." },
-            'marmoush': { nom: "Omar Marmoush", age: "26 ans", nat: "Égypte 🇪🇬", paye: "600k €", fin: "2028", valeur: "35M €", img: "marmoush.jpg", bio: "Vitesse et finition." },
-            'doku': { nom: "Jérémy Doku", age: "23 ans", nat: "Belgique 🇧🇪", paye: "700k €", fin: "2028", valeur: "65M €", img: "11.jpg", bio: "Cauchemar des défenseurs." },
-            'semenyo': { nom: "Antoine Semenyo", age: "26 ans", nat: "Ghana 🇬🇭", paye: "400k €", fin: "2029", valeur: "72M €", img: "42.jpg", bio: "Puissance et explosivité." }
-        };
+<script>
+    const effectif = {
+        // ICI : Vérifie bien que le chiffre correspond à ton fichier dans static/images/
+        'donnaruma': { nom: "G. Donnarumma", age: "27", nat: "Italie 🇮🇹", paye: "1.8M€", valeur: "80M€", img: "25.jpg", bio: "Le mur italien." },
+        'stones': { nom: "John Stones", age: "30", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1.2M€", valeur: "15M€", img: "5.jpg", bio: "Défenseur central élégant." },
+        'haaland': { nom: "Erling Haaland", age: "25", nat: "Norvège 🇳🇴", paye: "2.5M€", valeur: "180M€", img: "9.jpg", bio: "Le meilleur buteur du monde." },
+        'savinho': { nom: "Sávinho", age: "21", nat: "Brésil 🇧🇷", paye: "500k€", valeur: "50M€", img: "26.jpg", bio: "Ailier percutant." }
+    };
 
-        function toggleMenu() { document.getElementById('menu').classList.toggle('ouvert'); }
-        function toggleSubMenu() { document.getElementById('sub-effectif').classList.toggle('show'); }
-        
-        function showSection(id) {
-            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            if(document.getElementById('menu').classList.contains('ouvert')) toggleMenu();
-        }
+    function toggleMenu() { document.getElementById('menu').classList.toggle('ouvert'); }
+    function toggleSubMenu() { document.getElementById('sub-effectif').classList.toggle('show'); }
+    
+    function showSection(id) { 
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.getElementById('menu').classList.remove('ouvert');
+        window.scrollTo(0,0);
+    }
 
-        function afficherJoueur(id) {
-            const j = effectif[id];
-            if(!j) { console.log("Joueur non trouvé : " + id); return; }
-            document.getElementById('nom-joueur').innerText = j.nom;
-            document.getElementById('s-age').innerText = j.age;
-            document.getElementById('s-nat').innerText = j.nat;
-            document.getElementById('s-paye').innerText = j.paye;
-            document.getElementById('s-fin').innerText = j.fin;
-            document.getElementById('s-valeur').innerText = j.valeur;
-            document.getElementById('s-bio').innerText = j.bio;
-            document.getElementById('photo').src = "static/images/" + j.img;
-            showSection('joueur-solo');
-        }
+    function afficherJoueur(id) {
+        const j = effectif[id];
+        if(!j) return;
+        document.getElementById('nom-joueur').innerText = j.nom;
+        document.getElementById('s-age').innerText = j.age;
+        document.getElementById('s-nat').innerText = j.nat;
+        document.getElementById('s-paye').innerText = j.paye;
+        document.getElementById('s-valeur').innerText = j.valeur;
+        document.getElementById('s-bio').innerText = j.bio;
+        // Chemin vers les images numérotées
+        document.getElementById('photo').src = "static/images/" + j.img;
+        showSection('joueur-solo');
+    }
 
-        function ouvrirChat(nom) {
-            document.getElementById('chat-titre').innerText = "Avis sur " + nom;
-            document.getElementById('chat-messages').innerHTML = "<div class='msg'>Fan : Je pense que " + nom + " devrait rester !</div>";
-            showSection('chat-section');
-        }
+    function ouvrirChat(nom) {
+        document.getElementById('chat-titre').innerText = "Avis : " + nom;
+        document.getElementById('chat-messages').innerHTML = "<div class='msg'>Fan : Que pensez-vous de " + nom + " ?</div>";
+        showSection('chat-section');
+    }
 
-        function addEmoji(e) { document.getElementById('chat-input').value += e; document.getElementById('chat-input').focus(); }
+    function addEmoji(e) { document.getElementById('chat-input').value += e; }
 
-        function envoyerMessage() {
-            const i = document.getElementById('chat-input');
-            if(!i.value.trim()) return;
-            const m = document.createElement('div');
-            m.className = "msg"; m.innerText = "Moi : " + i.value;
-            document.getElementById('chat-messages').appendChild(m);
-            i.value = "";
-            const b = document.getElementById('chat-messages');
-            b.scrollTop = b.scrollHeight;
-        }
-    </script>
+    function envoyerMessage() {
+        const i = document.getElementById('chat-input');
+        if(!i.value.trim()) return;
+        const m = document.createElement('div');
+        m.className = "msg"; m.innerText = "Moi : " + i.value;
+        document.getElementById('chat-messages').appendChild(m);
+        i.value = "";
+        const b = document.getElementById('chat-messages');
+        b.scrollTop = b.scrollHeight;
+    }
+</script>
 </body>
 </html>
