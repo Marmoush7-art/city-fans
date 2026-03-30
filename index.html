@@ -121,18 +121,19 @@
                 <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
                 <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
             </div>
-            <li class="menu-item" onclick="showSection('mercato-recap')">🔄 Historique Transferts</li>
+            <li class="menu-item" onclick="showSection('mercato-recap')">🔄 mercato-recapferts</li>
             <li class="menu-item" onclick="showSection('transferts')">📝 Actus Mercato</li>
+            <li class="menu-item" onclick="showSection('contrats')">📄 Contrats</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-fc26')">🎮 FC26 ▾</li>
             <div id="sub-fc26" class="sous-menu">
-                <span class="joueur-link" onclick="showSection('fc26-view')">Voir ma carte</span>
+                <span class="joueur-link" onclick="showSection('fc26-view')">Equipe de base (sept 2025)</span>
             </div>
         </ul>
     </div>
 
     <main>
         <div id="accueil" class="content-section active">
-            <h2>BIENVENUE CITYZENS 🩵</h2>
+            <h2>🩵 BIENVENUE CITYZENS 🩵</h2>
             <img src="static/images/mancityecussonclasse.jpg" style="width: 100%; max-width: 500px; border-radius: 20px;">
         </div>
 
@@ -143,20 +144,20 @@
                 <div class="match-main">
                     <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
                     <div class="score-center">2 - 1</div>
-                    <div class="team"><img src="static/images/realmadrid.jpg"><p>Real Madrid</p></div>
+                    <div class="team"><img src="static/images/realmadrid.jpg"><p>Chelsea</p></div>
                 </div>
                 <div class="match-details">
                     <div class="side-details">
                         <h4>Manchester City</h4>
-                        <div class="stat-line">⚽ <strong>Haaland (12')</strong></div>
-                        <div class="stat-line">👟 <em>Passe : Foden</em></div>
+                        <div class="stat-line">⚽ <strong>Erling Haaland (12')</strong></div>
+                        <div class="stat-line">👟 <em>Passe : Phil Foden</em></div>
                         <div class="stat-line">⚽ <strong>Savinho (58')</strong></div>
                         <div class="stat-line">👟 <em>Passe : Rodri</em></div>
                     </div>
                     <div class="side-details">
-                        <h4>Real Madrid</h4>
-                        <div class="stat-line">⚽ <strong>Vinícius Jr. (34')</strong></div>
-                        <div class="stat-line">👟 <em>Passe : Bellingham</em></div>
+                        <h4>Chelsea</h4>
+                        <div class="stat-line">⚽ <strong>Liam Delap (34')</strong></div>
+                        <div class="stat-line">👟 <em>Passe : Cole Palmer</em></div>
                     </div>
                 </div>
             </div>
@@ -189,10 +190,6 @@
             <h3>Arrivées</h3>
             <div class="transfert-card"><img src="static/images/15.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Prix : 23M €</p><p class="transfert-date">Janvier 2026</p></div></div>
             <div class="transfert-card"><img src="static/images/42.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Prix : 72M €</p><p class="transfert-date">Août 2025</p></div></div>
-            <div class="transfert-card"><img src="static/images/21.jpg"><div class="transfert-info"><h3>Rayan Ait-Nouri</h3><p>Prix : 40M €</p><p class="transfert-date">Juillet 2025</p></div></div>
-            <div class="transfert-card"><img src="static/images/45.jpg"><div class="transfert-info"><h3>Abdukodir Khusanov</h3><p>Prix : 35M €</p><p class="transfert-date">Janvier 2026</p></div></div>
-            <div class="transfert-card"><img src="static/images/10.jpg"><div class="transfert-info"><h3>Rayan Cherki</h3><p>Prix : 65M €</p><p class="transfert-date">Janvier 2026</p></div></div>
-            <div class="transfert-card"><img src="static/images/4.jpg"><div class="transfert-info"><h3>Tijjani Reijnders</h3><p>Prix : 60M €</p><p class="transfert-date">Août 2025</p></div></div>
             
             <h3>Départs</h3>
             <div class="transfert-card"><img src="static/images/bobb.jpg"><div class="transfert-info"><h3>Oscar Bobb</h3><p>Vers : Fulham</p><p>Prix : 31,2M €</p><p class="transfert-date">Janvier 2026</p></div></div>
@@ -211,7 +208,7 @@
                     <tr><th>Valeur</th><td id="s-valeur"></td></tr>
                 </table>
                 <div class="bio-container">
-                    <strong>Biographie complète :</strong><br><br>
+                    <strong>Biographie :</strong><br><br>
                     <span id="s-bio"></span>
                 </div>
             </div>
