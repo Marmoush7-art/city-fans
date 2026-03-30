@@ -77,7 +77,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.19.7</span>
+            <span class="version-tag">v 1.0.19.8</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
@@ -205,8 +205,8 @@
         </div>
 
         <div id="contrats" class="content-section">
-            <h2>📄 Fin de contrat imminente</h2>
-            <p style="margin-bottom: 20px; font-size: 0.9rem; color: #666;">Joueurs avec moins d'un an de contrat restant (échéance 2026/2027)</p>
+            <h2>📄 État des Contrats</h2>
+            <p style="margin-bottom: 20px; font-size: 0.9rem; color: #666;">Joueurs en fin de contrat (échéance ≤ 30/03/2027)</p>
             <div id="liste-contrats-urgents"></div>
         </div>
 
@@ -289,21 +289,29 @@
             const container = document.getElementById('liste-contrats-urgents');
             container.innerHTML = "";
             
+            // Date limite : 30/03/2027
+            const dateLimite = new Date(2027, 2, 30); // Mois indexé à 0 (2 = Mars)
+
             for (let id in effectif) {
                 const j = effectif[id];
-                if (j.fin && (j.fin.includes('2026') || j.fin.includes('2027'))) {
-                    const card = document.createElement('div');
-                    card.className = "transfert-card urgent-contract";
-                    card.onclick = () => afficherJoueur(id);
-                    card.innerHTML = `
-                        <img src="static/images/${j.img}">
-                        <div class="transfert-info">
-                            <h3>${j.nom}</h3>
-                            <p>Fin : ${j.fin}</p>
-                            <p class="transfert-date">Salaire : ${j.paye}</p>
-                        </div>
-                    `;
-                    container.appendChild(card);
+                if (j.fin && j.fin !== "N/A") {
+                    const parties = j.fin.split('/');
+                    const dateFin = new Date(parties[2], parties[1] - 1, parties[0]);
+
+                    if (dateFin <= dateLimite) {
+                        const card = document.createElement('div');
+                        card.className = "transfert-card urgent-contract";
+                        card.onclick = () => afficherJoueur(id);
+                        card.innerHTML = `
+                            <img src="static/images/${j.img}">
+                            <div class="transfert-info">
+                                <h3>${j.nom}</h3>
+                                <p>Expire le : ${j.fin}</p>
+                                <p class="transfert-date">Salaire mensuel : ${j.paye}</p>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    }
                 }
             }
             showSection('contrats');
