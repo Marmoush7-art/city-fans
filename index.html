@@ -30,7 +30,6 @@
         th, td { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); }
         #photo { max-width: 280px; width: 100%; border-radius: 15px; border: 6px solid var(--city-sky-blue); margin-bottom: 25px; }
         
-        /* Bio agrandie */
         .bio-container { background: white; padding: 25px; border-radius: 10px; margin-top: 15px; text-align: left; min-height: 150px; line-height: 1.6; }
 
         .transfert-card { background: white; border: 2px solid var(--city-sky-blue); border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; cursor: pointer; overflow: hidden; }
@@ -48,7 +47,7 @@
         
         .emoji-picker { 
             display: none; position: absolute; bottom: 60px; left: 10px; background: white; border: 1px solid #ccc; 
-            border-radius: 10px; padding: 10px; width: 280px; max-height: 180px; overflow-y: auto;
+            border-radius: 10px; padding: 10px; width: 280px; max-height: 200px; overflow-y: auto;
             grid-template-columns: repeat(6, 1fr); gap: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 10; 
         }
         .emoji-picker span { font-size: 1.4rem; cursor: pointer; text-align: center; }
@@ -60,8 +59,9 @@
         .team img { width: 50px; height: 50px; object-fit: contain; }
         .team p { margin: 8px 0 0; font-weight: bold; font-size: 0.9rem; }
         .score-center { flex: 1; font-size: 2.2rem; font-weight: 800; color: var(--city-dark-blue); }
-        .match-details { margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .stat-line { font-size: 0.85rem; display: flex; align-items: center; gap: 5px; }
+        .match-details { margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .side-details h4 { font-size: 0.75rem; margin: 0 0 8px 0; color: var(--city-sky-blue); text-transform: uppercase; }
+        .stat-line { font-size: 0.85rem; margin-bottom: 5px; }
         .live-badge { background: #e74c3c; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; animation: blink 1.5s infinite; vertical-align: middle; margin-left: 5px; }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
@@ -77,8 +77,8 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.19</span>
-            <button style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu()">☰</button>
+            <span class="version-tag">v 1.0.19.2</span>
+            <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
 
@@ -148,10 +148,18 @@
                     <div class="team"><img src="static/images/realmadrid.jpg"><p>Real Madrid</p></div>
                 </div>
                 <div class="match-details">
-                    <div class="stat-line">⚽ <strong>Haaland (12')</strong></div>
-                    <div class="stat-line">👟 <em>Passe : Foden</em></div>
-                    <div class="stat-line">⚽ <strong>Savinho (58')</strong></div>
-                    <div class="stat-line">👟 <em>Passe : Rodri</em></div>
+                    <div class="side-details">
+                        <h4>Manchester City</h4>
+                        <div class="stat-line">⚽ <strong>Haaland (12')</strong></div>
+                        <div class="stat-line">👟 <em>Passe : Foden</em></div>
+                        <div class="stat-line">⚽ <strong>Savinho (58')</strong></div>
+                        <div class="stat-line">👟 <em>Passe : Rodri</em></div>
+                    </div>
+                    <div class="side-details">
+                        <h4>Real Madrid</h4>
+                        <div class="stat-line">⚽ <strong>Vinícius Jr. (34')</strong></div>
+                        <div class="stat-line">👟 <em>Passe : Bellingham</em></div>
+                    </div>
                 </div>
             </div>
             <h3>Derniers Résultats</h3>
@@ -163,10 +171,17 @@
                     <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
                 </div>
                 <div class="match-details">
-                    <div class="stat-line">⚽ <strong>Marmoush (44')</strong></div>
-                    <div class="stat-line">👟 <em>Passe : Cherki</em></div>
-                    <div class="stat-line">⚽ <strong>Haaland (89')</strong></div>
-                    <div class="stat-line">👟 <em>Passe : Rodri</em></div>
+                    <div class="side-details">
+                        <h4>Arsenal</h4>
+                        <div class="stat-line"><em>Aucun but</em></div>
+                    </div>
+                    <div class="side-details">
+                        <h4>Manchester City</h4>
+                        <div class="stat-line">⚽ <strong>Marmoush (44')</strong></div>
+                        <div class="stat-line">👟 <em>Passe : Cherki</em></div>
+                        <div class="stat-line">⚽ <strong>Haaland (89')</strong></div>
+                        <div class="stat-line">👟 <em>Passe : Rodri</em></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -233,6 +248,8 @@
                     <span onclick="addEmoji('🏆')">🏆</span><span onclick="addEmoji('💙')">💙</span><span onclick="addEmoji('🙌')">🙌</span>
                     <span onclick="addEmoji('👏')">👏</span><span onclick="addEmoji('🤩')">🤩</span><span onclick="addEmoji('😮')">😮</span>
                     <span onclick="addEmoji('💸')">💸</span><span onclick="addEmoji('👑')">👑</span><span onclick="addEmoji('💪')">💪</span>
+                    <span onclick="addEmoji('😂')">😂</span><span onclick="addEmoji('🤔')">🤔</span><span onclick="addEmoji('🤫')">🤫</span>
+                    <span onclick="addEmoji('👀')">👀</span><span onclick="addEmoji('✅')">✅</span><span onclick="addEmoji('❌')">❌</span>
                 </div>
                 <div class="chat-area">
                     <button class="emoji-toggle" onclick="toggleEmojiPicker()">😊</button>
@@ -271,7 +288,7 @@
             'semenyo': { nom: "Antoine Semenyo", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Puissance offensive brute. Sa capacité à gagner ses duels physiques et sa finition clinique sont des atouts précieux." },
             'cherki': { nom: "Rayan Cherki", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Magicien français doté d'une technique hors norme. Capable d'éliminer plusieurs adversaires sur un simple geste technique." },
             'marmoush': { nom: "Omar Marmoush", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Attaquant égyptien polyvalent et rapide. Très efficace devant le but, il apporte une profondeur de banc de haute qualité." },
-            'nypan': { nom: "Sverre Nypan", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "N/A", valeur: "15M €", img: "41.jpg", bio: "Futur maître du milieu de terrain. Grand espoir scandinave, il possède une maturité tactique rare pour son âge." },
+            'nypan': { nom: "Sverre Nypan", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "N/A", valeur: "15M €", img: "41.jpg", bio: "Futur maître du milieu de terrain. Grand espoir scandinave, he possède une maturité tactique rare pour son âge." },
             'doku': { nom: "Jérémy Doku", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Vitesse pure et explosivité. Son premier pas est capable de laisser n'importe quel défenseur sur place." },
             'kovacic': { nom: "Matéo Kovacic", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Expérience croate au plus haut niveau. Un maître dans la conservation de balle sous pression et la transition défense-attaque." },
             'reijnders': { nom: "Tijjani Reijnders", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant avec une grande capacité de projection. Sa vision de jeu et sa qualité de passe en font un organisateur clé." },
@@ -279,13 +296,29 @@
         };
 
         let currentChatTopic = "";
-        function toggleMenu() { document.getElementById('menu').classList.toggle('ouvert'); }
+        
+        function toggleMenu(event) {
+            event.stopPropagation();
+            document.getElementById('menu').classList.toggle('ouvert');
+        }
+
+        // Fermeture du menu si on clique ailleurs
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('menu');
+            const btnMenu = document.getElementById('btn-menu');
+            if (menu.classList.contains('ouvert') && !menu.contains(event.target) && event.target !== btnMenu) {
+                menu.classList.remove('ouvert');
+            }
+        });
+
         function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
+        
         function showSection(id) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             document.getElementById('menu').classList.remove('ouvert');
         }
+        
         function afficherJoueur(id) {
             const j = effectif[id]; if(!j) return;
             document.getElementById('nom-joueur').innerText = j.nom;
@@ -298,35 +331,48 @@
             document.getElementById('photo').src = "static/images/" + j.img;
             showSection('joueur-solo');
         }
+        
         function ouvrirChat(nom) {
             currentChatTopic = nom;
             document.getElementById('chat-titre').innerText = "Avis : " + nom;
             loadMessages();
             showSection('chat-section');
         }
+        
         function toggleEmojiPicker() {
             const picker = document.getElementById('emoji-picker');
             picker.style.display = (picker.style.display === 'grid') ? 'none' : 'grid';
         }
+        
         function addEmoji(e) { 
             const i = document.getElementById('chat-input');
             i.value += e; 
             document.getElementById('emoji-picker').style.display = 'none';
         }
+        
         function envoyerMessage() {
             const i = document.getElementById('chat-input');
             const val = i.value.trim();
             if(!val || !currentChatTopic) return;
-            db.collection("messages").add({ topic: currentChatTopic, text: val, date: firebase.firestore.FieldValue.serverTimestamp() });
+            db.collection("messages").add({ 
+                topic: currentChatTopic, 
+                text: val, 
+                date: firebase.firestore.FieldValue.serverTimestamp() 
+            });
             i.value = "";
         }
+        
         function loadMessages() {
-            db.collection("messages").where("topic", "==", currentChatTopic).orderBy("date", "asc").onSnapshot((snapshot) => {
+            db.collection("messages")
+              .where("topic", "==", currentChatTopic)
+              .orderBy("date", "asc")
+              .onSnapshot((snapshot) => {
                 const container = document.getElementById('chat-messages');
                 container.innerHTML = "";
                 snapshot.forEach((doc) => {
                     const m = document.createElement('div');
-                    m.className = "msg"; m.innerText = doc.data().text;
+                    m.className = "msg"; 
+                    m.innerText = doc.data().text;
                     container.appendChild(m);
                 });
                 container.scrollTop = container.scrollHeight;
@@ -334,3 +380,4 @@
         }
     </script>
 </body>
+</html>
