@@ -12,7 +12,6 @@
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f4f8; color: var(--city-dark-blue); }
         nav { background: var(--city-sky-blue); color: white; height: 65px; display: flex; justify-content: space-between; align-items: center; padding: 0 25px; position: sticky; top: 0; z-index: 1001; }
         
-        /* VERSION EN HAUT À DROITE */
         .version-tag { color: white; font-size: 0.8rem; font-weight: bold; margin-right: 15px; }
         .nav-right { display: flex; align-items: center; }
 
@@ -59,10 +58,16 @@
         .emoji-picker span { font-size: 1.4rem; cursor: pointer; text-align: center; transition: transform 0.1s; }
         .emoji-picker span:hover { transform: scale(1.2); }
 
-        /* STYLE FC26 MIS À JOUR v1.0.05 */
-        #fc26-view.content-section { background: #FF8C00; } /* Fond orange de la section */
+        /* MATCHS STYLE */
+        .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 15px; display: flex; justify-content: space-around; align-items: center; border: 2px solid var(--city-sky-blue); }
+        .team-box { flex: 1; }
+        .team-box img { width: 60px; height: 60px; object-fit: contain; }
+        .score-box { font-size: 2rem; font-weight: bold; padding: 0 20px; color: var(--city-dark-blue); }
+
+        /* FC26 STYLE */
+        #fc26-view.content-section { background: #FF8C00; }
         .fc26-card { padding: 0; border-radius: 0; display: inline-block; box-shadow: none; border: none; background: none; }
-        .fc26-img { width: 100%; max-width: 500px; border-radius: 20px; display: block; margin: 0 auto; } /* Image agrandie */
+        .fc26-img { width: 100%; max-width: 500px; border-radius: 20px; display: block; margin: 0 auto; }
     </style>
 </head>
 <body>
@@ -70,7 +75,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.05</span>
+            <span class="version-tag">v 1.0.06</span>
             <button style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu()">☰</button>
         </div>
     </nav>
@@ -78,6 +83,10 @@
     <div id="menu">
         <ul>
             <li class="menu-item" onclick="showSection('accueil')">🏠 Accueil</li>
+            <li class="menu-item" onclick="toggleSubMenu('sub-matchs')">📅 Matchs ▾</li>
+            <div id="sub-matchs" class="sous-menu">
+                <span class="joueur-link" onclick="showSection('matchs-view')">Résultats</span>
+            </div>
             <li class="menu-item" onclick="toggleSubMenu('sub-effectif')">⚽ Effectif ▾</li>
             <div id="sub-effectif" class="sous-menu">
                 <div class="cat-titre">Gardiens</div>
@@ -112,12 +121,12 @@
                 <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
                 <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
             </div>
+            <li class="menu-item" onclick="showSection('mercato-recap')">🔄 Historique Transferts</li>
+            <li class="menu-item" onclick="showSection('transferts')">📝 Actus Mercato</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-fc26')">🎮 FC26 ▾</li>
             <div id="sub-fc26" class="sous-menu">
                 <span class="joueur-link" onclick="showSection('fc26-view')">Voir ma carte</span>
             </div>
-            <li class="menu-item" onclick="showSection('mercato-recap')">🔄 Historique Transferts</li>
-            <li class="menu-item" onclick="showSection('transferts')">📝 Actus Mercato</li>
         </ul>
     </div>
 
@@ -127,10 +136,25 @@
             <img src="static/images/mancityecussonclasse.jpg" style="width: 100%; max-width: 500px; border-radius: 20px;">
         </div>
 
+        <div id="matchs-view" class="content-section">
+            <h2>DERNIERS RÉSULTATS</h2>
+            <div class="match-card">
+                <div class="team-box"><img src="static/images/mancitylogo.jpg"><p>Man City</p></div>
+                <div class="score-box"><span>3</span> - <span>1</span></div>
+                <div class="team-box"><img src="static/images/arsenal.jpg"><p>Arsenal</p></div>
+            </div>
+            <div class="match-card">
+                <div class="team-box"><img src="static/images/liverpool.jpg"><p>Liverpool</p></div>
+                <div class="score-box"><span>2</span> - <span>2</span></div>
+                <div class="team-box"><img src="static/images/mancitylogo.jpg"><p>Man City</p></div>
+            </div>
+        </div>
+
         <div id="fc26-view" class="content-section">
             <h2>MA CARTE FC26</h2>
             <div class="fc26-card">
-                <img src="static/images/cityfc26.jpg" class="fc26-img"> </div>
+                <img src="static/images/cityfc26.jpg" class="fc26-img">
+            </div>
         </div>
 
         <div id="joueur-solo" class="content-section">
@@ -189,7 +213,6 @@
     </main>
 
     <script>
-        // CONFIGURATION FIREBASE
         const firebaseConfig = {
             apiKey: "VOTRE_API_KEY",
             authDomain: "VOTRE_PROJET.firebaseapp.com",
@@ -221,29 +244,24 @@
             'silva': { nom: "Bernardo Silva", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", img: "20.jpg", bio: "L'infatigable Bernardo Silva est le moteur de City. Sa technique soyeuse associée à un volume de course impressionnant en fait un cauchemar pour les adversaires, quel que soit son poste." },
             'gvardiol': { nom: "Josko Gvardiol", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "Josko Gvardiol est le prototype du défenseur moderne. Rapide, puissant et doté d'une patte gauche exceptionnelle, il est capable de mener des attaques depuis sa position de latéral ou de défenseur central." },
             'guehi': { nom: "Marc Guéhi", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "INCONNUE", valeur: "65M €", img: "15.jpg", bio: "Nouveau venu en défense, Marc Guéhi apporte sa lecture du jeu et sa solidité dans les duels. International anglais, il s'est rapidement imposé comme une option fiable pour la rotation défensive." },
-            'trafford': { nom: "James Trafford", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Après avoir fait ses preuves ailleurs en prêt, Trafford est revenu à la maison. Jeune gardien ambition, il représente le futur de City au poste de numéro un." },
-            'semenyo': { nom: "Antoine Semenyo", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Attaquant puissant et explosif, Semenyo est un renfort de poids pour l'attaque. Sa polyvalence lui permet de peser sur les défenses tant sur les ailes que dans l'axe." },
-            'cherki': { nom: "Rayan Cherki", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "L'un des talents techniques les plus purs de sa génération. Rayan Cherki est un créateur capable d'éliminer n'importe quel défenseur par un geste imprévu." },
-            'marmoush': { nom: "Omar Marmoush", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "L'attaquant égyptien apporte une intensité de tous les instants. Sa vitesse et son pressing font de lui un complément idéal pour les stars offensives de City." },
-            'nypan': { nom: "Sverre Nypan", age: "19 ans", nat: "Norvège 🇳🇴", paye: "INCONNUE", fin: "INCONNUE", valeur: "15M €", img: "41.jpg", bio: "Jeune prodige norvégien, Nypan est suivi par les plus grands. Son arrivée à City témoigne de la volonté du club de sécuriser les meilleurs talents européens de demain." },
-            'doku': { nom: "Jérémy Doku", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Ailier électrique, Jérémy Doku est capable de faire basculer un match sur une seule accélération. Il est devenu l'un des dynamiteurs de défense les plus redoutés d'Europe." },
-            'kovacic': { nom: "Matéo Kovacic", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Maître de la conservation de balle, Kovacic apporte son calme et sa maîtrise technique sous pression. Son expérience des grands rendez-vous est inestimable pour l'équipe." },
-            'reijnders': { nom: "Tijjani Reijnders", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant venu des Pays-Bas, Reijnders s'est parfaitement adapté au football anglais. Sa vision de jeu et sa qualité de passe en font un organisateur de premier plan." },
-            'gonzalez': { nom: "Nico Gonzalez", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Milieu travailleur formé au Barça, Nico apporte la rigueur tactique espagnole. Sa présence physique et sa propreté technique solidifient l'entrejeu mancunien." }
+            'trafford': { nom: "James Trafford", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "James Trafford est revenu à la maison. Jeune gardien ambition, il représente le futur de City au poste de numéro un." },
+            'semenyo': { nom: "Antoine Semenyo", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Attaquant puissant et explosif, Semenyo est un renfort de poids pour l'attaque. Sa polyvalence lui permet de peser sur les défenses." },
+            'cherki': { nom: "Rayan Cherki", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Rayan Cherki est un créateur capable d'éliminer n'importe quel défenseur par un geste imprévu." },
+            'marmoush': { nom: "Omar Marmoush", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "L'attaquant égyptien apporte une intensité de tous les instants." },
+            'nypan': { nom: "Sverre Nypan", age: "19 ans", nat: "Norvège 🇳🇴", paye: "INCONNUE", fin: "INCONNUE", valeur: "15M €", img: "41.jpg", bio: "Jeune prodige norvégien, Nypan est suivi par les plus grands." },
+            'doku': { nom: "Jérémy Doku", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Ailier électrique, Jérémy Doku est capable de faire basculer un match sur une seule accélération." },
+            'kovacic': { nom: "Matéo Kovacic", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Maître de la conservation de balle, Kovacic apporte son calme et sa maîtrise technique." },
+            'reijnders': { nom: "Tijjani Reijnders", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant venu des Pays-Bas, Reijnders s'est parfaitement adapté au football anglais." },
+            'gonzalez': { nom: "Nico Gonzalez", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Nico apporte la rigueur tactique espagnole et solidifie l'entrejeu." }
         };
 
         let currentChatTopic = "";
         function toggleMenu() { document.getElementById('menu').classList.toggle('ouvert'); }
-        
-        function toggleSubMenu(id) { 
-            const sub = document.getElementById(id);
-            sub.classList.toggle('show');
-        }
+        function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
         
         function showSection(id) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            
             document.getElementById('menu').classList.remove('ouvert');
             document.querySelectorAll('.sous-menu').forEach(m => m.classList.remove('show'));
         }
@@ -258,11 +276,7 @@
             document.getElementById('s-valeur').innerText = j.valeur;
             document.getElementById('s-bio').innerText = j.bio;
             document.getElementById('photo').src = "static/images/" + j.img;
-            
             showSection('joueur-solo');
-            
-            document.getElementById('menu').classList.remove('ouvert');
-            document.querySelectorAll('.sous-menu').forEach(m => m.classList.remove('show'));
         }
 
         function ouvrirChat(nom) {
