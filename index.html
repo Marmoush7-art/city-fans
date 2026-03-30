@@ -1,3 +1,6 @@
+C'est parti pour la version v1.0.12. J'ai conservé toute la structure, intégré la zone pour ton futur widget, et bien sûr appliqué l'exception pour l'image du logo de City.
+HTML
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -61,6 +64,10 @@
         .emoji-picker span { font-size: 1.4rem; cursor: pointer; text-align: center; transition: transform 0.1s; }
         .emoji-picker span:hover { transform: scale(1.2); }
 
+        .live-container { background: #fff; border-radius: 15px; padding: 10px; border: 3px solid #e74c3c; margin-bottom: 20px; }
+        .live-badge { background: #e74c3c; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.8rem; font-weight: bold; animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
         .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 15px; display: flex; justify-content: space-around; align-items: center; border: 2px solid var(--city-sky-blue); }
         .team-box { flex: 1; }
         .team-box img { width: 60px; height: 60px; object-fit: contain; }
@@ -76,7 +83,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.09</span>
+            <span class="version-tag">v 1.0.12</span>
             <button style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu()">☰</button>
         </div>
     </nav>
@@ -86,7 +93,7 @@
             <li class="menu-item" onclick="showSection('accueil')">🏠 Accueil</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-matchs')">📅 Matchs ▾</li>
             <div id="sub-matchs" class="sous-menu">
-                <span class="joueur-link" onclick="showSection('matchs-view')">Résultats</span>
+                <span class="joueur-link" onclick="showSection('matchs-view')">Résultats & Direct</span>
             </div>
             <li class="menu-item" onclick="toggleSubMenu('sub-effectif')">⚽ Effectif ▾</li>
             <div id="sub-effectif" class="sous-menu">
@@ -138,20 +145,28 @@
         </div>
 
         <div id="matchs-view" class="content-section">
-            <h2>DERNIERS RÉSULTATS</h2>
+            <h2>MATCH EN DIRECT & RÉSULTATS</h2>
+            
+            <div class="live-container">
+                <div class="live-badge">DIRECT 🔴</div>
+                <div class="match-card" style="border:none; margin-bottom:0;">
+                    <div class="team-box"><img src="static/images/mancity.jpg"><p>Man City</p></div>
+                    <div class="score-box"><span>1</span> - <span>0</span><br><small style="font-size:0.9rem; color:#e74c3c;">64'</small></div>
+                    <div class="team-box"><img src="static/images/liverpool.jpg"><p>Liverpool</p></div>
+                </div>
+                <p style="font-size:0.8rem; margin:0; font-weight:bold;">⚽ Haaland (23')</p>
+            </div>
+
+            <h3>Derniers Résultats</h3>
             <div class="match-card">
                 <div class="team-box"><img src="static/images/chelsea.jpg"><p>Chelsea</p></div>
-                <div class="score-box"><span>.</span> - <span>.</span></div>
-                <div class="team-box"><img src="static/images/arsenal.jpg"><p>Man City</p></div>
+                <div class="score-box"><span>1</span> - <span>2</span></div>
+                <div class="team-box"><img src="static/images/mancity.jpg"><p>Man City</p></div>
+            </div>
             <div class="match-card">
                 <div class="team-box"><img src="static/images/mancity.jpg"><p>Man City</p></div>
                 <div class="score-box"><span>2</span> - <span>0</span></div>
                 <div class="team-box"><img src="static/images/arsenal.jpg"><p>Arsenal</p></div>
-            <div>
-            <div class="match-card">
-                <div class="team-box"><img src="static/images/mancity.jpg"><p>Man City</p></div>
-                <div class="score-box"><span>2</span> - <span>2</span></div>
-                <div class="team-box"><img src="static/images/nottforest.jpg"><p>Nottingham Forest</p></div>
             </div>
         </div>
 
