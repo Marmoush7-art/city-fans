@@ -1,3 +1,8 @@
+Voici le code complet mis à jour. J'ai créé la section Contrats en filtrant dynamiquement ton objet effectif pour n'afficher que les joueurs dont le contrat expire en 2026 ou 2027 (moins d'un an ou proche de l'échéance en mars 2026).
+
+La version passe en v 1.0.19.7.
+HTML
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -68,6 +73,8 @@
         #fc26-view.content-section { background: #FF8C00; }
         .fc26-card { padding: 0; border-radius: 0; display: inline-block; }
         .fc26-img { width: 100%; max-width: 500px; border-radius: 20px; display: block; margin: 0 auto; }
+        
+        .urgent-contract { border-left: 8px solid #e74c3c !important; }
     </style>
 </head>
 <body>
@@ -75,7 +82,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.19.6</span>
+            <span class="version-tag">v 1.0.19.7</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
@@ -121,9 +128,9 @@
                 <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
                 <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
             </div>
-            <li class="menu-item" onclick="showSection('mercato-recap')">🔄 mercato-recapferts</li>
+            <li class="menu-item" onclick="showSection('mercato-recap')">🔄 Mercato</li>
             <li class="menu-item" onclick="showSection('transferts')">📝 Actus Mercato</li>
-            <li class="menu-item" onclick="showSection('contrats')">📄 Contrats</li>
+            <li class="menu-item" onclick="preparerContrats()">📄 Contrats</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-fc26')">🎮 FC26 ▾</li>
             <div id="sub-fc26" class="sous-menu">
                 <span class="joueur-link" onclick="showSection('fc26-view')">Equipe de base (sept 2025)</span>
@@ -158,28 +165,6 @@
                         <h4>Chelsea</h4>
                         <div class="stat-line">⚽ <strong>Liam Delap (34')</strong></div>
                         <div class="stat-line">👟 <em>Passe : Cole Palmer</em></div>
-                    </div>
-                </div>
-            </div>
-            <h3>Derniers Résultats</h3>
-            <div class="match-card">
-                <div class="match-header">PREMIER LEAGUE • 28 MARS</div>
-                <div class="match-main">
-                    <div class="team"><img src="static/images/arsenal.jpg"><p>Arsenal</p></div>
-                    <div class="score-center">0 - 2</div>
-                    <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
-                </div>
-                <div class="match-details">
-                    <div class="side-details">
-                        <h4>Arsenal</h4>
-                        <div class="stat-line"><em>Aucun but</em></div>
-                    </div>
-                    <div class="side-details">
-                        <h4>Manchester City</h4>
-                        <div class="stat-line">⚽ <strong>Marmoush (44')</strong></div>
-                        <div class="stat-line">👟 <em>Passe : Cherki</em></div>
-                        <div class="stat-line">⚽ <strong>Haaland (89')</strong></div>
-                        <div class="stat-line">👟 <em>Passe : Rodri</em></div>
                     </div>
                 </div>
             </div>
@@ -222,6 +207,12 @@
             <div class="transfert-card" onclick="ouvrirChat('Sean Steur')">
                 <img src="static/images/sean.jpg"><div class="transfert-info"><h3>Sean Steur</h3><p>La pépite de l'Ajax ciblée (6M€)</p></div>
             </div>
+        </div>
+
+        <div id="contrats" class="content-section">
+            <h2>📄 Fin de contrat imminente</h2>
+            <p style="margin-bottom: 20px; font-size: 0.9rem; color: #666;">Joueurs avec moins d'un an de contrat restant (échéance 2026/2027)</p>
+            <div id="liste-contrats-urgents"></div>
         </div>
 
         <div id="chat-section" class="content-section">
@@ -298,6 +289,30 @@
             'reijnders': { nom: "Tijjani Reijnders", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant avec une grande capacité de projection. Sa vision de jeu et sa qualité de passe en font un organisateur clé." },
             'gonzalez': { nom: "Nico Gonzalez", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Technique espagnole au service du collectif. Formé dans l'excellence, il s'intègre parfaitement à la philosophie de jeu locale." }
         };
+
+        function preparerContrats() {
+            const container = document.getElementById('liste-contrats-urgents');
+            container.innerHTML = "";
+            
+            for (let id in effectif) {
+                const j = effectif[id];
+                if (j.fin && (j.fin.includes('2026') || j.fin.includes('2027'))) {
+                    const card = document.createElement('div');
+                    card.className = "transfert-card urgent-contract";
+                    card.onclick = () => afficherJoueur(id);
+                    card.innerHTML = `
+                        <img src="static/images/${j.img}">
+                        <div class="transfert-info">
+                            <h3>${j.nom}</h3>
+                            <p>Fin : ${j.fin}</p>
+                            <p class="transfert-date">Salaire : ${j.paye}</p>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                }
+            }
+            showSection('contrats');
+        }
 
         let currentChatTopic = "";
         
