@@ -30,9 +30,13 @@
         th, td { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); }
         #photo { max-width: 280px; width: 100%; border-radius: 15px; border: 6px solid var(--city-sky-blue); margin-bottom: 25px; }
         
+        /* Bio agrandie */
+        .bio-container { background: white; padding: 25px; border-radius: 10px; margin-top: 15px; text-align: left; min-height: 150px; line-height: 1.6; }
+
         .transfert-card { background: white; border: 2px solid var(--city-sky-blue); border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; cursor: pointer; overflow: hidden; }
         .transfert-card img { width: 100px; height: 130px; object-fit: cover; }
-        .transfert-info { padding: 15px; text-align: left; color: #000; font-weight: bold; }
+        .transfert-info { padding: 15px; text-align: left; color: #000; font-weight: bold; flex: 1; }
+        .transfert-date { font-size: 0.8rem; color: #666; margin-top: 5px; }
         
         #chat-messages { height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 15px; background: #fff; border-radius: 10px; display: flex; flex-direction: column; text-align: left; }
         .msg { background: var(--city-sky-blue); color: white; padding: 10px 15px; border-radius: 18px; margin-bottom: 10px; align-self: flex-start; max-width: 80%; word-wrap: break-word; }
@@ -49,7 +53,6 @@
         }
         .emoji-picker span { font-size: 1.4rem; cursor: pointer; text-align: center; }
 
-        /* Nouveaux Styles pour les Matchs */
         .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--city-sky-blue); }
         .match-header { font-size: 0.8rem; color: #888; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; }
         .match-main { display: flex; justify-content: space-between; align-items: center; }
@@ -65,6 +68,8 @@
         #fc26-view.content-section { background: #FF8C00; }
         .fc26-card { padding: 0; border-radius: 0; display: inline-block; }
         .fc26-img { width: 100%; max-width: 500px; border-radius: 20px; display: block; margin: 0 auto; }
+
+        .rumors-extra-text { margin-top: 25px; padding: 20px; background: #fff; border-radius: 15px; border: 1px dashed var(--city-sky-blue); font-size: 0.9rem; text-align: left; color: #444; }
     </style>
 </head>
 <body>
@@ -72,7 +77,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.15</span>
+            <span class="version-tag">v 1.0.19</span>
             <button style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu()">☰</button>
         </div>
     </nav>
@@ -113,7 +118,7 @@
                 <span class="joueur-link" onclick="afficherJoueur('nypan')">Sverre Nypan</span>
                 <div class="cat-titre">Attaquants</div>
                 <span class="joueur-link" onclick="afficherJoueur('haaland')">Erling Haaland</span>
-                <span class="joueur-link" onclick="afficherJoueur('savinho')">Sávio</span>
+                <span class="joueur-link" onclick="afficherJoueur('savinho')">Savinho</span>
                 <span class="joueur-link" onclick="afficherJoueur('marmoush')">Omar Marmoush</span>
                 <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
                 <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
@@ -161,7 +166,7 @@
                     <div class="stat-line">⚽ <strong>Marmoush (44')</strong></div>
                     <div class="stat-line">👟 <em>Passe : Cherki</em></div>
                     <div class="stat-line">⚽ <strong>Haaland (89')</strong></div>
-                    <div class="stat-line">👟 <em>Passe : De Bruyne</em></div>
+                    <div class="stat-line">👟 <em>Passe : Rodri</em></div>
                 </div>
             </div>
         </div>
@@ -182,20 +187,26 @@
                     <tr><th>Fin de contrat</th><td id="s-fin"></td></tr>
                     <tr><th>Valeur</th><td id="s-valeur"></td></tr>
                 </table>
-                <div style="background:white; padding:15px; border-radius:10px; margin-top:15px; text-align:left;">
-                    <strong>Bio :</strong> <span id="s-bio"></span>
+                <div class="bio-container">
+                    <strong>Biographie complète :</strong><br><br>
+                    <span id="s-bio"></span>
                 </div>
             </div>
         </div>
 
         <div id="mercato-recap" class="content-section">
-            <h2>Historique Arrivées</h2>
-            <div class="transfert-card"><img src="static/images/15.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Prix : 23M €</p></div></div>
-            <div class="transfert-card"><img src="static/images/42.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Prix : 72M €</p></div></div>
-            <div class="transfert-card"><img src="static/images/21.jpg"><div class="transfert-info"><h3>Rayan Ait-Nouri</h3><p>Prix : 40M €</p></div></div>
-            <div class="transfert-card"><img src="static/images/45.jpg"><div class="transfert-info"><h3>Abdukodir Khusanov</h3><p>Prix : 35M €</p></div></div>
-            <div class="transfert-card"><img src="static/images/10.jpg"><div class="transfert-info"><h3>Rayan Cherki</h3><p>Prix : 65M €</p></div></div>
-            <div class="transfert-card"><img src="static/images/4.jpg"><div class="transfert-info"><h3>Tijjani Reijnders</h3><p>Prix : 60M €</p></div></div>
+            <h2>Historique du Mercato</h2>
+            <h3>Arrivées</h3>
+            <div class="transfert-card"><img src="static/images/15.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Prix : 23M €</p><p class="transfert-date">Janvier 2026</p></div></div>
+            <div class="transfert-card"><img src="static/images/42.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Prix : 72M €</p><p class="transfert-date">Août 2025</p></div></div>
+            <div class="transfert-card"><img src="static/images/21.jpg"><div class="transfert-info"><h3>Rayan Ait-Nouri</h3><p>Prix : 40M €</p><p class="transfert-date">Juillet 2025</p></div></div>
+            <div class="transfert-card"><img src="static/images/45.jpg"><div class="transfert-info"><h3>Abdukodir Khusanov</h3><p>Prix : 35M €</p><p class="transfert-date">Janvier 2026</p></div></div>
+            <div class="transfert-card"><img src="static/images/10.jpg"><div class="transfert-info"><h3>Rayan Cherki</h3><p>Prix : 65M €</p><p class="transfert-date">Janvier 2026</p></div></div>
+            <div class="transfert-card"><img src="static/images/4.jpg"><div class="transfert-info"><h3>Tijjani Reijnders</h3><p>Prix : 60M €</p><p class="transfert-date">Août 2025</p></div></div>
+            
+            <h3>Départs</h3>
+            <div class="transfert-card"><div class="transfert-info"><h3>Oscar Bobb</h3><p>Vers : Fulham</p><p>Prix : 31,2M €</p><p class="transfert-date">Janvier 2026</p></div></div>
+            <div class="transfert-card"><div class="transfert-info"><h3>Stefan Ortega Moreno</h3><p>Vers : Nottingham Forest</p><p>Prix : 0,58M €</p><p class="transfert-date">Janvier 2026</p></div></div>
         </div>
 
         <div id="transferts" class="content-section">
@@ -205,6 +216,10 @@
             </div>
             <div class="transfert-card" onclick="ouvrirChat('Sean Steur')">
                 <img src="static/images/sean.jpg"><div class="transfert-info"><h3>Sean Steur</h3><p>La pépite de l'Ajax ciblée (6M€)</p></div>
+            </div>
+            <div class="rumors-extra-text">
+                <strong>Analyse du marché :</strong><br>
+                Le club continue de surveiller activement les jeunes talents en Europe tout en gérant les fins de cycle de certains cadres. Les négociations pour les prolongations de contrat sont actuellement en pause.
             </div>
         </div>
 
@@ -234,33 +249,33 @@
         const db = firebase.firestore();
 
         const effectif = {
-            'haaland': { nom: "Erling Haaland", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif norvégien." },
-            'rodri': { nom: "Rodri", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Ballon d'Or 2024." },
-            'foden': { nom: "Phil Foden", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "L'enfant chéri de Stockport." },
-            'dias': { nom: "Ruben Dias", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "60M €", img: "3.jpg", bio: "Pilier défensif." },
-            'donnaruma': { nom: "Gianluigi Donnarumma", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", img: "25.jpg", bio: "Gardien d'envergure." },
-            'savinho': { nom: "Sávio", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg", bio: "Dribbleur brésilien." },
-            'bettinelli': { nom: "Marcus Bettinelli", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2036", valeur: "0.5 €", img: "13.jpg", bio: "Expérience." },
-            'khusanov': { nom: "Abdukodir Khusanov", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "35M €", img: "45.jpg", bio: "Révélation ouzbèke." },
-            'ake': { nom: "Nathan Aké", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", img: "6.jpg", bio: "Polyvalence tactique." },
-            'stones': { nom: "John Stones", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000 €", fin: "30/06/2026", valeur: "15M €", img: "5.jpg", bio: "Défenseur créateur." },
-            'lewis': { nom: "Rico Lewis", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "32M €", img: "82.jpg", bio: "Futur cadre." },
-            'aitnouri': { nom: "Rayan Ait-Nouri", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", img: "21.jpg", bio: "Latéral percutant." },
-            'oreilly': { nom: "Nico O'Reilly", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "50M €", img: "33.jpg", bio: "Pépite locale." },
-            'nunes': { nom: "Matheus Nunes", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "45M €", img: "27.jpg", bio: "Milieu puissant." },
-            'alleyne': { nom: "Max Alleyne", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", img: "68.jpg", bio: "Espoir en défense." },
-            'silva': { nom: "Bernardo Silva", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", img: "20.jpg", bio: "Génie portugais." },
-            'gvardiol': { nom: "Josko Gvardiol", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "Roc croate." },
-            'guehi': { nom: "Marc Guéhi", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "N/A", valeur: "65M €", img: "15.jpg", bio: "Nouvelle recrue solide." },
-            'trafford': { nom: "James Trafford", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Gardien prometteur." },
-            'semenyo': { nom: "Antoine Semenyo", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Puissance offensive." },
-            'cherki': { nom: "Rayan Cherki", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Magicien français." },
-            'marmoush': { nom: "Omar Marmoush", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Attaquant égyptien." },
-            'nypan': { nom: "Sverre Nypan", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "N/A", valeur: "15M €", img: "41.jpg", bio: "Futur maître du milieu." },
-            'doku': { nom: "Jérémy Doku", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Vitesse pure." },
-            'kovacic': { nom: "Matéo Kovacic", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Expérience croate." },
-            'reijnders': { nom: "Tijjani Reijnders", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant." },
-            'gonzalez': { nom: "Nico Gonzalez", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Technique espagnole." }
+            'haaland': { nom: "Erling Haaland", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif norvégien. Erling Haaland continue de briser tous les records de précocité et d'efficacité devant le but, s'imposant comme le meilleur numéro 9 du monde." },
+            'rodri': { nom: "Rodri", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Ballon d'Or 2024. Le métronome du milieu de terrain, indispensable à l'équilibre de l'équipe et capable de marquer des buts cruciaux dans les grands matchs." },
+            'foden': { nom: "Phil Foden", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "L'enfant chéri de Stockport. Un talent pur formé au club qui est devenu l'un des joueurs les plus créatifs et percutants de Premier League." },
+            'dias': { nom: "Ruben Dias", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "60M €", img: "3.jpg", bio: "Pilier défensif et leader naturel. Son autorité et son sens du placement font de lui le patron incontesté de l'arrière-garde des Sky Blues." },
+            'donnaruma': { nom: "Gianluigi Donnarumma", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", img: "25.jpg", bio: "Gardien d'envergure internationale. Son physique imposant et ses réflexes sur sa ligne en font un rempart de premier choix." },
+            'savinho': { nom: "Savinho", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg", bio: "Dribbleur brésilien électrisant. Capable de débloquer n'importe quelle situation sur son aile grâce à sa percussion et sa technique fine." },
+            'bettinelli': { nom: "Marcus Bettinelli", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2036", valeur: "0.5 €", img: "13.jpg", bio: "Gardien expérimenté apportant sérénité et professionnalisme au groupe de gardiens au quotidien." },
+            'khusanov': { nom: "Abdukodir Khusanov", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "35M €", img: "45.jpg", bio: "Révélation ouzbèke. Un défenseur moderne, rapide et solide dans les duels, recruté pour assurer l'avenir de la défense centrale." },
+            'ake': { nom: "Nathan Aké", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", img: "6.jpg", bio: "Polyvalence tactique exemplaire. Capable d'évoluer dans l'axe ou à gauche, il est le soldat parfait pour le système de jeu de City." },
+            'stones': { nom: "John Stones", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000 €", fin: "30/06/2026", valeur: "15M €", img: "5.jpg", bio: "Défenseur créateur unique. Sa capacité à monter au milieu de terrain et à distribuer le jeu est un atout stratégique majeur." },
+            'lewis': { nom: "Rico Lewis", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "32M €", img: "82.jpg", bio: "Futur cadre issu de l'académie. Intelligence de jeu hors du commun pour son jeune âge, capable d'occuper plusieurs postes." },
+            'aitnouri': { nom: "Rayan Ait-Nouri", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", img: "21.jpg", bio: "Latéral percutant et technique. Son apport offensif et sa qualité de centre offrent de nouvelles options sur le flanc gauche." },
+            'oreilly': { nom: "Nico O'Reilly", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "50M €", img: "33.jpg", bio: "Pépite locale dotée d'une grande vision de jeu. Un talent à suivre qui s'intègre progressivement dans la rotation." },
+            'nunes': { nom: "Matheus Nunes", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "45M €", img: "27.jpg", bio: "Milieu puissant et box-to-box. Sa capacité à casser les lignes par la course est un profil rare dans l'effectif actuel." },
+            'alleyne': { nom: "Max Alleyne", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", img: "68.jpg", bio: "Espoir en défense centrale. Doté d'une bonne lecture du jeu, il continue son apprentissage auprès des meilleurs mondiaux." },
+            'silva': { nom: "Bernardo Silva", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", img: "20.jpg", bio: "Génie portugais au volume de jeu impressionnant. Travailleur de l'ombre capable de fulgurances techniques extraordinaires." },
+            'gvardiol': { nom: "Josko Gvardiol", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "Roc croate et défenseur complet. Sa qualité de relance et sa puissance physique en font l'un des meilleurs à son poste." },
+            'guehi': { nom: "Marc Guéhi", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "N/A", valeur: "65M €", img: "15.jpg", bio: "Nouvelle recrue solide. International anglais apportant une grande sérénité et une excellente anticipation." },
+            'trafford': { nom: "James Trafford", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Gardien prometteur de retour au club. Un profil moderne avec un excellent jeu au pied et une grande agilité." },
+            'semenyo': { nom: "Antoine Semenyo", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Puissance offensive brute. Sa capacité à gagner ses duels physiques et sa finition clinique sont des atouts précieux." },
+            'cherki': { nom: "Rayan Cherki", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Magicien français doté d'une technique hors norme. Capable d'éliminer plusieurs adversaires sur un simple geste technique." },
+            'marmoush': { nom: "Omar Marmoush", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Attaquant égyptien polyvalent et rapide. Très efficace devant le but, il apporte une profondeur de banc de haute qualité." },
+            'nypan': { nom: "Sverre Nypan", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "N/A", valeur: "15M €", img: "41.jpg", bio: "Futur maître du milieu de terrain. Grand espoir scandinave, il possède une maturité tactique rare pour son âge." },
+            'doku': { nom: "Jérémy Doku", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Vitesse pure et explosivité. Son premier pas est capable de laisser n'importe quel défenseur sur place." },
+            'kovacic': { nom: "Matéo Kovacic", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Expérience croate au plus haut niveau. Un maître dans la conservation de balle sous pression et la transition défense-attaque." },
+            'reijnders': { nom: "Tijjani Reijnders", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant avec une grande capacité de projection. Sa vision de jeu et sa qualité de passe en font un organisateur clé." },
+            'gonzalez': { nom: "Nico Gonzalez", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Technique espagnole au service du collectif. Formé dans l'excellence, il s'intègre parfaitement à la philosophie de jeu locale." }
         };
 
         let currentChatTopic = "";
@@ -319,4 +334,3 @@
         }
     </script>
 </body>
-</html>
