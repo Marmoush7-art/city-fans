@@ -41,7 +41,6 @@
         .chat-area button { background: var(--city-dark-blue); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; }
         .emoji-toggle { font-size: 1.5rem; cursor: pointer; background: none; border: none; padding: 0; }
         
-        /* MISE À JOUR : TOUS LES SMILEYS APPARENT SUR PLUSIEURS LIGNES */
         .emoji-picker { 
             display: none; 
             position: absolute; 
@@ -59,6 +58,10 @@
         }
         .emoji-picker span { font-size: 1.4rem; cursor: pointer; text-align: center; transition: transform 0.1s; }
         .emoji-picker span:hover { transform: scale(1.2); }
+
+        /* STYLE FC26 */
+        .fc26-card { background: linear-gradient(135deg, #ffd700, #b8860b); padding: 20px; border-radius: 15px; display: inline-block; box-shadow: 0 10px 20px rgba(0,0,0,0.2); border: 4px solid #fff; }
+        .fc26-img { width: 220px; border-radius: 10px; display: block; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -66,7 +69,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.03</span>
+            <span class="version-tag">v 1.0.04</span>
             <button style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu()">☰</button>
         </div>
     </nav>
@@ -74,7 +77,7 @@
     <div id="menu">
         <ul>
             <li class="menu-item" onclick="showSection('accueil')">🏠 Accueil</li>
-            <li class="menu-item" onclick="toggleSubMenu()">⚽ Effectif ▾</li>
+            <li class="menu-item" onclick="toggleSubMenu('sub-effectif')">⚽ Effectif ▾</li>
             <div id="sub-effectif" class="sous-menu">
                 <div class="cat-titre">Gardiens</div>
                 <span class="joueur-link" onclick="afficherJoueur('donnaruma')">Gianluigi Donnarumma</span>
@@ -108,6 +111,10 @@
                 <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
                 <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
             </div>
+            <li class="menu-item" onclick="toggleSubMenu('sub-fc26')">🎮 FC26 ▾</li>
+            <div id="sub-fc26" class="sous-menu">
+                <span class="joueur-link" onclick="showSection('fc26-view')">Voir ma carte</span>
+            </div>
             <li class="menu-item" onclick="showSection('mercato-recap')">🔄 Historique Transferts</li>
             <li class="menu-item" onclick="showSection('transferts')">📝 Actus Mercato</li>
         </ul>
@@ -117,6 +124,14 @@
         <div id="accueil" class="content-section active">
             <h2>BIENVENUE CITYZENS 🩵</h2>
             <img src="static/images/mancityecussonclasse.jpg" style="width: 100%; max-width: 500px; border-radius: 20px;">
+        </div>
+
+        <div id="fc26-view" class="content-section">
+            <h2>MA CARTE FC26</h2>
+            <div class="fc26-card">
+                <img src="static/images/11.jpg" class="fc26-img">
+                <h3 style="margin:5px 0; color:#fff;">CITY STAR</h3>
+            </div>
         </div>
 
         <div id="joueur-solo" class="content-section">
@@ -189,66 +204,12 @@
         const db = firebase.firestore();
 
         const effectif = {
-            'haaland': { 
-                nom: "Erling Haaland", 
-                age: "25 ans", 
-                nat: "Norvège 🇳🇴", 
-                paye: "2 570 000 €", 
-                fin: "30/06/2034", 
-                valeur: "180M €", 
-                img: "9.jpg", 
-                bio: "Erling Haaland est le phénomène offensif par excellence. Né à Leeds mais international norvégien, il a rejoint City en 2022. Dès sa première saison, il a pulvérisé le record de buts sur une seule campagne de Premier League. Puissance, vitesse et finition clinique, il est devenu le premier Ballon d'Or potentiel du club sous l'ère Guardiola. En mars 2026, il continue de porter l'attaque des Citizens avec une efficacité historique." 
-            },
-            'rodri': { 
-                nom: "Rodri", 
-                age: "29 ans", 
-                nat: "Espagne 🇪🇸", 
-                paye: "1 110 000 €", 
-                fin: "30/06/2028", 
-                valeur: "65M €", 
-                img: "16.jpg", 
-                bio: "Rodrigo Hernández Cascante, sacré Ballon d'Or 2024, est le cerveau du milieu de terrain. Arrivé en 2019 de l'Atletico Madrid, il s'est imposé comme l'élément indispensable du système de Pep Guardiola. Capable de dicter le tempo, de récupérer un nombre incalculable de ballons et de marquer des buts cruciaux (comme en finale de C1), il est le pilier sur lequel repose l'équilibre de l'équipe." 
-            },
-            'foden': { 
-                nom: "Phil Foden", 
-                age: "25 ans", 
-                nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", 
-                paye: "1 170 000 €", 
-                fin: "30/06/2027", 
-                valeur: "80M €", 
-                img: "47.jpg", 
-                bio: "Surnommé le 'Stockport Iniesta', Phil Foden est l'enfant du club. Formé à l'académie depuis ses 9 ans, il a gravi tous les échelons jusqu'à devenir le Joueur de l'Année FWA et PFA en 2024. Pur talent technique, il excelle par sa première touche de balle et sa vision de jeu. Malgré son statut de star mondiale, il reste fidèle à ses racines de supporter de City et à sa passion pour la pêche." 
-            },
-            'dias': { 
-                nom: "Ruben Dias", 
-                age: "28 ans", 
-                nat: "Portugal 🇵🇹", 
-                paye: "1 200 000 €", 
-                fin: "30/06/2029", 
-                valeur: "60M €", 
-                img: "3.jpg", 
-                bio: "Ruben Dias est le leader de la défense. Depuis son arrivée de Benfica en 2020, il a transformé l'arrière-garde mancunienne par son autorité et son sens du placement. Élu joueur de l'année dès sa première saison, il incarne la rigueur défensive. Récemment, il a prolongé son contrat pour stabiliser le projet sportif sur le long terme." 
-            },
-            'donnaruma': { 
-                nom: "Gianluigi Donnarumma", 
-                age: "27 ans", 
-                nat: "Italie 🇮🇹", 
-                paye: "1 230 000 €", 
-                fin: "30/06/2030", 
-                valeur: "45M €", 
-                img: "25.jpg", 
-                bio: "Recruté pour apporter une nouvelle dimension internationale dans les cages, Gianluigi Donnarumma est un gardien d'envergure. Champion d'Europe avec l'Italie, il combine réflexes surhumains sur sa ligne et une présence physique imposante. Il est le dernier rempart d'une équipe qui vise l'excellence européenne chaque année." 
-            },
-            'savinho': { 
-                nom: "Sávio", 
-                age: "21 ans", 
-                nat: "Brésil 🇧🇷", 
-                paye: "390 000 €", 
-                fin: "30/06/2031", 
-                valeur: "40M €", 
-                img: "26.jpg", 
-                bio: "Sávio Moreira de Oliveira, dit Savinho, apporte la touche de magie brésilienne. Ailier percutant, il excelle dans le un-contre-un. Son intégration rapide dans le système de City montre sa maturité tactique malgré son jeune âge. Il représente l'avenir du club sur les ailes, capable de débloquer des situations par ses dribbles imprévisibles." 
-            },
+            'haaland': { nom: "Erling Haaland", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Erling Haaland est le phénomène offensif par excellence. Né à Leeds mais international norvégien, il a rejoint City en 2022. Dès sa première saison, il a pulvérisé le record de buts sur une seule campagne de Premier League. Puissance, vitesse et finition clinique, il est devenu le premier Ballon d'Or potentiel du club sous l'ère Guardiola. En mars 2026, il continue de porter l'attaque des Citizens avec une efficacité historique." },
+            'rodri': { nom: "Rodri", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Rodrigo Hernández Cascante, sacré Ballon d'Or 2024, est le cerveau du milieu de terrain. Arrivé en 2019 de l'Atletico Madrid, il s'est imposé comme l'élément indispensable du système de Pep Guardiola. Capable de dicter le tempo, de récupérer un nombre incalculable de ballons et de marquer des buts cruciaux (comme en finale de C1), il est le pilier sur lequel repose l'équilibre de l'équipe." },
+            'foden': { nom: "Phil Foden", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "Surnommé le 'Stockport Iniesta', Phil Foden est l'enfant du club. Formé à l'académie depuis ses 9 ans, il a gravi tous les échelons jusqu'à devenir le Joueur de l'Année FWA et PFA en 2024. Pur talent technique, il excelle par sa première touche de balle et sa vision de jeu. Malgré son statut de star mondiale, il reste fidèle à ses racines de supporter de City et à sa passion pour la pêche." },
+            'dias': { nom: "Ruben Dias", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "60M €", img: "3.jpg", bio: "Ruben Dias est le leader de la défense. Depuis son arrivée de Benfica en 2020, il a transformé l'arrière-garde mancunienne par son autorité et son sens du placement. Élu joueur de l'année dès sa première saison, il incarne la rigueur défensive. Récemment, il a prolongé son contrat pour stabiliser le projet sportif sur le long terme." },
+            'donnaruma': { nom: "Gianluigi Donnarumma", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", img: "25.jpg", bio: "Recruté pour apporter une nouvelle dimension internationale dans les cages, Gianluigi Donnarumma est un gardien d'envergure. Champion d'Europe avec l'Italie, il combine réflexes surhumains sur sa ligne et une présence physique imposante. Il est le dernier rempart d'une équipe qui vise l'excellence européenne chaque année." },
+            'savinho': { nom: "Sávio", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg", bio: "Sávio Moreira de Oliveira, dit Savinho, apporte la touche de magie brésilienne. Ailier percutant, il excelle dans le un-contre-un. Son intégration rapide dans le système de City montre sa maturité tactique malgré son jeune âge. Il représente l'avenir du club sur les ailes, capable de débloquer des situations par ses dribbles imprévisibles." },
             'bettinelli': { nom: "Marcus Bettinelli", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "INCONNUE", fin: "30/06/2036", valeur: "0.5 €", img: "13.jpg", bio: "Gardien d'expérience, Marcus Bettinelli apporte sa sérénité au groupe. Professionnel exemplaire, il encadre les jeunes gardiens de l'académie tout en restant prêt à intervenir au plus haut niveau." },
             'khusanov': { nom: "Abdukodir Khusanov", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "35M €", img: "45.jpg", bio: "Révélation venue d'Asie centrale, Khusanov est un défenseur moderne, rapide et solide. Sa progression fulgurante en fait l'un des joyaux du recrutement récent de City." },
             'ake': { nom: "Nathan Aké", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", img: "6.jpg", bio: "Le défenseur néerlandais est le symbole de la polyvalence. Capable d'évoluer dans l'axe ou sur le côté gauche, il est précieux pour Pep Guardiola par son intelligence tactique et son excellent jeu de tête." },
@@ -261,7 +222,7 @@
             'silva': { nom: "Bernardo Silva", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", img: "20.jpg", bio: "L'infatigable Bernardo Silva est le moteur de City. Sa technique soyeuse associée à un volume de course impressionnant en fait un cauchemar pour les adversaires, quel que soit son poste." },
             'gvardiol': { nom: "Josko Gvardiol", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "Josko Gvardiol est le prototype du défenseur moderne. Rapide, puissant et doté d'une patte gauche exceptionnelle, il est capable de mener des attaques depuis sa position de latéral ou de défenseur central." },
             'guehi': { nom: "Marc Guéhi", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "INCONNUE", valeur: "65M €", img: "15.jpg", bio: "Nouveau venu en défense, Marc Guéhi apporte sa lecture du jeu et sa solidité dans les duels. International anglais, il s'est rapidement imposé comme une option fiable pour la rotation défensive." },
-            'trafford': { nom: "James Trafford", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Après avoir fait ses preuves ailleurs en prêt, Trafford est revenu à la maison. Jeune gardien ambitieux, il représente le futur de City au poste de numéro un." },
+            'trafford': { nom: "James Trafford", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Après avoir fait ses preuves ailleurs en prêt, Trafford est revenu à la maison. Jeune gardien ambition, il représente le futur de City au poste de numéro un." },
             'semenyo': { nom: "Antoine Semenyo", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Attaquant puissant et explosif, Semenyo est un renfort de poids pour l'attaque. Sa polyvalence lui permet de peser sur les défenses tant sur les ailes que dans l'axe." },
             'cherki': { nom: "Rayan Cherki", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "L'un des talents techniques les plus purs de sa génération. Rayan Cherki est un créateur capable d'éliminer n'importe quel défenseur par un geste imprévu." },
             'marmoush': { nom: "Omar Marmoush", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "L'attaquant égyptien apporte une intensité de tous les instants. Sa vitesse et son pressing font de lui un complément idéal pour les stars offensives de City." },
@@ -274,15 +235,18 @@
 
         let currentChatTopic = "";
         function toggleMenu() { document.getElementById('menu').classList.toggle('ouvert'); }
-        function toggleSubMenu() { document.getElementById('sub-effectif').classList.toggle('show'); }
+        
+        function toggleSubMenu(id) { 
+            const sub = document.getElementById(id);
+            sub.classList.toggle('show');
+        }
         
         function showSection(id) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             
-            // Règle de fermeture automatique du menu
             document.getElementById('menu').classList.remove('ouvert');
-            document.getElementById('sub-effectif').classList.remove('show');
+            document.querySelectorAll('.sous-menu').forEach(m => m.classList.remove('show'));
         }
 
         function afficherJoueur(id) {
@@ -298,9 +262,8 @@
             
             showSection('joueur-solo');
             
-            // Règle de fermeture automatique après clic joueur
             document.getElementById('menu').classList.remove('ouvert');
-            document.getElementById('sub-effectif').classList.remove('show');
+            document.querySelectorAll('.sous-menu').forEach(m => m.classList.remove('show'));
         }
 
         function ouvrirChat(nom) {
