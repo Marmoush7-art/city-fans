@@ -1,3 +1,8 @@
+On dirait que Score'n'co essaie de te vendre des services pour les clubs (les "Convocations") plutôt que de te donner le widget facilement. C'est souvent le problème avec les outils "Pro" : ils cachent le code gratuit.
+
+Pour ne pas perdre plus de temps, je t'ai préparé la version v1.0.14 avec un widget ScoreAxis. C'est le plus proche de Foot Mercato : il est gratuit, ne demande pas d'inscription de ta part, et il affiche automatiquement les derniers résultats et le prochain match de City.
+HTML
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -33,6 +38,7 @@
         .transfert-card img { width: 100px; height: 130px; object-fit: cover; }
         .transfert-info { padding: 15px; text-align: left; color: #000; font-weight: bold; }
         
+        /* Styles Chat */
         #chat-messages { height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 15px; background: #fff; border-radius: 10px; display: flex; flex-direction: column; text-align: left; }
         .msg { background: var(--city-sky-blue); color: white; padding: 10px 15px; border-radius: 18px; margin-bottom: 10px; align-self: flex-start; max-width: 80%; word-wrap: break-word; }
         .chat-container { position: relative; background: #eee; padding: 10px; border-radius: 10px; margin-top: 10px; }
@@ -42,36 +48,17 @@
         .emoji-toggle { font-size: 1.5rem; cursor: pointer; background: none; border: none; padding: 0; }
         
         .emoji-picker { 
-            display: none; 
-            position: absolute; 
-            bottom: 60px; 
-            left: 10px; 
-            background: white; 
-            border: 1px solid #ccc; 
-            border-radius: 10px; 
-            padding: 10px; 
-            width: 280px; 
-            max-height: 180px;
-            overflow-y: auto;
-            grid-template-columns: repeat(6, 1fr); 
-            gap: 8px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
-            z-index: 10; 
+            display: none; position: absolute; bottom: 60px; left: 10px; background: white; border: 1px solid #ccc; 
+            border-radius: 10px; padding: 10px; width: 280px; max-height: 180px; overflow-y: auto;
+            grid-template-columns: repeat(6, 1fr); gap: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 10; 
         }
-        .emoji-picker span { font-size: 1.4rem; cursor: pointer; text-align: center; transition: transform 0.1s; }
-        .emoji-picker span:hover { transform: scale(1.2); }
+        .emoji-picker span { font-size: 1.4rem; cursor: pointer; text-align: center; }
 
-        .live-container { background: #fff; border-radius: 15px; padding: 10px; border: 3px solid #e74c3c; margin-bottom: 20px; }
-        .live-badge { background: #e74c3c; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.8rem; font-weight: bold; animation: blink 1.5s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-
-        .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 15px; display: flex; justify-content: space-around; align-items: center; border: 2px solid var(--city-sky-blue); }
-        .team-box { flex: 1; }
-        .team-box img { width: 60px; height: 60px; object-fit: contain; }
-        .score-box { font-size: 2rem; font-weight: bold; padding: 0 20px; color: var(--city-dark-blue); }
-
+        /* Style Widget ScoreAxis */
+        .widget-wrapper { background: white; border-radius: 15px; overflow: hidden; border: 2px solid var(--city-sky-blue); margin-top: 20px; }
+        
         #fc26-view.content-section { background: #FF8C00; }
-        .fc26-card { padding: 0; border-radius: 0; display: inline-block; box-shadow: none; border: none; background: none; }
+        .fc26-card { padding: 0; border-radius: 0; display: inline-block; }
         .fc26-img { width: 100%; max-width: 500px; border-radius: 20px; display: block; margin: 0 auto; }
     </style>
 </head>
@@ -80,7 +67,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.12</span>
+            <span class="version-tag">v 1.0.14</span>
             <button style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu()">☰</button>
         </div>
     </nav>
@@ -142,28 +129,11 @@
         </div>
 
         <div id="matchs-view" class="content-section">
-            <h2>MATCH EN DIRECT & RÉSULTATS</h2>
+            <h2>MATCHS & DIRECT</h2>
+            <p>Résultats mis à jour automatiquement ⏱️</p>
             
-            <div class="live-container">
-                <div class="live-badge">DIRECT 🔴</div>
-                <div class="match-card" style="border:none; margin-bottom:0;">
-                    <div class="team-box"><img src="static/images/mancity.jpg"><p>Man City</p></div>
-                    <div class="score-box"><span>1</span> - <span>0</span><br><small style="font-size:0.9rem; color:#e74c3c;">64'</small></div>
-                    <div class="team-box"><img src="static/images/liverpool.jpg"><p>Liverpool</p></div>
-                </div>
-                <p style="font-size:0.8rem; margin:0; font-weight:bold;">⚽ Haaland (23')</p>
-            </div>
-
-            <h3>Derniers Résultats</h3>
-            <div class="match-card">
-                <div class="team-box"><img src="static/images/chelsea.jpg"><p>Chelsea</p></div>
-                <div class="score-box"><span>1</span> - <span>2</span></div>
-                <div class="team-box"><img src="static/images/mancity.jpg"><p>Man City</p></div>
-            </div>
-            <div class="match-card">
-                <div class="team-box"><img src="static/images/mancity.jpg"><p>Man City</p></div>
-                <div class="score-box"><span>2</span> - <span>0</span></div>
-                <div class="team-box"><img src="static/images/arsenal.jpg"><p>Arsenal</p></div>
+            <div class="widget-wrapper">
+                <iframe id="scoreaxis-widget" src="https://www.scoreaxis.com/widget/team/9?font=Segoe%20UI&links=0&color=6cabdd" style="width:100%; border:none; height:600px;"></iframe>
             </div>
         </div>
 
@@ -217,13 +187,6 @@
                     <span onclick="addEmoji('🏆')">🏆</span><span onclick="addEmoji('💙')">💙</span><span onclick="addEmoji('🙌')">🙌</span>
                     <span onclick="addEmoji('👏')">👏</span><span onclick="addEmoji('🤩')">🤩</span><span onclick="addEmoji('😮')">😮</span>
                     <span onclick="addEmoji('💸')">💸</span><span onclick="addEmoji('👑')">👑</span><span onclick="addEmoji('💪')">💪</span>
-                    <span onclick="addEmoji('🇳🇴')">🇳🇴</span><span onclick="addEmoji('🏴󠁧󠁢󠁥󠁮󠁧󠁿')">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span onclick="addEmoji('🇫🇷')">🇫🇷</span>
-                    <span onclick="addEmoji('🇧🇷')">🇧🇷</span><span onclick="addEmoji('🇪🇸')">🇪🇸</span><span onclick="addEmoji('🇳🇱')">🇳🇱</span>
-                    <span onclick="addEmoji('🇵🇹')">🇵🇹</span><span onclick="addEmoji('🇮🇹')">🇮🇹</span><span onclick="addEmoji('🇭🇷')">🇭🇷</span>
-                    <span onclick="addEmoji('🇩🇿')">🇩🇿</span><span onclick="addEmoji('🇬🇭')">🇬🇭</span><span onclick="addEmoji('🇪🇬')">🇪🇬</span>
-                    <span onclick="addEmoji('🇺🇿')">🇺🇿</span><span onclick="addEmoji('🇧🇪')">🇧🇪</span><span onclick="addEmoji('🤣')">🤣</span>
-                    <span onclick="addEmoji('💎')">💎</span><span onclick="addEmoji('🚨')">🚨</span><span onclick="addEmoji('🤫')">🤫</span>
-                    <span onclick="addEmoji('✅')">✅</span><span onclick="addEmoji('❌')">❌</span><span onclick="addEmoji('📣')">📣</span>
                 </div>
                 <div class="chat-area">
                     <button class="emoji-toggle" onclick="toggleEmojiPicker()">😊</button>
@@ -240,33 +203,33 @@
         const db = firebase.firestore();
 
         const effectif = {
-            'haaland': { nom: "Erling Haaland", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif norvégien." },
+            'haaland': { nom: "Erling Haaland", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif." },
             'rodri': { nom: "Rodri", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Ballon d'Or 2024." },
-            'foden': { nom: "Phil Foden", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "L'enfant chéri de Stockport." },
-            'dias': { nom: "Ruben Dias", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "60M €", img: "3.jpg", bio: "Pilier défensif." },
-            'donnaruma': { nom: "Gianluigi Donnarumma", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", img: "25.jpg", bio: "Gardien d'envergure." },
-            'savinho': { nom: "Sávio", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg", bio: "Dribbleur brésilien." },
-            'bettinelli': { nom: "Marcus Bettinelli", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2036", valeur: "0.5 €", img: "13.jpg", bio: "Expérience." },
-            'khusanov': { nom: "Abdukodir Khusanov", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "35M €", img: "45.jpg", bio: "Révélation ouzbèke." },
-            'ake': { nom: "Nathan Aké", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", img: "6.jpg", bio: "Polyvalence tactique." },
-            'stones': { nom: "John Stones", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000 €", fin: "30/06/2026", valeur: "15M €", img: "5.jpg", bio: "Défenseur créateur." },
-            'lewis': { nom: "Rico Lewis", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "32M €", img: "82.jpg", bio: "Futur cadre." },
-            'aitnouri': { nom: "Rayan Ait-Nouri", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", img: "21.jpg", bio: "Latéral percutant." },
-            'oreilly': { nom: "Nico O'Reilly", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "50M €", img: "33.jpg", bio: "Pépite locale." },
-            'nunes': { nom: "Matheus Nunes", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "45M €", img: "27.jpg", bio: "Milieu puissant." },
-            'alleyne': { nom: "Max Alleyne", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", img: "68.jpg", bio: "Espoir en défense." },
-            'silva': { nom: "Bernardo Silva", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", img: "20.jpg", bio: "Génie portugais." },
-            'gvardiol': { nom: "Josko Gvardiol", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "Roc croate." },
-            'guehi': { nom: "Marc Guéhi", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "N/A", valeur: "65M €", img: "15.jpg", bio: "Nouvelle recrue solide." },
-            'trafford': { nom: "James Trafford", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Gardien prometteur." },
-            'semenyo': { nom: "Antoine Semenyo", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Puissance offensive." },
-            'cherki': { nom: "Rayan Cherki", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Magicien français." },
-            'marmoush': { nom: "Omar Marmoush", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Attaquant égyptien." },
-            'nypan': { nom: "Sverre Nypan", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "N/A", valeur: "15M €", img: "41.jpg", bio: "Futur maître du milieu." },
-            'doku': { nom: "Jérémy Doku", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Vitesse pure." },
-            'kovacic': { nom: "Matéo Kovacic", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Expérience croate." },
-            'reijnders': { nom: "Tijjani Reijnders", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant." },
-            'gonzalez': { nom: "Nico Gonzalez", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Technique espagnole." }
+            'foden': { nom: "Phil Foden", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "Génie local." },
+            'dias': { nom: "Ruben Dias", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "60M €", img: "3.jpg", bio: "Pilier." },
+            'donnaruma': { nom: "Gianluigi Donnarumma", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", img: "25.jpg", bio: "Rempart." },
+            'savinho': { nom: "Sávio", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg", bio: "Dribbleur." },
+            'bettinelli': { nom: "Marcus Bettinelli", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2036", valeur: "0.5 €", img: "13.jpg", bio: "Doublure." },
+            'khusanov': { nom: "Abdukodir Khusanov", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "35M €", img: "45.jpg", bio: "Roc ouzbek." },
+            'ake': { nom: "Nathan Aké", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", img: "6.jpg", bio: "Polyvalent." },
+            'stones': { nom: "John Stones", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000 €", fin: "30/06/2026", valeur: "15M €", img: "5.jpg", bio: "Élégant." },
+            'lewis': { nom: "Rico Lewis", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "32M €", img: "82.jpg", bio: "Pur produit." },
+            'aitnouri': { nom: "Rayan Ait-Nouri", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", img: "21.jpg", bio: "Perçant." },
+            'oreilly': { nom: "Nico O'Reilly", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "50M €", img: "33.jpg", bio: "Avenir." },
+            'nunes': { nom: "Matheus Nunes", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "45M €", img: "27.jpg", bio: "Puissant." },
+            'alleyne': { nom: "Max Alleyne", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", img: "68.jpg", bio: "Prometteur." },
+            'silva': { nom: "Bernardo Silva", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", img: "20.jpg", bio: "Cerveau." },
+            'gvardiol': { nom: "Josko Gvardiol", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "Costaud." },
+            'guehi': { nom: "Marc Guéhi", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "N/A", valeur: "65M €", img: "15.jpg", bio: "Nouveau roc." },
+            'trafford': { nom: "James Trafford", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Gardien." },
+            'semenyo': { nom: "Antoine Semenyo", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Fusée." },
+            'cherki': { nom: "Rayan Cherki", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Technique." },
+            'marmoush': { nom: "Omar Marmoush", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Vif." },
+            'nypan': { nom: "Sverre Nypan", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "N/A", valeur: "15M €", img: "41.jpg", bio: "Diamant." },
+            'doku': { nom: "Jérémy Doku", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Explosif." },
+            'kovacic': { nom: "Matéo Kovacic", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Expérimenté." },
+            'reijnders': { nom: "Tijjani Reijnders", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Moteur." },
+            'gonzalez': { nom: "Nico Gonzalez", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Solide." }
         };
 
         let currentChatTopic = "";
@@ -276,7 +239,6 @@
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             document.getElementById('menu').classList.remove('ouvert');
-            document.querySelectorAll('.sous-menu').forEach(m => m.classList.remove('show'));
         }
         function afficherJoueur(id) {
             const j = effectif[id]; if(!j) return;
@@ -301,10 +263,9 @@
             picker.style.display = (picker.style.display === 'grid') ? 'none' : 'grid';
         }
         function addEmoji(e) { 
-            const input = document.getElementById('chat-input');
-            input.value += e; 
+            const i = document.getElementById('chat-input');
+            i.value += e; 
             document.getElementById('emoji-picker').style.display = 'none';
-            input.focus();
         }
         function envoyerMessage() {
             const i = document.getElementById('chat-input');
@@ -319,8 +280,7 @@
                 container.innerHTML = "";
                 snapshot.forEach((doc) => {
                     const m = document.createElement('div');
-                    m.className = "msg";
-                    m.innerText = doc.data().text;
+                    m.className = "msg"; m.innerText = doc.data().text;
                     container.appendChild(m);
                 });
                 container.scrollTop = container.scrollHeight;
