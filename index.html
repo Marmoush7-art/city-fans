@@ -8,7 +8,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
     <style>
-        :root { --city-sky-blue: #6CABDD; --city-dark-blue: #1C2C5B; }
+        :root { --city-sky-blue: #6CABDD; --city-dark-blue: #1C2C5B; --win-green: #2ecc71; --loss-red: #e74c3c; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f4f8; color: var(--city-dark-blue); }
         nav { background: var(--city-sky-blue); color: white; height: 65px; display: flex; justify-content: space-between; align-items: center; padding: 0 25px; position: sticky; top: 0; z-index: 1001; }
         
@@ -22,39 +22,40 @@
         .show { display: block !important; }
         .cat-titre { color: #888; font-size: 0.75rem; font-weight: bold; padding: 12px 25px 5px 35px; text-transform: uppercase; }
         .joueur-link { color: var(--city-sky-blue); display: block; padding: 8px 45px; cursor: pointer; font-size: 0.9rem; }
+        
         main { text-align: center; padding: 30px 15px; max-width: 750px; margin: 0 auto; }
         .content-section { display: none; }
         .active { display: block !important; }
-        .box-info { background: var(--city-sky-blue); padding: 30px; border-radius: 15px; margin-top: 25px; color: #000; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; text-align: left; }
-        th, td { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); }
+
+        /* Style des Matchs Pro */
+        .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--city-sky-blue); }
+        .match-header { font-size: 0.8rem; color: #888; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; }
+        .match-main { display: flex; justify-content: space-between; align-items: center; }
+        .team { flex: 1; text-align: center; }
+        .team img { width: 50px; height: 50px; object-fit: contain; }
+        .team p { margin: 8px 0 0; font-weight: bold; font-size: 0.9rem; }
+        .score-center { flex: 1; font-size: 2.2rem; font-weight: 800; color: var(--city-dark-blue); }
+        .score-center span { display: block; font-size: 0.7rem; color: #e74c3c; letter-spacing: 2px; }
+        
+        .match-details { margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .stat-line { font-size: 0.85rem; display: flex; align-items: center; gap: 5px; }
+        .stat-line strong { color: #333; }
+
+        .live-badge { background: #e74c3c; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; animation: blink 1.5s infinite; vertical-align: middle; margin-left: 5px; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+        /* Reste du style */
         #photo { max-width: 280px; width: 100%; border-radius: 15px; border: 6px solid var(--city-sky-blue); margin-bottom: 25px; }
+        .box-info { background: var(--city-sky-blue); padding: 30px; border-radius: 15px; margin-top: 25px; color: #000; }
         .transfert-card { background: white; border: 2px solid var(--city-sky-blue); border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; cursor: pointer; overflow: hidden; }
         .transfert-card img { width: 100px; height: 130px; object-fit: cover; }
         .transfert-info { padding: 15px; text-align: left; color: #000; font-weight: bold; }
         
-        /* Styles Chat */
         #chat-messages { height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 15px; background: #fff; border-radius: 10px; display: flex; flex-direction: column; text-align: left; }
-        .msg { background: var(--city-sky-blue); color: white; padding: 10px 15px; border-radius: 18px; margin-bottom: 10px; align-self: flex-start; max-width: 80%; word-wrap: break-word; }
-        .chat-container { position: relative; background: #eee; padding: 10px; border-radius: 10px; margin-top: 10px; }
-        .chat-area { display: flex; gap: 8px; align-items: center; }
+        .msg { background: var(--city-sky-blue); color: white; padding: 10px 15px; border-radius: 18px; margin-bottom: 10px; align-self: flex-start; max-width: 80%; }
+        .chat-area { display: flex; gap: 8px; align-items: center; margin-top:10px; }
         .chat-area input { flex: 1; padding: 12px; border-radius: 25px; border: 1px solid #ccc; outline: none; }
-        .chat-area button { background: var(--city-dark-blue); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; }
-        .emoji-toggle { font-size: 1.5rem; cursor: pointer; background: none; border: none; padding: 0; }
-        
-        .emoji-picker { 
-            display: none; position: absolute; bottom: 60px; left: 10px; background: white; border: 1px solid #ccc; 
-            border-radius: 10px; padding: 10px; width: 280px; max-height: 180px; overflow-y: auto;
-            grid-template-columns: repeat(6, 1fr); gap: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 10; 
-        }
-        .emoji-picker span { font-size: 1.4rem; cursor: pointer; text-align: center; }
-
-        /* Style Widget ScoreAxis */
-        .widget-wrapper { background: white; border-radius: 15px; overflow: hidden; border: 2px solid var(--city-sky-blue); margin-top: 20px; }
-        
-        #fc26-view.content-section { background: #FF8C00; }
-        .fc26-card { padding: 0; border-radius: 0; display: inline-block; }
-        .fc26-img { width: 100%; max-width: 500px; border-radius: 20px; display: block; margin: 0 auto; }
+        .chat-area button { background: var(--city-dark-blue); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -62,7 +63,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.14</span>
+            <span class="version-tag">v 1.0.15</span>
             <button style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu()">☰</button>
         </div>
     </nav>
@@ -70,50 +71,19 @@
     <div id="menu">
         <ul>
             <li class="menu-item" onclick="showSection('accueil')">🏠 Accueil</li>
-            <li class="menu-item" onclick="toggleSubMenu('sub-matchs')">📅 Matchs ▾</li>
-            <div id="sub-matchs" class="sous-menu">
-                <span class="joueur-link" onclick="showSection('matchs-view')">Résultats & Direct</span>
-            </div>
+            <li class="menu-item" onclick="showSection('matchs-view')">📅 Matchs & Direct</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-effectif')">⚽ Effectif ▾</li>
             <div id="sub-effectif" class="sous-menu">
                 <div class="cat-titre">Gardiens</div>
                 <span class="joueur-link" onclick="afficherJoueur('donnaruma')">Gianluigi Donnarumma</span>
                 <span class="joueur-link" onclick="afficherJoueur('trafford')">James Trafford</span>
-                <span class="joueur-link" onclick="afficherJoueur('bettinelli')">Marcus Bettinelli</span>
-                <div class="cat-titre">Défenseurs</div>
-                <span class="joueur-link" onclick="afficherJoueur('stones')">John Stones</span>
-                <span class="joueur-link" onclick="afficherJoueur('nunes')">Matheus Nunes</span>
-                <span class="joueur-link" onclick="afficherJoueur('ake')">Nathan Aké</span>
-                <span class="joueur-link" onclick="afficherJoueur('guehi')">Marc Guéhi</span>
-                <span class="joueur-link" onclick="afficherJoueur('alleyne')">Max Alleyne</span>
-                <span class="joueur-link" onclick="afficherJoueur('aitnouri')">Rayan Ait-Nouri</span>
-                <span class="joueur-link" onclick="afficherJoueur('dias')">Ruben Dias</span>
-                <span class="joueur-link" onclick="afficherJoueur('oreilly')">Nico O'Reilly</span>
-                <span class="joueur-link" onclick="afficherJoueur('gvardiol')">Josko Gvardiol</span>
-                <span class="joueur-link" onclick="afficherJoueur('khusanov')">Abdukodir Khusanov</span>
-                <span class="joueur-link" onclick="afficherJoueur('lewis')">Rico Lewis</span>
-                <div class="cat-titre">Milieux</div>
-                <span class="joueur-link" onclick="afficherJoueur('rodri')">Rodri</span>
-                <span class="joueur-link" onclick="afficherJoueur('silva')">Bernardo Silva</span>
-                <span class="joueur-link" onclick="afficherJoueur('reijnders')">Tijjani Reijnders</span>
-                <span class="joueur-link" onclick="afficherJoueur('gonzalez')">Nico Gonzalez</span>
-                <span class="joueur-link" onclick="afficherJoueur('kovacic')">Matéo Kovacic</span>
-                <span class="joueur-link" onclick="afficherJoueur('foden')">Phil Foden</span>
-                <span class="joueur-link" onclick="afficherJoueur('cherki')">Rayan Cherki</span>
-                <span class="joueur-link" onclick="afficherJoueur('nypan')">Sverre Nypan</span>
                 <div class="cat-titre">Attaquants</div>
                 <span class="joueur-link" onclick="afficherJoueur('haaland')">Erling Haaland</span>
                 <span class="joueur-link" onclick="afficherJoueur('savinho')">Sávio</span>
                 <span class="joueur-link" onclick="afficherJoueur('marmoush')">Omar Marmoush</span>
-                <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
-                <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
             </div>
             <li class="menu-item" onclick="showSection('mercato-recap')">🔄 Historique Transferts</li>
             <li class="menu-item" onclick="showSection('transferts')">📝 Actus Mercato</li>
-            <li class="menu-item" onclick="toggleSubMenu('sub-fc26')">🎮 FC26 ▾</li>
-            <div id="sub-fc26" class="sous-menu">
-                <span class="joueur-link" onclick="showSection('fc26-view')">Voir ma carte</span>
-            </div>
         </ul>
     </div>
 
@@ -125,17 +95,36 @@
 
         <div id="matchs-view" class="content-section">
             <h2>MATCHS & DIRECT</h2>
-            <p>Résultats mis à jour automatiquement ⏱️</p>
-            
-            <div class="widget-wrapper">
-                <iframe id="scoreaxis-widget" src="https://www.scoreaxis.com/widget/team/9?font=Segoe%20UI&links=0&color=6cabdd" style="width:100%; border:none; height:600px;"></iframe>
-            </div>
-        </div>
 
-        <div id="fc26-view" class="content-section">
-            <h2>MA CARTE FC26</h2>
-            <div class="fc26-card">
-                <img src="static/images/cityfc26.jpg" class="fc26-img">
+            <div class="match-card" style="border-left-color: #e74c3c;">
+                <div class="match-header">LIGUE DES CHAMPIONS • <span class="live-badge">DIRECT 72'</span></div>
+                <div class="match-main">
+                    <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
+                    <div class="score-center">2 - 1</div>
+                    <div class="team"><img src="static/images/realmadrid.jpg"><p>Real Madrid</p></div>
+                </div>
+                <div class="match-details">
+                    <div class="stat-line">⚽ <strong>Haaland (12')</strong></div>
+                    <div class="stat-line">👟 <em>Passe : Foden</em></div>
+                    <div class="stat-line">⚽ <strong>Savinho (58')</strong></div>
+                    <div class="stat-line">👟 <em>Passe : Rodri</em></div>
+                </div>
+            </div>
+
+            <h3 style="text-align:left; margin-top:30px;">Derniers Résultats</h3>
+            <div class="match-card">
+                <div class="match-header">PREMIER LEAGUE • 28 MARS</div>
+                <div class="match-main">
+                    <div class="team"><img src="static/images/arsenal.jpg"><p>Arsenal</p></div>
+                    <div class="score-center">0 - 2</div>
+                    <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
+                </div>
+                <div class="match-details">
+                    <div class="stat-line">⚽ <strong>Marmoush (44')</strong></div>
+                    <div class="stat-line">👟 <em>Passe : Cherki</em></div>
+                    <div class="stat-line">⚽ <strong>Haaland (89')</strong></div>
+                    <div class="stat-line">👟 <em>Passe : De Bruyne</em></div>
+                </div>
             </div>
         </div>
 
@@ -150,84 +139,21 @@
                     <tr><th>Fin de contrat</th><td id="s-fin"></td></tr>
                     <tr><th>Valeur</th><td id="s-valeur"></td></tr>
                 </table>
-                <div style="background:white; padding:15px; border-radius:10px; margin-top:15px; text-align:left;">
-                    <strong>Bio :</strong> <span id="s-bio"></span>
-                </div>
-            </div>
-        </div>
-
-        <div id="mercato-recap" class="content-section">
-            <h2>Historique Arrivées</h2>
-            <div class="transfert-card"><img src="static/images/15.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Prix : 23M €</p></div></div>
-            <div class="transfert-card"><img src="static/images/42.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Prix : 72M €</p></div></div>
-        </div>
-
-        <div id="transferts" class="content-section">
-            <h2>Dernières Rumeurs</h2>
-            <div class="transfert-card" onclick="ouvrirChat('John Stones')">
-                <img src="static/images/5.jpg"><div class="transfert-info"><h3>John Stones</h3><p>Départ vers Wrexham ?</p></div>
-            </div>
-            <div class="transfert-card" onclick="ouvrirChat('Sean Steur')">
-                <img src="static/images/sean.jpg"><div class="transfert-info"><h3>Sean Steur</h3><p>La pépite de l'Ajax ciblée (6M€)</p></div>
-            </div>
-        </div>
-
-        <div id="chat-section" class="content-section">
-            <button onclick="showSection('transferts')" style="margin-bottom:10px;">⬅ Retour</button>
-            <h2 id="chat-titre">Chat</h2>
-            <div id="chat-messages"></div>
-            <div class="chat-container">
-                <div id="emoji-picker" class="emoji-picker">
-                    <span onclick="addEmoji('🩵')">🩵</span><span onclick="addEmoji('⚽')">⚽</span><span onclick="addEmoji('🔥')">🔥</span>
-                    <span onclick="addEmoji('🏆')">🏆</span><span onclick="addEmoji('💙')">💙</span><span onclick="addEmoji('🙌')">🙌</span>
-                    <span onclick="addEmoji('👏')">👏</span><span onclick="addEmoji('🤩')">🤩</span><span onclick="addEmoji('😮')">😮</span>
-                    <span onclick="addEmoji('💸')">💸</span><span onclick="addEmoji('👑')">👑</span><span onclick="addEmoji('💪')">💪</span>
-                </div>
-                <div class="chat-area">
-                    <button class="emoji-toggle" onclick="toggleEmojiPicker()">😊</button>
-                    <input type="text" id="chat-input" placeholder="Pseudo: message">
-                    <button onclick="envoyerMessage()">OK</button>
-                </div>
             </div>
         </div>
     </main>
 
     <script>
+        // Ta config Firebase ici
         const firebaseConfig = { apiKey: "CLE", authDomain: "DOM", projectId: "ID", storageBucket: "BUCKET", messagingSenderId: "ID", appId: "APP" };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
         const effectif = {
-            'haaland': { nom: "Erling Haaland", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif." },
-            'rodri': { nom: "Rodri", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Ballon d'Or 2024." },
-            'foden': { nom: "Phil Foden", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "Génie local." },
-            'dias': { nom: "Ruben Dias", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "60M €", img: "3.jpg", bio: "Pilier." },
-            'donnaruma': { nom: "Gianluigi Donnarumma", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", img: "25.jpg", bio: "Rempart." },
-            'savinho': { nom: "Sávio", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg", bio: "Dribbleur." },
-            'bettinelli': { nom: "Marcus Bettinelli", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2036", valeur: "0.5 €", img: "13.jpg", bio: "Doublure." },
-            'khusanov': { nom: "Abdukodir Khusanov", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "35M €", img: "45.jpg", bio: "Roc ouzbek." },
-            'ake': { nom: "Nathan Aké", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", img: "6.jpg", bio: "Polyvalent." },
-            'stones': { nom: "John Stones", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000 €", fin: "30/06/2026", valeur: "15M €", img: "5.jpg", bio: "Élégant." },
-            'lewis': { nom: "Rico Lewis", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "32M €", img: "82.jpg", bio: "Pur produit." },
-            'aitnouri': { nom: "Rayan Ait-Nouri", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", img: "21.jpg", bio: "Perçant." },
-            'oreilly': { nom: "Nico O'Reilly", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "50M €", img: "33.jpg", bio: "Avenir." },
-            'nunes': { nom: "Matheus Nunes", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "45M €", img: "27.jpg", bio: "Puissant." },
-            'alleyne': { nom: "Max Alleyne", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", img: "68.jpg", bio: "Prometteur." },
-            'silva': { nom: "Bernardo Silva", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", img: "20.jpg", bio: "Cerveau." },
-            'gvardiol': { nom: "Josko Gvardiol", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "Costaud." },
-            'guehi': { nom: "Marc Guéhi", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "N/A", valeur: "65M €", img: "15.jpg", bio: "Nouveau roc." },
-            'trafford': { nom: "James Trafford", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Gardien." },
-            'semenyo': { nom: "Antoine Semenyo", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Fusée." },
-            'cherki': { nom: "Rayan Cherki", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Technique." },
-            'marmoush': { nom: "Omar Marmoush", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Vif." },
-            'nypan': { nom: "Sverre Nypan", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "N/A", valeur: "15M €", img: "41.jpg", bio: "Diamant." },
-            'doku': { nom: "Jérémy Doku", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Explosif." },
-            'kovacic': { nom: "Matéo Kovacic", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Expérimenté." },
-            'reijnders': { nom: "Tijjani Reijnders", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Moteur." },
-            'gonzalez': { nom: "Nico Gonzalez", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Solide." }
+            'haaland': { nom: "Erling Haaland", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg" },
+            'savinho': { nom: "Sávio", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg" }
         };
 
-        let currentChatTopic = "";
         function toggleMenu() { document.getElementById('menu').classList.toggle('ouvert'); }
         function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
         function showSection(id) {
@@ -243,43 +169,8 @@
             document.getElementById('s-paye').innerText = j.paye;
             document.getElementById('s-fin').innerText = j.fin;
             document.getElementById('s-valeur').innerText = j.valeur;
-            document.getElementById('s-bio').innerText = j.bio;
             document.getElementById('photo').src = "static/images/" + j.img;
             showSection('joueur-solo');
-        }
-        function ouvrirChat(nom) {
-            currentChatTopic = nom;
-            document.getElementById('chat-titre').innerText = "Avis : " + nom;
-            loadMessages();
-            showSection('chat-section');
-        }
-        function toggleEmojiPicker() {
-            const picker = document.getElementById('emoji-picker');
-            picker.style.display = (picker.style.display === 'grid') ? 'none' : 'grid';
-        }
-        function addEmoji(e) { 
-            const i = document.getElementById('chat-input');
-            i.value += e; 
-            document.getElementById('emoji-picker').style.display = 'none';
-        }
-        function envoyerMessage() {
-            const i = document.getElementById('chat-input');
-            const val = i.value.trim();
-            if(!val || !currentChatTopic) return;
-            db.collection("messages").add({ topic: currentChatTopic, text: val, date: firebase.firestore.FieldValue.serverTimestamp() });
-            i.value = "";
-        }
-        function loadMessages() {
-            db.collection("messages").where("topic", "==", currentChatTopic).orderBy("date", "asc").onSnapshot((snapshot) => {
-                const container = document.getElementById('chat-messages');
-                container.innerHTML = "";
-                snapshot.forEach((doc) => {
-                    const m = document.createElement('div');
-                    m.className = "msg"; m.innerText = doc.data().text;
-                    container.appendChild(m);
-                });
-                container.scrollTop = container.scrollHeight;
-            });
         }
     </script>
 </body>
