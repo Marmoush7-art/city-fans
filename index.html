@@ -77,7 +77,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.19.9</span>
+            <span class="version-tag">v 1.0.20.0</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
@@ -85,6 +85,7 @@
     <div id="menu">
         <ul>
             <li class="menu-item" onclick="showSection('accueil')">🏠 Accueil</li>
+            <li class="menu-item" onclick="showSection('ma-compo-view')">Ma Compo 📂</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-matchs')">📅 Matchs ▾</li>
             <div id="sub-matchs" class="sous-menu">
                 <span class="joueur-link" onclick="showSection('matchs-view')">Résultats & Direct</span>
@@ -163,6 +164,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div id="ma-compo-view" class="content-section">
+            <h2>Ma Compo 📂</h2>
+            <img src="static/images/city_compo.jpg" style="width: 100%; max-width: 500px; border-radius: 20px; border: 6px solid var(--city-sky-blue);">
         </div>
 
         <div id="mercato-recap" class="content-section">
@@ -288,16 +294,12 @@
         function preparerContrats() {
             const container = document.getElementById('liste-contrats-urgents');
             container.innerHTML = "";
-            
-            // Date limite : 30/03/2027
-            const dateLimite = new Date(2027, 2, 30); // Mois indexé à 0 (2 = Mars)
-
+            const dateLimite = new Date(2027, 2, 30);
             for (let id in effectif) {
                 const j = effectif[id];
                 if (j.fin && j.fin !== "N/A") {
                     const parties = j.fin.split('/');
                     const dateFin = new Date(parties[2], parties[1] - 1, parties[0]);
-
                     if (dateFin <= dateLimite) {
                         const card = document.createElement('div');
                         card.className = "transfert-card urgent-contract";
