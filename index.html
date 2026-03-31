@@ -9,7 +9,7 @@
 
     <style>
         :root { --city-sky-blue: #6CABDD; --city-dark-blue: #1C2C5B; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f4f8; color: var(--city-dark-blue); }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f4f8; color: var(--city-dark-blue); padding-bottom: 50px; }
         nav { background: var(--city-sky-blue); color: white; height: 65px; display: flex; justify-content: space-between; align-items: center; padding: 0 25px; position: sticky; top: 0; z-index: 1001; }
         
         .version-tag { color: white; font-size: 0.8rem; font-weight: bold; margin-right: 15px; }
@@ -70,6 +70,45 @@
         .fc26-img { width: 100%; max-width: 500px; border-radius: 20px; display: block; margin: 0 auto; }
         
         .urgent-contract { border-left: 8px solid #e74c3c !important; }
+
+        /* Styles spécifiques pour Ma Compo */
+        .compo-field { width: 100%; max-width: 500px; height: 420px; background-color: var(--city-sky-blue); border-radius: 20px; border: 6px solid var(--city-dark-blue); margin: 0 auto; padding: 10px; box-sizing: border-box; position: relative; overflow: hidden; }
+        .field-line { position: absolute; background: rgba(255,255,255,0.5); }
+        .field-center-line { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
+        .field-center-circle { top: 50%; left: 50%; width: 90px; height: 90px; border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; transform: translate(-50%, -50%); }
+        
+        .player-spot { width: 65px; height: 85px; position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; cursor: pointer; z-index: 10; transition: transform 0.2s; }
+        .player-spot:hover { transform: scale(1.1); }
+        .player-spot.selected { border: 3px solid #e74c3c; border-radius: 10px; box-shadow: 0 0 15px rgba(231, 76, 60, 0.7); }
+
+        .spot-img-holder { width: 55px; height: 55px; background: rgba(255,255,255,0.2); border: 2px dashed var(--city-dark-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 5px; }
+        .spot-img-holder img { width: 100%; height: 100%; object-fit: cover; display: none; }
+        .spot-img-holder.has-player { border: 3px solid var(--city-dark-blue); background: white; }
+        .spot-img-holder.has-player img { display: block; }
+        .spot-img-holder.has-player .spot-label { display: none; }
+
+        .spot-label { font-size: 0.8rem; color: white; font-weight: bold; text-transform: uppercase; }
+        .spot-player-name { font-size: 0.7rem; color: var(--city-dark-blue); font-weight: bold; background: rgba(255,255,255,0.8); padding: 2px 4px; border-radius: 4px; width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; }
+        .spot-img-holder.has-player + .spot-player-name { display: block; }
+        .spot-img-holder.has-player ~ .spot-label { display: none; }
+
+        /* Positions des spots */
+        #spot-att-1 { top: 15%; left: 35%; }
+        #spot-att-2 { top: 15%; left: 55%; }
+        #spot-mil-1 { top: 45%; left: 20%; }
+        #spot-mil-2 { top: 45%; left: 42%; }
+        #spot-mil-3 { top: 45%; left: 65%; }
+        #spot-def-1 { top: 70%; left: 10%; }
+        #spot-def-2 { top: 70%; left: 32%; }
+        #spot-def-3 { top: 70%; left: 53%; }
+        #spot-def-4 { top: 70%; left: 75%; }
+        #spot-gk-1 { bottom: 5%; left: 42%; }
+
+        .compo-squad-list { width: 100%; max-width: 500px; margin: 25px auto 0; text-align: left; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .compo-squad-list h3 { border-bottom: 2px solid var(--city-sky-blue); padding-bottom: 10px; margin-bottom: 15px; }
+        .compo-cat-titre { color: var(--city-sky-blue); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin: 15px 0 8px; }
+        .compo-joueur-link { display: inline-block; padding: 6px 12px; margin: 3px; background: #eef6fc; color: var(--city-dark-blue); border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
+        .compo-joueur-link:hover { background: var(--city-sky-blue); color: white; }
     </style>
 </head>
 <body>
@@ -77,7 +116,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.20.0</span>
+            <span class="version-tag">v 1.0.21.0</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
@@ -85,7 +124,6 @@
     <div id="menu">
         <ul>
             <li class="menu-item" onclick="showSection('accueil')">🏠 Accueil</li>
-            <li class="menu-item" onclick="showSection('ma-compo-view')">🧾 Ma Compo</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-matchs')">📅 Matchs ▾</li>
             <div id="sub-matchs" class="sous-menu">
                 <span class="joueur-link" onclick="showSection('matchs-view')">Résultats & Direct</span>
@@ -127,6 +165,7 @@
             <li class="menu-item" onclick="showSection('mercato-recap')">🔄 Mercato</li>
             <li class="menu-item" onclick="showSection('transferts')">📝 Actus Mercato</li>
             <li class="menu-item" onclick="preparerContrats()">📄 Contrats</li>
+            <li class="menu-item" onclick="preparerCompoInteractive()">Ma Compo 🧾</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-fc26')">🎮 FC26 ▾</li>
             <div id="sub-fc26" class="sous-menu">
                 <span class="joueur-link" onclick="showSection('fc26-view')">Equipe de base (sept 2025)</span>
@@ -167,8 +206,59 @@
         </div>
 
         <div id="ma-compo-view" class="content-section">
-            <h2>Ma Compo 📂</h2>
-            <img src="static/images/exrealcompo.jpg" style="width: 100%; max-width: 500px; border-radius: 20px; border: 6px solid var(--city-sky-blue);">
+            <h2>Ma Compo 🧾</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 15px; color: #666;">Clique sur une position (cercle), puis sur un joueur en bas.</p>
+            
+            <div class="compo-field">
+                <div class="field-line field-center-line"></div>
+                <div class="field-center-circle"></div>
+                
+                <div class="player-spot" id="spot-att-1" onclick="selectSpot(this)">
+                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">BU</span></div>
+                    <div class="spot-player-name"></div>
+                </div>
+                <div class="player-spot" id="spot-att-2" onclick="selectSpot(this)">
+                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">BU</span></div>
+                    <div class="spot-player-name"></div>
+                </div>
+                <div class="player-spot" id="spot-mil-1" onclick="selectSpot(this)">
+                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">MC</span></div>
+                    <div class="spot-player-name"></div>
+                </div>
+                <div class="player-spot" id="spot-mil-2" onclick="selectSpot(this)">
+                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">MDC</span></div>
+                    <div class="spot-player-name"></div>
+                </div>
+                <div class="player-spot" id="spot-mil-3" onclick="selectSpot(this)">
+                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">MC</span></div>
+                    <div class="spot-player-name"></div>
+                </div>
+                <div class="player-spot" id="spot-def-1" onclick="selectSpot(this)">
+                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DG</span></div>
+                    <div class="spot-player-name"></div>
+                </div>
+                <div class="player-spot" id="spot-def-2" onclick="selectSpot(this)">
+                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DC</span></div>
+                    <div class="spot-player-name"></div>
+                </div>
+                <div class="player-spot" id="spot-def-3" onclick="selectSpot(this)">
+                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DC</span></div>
+                    <div class="spot-player-name"></div>
+                </div>
+                <div class="player-spot" id="spot-def-4" onclick="selectSpot(this)">
+                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DD</span></div>
+                    <div class="spot-player-name"></div>
+                </div>
+                <div class="player-spot" id="spot-gk-1" onclick="selectSpot(this)">
+                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">G</span></div>
+                    <div class="spot-player-name"></div>
+                </div>
+            </div>
+
+            <div class="compo-squad-list">
+                <h3>Effectif ⚽</h3>
+                <div id="liste-joueurs-compo"></div>
+            </div>
         </div>
 
         <div id="mercato-recap" class="content-section">
@@ -262,68 +352,45 @@
         const db = firebase.firestore();
 
         const effectif = {
-            'haaland': { nom: "Erling Haaland", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif norvégien. Erling Haaland continue de briser tous les records de précocité et d'efficacité devant le but, s'imposant comme le meilleur numéro 9 du monde." },
-            'rodri': { nom: "Rodri", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Ballon d'Or 2024. Le métronome du milieu de terrain, indispensable à l'équilibre de l'équipe et capable de marquer des buts cruciaux dans les grands matchs." },
-            'foden': { nom: "Phil Foden", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "L'enfant chéri de Stockport. Un talent pur formé au club qui est devenu l'un des joueurs les plus créatifs et percutants de Premier League." },
-            'dias': { nom: "Ruben Dias", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "60M €", img: "3.jpg", bio: "Pilier défensif et leader naturel. Son autorité et son sens du placement font de lui le patron incontesté de l'arrière-garde des Sky Blues." },
-            'donnaruma': { nom: "Gianluigi Donnarumma", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", img: "25.jpg", bio: "Gardien d'envergure internationale. Son physique imposant et ses réflexes sur sa ligne en font un rempart de premier choix." },
-            'savinho': { nom: "Savinho", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg", bio: "Dribbleur brésilien électrisant. Capable de débloquer n'importe quelle situation sur son aile grâce à sa percussion et sa technique fine." },
-            'bettinelli': { nom: "Marcus Bettinelli", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2026", valeur: "0.5 €", img: "13.jpg", bio: "Gardien expérimenté apportant sérénité et professionnalisme au groupe de gardiens au quotidien." },
-            'khusanov': { nom: "Abdukodir Khusanov", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "35M €", img: "45.jpg", bio: "Révélation ouzbèke. Un défenseur moderne, rapide et solide dans les duels, recruté pour assurer l'avenir de la défense centrale." },
-            'ake': { nom: "Nathan Aké", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", img: "6.jpg", bio: "Polyvalence tactique exemplaire. Capable d'évoluer dans l'axe ou à gauche, il est le soldat parfait pour le système de jeu de City." },
-            'stones': { nom: "John Stones", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000 €", fin: "30/06/2026", valeur: "15M €", img: "5.jpg", bio: "Défenseur créateur unique. Sa capacité à monter au milieu de terrain et à distribuer le jeu est un atout stratégique majeur." },
-            'lewis': { nom: "Rico Lewis", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "32M €", img: "82.jpg", bio: "Futur cadre issu de l'académie. Intelligence de jeu hors du commun pour son jeune âge, capable d'occuper plusieurs postes." },
-            'aitnouri': { nom: "Rayan Ait-Nouri", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", img: "21.jpg", bio: "Latéral percutant et technique. Son apport offensif et sa qualité de centre offrent de nouvelles options sur le flanc gauche." },
-            'oreilly': { nom: "Nico O'Reilly", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "50M €", img: "33.jpg", bio: "Pépite locale dotée d'une grande vision de jeu. Un talent à suivre qui s'intègre progressivement dans la rotation." },
-            'nunes': { nom: "Matheus Nunes", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "45M €", img: "27.jpg", bio: "Milieu puissant et box-to-box. Sa capacité à casser les lignes par la course est un profil rare dans l'effectif actuel." },
-            'alleyne': { nom: "Max Alleyne", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", img: "68.jpg", bio: "Espoir en défense centrale. Doté d'une bonne lecture du jeu, il continue son apprentissage auprès des meilleurs mondiaux." },
-            'silva': { nom: "Bernardo Silva", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", img: "20.jpg", bio: "Génie portugais au volume de jeu impressionnant. Travailleur de l'ombre capable de fulgurances techniques extraordinaires." },
-            'gvardiol': { nom: "Josko Gvardiol", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "Roc croate et défenseur complet. Sa qualité de relance et sa puissance physique en font l'un des meilleurs à son poste." },
-            'guehi': { nom: "Marc Guéhi", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "N/A", valeur: "65M €", img: "15.jpg", bio: "Nouvelle recrue solide. International anglais apportant une grande sérénité et une excellente anticipation." },
-            'trafford': { nom: "James Trafford", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Gardien prometteur de retour au club. Un profil moderne avec un excellent jeu au pied et une grande agilité." },
-            'semenyo': { nom: "Antoine Semenyo", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Puissance offensive brute. Sa capacité à gagner ses duels physiques et sa finition clinique sont des atouts précieux." },
-            'cherki': { nom: "Rayan Cherki", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Magicien français doté d'une technique hors norme. Capable d'éliminer plusieurs adversaires sur un simple geste technique." },
-            'marmoush': { nom: "Omar Marmoush", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Attaquant égyptien polyvalent et rapide. Très efficace devant le but, il apporte une profondeur de banc de haute qualité." },
-            'nypan': { nom: "Sverre Nypan", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "N/A", valeur: "15M €", img: "41.jpg", bio: "Futur maître du milieu de terrain. Grand espoir scandinave, il possède une maturité tactique rare pour son âge." },
-            'doku': { nom: "Jérémy Doku", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Vitesse pure et explosivité. Son premier pas est capable de laisser n'importe quel défenseur sur place." },
-            'kovacic': { nom: "Matéo Kovacic", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Expérience croate au plus haut niveau. Un maître dans la conservation de balle sous pression et la transition défense-attaque." },
-            'reijnders': { nom: "Tijjani Reijnders", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant avec une grande capacité de projection. Sa vision de jeu et sa qualité de passe en font un organisateur clé." },
-            'gonzalez': { nom: "Nico Gonzalez", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Technique espagnole au service du collectif. Formé dans l'excellence, il s'intègre parfaitement à la philosophie de jeu locale." }
+            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif norvégien." },
+            'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Ballon d'Or 2024. Le métronome." },
+            'foden': { nom: "Phil Foden", poste: "Milieu", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "L'enfant chéri de Stockport." },
+            'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "60M €", img: "3.jpg", bio: "Pilier défensif." },
+            'donnaruma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", img: "25.jpg", bio: "Gardien d'envergure internationale." },
+            'savinho': { nom: "Savinho", poste: "Attaquant", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg", bio: "Dribbleur brésilien électrisant." },
+            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2026", valeur: "0.5 €", img: "13.jpg", bio: "Gardien expérimenté." },
+            'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "35M €", img: "45.jpg", bio: "Révélation ouzbèke." },
+            'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", img: "6.jpg", bio: "Polyvalence tactique exemplaire." },
+            'stones': { nom: "John Stones", poste: "Défenseur", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000 €", fin: "30/06/2026", valeur: "15M €", img: "5.jpg", bio: "Défenseur créateur unique." },
+            'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "32M €", img: "82.jpg", bio: "Futur cadre issu de l'académie." },
+            'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", img: "21.jpg", bio: "Latéral percutant." },
+            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "50M €", img: "33.jpg", bio: "Pépite locale." },
+            'nunes': { nom: "Matheus Nunes", poste: "Milieu", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "45M €", img: "27.jpg", bio: "Milieu puissant." },
+            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", img: "68.jpg", bio: "Espoir en défense centrale." },
+            'silva': { nom: "Bernardo Silva", poste: "Milieu", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", img: "20.jpg", bio: "Génie portugais." },
+            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "Roc croate." },
+            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "N/A", valeur: "65M €", img: "15.jpg", bio: "Nouvelle recrue solide." },
+            'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Gardien prometteur." },
+            'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Puissance offensive brute." },
+            'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Magicien français." },
+            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Attaquant égyptien polyvalent." },
+            'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "N/A", valeur: "15M €", img: "41.jpg", bio: "Futur maître du milieu." },
+            'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Vitesse pure." },
+            'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Expérience croate." },
+            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant." },
+            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Technique espagnole." }
         };
 
-        function preparerContrats() {
-            const container = document.getElementById('liste-contrats-urgents');
-            container.innerHTML = "";
-            const dateLimite = new Date(2027, 2, 30);
-            for (let id in effectif) {
-                const j = effectif[id];
-                if (j.fin && j.fin !== "N/A") {
-                    const parties = j.fin.split('/');
-                    const dateFin = new Date(parties[2], parties[1] - 1, parties[0]);
-                    if (dateFin <= dateLimite) {
-                        const card = document.createElement('div');
-                        card.className = "transfert-card urgent-contract";
-                        card.onclick = () => afficherJoueur(id);
-                        card.innerHTML = `
-                            <img src="static/images/${j.img}">
-                            <div class="transfert-info">
-                                <h3>${j.nom}</h3>
-                                <p>Expire le : ${j.fin}</p>
-                                <p class="transfert-date">Salaire mensuel : ${j.paye}</p>
-                            </div>
-                        `;
-                        container.appendChild(card);
-                    }
-                }
-            }
-            showSection('contrats');
-        }
-
-        let currentChatTopic = "";
-        
-        function toggleMenu(event) {
-            event.stopPropagation();
-            document.getElementById('menu').classList.toggle('ouvert');
+        // --- Fonctions Générales UI ---
+        function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
+        function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
+        function showSection(id) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.sous-menu').forEach(sm => sm.classList.remove('show'));
+            document.getElementById('menu').classList.remove('ouvert');
+            selectedSpotElement = null; // Reset selection Compo
+            document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected'));
         }
 
         document.addEventListener('click', function(event) {
@@ -335,15 +402,7 @@
             }
         });
 
-        function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
-        
-        function showSection(id) {
-            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            document.querySelectorAll('.sous-menu').forEach(sm => sm.classList.remove('show'));
-            document.getElementById('menu').classList.remove('ouvert');
-        }
-        
+        // --- Affichage Solo Joueur ---
         function afficherJoueur(id) {
             const j = effectif[id]; if(!j) return;
             document.getElementById('nom-joueur').innerText = j.nom;
@@ -356,53 +415,80 @@
             document.getElementById('photo').src = "static/images/" + j.img;
             showSection('joueur-solo');
         }
-        
-        function ouvrirChat(nom) {
-            currentChatTopic = nom;
-            document.getElementById('chat-titre').innerText = "Avis : " + nom;
-            loadMessages();
-            showSection('chat-section');
+
+        // --- Logique Ma Compo Interactive ---
+        let selectedSpotElement = null;
+
+        function preparerCompoInteractive() {
+            renderSquadListForCompo();
+            showSection('ma-compo-view');
         }
-        
-        function toggleEmojiPicker() {
-            const picker = document.getElementById('emoji-picker');
-            picker.style.display = (picker.style.display === 'grid') ? 'none' : 'grid';
+
+        function renderSquadListForCompo() {
+            const container = document.getElementById('liste-joueurs-compo');
+            container.innerHTML = "";
+            const postes = { "Gardien": [], "Défenseur": [], "Milieu": [], "Attaquant": [] };
+            
+            for (let id in effectif) {
+                const p = effectif[id].poste;
+                if (postes[p]) postes[p].push({id: id, ...effectif[id]});
+            }
+
+            for (let poste in postes) {
+                if (postes[poste].length > 0) {
+                    const titre = document.createElement('div');
+                    titre.className = "compo-cat-titre";
+                    titre.innerText = poste + "s";
+                    container.appendChild(titre);
+
+                    postes[poste].forEach(j => {
+                        const link = document.createElement('span');
+                        link.className = "compo-joueur-link";
+                        link.innerText = j.nom;
+                        link.onclick = () => placerJoueur(j.id);
+                        container.appendChild(link);
+                    });
+                }
+            }
         }
-        
-        function addEmoji(e) { 
-            const i = document.getElementById('chat-input');
-            i.value += e; 
-            document.getElementById('emoji-picker').style.display = 'none';
+
+        function selectSpot(element) {
+            // Désélectionner le précédent
+            document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected'));
+            // Sélectionner le nouveau
+            selectedSpotElement = element;
+            selectedSpotElement.classList.add('selected');
         }
-        
-        function envoyerMessage() {
-            const i = document.getElementById('chat-input');
-            const val = i.value.trim();
-            if(!val || !currentChatTopic) return;
-            db.collection("messages").add({ 
-                topic: currentChatTopic, 
-                text: val, 
-                date: firebase.firestore.FieldValue.serverTimestamp() 
-            });
-            i.value = "";
+
+        function placerJoueur(joueurId) {
+            if (!selectedSpotElement) {
+                alert("Clique d'abord sur une place vide (BU, MC, DC...) sur le terrain 🏟️");
+                return;
+            }
+
+            const j = effectif[joueurId];
+            if (!j) return;
+
+            const imgHolder = selectedSpotElement.querySelector('.spot-img-holder');
+            const imgEl = imgHolder.querySelector('img');
+            const nameEl = selectedSpotElement.querySelector('.spot-player-name');
+
+            // Mettre à jour l'image
+            imgEl.src = "static/images/" + j.img;
+            imgHolder.classList.add('has-player');
+            
+            // Mettre à jour le nom
+            nameEl.innerText = j.nom;
+
+            // Désélectionner le spot après placement
+            selectedSpotElement.classList.remove('selected');
+            selectedSpotElement = null;
         }
-        
-        function loadMessages() {
-            db.collection("messages")
-              .where("topic", "==", currentChatTopic)
-              .orderBy("date", "asc")
-              .onSnapshot((snapshot) => {
-                const container = document.getElementById('chat-messages');
-                container.innerHTML = "";
-                snapshot.forEach((doc) => {
-                    const m = document.createElement('div');
-                    m.className = "msg"; 
-                    m.innerText = doc.data().text;
-                    container.appendChild(m);
-                });
-                container.scrollTop = container.scrollHeight;
-            });
-        }
+
+        // --- Contrats & Chat (inchangé) ---
+        // ... (tes fonctions preparerContrats, ouvrirChat, etc. restent ici)
+        function preparerContrats() { const container = document.getElementById('liste-contrats-urgents'); container.innerHTML = ""; const dateLimite = new Date(2027, 2, 30); for (let id in effectif) { const j = effectif[id]; if (j.fin && j.fin !== "N/A") { const parties = j.fin.split('/'); const dateFin = new Date(parties[2], parties[1] - 1, parties[0]); if (dateFin <= dateLimite) { const card = document.createElement('div'); card.className = "transfert-card urgent-contract"; card.onclick = () => afficherJoueur(id); card.innerHTML = `<img src="static/images/${j.img}"><div class="transfert-info"><h3>${j.nom}</h3><p>Expire le : ${j.fin}</p><p class="transfert-date">Salaire mensuel : ${j.paye}</p></div>`; container.appendChild(card); } } } showSection('contrats'); }
+        let currentChatTopic = ""; function ouvrirChat(nom) { currentChatTopic = nom; document.getElementById('chat-titre').innerText = "Avis : " + nom; loadMessages(); showSection('chat-section'); } function toggleEmojiPicker() { const picker = document.getElementById('emoji-picker'); picker.style.display = (picker.style.display === 'grid') ? 'none' : 'grid'; } function addEmoji(e) { const i = document.getElementById('chat-input'); i.value += e; document.getElementById('emoji-picker').style.display = 'none'; } function envoyerMessage() { const i = document.getElementById('chat-input'); const val = i.value.trim(); if(!val || !currentChatTopic) return; db.collection("messages").add({ topic: currentChatTopic, text: val, date: firebase.firestore.FieldValue.serverTimestamp() }); i.value = ""; } function loadMessages() { db.collection("messages").where("topic", "==", currentChatTopic).orderBy("date", "asc").onSnapshot((snapshot) => { const container = document.getElementById('chat-messages'); container.innerHTML = ""; snapshot.forEach((doc) => { const m = document.createElement('div'); m.className = "msg"; m.innerText = doc.data().text; container.appendChild(m); }); container.scrollTop = container.scrollHeight; }); }
     </script>
 </body>
 </html>
