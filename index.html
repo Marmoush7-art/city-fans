@@ -352,18 +352,9 @@
     </main>
 
     <script>
-    https://console.firebase.google.com/project/city-fans-app/firestore/databases/-default-/data/~2Fmatchs~2Factuel
-    const firebaseConfig = { projectId: "city-fans-app" }; 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    https://console.firebase.google.com/project/city-fans-app/firestore/databases/-default-/data/~2Fmatchs~2Factuel
-    db.collection("matchs").doc("actuel").onSnapshot((doc) => {
-        if (doc.exists) {
-            const data = doc.data();
-            document.getElementById('s-city').innerText = data.scoreCity;
-            document.getElementById('s-adv').innerText = data.scoreAdversaire;
-            document.getElementById('n-adv').innerText = data.adversaire;
-        }
+    const firebaseConfig = { apiKey: "CLE", authDomain: "DOM", projectId: "ID", storageBucket: "BUCKET", messagingSenderId: "ID", appId: "APP" };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
     }); const effectif = {
             'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif norvégien." },
             'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Ballon d'Or 2024. Le métronome." },
