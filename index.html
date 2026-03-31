@@ -17,7 +17,9 @@
 
         #menu { position: fixed; right: -280px; top: 0; width: 280px; height: 100%; background: #1a1a1a; color: white; transition: 0.4s; padding-top: 70px; z-index: 1000; overflow-y: auto; }
         #menu.ouvert { right: 0; }
-        .menu-item { padding: 18px 25px; border-bottom: 1px solid #333; cursor: pointer; font-weight: bold; display: block; color: white; text-decoration: none; }
+        .menu-item { padding: 18px 25px; border-bottom: 1px solid #333; cursor: pointer; font-weight: bold; display: flex; align-items: center; color: white; text-decoration: none; }
+        .menu-item-icon { margin-right: 12px; font-size: 1.2rem; min-width: 25px; text-align: center; }
+        
         .sous-menu { display: none; background: #111; padding-bottom: 10px; }
         .show { display: block !important; }
         .cat-titre { color: #888; font-size: 0.75rem; font-weight: bold; padding: 12px 25px 5px 35px; text-transform: uppercase; }
@@ -30,7 +32,8 @@
         th, td { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); }
         #photo { max-width: 280px; width: 100%; border-radius: 15px; border: 6px solid var(--city-sky-blue); margin-bottom: 25px; }
         
-        .bio-container { background: white; padding: 25px; border-radius: 10px; margin-top: 15px; text-align: left; min-height: 150px; line-height: 1.6; }
+        /* Biographie agrandie spécifiquement */
+        .bio-container { background: white; padding: 25px; border-radius: 10px; margin-top: 15px; text-align: left; min-height: 300px; line-height: 1.7; font-size: 1.05rem; }
 
         .transfert-card { background: white; border: 2px solid var(--city-sky-blue); border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; cursor: pointer; overflow: hidden; }
         .transfert-card img { width: 100px; height: 130px; object-fit: cover; }
@@ -45,13 +48,15 @@
         .chat-area button { background: var(--city-dark-blue); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; }
         .emoji-toggle { font-size: 1.5rem; cursor: pointer; background: none; border: none; padding: 0; }
         
-        /* Picker d'emojis agrandi considérablement */
+        /* Picker d'emojis élargi */
         .emoji-picker { 
-            display: none; position: absolute; bottom: 65px; left: 10px; background: white; border: 2px solid var(--city-sky-blue); 
-            border-radius: 15px; padding: 15px; width: 320px; max-height: 250px; overflow-y: auto;
-            grid-template-columns: repeat(7, 1fr); gap: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); z-index: 10; 
+            display: none; position: absolute; bottom: 65px; left: -100px; background: white; border: 2px solid var(--city-sky-blue); 
+            border-radius: 15px; padding: 15px; width: 400px; max-height: 350px; overflow-y: auto;
+            grid-template-columns: repeat(9, 1fr); gap: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 10; 
         }
-        .emoji-picker span { font-size: 1.6rem; cursor: pointer; text-align: center; }
+        @media (max-width: 600px) { .emoji-picker { width: 280px; left: 10px; grid-template-columns: repeat(6, 1fr); } }
+        .emoji-picker span { font-size: 1.6rem; cursor: pointer; text-align: center; padding: 2px; transition: transform 0.1s; }
+        .emoji-picker span:hover { transform: scale(1.2); background-color: #f0f0f0; border-radius: 5px; }
 
         .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--city-sky-blue); }
         .match-header { font-size: 0.8rem; color: #888; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; }
@@ -85,6 +90,7 @@
         .spot-img-holder img { width: 100%; height: 100%; object-fit: cover; display: none; }
         .spot-img-holder.has-player { border: 3px solid var(--city-dark-blue); background: white; }
         .spot-img-holder.has-player img { display: block; }
+        .spot-img-holder.has-player .spot-label { display: none; }
 
         .spot-label { font-size: 0.8rem; color: white; font-weight: bold; text-transform: uppercase; }
         .spot-player-name { font-size: 0.7rem; color: var(--city-dark-blue); font-weight: bold; background: rgba(255,255,255,0.8); padding: 2px 4px; border-radius: 4px; width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; }
@@ -113,16 +119,16 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.21.3</span>
+            <span class="version-tag">v 1.0.21.7</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
 
     <div id="menu">
         <ul>
-            <li class="menu-item" onclick="showSection('accueil')">🏠 Accueil</li>
-            <li class="menu-item" onclick="showSection('matchs-view')">📅 Matchs</li>
-            <li class="menu-item" onclick="toggleSubMenu('sub-effectif')">⚽ Effectif ▾</li>
+            <li class="menu-item" onclick="showSection('accueil')"><span class="menu-item-icon">🏠</span>Accueil</li>
+            <li class="menu-item" onclick="showSection('matchs-view')"><span class="menu-item-icon">📅</span>Matchs</li>
+            <li class="menu-item" onclick="toggleSubMenu('sub-effectif')"><span class="menu-item-icon">⚽</span>Effectif ▾</li>
             <div id="sub-effectif" class="sous-menu">
                 <div class="cat-titre">🧤 Gardiens</div>
                 <span class="joueur-link" onclick="afficherJoueur('donnaruma')">Gianluigi Donnarumma</span>
@@ -156,11 +162,11 @@
                 <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
                 <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
             </div>
-            <li class="menu-item" onclick="showSection('mercato-recap')">🔄 Mercato</li>
-            <li class="menu-item" onclick="showSection('transferts')">📝 Actus Mercato</li>
-            <li class="menu-item" onclick="preparerContrats()">📄 Contrats</li>
-            <li class="menu-item" onclick="preparerCompoInteractive()">Ma Compo 📋</li>
-            <li class="menu-item" onclick="showSection('fc26-view')">🎮 FC26</li>
+            <li class="menu-item" onclick="showSection('mercato-recap')"><span class="menu-item-icon">🔄</span>Mercato</li>
+            <li class="menu-item" onclick="showSection('transferts')"><span class="menu-item-icon">📝</span>Actus Mercato</li>
+            <li class="menu-item" onclick="preparerContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
+            <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
+            <li class="menu-item" onclick="showSection('fc26-view')"><span class="menu-item-icon">🎮</span>FC26</li>
         </ul>
     </div>
 
@@ -297,7 +303,6 @@
 
         <div id="contrats" class="content-section">
             <h2>📄 État des Contrats</h2>
-            <p style="margin-bottom: 20px; font-size: 0.9rem; color: #666;">Joueurs en fin de contrat (échéance ≤ 30/03/2027)</p>
             <div id="liste-contrats-urgents"></div>
         </div>
 
@@ -312,13 +317,25 @@
                     <span onclick="addEmoji('👍')">👍</span><span onclick="addEmoji('👎')">👎</span><span onclick="addEmoji('🙌')">🙌</span>
                     <span onclick="addEmoji('🤯')">🤯</span><span onclick="addEmoji('👑')">👑</span><span onclick="addEmoji('💪')">💪</span>
                     <span onclick="addEmoji('😂')">😂</span><span onclick="addEmoji('🤔')">🤔</span><span onclick="addEmoji('🤫')">🤫</span>
-                    <span onclick="addEmoji('👀')">👀</span><span onclick="addEmoji('✅')">✅</span><span onclick="addEmoji('❌')">❌</span>
-                    <span onclick="addEmoji('👏')">👏</span> <span onclick="addEmoji('🤩')">🤩</span> <span onclick="addEmoji('😮')">😮</span>
-                    <span onclick="addEmoji('😱')">😱</span> <span onclick="addEmoji('😊')">😊</span> <span onclick="addEmoji('🧠')">🧠</span>
-                    <span onclick="addEmoji('✨')">✨</span> <span onclick="addEmoji('🎮')">🎮</span> <span onclick="addEmoji('⚡')">⚡</span>
-                    <span onclick="addEmoji('📈')">📈</span> <span onclick="addEmoji('📉')">📉</span> <span onclick="addEmoji('🧤')">🧤</span>
-                    <span onclick="addEmoji('🏹')">🏹</span> <span onclick="addEmoji('🛡️')">🛡️</span> <span onclick="addEmoji('🎯')">🎯</span>
-                    <span onclick="addEmoji('🇸🇳')">🇸🇳</span> <span onclick="addEmoji('🇭🇷')">🇭🇷</span> <span onclick="addEmoji('🇧🇷')">🇧🇷</span>
+                    <span onclick="addEmoji('👀')">👀</span><span onclick="addEmoji('✨')">✨</span><span onclick="addEmoji('🎮')">🎮</span>
+                    <span onclick="addEmoji('⚡')">⚡</span><span onclick="addEmoji('📈')">📈</span><span onclick="addEmoji('📉')">📉</span>
+                    <span onclick="addEmoji('🧤')">🧤</span><span onclick="addEmoji('🏹')">🏹</span><span onclick="addEmoji('🛡️')">🛡️</span>
+                    <span onclick="addEmoji('🎯')">🎯</span><span onclick="addEmoji('🇸🇳')">🇸🇳</span><span onclick="addEmoji('🇭🇷')">🇭🇷</span>
+                    <span onclick="addEmoji('🇧🇷')">🇧🇷</span><span onclick="addEmoji('😊')">😊</span><span onclick="addEmoji('😎')">😎</span>
+                    <span onclick="addEmoji('🤩')">🤩</span><span onclick="addEmoji('😉')">😉</span><span onclick="addEmoji('🥳')">🥳</span>
+                    <span onclick="addEmoji('😍')">😍</span><span onclick="addEmoji('🤪')">🤪</span><span onclick="addEmoji('🙄')">🙄</span>
+                    <span onclick="addEmoji('😭')">😭</span><span onclick="addEmoji('😤')">😤</span><span onclick="addEmoji('😮')">😮</span>
+                    <span onclick="addEmoji('🤐')">🤐</span><span onclick="addEmoji('😴')">😴</span><span onclick="addEmoji('🤮')">🤮</span>
+                    <span onclick="addEmoji('🤡')">🤡</span><span onclick="addEmoji('👻')">👻</span><span onclick="addEmoji('👽')">👽</span>
+                    <span onclick="addEmoji('🤖')">🤖</span><span onclick="addEmoji('💀')">💀</span><span onclick="addEmoji('☠️')">☠️</span>
+                    <span onclick="addEmoji('➕')">➕</span><span onclick="addEmoji('➖')">➖</span><span onclick="addEmoji('✅')">✅</span>
+                    <span onclick="addEmoji('❌')">❌</span><span onclick="addEmoji('🚫')">🚫</span><span onclick="addEmoji('💯')">💯</span>
+                    <span onclick="addEmoji('☀️')">☀️</span><span onclick="addEmoji('☁️')">☁️</span><span onclick="addEmoji('☔')">☔</span>
+                    <span onclick="addEmoji('❄️')">❄️</span><span onclick="addEmoji('⭐')">⭐</span><span onclick="addEmoji('🌟')">🌟</span>
+                    <span onclick="addEmoji('🎉')">🎉</span><span onclick="addEmoji('🎁')">🎁</span><span onclick="addEmoji('📅')">📅</span>
+                    <span onclick="addEmoji('✉️')">✉️</span><span onclick="addEmoji('📢')">📢</span><span onclick="addEmoji('💡')">💡</span>
+                    <span onclick="addEmoji('💰')">💰</span><span onclick="addEmoji('💎')">💎</span><span onclick="addEmoji('⌛')">⌛</span>
+                    <span onclick="addEmoji('🗣️')">🗣️</span><span onclick="addEmoji('💤')">💤</span>
                 </div>
                 <div class="chat-area">
                     <button class="emoji-toggle" onclick="toggleEmojiPicker()">😊</button>
