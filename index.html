@@ -22,7 +22,7 @@
         .show { display: block !important; }
         .cat-titre { color: #888; font-size: 0.75rem; font-weight: bold; padding: 12px 25px 5px 35px; text-transform: uppercase; }
         .joueur-link { color: var(--city-sky-blue); display: block; padding: 8px 45px; cursor: pointer; font-size: 0.9rem; }
-        main { text-align: center; padding: 30px 15px; max-width: 750px; margin: 0 auto; }
+        main { text-align: center; padding: 30px 15px; max-width: 850px; margin: 0 auto; }
         .content-section { display: none; }
         .active { display: block !important; }
         .box-info { background: var(--city-sky-blue); padding: 30px; border-radius: 15px; margin-top: 25px; color: #000; }
@@ -71,41 +71,39 @@
         
         .urgent-contract { border-left: 8px solid #e74c3c !important; }
 
-        /* Styles spécifiques pour Ma Compo */
-        .compo-field { width: 100%; max-width: 500px; height: 420px; background-color: var(--city-sky-blue); border-radius: 20px; border: 6px solid var(--city-dark-blue); margin: 0 auto; padding: 10px; box-sizing: border-box; position: relative; overflow: hidden; }
+        /* Compo 4-3-3 Offensif Agrandie */
+        .compo-field { width: 100%; max-width: 600px; height: 550px; background-color: var(--city-sky-blue); border-radius: 20px; border: 6px solid var(--city-dark-blue); margin: 0 auto; padding: 10px; box-sizing: border-box; position: relative; overflow: hidden; }
         .field-line { position: absolute; background: rgba(255,255,255,0.5); }
         .field-center-line { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
-        .field-center-circle { top: 50%; left: 50%; width: 90px; height: 90px; border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; transform: translate(-50%, -50%); }
+        .field-center-circle { top: 50%; left: 50%; width: 110px; height: 110px; border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; transform: translate(-50%, -50%); }
         
-        .player-spot { width: 65px; height: 85px; position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; cursor: pointer; z-index: 10; transition: transform 0.2s; }
+        .player-spot { width: 70px; height: 95px; position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; cursor: pointer; z-index: 10; transition: transform 0.2s; }
         .player-spot:hover { transform: scale(1.1); }
         .player-spot.selected { border: 3px solid #e74c3c; border-radius: 10px; box-shadow: 0 0 15px rgba(231, 76, 60, 0.7); }
 
-        .spot-img-holder { width: 55px; height: 55px; background: rgba(255,255,255,0.2); border: 2px dashed var(--city-dark-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 5px; }
+        .spot-img-holder { width: 60px; height: 60px; background: rgba(255,255,255,0.2); border: 2px dashed var(--city-dark-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 5px; }
         .spot-img-holder img { width: 100%; height: 100%; object-fit: cover; display: none; }
         .spot-img-holder.has-player { border: 3px solid var(--city-dark-blue); background: white; }
         .spot-img-holder.has-player img { display: block; }
-        .spot-img-holder.has-player .spot-label { display: none; }
 
         .spot-label { font-size: 0.8rem; color: white; font-weight: bold; text-transform: uppercase; }
         .spot-player-name { font-size: 0.7rem; color: var(--city-dark-blue); font-weight: bold; background: rgba(255,255,255,0.8); padding: 2px 4px; border-radius: 4px; width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; }
         .spot-img-holder.has-player + .spot-player-name { display: block; }
-        .spot-img-holder.has-player ~ .spot-label { display: none; }
 
-        /* Positions des spots */
-        #spot-att-1 { top: 15%; left: 35%; }
-        #spot-att-2 { top: 15%; left: 55%; }
-        #spot-mil-1 { top: 45%; left: 20%; }
-        #spot-mil-2 { top: 45%; left: 42%; }
-        #spot-mil-3 { top: 45%; left: 65%; }
-        #spot-def-1 { top: 70%; left: 10%; }
-        #spot-def-2 { top: 70%; left: 32%; }
-        #spot-def-3 { top: 70%; left: 53%; }
-        #spot-def-4 { top: 70%; left: 75%; }
-        #spot-gk-1 { bottom: 5%; left: 42%; }
+        /* Positions 4-3-3 Offensif */
+        #spot-att-bu { top: 5%; left: 44%; }
+        #spot-att-ag { top: 12%; left: 15%; }
+        #spot-att-ad { top: 12%; left: 73%; }
+        #spot-mil-moc { top: 32%; left: 44%; }
+        #spot-mil-mc1 { top: 48%; left: 25%; }
+        #spot-mil-mc2 { top: 48%; left: 63%; }
+        #spot-def-dg { top: 70%; left: 5%; }
+        #spot-def-dc1 { top: 75%; left: 33%; }
+        #spot-def-dc2 { top: 75%; left: 55%; }
+        #spot-def-dd { top: 70%; left: 83%; }
+        #spot-gk-1 { bottom: 3%; left: 44%; }
 
-        .compo-squad-list { width: 100%; max-width: 500px; margin: 25px auto 0; text-align: left; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .compo-squad-list h3 { border-bottom: 2px solid var(--city-sky-blue); padding-bottom: 10px; margin-bottom: 15px; }
+        .compo-squad-list { width: 100%; max-width: 600px; margin: 25px auto 0; text-align: left; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .compo-cat-titre { color: var(--city-sky-blue); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin: 15px 0 8px; }
         .compo-joueur-link { display: inline-block; padding: 6px 12px; margin: 3px; background: #eef6fc; color: var(--city-dark-blue); border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
         .compo-joueur-link:hover { background: var(--city-sky-blue); color: white; }
@@ -116,7 +114,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.21.0</span>
+            <span class="version-tag">v 1.0.21.2</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
@@ -124,17 +122,14 @@
     <div id="menu">
         <ul>
             <li class="menu-item" onclick="showSection('accueil')">🏠 Accueil</li>
-            <li class="menu-item" onclick="toggleSubMenu('sub-matchs')">📅 Matchs ▾</li>
-            <div id="sub-matchs" class="sous-menu">
-                <span class="joueur-link" onclick="showSection('matchs-view')">Résultats & Direct</span>
-            </div>
+            <li class="menu-item" onclick="showSection('matchs-view')">📅 Résultats & Direct</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-effectif')">⚽ Effectif ▾</li>
             <div id="sub-effectif" class="sous-menu">
-                <div class="cat-titre">Gardiens</div>
+                <div class="cat-titre">🧤 Gardiens</div>
                 <span class="joueur-link" onclick="afficherJoueur('donnaruma')">Gianluigi Donnarumma</span>
                 <span class="joueur-link" onclick="afficherJoueur('trafford')">James Trafford</span>
                 <span class="joueur-link" onclick="afficherJoueur('bettinelli')">Marcus Bettinelli</span>
-                <div class="cat-titre">Défenseurs</div>
+                <div class="cat-titre">🛡️ Défenseurs</div>
                 <span class="joueur-link" onclick="afficherJoueur('stones')">John Stones</span>
                 <span class="joueur-link" onclick="afficherJoueur('nunes')">Matheus Nunes</span>
                 <span class="joueur-link" onclick="afficherJoueur('ake')">Nathan Aké</span>
@@ -146,7 +141,7 @@
                 <span class="joueur-link" onclick="afficherJoueur('gvardiol')">Josko Gvardiol</span>
                 <span class="joueur-link" onclick="afficherJoueur('khusanov')">Abdukodir Khusanov</span>
                 <span class="joueur-link" onclick="afficherJoueur('lewis')">Rico Lewis</span>
-                <div class="cat-titre">Milieux</div>
+                <div class="cat-titre">⚡ Milieux</div>
                 <span class="joueur-link" onclick="afficherJoueur('rodri')">Rodri</span>
                 <span class="joueur-link" onclick="afficherJoueur('silva')">Bernardo Silva</span>
                 <span class="joueur-link" onclick="afficherJoueur('reijnders')">Tijjani Reijnders</span>
@@ -155,7 +150,7 @@
                 <span class="joueur-link" onclick="afficherJoueur('foden')">Phil Foden</span>
                 <span class="joueur-link" onclick="afficherJoueur('cherki')">Rayan Cherki</span>
                 <span class="joueur-link" onclick="afficherJoueur('nypan')">Sverre Nypan</span>
-                <div class="cat-titre">Attaquants</div>
+                <div class="cat-titre">⚔️ Attaquants</div>
                 <span class="joueur-link" onclick="afficherJoueur('haaland')">Erling Haaland</span>
                 <span class="joueur-link" onclick="afficherJoueur('savinho')">Savinho</span>
                 <span class="joueur-link" onclick="afficherJoueur('marmoush')">Omar Marmoush</span>
@@ -165,7 +160,7 @@
             <li class="menu-item" onclick="showSection('mercato-recap')">🔄 Mercato</li>
             <li class="menu-item" onclick="showSection('transferts')">📝 Actus Mercato</li>
             <li class="menu-item" onclick="preparerContrats()">📄 Contrats</li>
-            <li class="menu-item" onclick="preparerCompoInteractive()">Ma Compo 🧾</li>
+            <li class="menu-item" onclick="preparerCompoInteractive()">Ma Compo 📋</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-fc26')">🎮 FC26 ▾</li>
             <div id="sub-fc26" class="sous-menu">
                 <span class="joueur-link" onclick="showSection('fc26-view')">Equipe de base (sept 2025)</span>
@@ -206,46 +201,50 @@
         </div>
 
         <div id="ma-compo-view" class="content-section">
-            <h2>Ma Compo 🧾</h2>
-            <p style="font-size: 0.9rem; margin-bottom: 15px; color: #666;">Clique sur une position (cercle), puis sur un joueur en bas.</p>
+            <h2>Ma Compo 📋</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 15px; color: #666;">Configuration 4-3-3 Offensif</p>
             
             <div class="compo-field">
                 <div class="field-line field-center-line"></div>
                 <div class="field-center-circle"></div>
                 
-                <div class="player-spot" id="spot-att-1" onclick="selectSpot(this)">
+                <div class="player-spot" id="spot-att-bu" onclick="selectSpot(this)">
                     <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">BU</span></div>
                     <div class="spot-player-name"></div>
                 </div>
-                <div class="player-spot" id="spot-att-2" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">BU</span></div>
+                <div class="player-spot" id="spot-att-ag" onclick="selectSpot(this)">
+                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">AG</span></div>
                     <div class="spot-player-name"></div>
                 </div>
-                <div class="player-spot" id="spot-mil-1" onclick="selectSpot(this)">
+                <div class="player-spot" id="spot-att-ad" onclick="selectSpot(this)">
+                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">AD</span></div>
+                    <div class="spot-player-name"></div>
+                </div>
+                <div class="player-spot" id="spot-mil-moc" onclick="selectSpot(this)">
+                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">MOC</span></div>
+                    <div class="spot-player-name"></div>
+                </div>
+                <div class="player-spot" id="spot-mil-mc1" onclick="selectSpot(this)">
                     <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">MC</span></div>
                     <div class="spot-player-name"></div>
                 </div>
-                <div class="player-spot" id="spot-mil-2" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">MDC</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-mil-3" onclick="selectSpot(this)">
+                <div class="player-spot" id="spot-mil-mc2" onclick="selectSpot(this)">
                     <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">MC</span></div>
                     <div class="spot-player-name"></div>
                 </div>
-                <div class="player-spot" id="spot-def-1" onclick="selectSpot(this)">
+                <div class="player-spot" id="spot-def-dg" onclick="selectSpot(this)">
                     <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DG</span></div>
                     <div class="spot-player-name"></div>
                 </div>
-                <div class="player-spot" id="spot-def-2" onclick="selectSpot(this)">
+                <div class="player-spot" id="spot-def-dc1" onclick="selectSpot(this)">
                     <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DC</span></div>
                     <div class="spot-player-name"></div>
                 </div>
-                <div class="player-spot" id="spot-def-3" onclick="selectSpot(this)">
+                <div class="player-spot" id="spot-def-dc2" onclick="selectSpot(this)">
                     <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DC</span></div>
                     <div class="spot-player-name"></div>
                 </div>
-                <div class="player-spot" id="spot-def-4" onclick="selectSpot(this)">
+                <div class="player-spot" id="spot-def-dd" onclick="selectSpot(this)">
                     <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DD</span></div>
                     <div class="spot-player-name"></div>
                 </div>
@@ -256,7 +255,7 @@
             </div>
 
             <div class="compo-squad-list">
-                <h3>Effectif ⚽</h3>
+                <h3>Choisir un joueur ⚽</h3>
                 <div id="liste-joueurs-compo"></div>
             </div>
         </div>
@@ -318,19 +317,6 @@
                     <span onclick="addEmoji('🤯')">🤯</span><span onclick="addEmoji('👑')">👑</span><span onclick="addEmoji('💪')">💪</span>
                     <span onclick="addEmoji('😂')">😂</span><span onclick="addEmoji('🤔')">🤔</span><span onclick="addEmoji('🤫')">🤫</span>
                     <span onclick="addEmoji('👀')">👀</span><span onclick="addEmoji('✅')">✅</span><span onclick="addEmoji('❌')">❌</span>
-                    <span onclick="addEmoji('👏')">👏</span> <span onclick="addEmoji('🤩')">🤩</span> <span onclick="addEmoji('😮')">😮</span>
-                    <span onclick="addEmoji('😱')">😱</span> <span onclick="addEmoji('😊')">😊</span> <span onclick="addEmoji('🧠')">🧠</span>
-                    <span onclick="addEmoji('🛰️')">🛰️</span> <span onclick="addEmoji('✨')">✨</span> <span onclick="addEmoji('👾')">👾</span>
-                    <span onclick="addEmoji('❌')">❌</span> <span onclick="addEmoji('🎮')">🎮</span> <span onclick="addEmoji('⚡')">⚡</span>
-                    <span onclick="addEmoji('📈')">📈</span><span onclick="addEmoji('📉')">📉</span><span onclick="addEmoji('🧤')">🧤</span>
-                    <span onclick="addEmoji('🚑')">🚑</span><span onclick="addEmoji('🏹')">🏹</span><span onclick="addEmoji('⚔️')">⚔️</span>
-                    <span onclick="addEmoji('🛡️')">🛡️</span> <span onclick="addEmoji('💎')">💎</span> <span onclick="addEmoji('🎯')">🎯</span>
-                    <span onclick="addEmoji('💸')">💸</span> <span onclick="addEmoji('💀')">💀</span> <span onclick="addEmoji('🇸🇳')">🇸🇳</span>
-                    <span onclick="addEmoji('🇭🇷')">🇭🇷</span> <span onclick="addEmoji('🇮🇹')">🇮🇹</span> <span onclick="addEmoji('🏴󠁧󠁢󠁥󠁮󠁧󠁿')">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-                    <span onclick="addEmoji('🇪🇸')">🇪🇸</span> <span onclick="addEmoji('🇩🇿')">🇩🇿</span> <span onclick="addEmoji('🇺🇿')">🇺🇿</span>
-                    <span onclick="addEmoji('🇧🇪')">🇧🇪</span> <span onclick="addEmoji('🇬🇭')">🇬🇭</span> <span onclick="addEmoji('🇫🇷')">🇫🇷</span>
-                    <span onclick="addEmoji('🇦🇷')">🇦🇷</span> <span onclick="addEmoji('🇳🇴')">🇳🇴</span> <span onclick="addEmoji('🇳🇱')">🇳🇱</span>
-                    <span onclick="addEmoji('🇪🇬')">🇪🇬</span> <span onclick="addEmoji('🇧🇷')">🇧🇷</span> <span onclick="addEmoji('🇵🇹')">🇵🇹</span>
                 </div>
                 <div class="chat-area">
                     <button class="emoji-toggle" onclick="toggleEmojiPicker()">😊</button>
@@ -381,7 +367,6 @@
             'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Technique espagnole." }
         };
 
-        // --- Fonctions Générales UI ---
         function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
         function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
         function showSection(id) {
@@ -389,7 +374,7 @@
             document.getElementById(id).classList.add('active');
             document.querySelectorAll('.sous-menu').forEach(sm => sm.classList.remove('show'));
             document.getElementById('menu').classList.remove('ouvert');
-            selectedSpotElement = null; // Reset selection Compo
+            selectedSpotElement = null; 
             document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected'));
         }
 
@@ -402,7 +387,6 @@
             }
         });
 
-        // --- Affichage Solo Joueur ---
         function afficherJoueur(id) {
             const j = effectif[id]; if(!j) return;
             document.getElementById('nom-joueur').innerText = j.nom;
@@ -416,79 +400,67 @@
             showSection('joueur-solo');
         }
 
-        // --- Logique Ma Compo Interactive ---
         let selectedSpotElement = null;
-
-        function preparerCompoInteractive() {
-            renderSquadListForCompo();
-            showSection('ma-compo-view');
-        }
-
+        function preparerCompoInteractive() { renderSquadListForCompo(); showSection('ma-compo-view'); }
         function renderSquadListForCompo() {
             const container = document.getElementById('liste-joueurs-compo');
             container.innerHTML = "";
+            const postesLabel = { "Gardien": "🧤 Gardiens", "Défenseur": "🛡️ Défenseurs", "Milieu": "⚡ Milieux", "Attaquant": "⚔️ Attaquants" };
             const postes = { "Gardien": [], "Défenseur": [], "Milieu": [], "Attaquant": [] };
-            
-            for (let id in effectif) {
-                const p = effectif[id].poste;
-                if (postes[p]) postes[p].push({id: id, ...effectif[id]});
-            }
-
-            for (let poste in postes) {
-                if (postes[poste].length > 0) {
-                    const titre = document.createElement('div');
-                    titre.className = "compo-cat-titre";
-                    titre.innerText = poste + "s";
-                    container.appendChild(titre);
-
-                    postes[poste].forEach(j => {
-                        const link = document.createElement('span');
-                        link.className = "compo-joueur-link";
-                        link.innerText = j.nom;
-                        link.onclick = () => placerJoueur(j.id);
-                        container.appendChild(link);
+            for (let id in effectif) { const p = effectif[id].poste; if (postes[p]) postes[p].push({id: id, ...effectif[id]}); }
+            for (let pKey in postes) {
+                if (postes[pKey].length > 0) {
+                    const titre = document.createElement('div'); titre.className = "compo-cat-titre"; titre.innerText = postesLabel[pKey]; container.appendChild(titre);
+                    postes[pKey].forEach(j => {
+                        const link = document.createElement('span'); link.className = "compo-joueur-link"; link.innerText = j.nom;
+                        link.onclick = () => placerJoueur(j.id); container.appendChild(link);
                     });
                 }
             }
         }
-
-        function selectSpot(element) {
-            // Désélectionner le précédent
-            document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected'));
-            // Sélectionner le nouveau
-            selectedSpotElement = element;
-            selectedSpotElement.classList.add('selected');
-        }
-
+        function selectSpot(element) { document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected')); selectedSpotElement = element; selectedSpotElement.classList.add('selected'); }
         function placerJoueur(joueurId) {
-            if (!selectedSpotElement) {
-                alert("Clique d'abord sur une place vide (BU, MC, DC...) sur le terrain 🏟️");
-                return;
-            }
-
-            const j = effectif[joueurId];
-            if (!j) return;
-
+            if (!selectedSpotElement) { alert("Clique d'abord sur une place vide sur le terrain 🏟️"); return; }
+            const j = effectif[joueurId]; if (!j) return;
             const imgHolder = selectedSpotElement.querySelector('.spot-img-holder');
             const imgEl = imgHolder.querySelector('img');
             const nameEl = selectedSpotElement.querySelector('.spot-player-name');
-
-            // Mettre à jour l'image
-            imgEl.src = "static/images/" + j.img;
-            imgHolder.classList.add('has-player');
-            
-            // Mettre à jour le nom
+            imgEl.src = "static/images/" + j.img; imgHolder.classList.add('has-player');
             nameEl.innerText = j.nom;
-
-            // Désélectionner le spot après placement
-            selectedSpotElement.classList.remove('selected');
-            selectedSpotElement = null;
+            selectedSpotElement.classList.remove('selected'); selectedSpotElement = null;
         }
 
-        // --- Contrats & Chat (inchangé) ---
-        // ... (tes fonctions preparerContrats, ouvrirChat, etc. restent ici)
-        function preparerContrats() { const container = document.getElementById('liste-contrats-urgents'); container.innerHTML = ""; const dateLimite = new Date(2027, 2, 30); for (let id in effectif) { const j = effectif[id]; if (j.fin && j.fin !== "N/A") { const parties = j.fin.split('/'); const dateFin = new Date(parties[2], parties[1] - 1, parties[0]); if (dateFin <= dateLimite) { const card = document.createElement('div'); card.className = "transfert-card urgent-contract"; card.onclick = () => afficherJoueur(id); card.innerHTML = `<img src="static/images/${j.img}"><div class="transfert-info"><h3>${j.nom}</h3><p>Expire le : ${j.fin}</p><p class="transfert-date">Salaire mensuel : ${j.paye}</p></div>`; container.appendChild(card); } } } showSection('contrats'); }
-        let currentChatTopic = ""; function ouvrirChat(nom) { currentChatTopic = nom; document.getElementById('chat-titre').innerText = "Avis : " + nom; loadMessages(); showSection('chat-section'); } function toggleEmojiPicker() { const picker = document.getElementById('emoji-picker'); picker.style.display = (picker.style.display === 'grid') ? 'none' : 'grid'; } function addEmoji(e) { const i = document.getElementById('chat-input'); i.value += e; document.getElementById('emoji-picker').style.display = 'none'; } function envoyerMessage() { const i = document.getElementById('chat-input'); const val = i.value.trim(); if(!val || !currentChatTopic) return; db.collection("messages").add({ topic: currentChatTopic, text: val, date: firebase.firestore.FieldValue.serverTimestamp() }); i.value = ""; } function loadMessages() { db.collection("messages").where("topic", "==", currentChatTopic).orderBy("date", "asc").onSnapshot((snapshot) => { const container = document.getElementById('chat-messages'); container.innerHTML = ""; snapshot.forEach((doc) => { const m = document.createElement('div'); m.className = "msg"; m.innerText = doc.data().text; container.appendChild(m); }); container.scrollTop = container.scrollHeight; }); }
+        function preparerContrats() { 
+            const container = document.getElementById('liste-contrats-urgents'); container.innerHTML = ""; 
+            const dateLimite = new Date(2027, 2, 30); 
+            for (let id in effectif) { 
+                const j = effectif[id]; 
+                if (j.fin && j.fin !== "N/A") { 
+                    const parties = j.fin.split('/'); 
+                    const dateFin = new Date(parties[2], parties[1] - 1, parties[0]); 
+                    if (dateFin <= dateLimite) { 
+                        const card = document.createElement('div'); card.className = "transfert-card urgent-contract"; 
+                        card.onclick = () => afficherJoueur(id); 
+                        card.innerHTML = `<img src="static/images/${j.img}"><div class="transfert-info"><h3>${j.nom}</h3><p>Expire le : ${j.fin}</p><p class="transfert-date">Salaire mensuel : ${j.paye}</p></div>`; 
+                        container.appendChild(card); 
+                    } 
+                } 
+            } 
+            showSection('contrats'); 
+        }
+
+        let currentChatTopic = ""; 
+        function ouvrirChat(nom) { currentChatTopic = nom; document.getElementById('chat-titre').innerText = "Avis : " + nom; loadMessages(); showSection('chat-section'); } 
+        function toggleEmojiPicker() { const picker = document.getElementById('emoji-picker'); picker.style.display = (picker.style.display === 'grid') ? 'none' : 'grid'; } 
+        function addEmoji(e) { const i = document.getElementById('chat-input'); i.value += e; document.getElementById('emoji-picker').style.display = 'none'; } 
+        function envoyerMessage() { const i = document.getElementById('chat-input'); const val = i.value.trim(); if(!val || !currentChatTopic) return; db.collection("messages").add({ topic: currentChatTopic, text: val, date: firebase.firestore.FieldValue.serverTimestamp() }); i.value = ""; } 
+        function loadMessages() { 
+            db.collection("messages").where("topic", "==", currentChatTopic).orderBy("date", "asc").onSnapshot((snapshot) => { 
+                const container = document.getElementById('chat-messages'); container.innerHTML = ""; 
+                snapshot.forEach((doc) => { const m = document.createElement('div'); m.className = "msg"; m.innerText = doc.data().text; container.appendChild(m); }); 
+                container.scrollTop = container.scrollHeight; 
+            }); 
+        }
     </script>
 </body>
 </html>
