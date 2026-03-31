@@ -22,7 +22,7 @@
         .show { display: block !important; }
         .cat-titre { color: #888; font-size: 0.75rem; font-weight: bold; padding: 12px 25px 5px 35px; text-transform: uppercase; }
         .joueur-link { color: var(--city-sky-blue); display: block; padding: 8px 45px; cursor: pointer; font-size: 0.9rem; }
-        main { text-align: center; padding: 30px 15px; max-width: 750px; margin: 0 auto; }
+        main { text-align: center; padding: 30px 15px; max-width: 900px; margin: 0 auto; }
         .content-section { display: none; }
         .active { display: block !important; }
         .box-info { background: var(--city-sky-blue); padding: 30px; border-radius: 15px; margin-top: 25px; color: #000; }
@@ -66,48 +66,49 @@
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
         #fc26-view.content-section { background: #FF8C00; }
-        .fc26-card { padding: 0; border-radius: 0; display: inline-block; }
-        .fc26-img { width: 100%; max-width: 500px; border-radius: 20px; display: block; margin: 0 auto; }
+        .fc26-card { padding: 20px; border-radius: 0; display: inline-block; }
+        .fc26-img { width: 100%; max-width: 600px; border-radius: 20px; display: block; margin: 0 auto; }
         
         .urgent-contract { border-left: 8px solid #e74c3c !important; }
 
-        /* Styles spécifiques pour Ma Compo */
-        .compo-field { width: 100%; max-width: 500px; height: 420px; background-color: var(--city-sky-blue); border-radius: 20px; border: 6px solid var(--city-dark-blue); margin: 0 auto; padding: 10px; box-sizing: border-box; position: relative; overflow: hidden; }
+        /* Styles MA COMPO - AGRANDI ET 4-3-3 */
+        .compo-field { width: 100%; max-width: 800px; height: 600px; background-color: var(--city-sky-blue); border-radius: 20px; border: 8px solid var(--city-dark-blue); margin: 0 auto; padding: 10px; box-sizing: border-box; position: relative; overflow: hidden; background-image: linear-gradient(rgba(255,255,255,0.1) 2px, transparent 2px); background-size: 100% 50px; }
         .field-line { position: absolute; background: rgba(255,255,255,0.5); }
         .field-center-line { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
-        .field-center-circle { top: 50%; left: 50%; width: 90px; height: 90px; border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; transform: translate(-50%, -50%); }
+        .field-center-circle { top: 50%; left: 50%; width: 120px; height: 120px; border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; transform: translate(-50%, -50%); }
         
-        .player-spot { width: 65px; height: 85px; position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; cursor: pointer; z-index: 10; transition: transform 0.2s; }
+        .player-spot { width: 80px; height: 110px; position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; cursor: pointer; z-index: 10; transition: transform 0.2s; }
         .player-spot:hover { transform: scale(1.1); }
-        .player-spot.selected { border: 3px solid #e74c3c; border-radius: 10px; box-shadow: 0 0 15px rgba(231, 76, 60, 0.7); }
+        .player-spot.selected { border: 3px solid #e74c3c; border-radius: 10px; box-shadow: 0 0 15px rgba(231, 76, 60, 0.7); background: rgba(231, 76, 60, 0.1); }
 
-        .spot-img-holder { width: 55px; height: 55px; background: rgba(255,255,255,0.2); border: 2px dashed var(--city-dark-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 5px; }
+        .spot-img-holder { width: 70px; height: 70px; background: rgba(255,255,255,0.2); border: 2px dashed var(--city-dark-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 5px; }
         .spot-img-holder img { width: 100%; height: 100%; object-fit: cover; display: none; }
         .spot-img-holder.has-player { border: 3px solid var(--city-dark-blue); background: white; }
         .spot-img-holder.has-player img { display: block; }
-        .spot-img-holder.has-player .spot-label { display: none; }
-
-        .spot-label { font-size: 0.8rem; color: white; font-weight: bold; text-transform: uppercase; }
-        .spot-player-name { font-size: 0.7rem; color: var(--city-dark-blue); font-weight: bold; background: rgba(255,255,255,0.8); padding: 2px 4px; border-radius: 4px; width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; }
+        
+        .spot-label { font-size: 0.9rem; color: white; font-weight: bold; text-transform: uppercase; text-shadow: 1px 1px 2px black; }
+        .spot-player-name { font-size: 0.75rem; color: var(--city-dark-blue); font-weight: bold; background: white; padding: 2px 6px; border-radius: 4px; width: 90%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .spot-img-holder.has-player + .spot-player-name { display: block; }
         .spot-img-holder.has-player ~ .spot-label { display: none; }
 
-        /* Positions des spots */
-        #spot-att-1 { top: 15%; left: 35%; }
-        #spot-att-2 { top: 15%; left: 55%; }
-        #spot-mil-1 { top: 45%; left: 20%; }
-        #spot-mil-2 { top: 45%; left: 42%; }
-        #spot-mil-3 { top: 45%; left: 65%; }
-        #spot-def-1 { top: 70%; left: 10%; }
-        #spot-def-2 { top: 70%; left: 32%; }
-        #spot-def-3 { top: 70%; left: 53%; }
-        #spot-def-4 { top: 70%; left: 75%; }
-        #spot-gk-1 { bottom: 5%; left: 42%; }
+        /* Positions 4-3-3 */
+        #spot-rw { top: 12%; left: 75%; }
+        #spot-st { top: 8%; left: 45%; }
+        #spot-lw { top: 12%; left: 15%; }
+        
+        #spot-cm-r { top: 42%; left: 65%; }
+        #spot-cdm  { top: 45%; left: 45%; }
+        #spot-cm-l { top: 42%; left: 25%; }
+        
+        #spot-rb { top: 72%; left: 80%; }
+        #spot-cb-r { top: 75%; left: 55%; }
+        #spot-cb-l { top: 75%; left: 35%; }
+        #spot-lb { top: 72%; left: 10%; }
+        
+        #spot-gk { bottom: 3%; left: 45%; }
 
-        .compo-squad-list { width: 100%; max-width: 500px; margin: 25px auto 0; text-align: left; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .compo-squad-list h3 { border-bottom: 2px solid var(--city-sky-blue); padding-bottom: 10px; margin-bottom: 15px; }
-        .compo-cat-titre { color: var(--city-sky-blue); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin: 15px 0 8px; }
-        .compo-joueur-link { display: inline-block; padding: 6px 12px; margin: 3px; background: #eef6fc; color: var(--city-dark-blue); border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
+        .compo-squad-list { width: 100%; max-width: 800px; margin: 25px auto 0; text-align: left; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .compo-joueur-link { display: inline-block; padding: 8px 15px; margin: 4px; background: #eef6fc; color: var(--city-dark-blue); border-radius: 20px; font-size: 0.95rem; cursor: pointer; transition: 0.2s; border: 1px solid transparent; font-weight: 500; }
         .compo-joueur-link:hover { background: var(--city-sky-blue); color: white; }
     </style>
 </head>
@@ -116,7 +117,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.21.0</span>
+            <span class="version-tag">v 1.0.21.1</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
@@ -124,10 +125,7 @@
     <div id="menu">
         <ul>
             <li class="menu-item" onclick="showSection('accueil')">🏠 Accueil</li>
-            <li class="menu-item" onclick="toggleSubMenu('sub-matchs')">📅 Matchs ▾</li>
-            <div id="sub-matchs" class="sous-menu">
-                <span class="joueur-link" onclick="showSection('matchs-view')">Résultats & Direct</span>
-            </div>
+            <li class="menu-item" onclick="showSection('matchs-view')">📅 Matchs</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-effectif')">⚽ Effectif ▾</li>
             <div id="sub-effectif" class="sous-menu">
                 <div class="cat-titre">Gardiens</div>
@@ -166,10 +164,7 @@
             <li class="menu-item" onclick="showSection('transferts')">📝 Actus Mercato</li>
             <li class="menu-item" onclick="preparerContrats()">📄 Contrats</li>
             <li class="menu-item" onclick="preparerCompoInteractive()">Ma Compo 🧾</li>
-            <li class="menu-item" onclick="toggleSubMenu('sub-fc26')">🎮 FC26 ▾</li>
-            <div id="sub-fc26" class="sous-menu">
-                <span class="joueur-link" onclick="showSection('fc26-view')">Equipe de base (sept 2025)</span>
-            </div>
+            <li class="menu-item" onclick="showSection('fc26-view')">🎮 FC26</li>
         </ul>
     </div>
 
@@ -207,56 +202,30 @@
 
         <div id="ma-compo-view" class="content-section">
             <h2>Ma Compo 🧾</h2>
-            <p style="font-size: 0.9rem; margin-bottom: 15px; color: #666;">Clique sur une position (cercle), puis sur un joueur en bas.</p>
+            <p style="font-size: 0.95rem; margin-bottom: 20px; color: #444;">1. Clique sur une position (ex: BU) | 2. Choisis un joueur en bas</p>
             
             <div class="compo-field">
                 <div class="field-line field-center-line"></div>
                 <div class="field-center-circle"></div>
                 
-                <div class="player-spot" id="spot-att-1" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">BU</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-att-2" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">BU</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-mil-1" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">MC</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-mil-2" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">MDC</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-mil-3" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">MC</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-def-1" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DG</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-def-2" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DC</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-def-3" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DC</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-def-4" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DD</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-gk-1" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">G</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
+                <div class="player-spot" id="spot-lw" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">AG</span></div><div class="spot-player-name"></div></div>
+                <div class="player-spot" id="spot-st" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">BU</span></div><div class="spot-player-name"></div></div>
+                <div class="player-spot" id="spot-rw" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">AD</span></div><div class="spot-player-name"></div></div>
+                
+                <div class="player-spot" id="spot-cm-l" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">MC</span></div><div class="spot-player-name"></div></div>
+                <div class="player-spot" id="spot-cdm"  onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">MDC</span></div><div class="spot-player-name"></div></div>
+                <div class="player-spot" id="spot-cm-r" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">MC</span></div><div class="spot-player-name"></div></div>
+                
+                <div class="player-spot" id="spot-lb" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">DG</span></div><div class="spot-player-name"></div></div>
+                <div class="player-spot" id="spot-cb-l" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">DC</span></div><div class="spot-player-name"></div></div>
+                <div class="player-spot" id="spot-cb-r" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">DC</span></div><div class="spot-player-name"></div></div>
+                <div class="player-spot" id="spot-rb" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">DD</span></div><div class="spot-player-name"></div></div>
+                
+                <div class="player-spot" id="spot-gk" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">G</span></div><div class="spot-player-name"></div></div>
             </div>
 
             <div class="compo-squad-list">
-                <h3>Effectif ⚽</h3>
+                <h3>Equipe ⚽</h3>
                 <div id="liste-joueurs-compo"></div>
             </div>
         </div>
@@ -316,21 +285,6 @@
                     <span onclick="addEmoji('🏆')">🏆</span><span onclick="addEmoji('💙')">💙</span><span onclick="addEmoji('❤️')">❤️</span>
                     <span onclick="addEmoji('👍')">👍</span><span onclick="addEmoji('👎')">👎</span><span onclick="addEmoji('🙌')">🙌</span>
                     <span onclick="addEmoji('🤯')">🤯</span><span onclick="addEmoji('👑')">👑</span><span onclick="addEmoji('💪')">💪</span>
-                    <span onclick="addEmoji('😂')">😂</span><span onclick="addEmoji('🤔')">🤔</span><span onclick="addEmoji('🤫')">🤫</span>
-                    <span onclick="addEmoji('👀')">👀</span><span onclick="addEmoji('✅')">✅</span><span onclick="addEmoji('❌')">❌</span>
-                    <span onclick="addEmoji('👏')">👏</span> <span onclick="addEmoji('🤩')">🤩</span> <span onclick="addEmoji('😮')">😮</span>
-                    <span onclick="addEmoji('😱')">😱</span> <span onclick="addEmoji('😊')">😊</span> <span onclick="addEmoji('🧠')">🧠</span>
-                    <span onclick="addEmoji('🛰️')">🛰️</span> <span onclick="addEmoji('✨')">✨</span> <span onclick="addEmoji('👾')">👾</span>
-                    <span onclick="addEmoji('❌')">❌</span> <span onclick="addEmoji('🎮')">🎮</span> <span onclick="addEmoji('⚡')">⚡</span>
-                    <span onclick="addEmoji('📈')">📈</span><span onclick="addEmoji('📉')">📉</span><span onclick="addEmoji('🧤')">🧤</span>
-                    <span onclick="addEmoji('🚑')">🚑</span><span onclick="addEmoji('🏹')">🏹</span><span onclick="addEmoji('⚔️')">⚔️</span>
-                    <span onclick="addEmoji('🛡️')">🛡️</span> <span onclick="addEmoji('💎')">💎</span> <span onclick="addEmoji('🎯')">🎯</span>
-                    <span onclick="addEmoji('💸')">💸</span> <span onclick="addEmoji('💀')">💀</span> <span onclick="addEmoji('🇸🇳')">🇸🇳</span>
-                    <span onclick="addEmoji('🇭🇷')">🇭🇷</span> <span onclick="addEmoji('🇮🇹')">🇮🇹</span> <span onclick="addEmoji('🏴󠁧󠁢󠁥󠁮󠁧󠁿')">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-                    <span onclick="addEmoji('🇪🇸')">🇪🇸</span> <span onclick="addEmoji('🇩🇿')">🇩🇿</span> <span onclick="addEmoji('🇺🇿')">🇺🇿</span>
-                    <span onclick="addEmoji('🇧🇪')">🇧🇪</span> <span onclick="addEmoji('🇬🇭')">🇬🇭</span> <span onclick="addEmoji('🇫🇷')">🇫🇷</span>
-                    <span onclick="addEmoji('🇦🇷')">🇦🇷</span> <span onclick="addEmoji('🇳🇴')">🇳🇴</span> <span onclick="addEmoji('🇳🇱')">🇳🇱</span>
-                    <span onclick="addEmoji('🇪🇬')">🇪🇬</span> <span onclick="addEmoji('🇧🇷')">🇧🇷</span> <span onclick="addEmoji('🇵🇹')">🇵🇹</span>
                 </div>
                 <div class="chat-area">
                     <button class="emoji-toggle" onclick="toggleEmojiPicker()">😊</button>
@@ -352,57 +306,35 @@
         const db = firebase.firestore();
 
         const effectif = {
-            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif norvégien." },
-            'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Ballon d'Or 2024. Le métronome." },
-            'foden': { nom: "Phil Foden", poste: "Milieu", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "L'enfant chéri de Stockport." },
-            'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "60M €", img: "3.jpg", bio: "Pilier défensif." },
-            'donnaruma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", img: "25.jpg", bio: "Gardien d'envergure internationale." },
-            'savinho': { nom: "Savinho", poste: "Attaquant", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg", bio: "Dribbleur brésilien électrisant." },
-            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2026", valeur: "0.5 €", img: "13.jpg", bio: "Gardien expérimenté." },
-            'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "35M €", img: "45.jpg", bio: "Révélation ouzbèke." },
-            'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", img: "6.jpg", bio: "Polyvalence tactique exemplaire." },
-            'stones': { nom: "John Stones", poste: "Défenseur", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000 €", fin: "30/06/2026", valeur: "15M €", img: "5.jpg", bio: "Défenseur créateur unique." },
-            'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "32M €", img: "82.jpg", bio: "Futur cadre issu de l'académie." },
-            'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", img: "21.jpg", bio: "Latéral percutant." },
-            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "50M €", img: "33.jpg", bio: "Pépite locale." },
-            'nunes': { nom: "Matheus Nunes", poste: "Milieu", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "45M €", img: "27.jpg", bio: "Milieu puissant." },
-            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", img: "68.jpg", bio: "Espoir en défense centrale." },
-            'silva': { nom: "Bernardo Silva", poste: "Milieu", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", img: "20.jpg", bio: "Génie portugais." },
-            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "Roc croate." },
-            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "N/A", valeur: "65M €", img: "15.jpg", bio: "Nouvelle recrue solide." },
-            'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Gardien prometteur." },
-            'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Puissance offensive brute." },
-            'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Magicien français." },
-            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Attaquant égyptien polyvalent." },
-            'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "N/A", valeur: "15M €", img: "41.jpg", bio: "Futur maître du milieu." },
-            'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Vitesse pure." },
-            'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Expérience croate." },
-            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant." },
-            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Technique espagnole." }
+            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif." },
+            'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Le métronome." },
+            'foden': { nom: "Phil Foden", poste: "Milieu", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "Le joyau de City." },
+            'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "60M €", img: "3.jpg", bio: "Patron de la défense." },
+            'donnaruma': { nom: "G. Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", img: "25.jpg", bio: "Le dernier rempart." },
+            'savinho': { nom: "Savinho", poste: "Attaquant", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg", bio: "Dribbleur fou." },
+            'stones': { nom: "John Stones", poste: "Défenseur", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000 €", fin: "30/06/2026", valeur: "15M €", img: "5.jpg", bio: "Défenseur soyeux." },
+            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "La force croate." },
+            'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Percussion pure." },
+            'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Virtuose." },
+            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "N/A", valeur: "65M €", img: "15.jpg", bio: "Calme et serein." },
+            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Rapide et tueur." },
+            'silva': { nom: "Bernardo Silva", poste: "Milieu", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", img: "20.jpg", bio: "L'infatigable." },
+            'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", img: "6.jpg", bio: "Roc polyvalent." },
+            'aitnouri': { nom: "R. Ait-Nouri", poste: "Défenseur", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", img: "21.jpg", bio: "Offensif à gauche." },
+            'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "32M €", img: "82.jpg", bio: "Le futur." }
         };
 
-        // --- Fonctions Générales UI ---
         function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
         function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
+        
         function showSection(id) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            document.querySelectorAll('.sous-menu').forEach(sm => sm.classList.remove('show'));
             document.getElementById('menu').classList.remove('ouvert');
-            selectedSpotElement = null; // Reset selection Compo
+            selectedSpotElement = null;
             document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected'));
         }
 
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('menu');
-            const btnMenu = document.getElementById('btn-menu');
-            if (menu.classList.contains('ouvert') && !menu.contains(event.target) && event.target !== btnMenu) {
-                document.querySelectorAll('.sous-menu').forEach(sm => sm.classList.remove('show'));
-                menu.classList.remove('ouvert');
-            }
-        });
-
-        // --- Affichage Solo Joueur ---
         function afficherJoueur(id) {
             const j = effectif[id]; if(!j) return;
             document.getElementById('nom-joueur').innerText = j.nom;
@@ -416,79 +348,47 @@
             showSection('joueur-solo');
         }
 
-        // --- Logique Ma Compo Interactive ---
         let selectedSpotElement = null;
-
-        function preparerCompoInteractive() {
-            renderSquadListForCompo();
-            showSection('ma-compo-view');
-        }
+        function preparerCompoInteractive() { renderSquadListForCompo(); showSection('ma-compo-view'); }
 
         function renderSquadListForCompo() {
             const container = document.getElementById('liste-joueurs-compo');
             container.innerHTML = "";
             const postes = { "Gardien": [], "Défenseur": [], "Milieu": [], "Attaquant": [] };
-            
-            for (let id in effectif) {
-                const p = effectif[id].poste;
-                if (postes[p]) postes[p].push({id: id, ...effectif[id]});
-            }
-
+            for (let id in effectif) { const p = effectif[id].poste; if (postes[p]) postes[p].push({id: id, ...effectif[id]}); }
             for (let poste in postes) {
                 if (postes[poste].length > 0) {
-                    const titre = document.createElement('div');
-                    titre.className = "compo-cat-titre";
-                    titre.innerText = poste + "s";
-                    container.appendChild(titre);
-
+                    const titre = document.createElement('div'); titre.className = "cat-titre"; titre.innerText = poste + "s"; container.appendChild(titre);
                     postes[poste].forEach(j => {
-                        const link = document.createElement('span');
-                        link.className = "compo-joueur-link";
-                        link.innerText = j.nom;
-                        link.onclick = () => placerJoueur(j.id);
-                        container.appendChild(link);
+                        const link = document.createElement('span'); link.className = "compo-joueur-link"; link.innerText = j.nom;
+                        link.onclick = () => placerJoueur(j.id); container.appendChild(link);
                     });
                 }
             }
         }
 
         function selectSpot(element) {
-            // Désélectionner le précédent
             document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected'));
-            // Sélectionner le nouveau
             selectedSpotElement = element;
             selectedSpotElement.classList.add('selected');
         }
 
         function placerJoueur(joueurId) {
-            if (!selectedSpotElement) {
-                alert("Clique d'abord sur une place vide (BU, MC, DC...) sur le terrain 🏟️");
-                return;
-            }
-
+            if (!selectedSpotElement) { alert("Clique d'abord sur un poste sur le terrain !"); return; }
             const j = effectif[joueurId];
-            if (!j) return;
-
             const imgHolder = selectedSpotElement.querySelector('.spot-img-holder');
             const imgEl = imgHolder.querySelector('img');
             const nameEl = selectedSpotElement.querySelector('.spot-player-name');
-
-            // Mettre à jour l'image
             imgEl.src = "static/images/" + j.img;
             imgHolder.classList.add('has-player');
-            
-            // Mettre à jour le nom
             nameEl.innerText = j.nom;
-
-            // Désélectionner le spot après placement
             selectedSpotElement.classList.remove('selected');
             selectedSpotElement = null;
         }
 
-        // --- Contrats & Chat (inchangé) ---
-        // ... (tes fonctions preparerContrats, ouvrirChat, etc. restent ici)
-        function preparerContrats() { const container = document.getElementById('liste-contrats-urgents'); container.innerHTML = ""; const dateLimite = new Date(2027, 2, 30); for (let id in effectif) { const j = effectif[id]; if (j.fin && j.fin !== "N/A") { const parties = j.fin.split('/'); const dateFin = new Date(parties[2], parties[1] - 1, parties[0]); if (dateFin <= dateLimite) { const card = document.createElement('div'); card.className = "transfert-card urgent-contract"; card.onclick = () => afficherJoueur(id); card.innerHTML = `<img src="static/images/${j.img}"><div class="transfert-info"><h3>${j.nom}</h3><p>Expire le : ${j.fin}</p><p class="transfert-date">Salaire mensuel : ${j.paye}</p></div>`; container.appendChild(card); } } } showSection('contrats'); }
-        let currentChatTopic = ""; function ouvrirChat(nom) { currentChatTopic = nom; document.getElementById('chat-titre').innerText = "Avis : " + nom; loadMessages(); showSection('chat-section'); } function toggleEmojiPicker() { const picker = document.getElementById('emoji-picker'); picker.style.display = (picker.style.display === 'grid') ? 'none' : 'grid'; } function addEmoji(e) { const i = document.getElementById('chat-input'); i.value += e; document.getElementById('emoji-picker').style.display = 'none'; } function envoyerMessage() { const i = document.getElementById('chat-input'); const val = i.value.trim(); if(!val || !currentChatTopic) return; db.collection("messages").add({ topic: currentChatTopic, text: val, date: firebase.firestore.FieldValue.serverTimestamp() }); i.value = ""; } function loadMessages() { db.collection("messages").where("topic", "==", currentChatTopic).orderBy("date", "asc").onSnapshot((snapshot) => { const container = document.getElementById('chat-messages'); container.innerHTML = ""; snapshot.forEach((doc) => { const m = document.createElement('div'); m.className = "msg"; m.innerText = doc.data().text; container.appendChild(m); }); container.scrollTop = container.scrollHeight; }); }
+        function preparerContrats() { const container = document.getElementById('liste-contrats-urgents'); container.innerHTML = ""; const dateLimite = new Date(2027, 2, 30); for (let id in effectif) { const j = effectif[id]; if (j.fin && j.fin !== "N/A") { const parties = j.fin.split('/'); const dateFin = new Date(parties[2], parties[1] - 1, parties[0]); if (dateFin <= dateLimite) { const card = document.createElement('div'); card.className = "transfert-card urgent-contract"; card.onclick = () => afficherJoueur(id); card.innerHTML = `<img src="static/images/${j.img}"><div class="transfert-info"><h3>${j.nom}</h3><p>Expire le : ${j.fin}</p></div>`; container.appendChild(card); } } } showSection('contrats'); }
+        function toggleEmojiPicker() { const p = document.getElementById('emoji-picker'); p.style.display = (p.style.display === 'grid') ? 'none' : 'grid'; }
+        function addEmoji(e) { document.getElementById('chat-input').value += e; document.getElementById('emoji-picker').style.display = 'none'; }
     </script>
 </body>
 </html>
