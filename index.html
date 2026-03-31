@@ -17,7 +17,7 @@
 
         #menu { position: fixed; right: -280px; top: 0; width: 280px; height: 100%; background: #1a1a1a; color: white; transition: 0.4s; padding-top: 70px; z-index: 1000; overflow-y: auto; }
         #menu.ouvert { right: 0; }
-        .menu-item { padding: 18px 25px; border-bottom: 1px solid #333; cursor: pointer; font-weight: bold; display: block; color: white; text-decoration: none; }
+        .menu-item { padding: 18px 25px; border-bottom: 1px solid #333; cursor: pointer; font-weight: bold; display: block; color: white; text-decoration: none; display: flex; align-items: center; }
         .sous-menu { display: none; background: #111; padding-bottom: 10px; }
         .show { display: block !important; }
         .cat-titre { color: #888; font-size: 0.75rem; font-weight: bold; padding: 12px 25px 5px 35px; text-transform: uppercase; }
@@ -71,7 +71,7 @@
         
         .urgent-contract { border-left: 8px solid #e74c3c !important; }
 
-        /* Styles MA COMPO - 4-3-3 AGRANDI */
+        /* Styles MA COMPO - 4-3-3 Offensif */
         .compo-field { width: 100%; max-width: 800px; height: 600px; background-color: var(--city-sky-blue); border-radius: 20px; border: 8px solid var(--city-dark-blue); margin: 0 auto; padding: 10px; box-sizing: border-box; position: relative; overflow: hidden; background-image: linear-gradient(rgba(255,255,255,0.1) 2px, transparent 2px); background-size: 100% 50px; }
         .field-line { position: absolute; background: rgba(255,255,255,0.5); }
         .field-center-line { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
@@ -90,17 +90,21 @@
         .spot-player-name { font-size: 0.75rem; color: var(--city-dark-blue); font-weight: bold; background: white; padding: 2px 6px; border-radius: 4px; width: 95%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .spot-img-holder.has-player + .spot-player-name { display: block; }
 
-        /* Positions 4-3-3 */
+        /* Positions 4-3-3 Offensif */
         #spot-rw { top: 12%; left: 75%; }
         #spot-st { top: 8%; left: 45%; }
         #spot-lw { top: 12%; left: 15%; }
-        #spot-cm-r { top: 42%; left: 65%; }
-        #spot-cdm  { top: 45%; left: 45%; }
-        #spot-cm-l { top: 42%; left: 25%; }
+        
+        /* Milieux - triangle pointe vers le haut */
+        #spot-moc  { top: 38%; left: 45%; } /* MOC au centre et avancé */
+        #spot-cm-l { top: 46%; left: 25%; }
+        #spot-cm-r { top: 46%; left: 65%; }
+        
         #spot-rb { top: 72%; left: 80%; }
         #spot-cb-r { top: 75%; left: 55%; }
         #spot-cb-l { top: 75%; left: 35%; }
         #spot-lb { top: 72%; left: 10%; }
+        
         #spot-gk { bottom: 3%; left: 45%; }
 
         .compo-squad-list { width: 100%; max-width: 800px; margin: 25px auto 0; text-align: left; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
@@ -113,23 +117,22 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.22.0</span>
+            <span class="version-tag">v 1.0.23.0</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
 
     <div id="menu">
         <ul>
-            <li class="menu-item" onclick="showSection('accueil')">🏠 Accueil</li>
-            <li class="menu-item" onclick="showSection('matchs-view')">📅 Matchs</li>
-            <li class="menu-item" onclick="toggleSubMenu('sub-effectif')">⚽ Effectif ▾</li>
+            <li class="menu-item" onclick="showSection('accueil')"><span style="margin-right: 12px;">🏠</span>Accueil</li>
+            <li class="menu-item" onclick="showSection('matchs-view')"><span style="margin-right: 12px;">📅</span>Matchs</li>
+            <li class="menu-item" onclick="toggleSubMenu('sub-effectif')"><span style="margin-right: 12px;">⚽</span>Effectif ▾</li>
             <div id="sub-effectif" class="sous-menu">
                 </div>
-            <li class="menu-item" onclick="showSection('mercato-recap')">🔄 Mercato</li>
-            <li class="menu-item" onclick="showSection('transferts')">📝 Actus Mercato</li>
-            <li class="menu-item" onclick="preparerContrats()">📄 Contrats</li>
-            <li class="menu-item" onclick="preparerCompoInteractive()">Ma Compo 🧾</li>
-            <li class="menu-item" onclick="showSection('fc26-view')">🎮 FC26</li>
+            <li class="menu-item" onclick="showSection('mercato-recap')"><span style="margin-right: 12px;">🔄</span>Mercato</li>
+            <li class="menu-item" onclick="showSection('transferts')"><span style="margin-right: 12px;">📝</span>Actus Mercato</li>
+            <li class="menu-item" onclick="preparerContrats()"><span style="margin-right: 12px;">📄</span>Contrats</li>
+            <li class="menu-item" onclick="preparerCompoInteractive()"><span style="margin-right: 12px;">📄</span>Ma Compo</li> <li class="menu-item" onclick="showSection('fc26-view')"><span style="margin-right: 12px;">🎮</span>FC26</li>
         </ul>
     </div>
 
@@ -152,21 +155,23 @@
         </div>
 
         <div id="ma-compo-view" class="content-section">
-            <h2>Ma Compo 🧾</h2>
-            <p>1. Sélectionne un poste | 2. Sélectionne un joueur</p>
+            <h2>Ma Compo 📄</h2> <p>1. Sélectionne un poste (rouge) | 2. Sélectionne un joueur unique</p>
             <div class="compo-field">
                 <div class="field-line field-center-line"></div>
                 <div class="field-center-circle"></div>
+                
                 <div class="player-spot" id="spot-lw" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">AG</span></div><div class="spot-player-name"></div></div>
                 <div class="player-spot" id="spot-st" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">BU</span></div><div class="spot-player-name"></div></div>
                 <div class="player-spot" id="spot-rw" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">AD</span></div><div class="spot-player-name"></div></div>
+                
                 <div class="player-spot" id="spot-cm-l" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">MC</span></div><div class="spot-player-name"></div></div>
-                <div class="player-spot" id="spot-cdm"  onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">MDC</span></div><div class="spot-player-name"></div></div>
-                <div class="player-spot" id="spot-cm-r" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">MC</span></div><div class="spot-player-name"></div></div>
+                <div class="player-spot" id="spot-moc"  onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">MOC</span></div><div class="spot-player-name"></div></div> <div class="player-spot" id="spot-cm-r" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">MC</span></div><div class="spot-player-name"></div></div>
+                
                 <div class="player-spot" id="spot-lb" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">DG</span></div><div class="spot-player-name"></div></div>
                 <div class="player-spot" id="spot-cb-l" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">DC</span></div><div class="spot-player-name"></div></div>
                 <div class="player-spot" id="spot-cb-r" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">DC</span></div><div class="spot-player-name"></div></div>
                 <div class="player-spot" id="spot-rb" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">DD</span></div><div class="spot-player-name"></div></div>
+                
                 <div class="player-spot" id="spot-gk" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">G</span></div><div class="spot-player-name"></div></div>
             </div>
             <div class="compo-squad-list">
@@ -231,6 +236,9 @@
             'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", fin: "30/06/2031", valeur: "75M €", img: "42.jpg" }
         };
 
+        // Tableau pour suivre l'unicité des joueurs sur le terrain
+        let joueursSurTerrain = {};
+
         function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
         function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
         
@@ -272,12 +280,32 @@
         }
 
         function placerJoueur(id) {
-            if (!selectedSpotElement) return;
+            if (!selectedSpotElement) {
+                alert("Clique d'abord sur un poste (rouge) sur le terrain !");
+                return;
+            }
+
+            // --- Logique d'unicité ---
+            if (joueursSurTerrain[id]) {
+                alert(`⚠️ ${effectif[id].nom} est déjà présent sur le terrain ! Choisis un autre joueur.`);
+                return;
+            }
+
+            // Si le spot avait déjà un joueur, on le retire de la liste de suivi
+            if (selectedSpotElement.dataset.joueurId) {
+                delete joueursSurTerrain[selectedSpotElement.dataset.joueurId];
+            }
+
             const j = effectif[id];
             const holder = selectedSpotElement.querySelector('.spot-img-holder');
             holder.querySelector('img').src = "static/images/" + j.img;
             holder.classList.add('has-player');
             selectedSpotElement.querySelector('.spot-player-name').innerText = j.nom;
+            
+            // On enregistre le nouveau joueur
+            selectedSpotElement.dataset.joueurId = id;
+            joueursSurTerrain[id] = true;
+
             selectedSpotElement.classList.remove('selected');
             selectedSpotElement = null;
         }
