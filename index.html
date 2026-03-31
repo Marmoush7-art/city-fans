@@ -119,7 +119,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.21.7</span>
+            <span class="version-tag">v 1.00.37</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
@@ -307,7 +307,7 @@
         </div>
 
         <div id="chat-section" class="content-section">
-            <button onclick="showSection('transferts')" style="margin-bottom:10px;">⬅ Retour</button>
+            <button onclick="showSection('transferts')" style="margin-bottom:25px;">⬅ Retour</button>
             <h2 id="chat-titre">Chat</h2>
             <div id="chat-messages"></div>
             <div class="chat-container">
@@ -335,10 +335,14 @@
                     <span onclick="addEmoji('🎉')">🎉</span><span onclick="addEmoji('🎁')">🎁</span><span onclick="addEmoji('📅')">📅</span>
                     <span onclick="addEmoji('✉️')">✉️</span><span onclick="addEmoji('📢')">📢</span><span onclick="addEmoji('💡')">💡</span>
                     <span onclick="addEmoji('💰')">💰</span><span onclick="addEmoji('💎')">💎</span><span onclick="addEmoji('⌛')">⌛</span>
-                    <span onclick="addEmoji('🗣️')">🗣️</span><span onclick="addEmoji('💤')">💤</span>
+                    <span onclick="addEmoji('🗣️')">🗣️</span><span onclick="addEmoji('💤')">💤</span><span onclick="addEmoji('🇫🇷')">🇫🇷</span>
+                    <span onclick="addEmoji('🏴󠁧󠁢󠁥󠁮󠁧󠁿')">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span onclick="addEmoji('🇵🇹')">🇵🇹</span><span onclick="addEmoji('🇬🇭')">🇬🇭</span>
+                    <span onclick="addEmoji('🇺🇿')">🇺🇿</span><span onclick="addEmoji('🇧🇪')">🇧🇪</span><span onclick="addEmoji('🇪🇬')">🇪🇬</span>
+                    <span onclick="addEmoji('🇳🇴')">🇳🇴</span><span onclick="addEmoji('🇳🇱')">🇳🇱</span><span onclick="addEmoji('🇪🇸')">🇪🇸</span>
+                    <span onclick="addEmoji('🇮🇹')">🇮🇹</span><span onclick="addEmoji('🇩🇿')">🇩🇿</span><span onclick="addEmoji('')"></span>
                 </div>
                 <div class="chat-area">
-                    <button class="emoji-toggle" onclick="toggleEmojiPicker()">😊</button>
+                    <button class="emoji-toggle" onclick="toggleEmojiPicker()">🙂</button>
                     <input type="text" id="chat-input" placeholder="Pseudo: message">
                     <button onclick="envoyerMessage()">OK</button>
                 </div>
@@ -346,7 +350,7 @@
         </div>
 
         <div id="fc26-view" class="content-section">
-            <h2>MA CARTE FC26</h2>
+            <h2></h2>
             <div class="fc26-card"><img src="static/images/cityfc26.jpg" class="fc26-img"></div>
         </div>
     </main>
