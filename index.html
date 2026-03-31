@@ -71,7 +71,7 @@
         
         .urgent-contract { border-left: 8px solid #e74c3c !important; }
 
-        /* Styles MA COMPO - AGRANDI ET 4-3-3 */
+        /* Styles MA COMPO - 4-3-3 AGRANDI */
         .compo-field { width: 100%; max-width: 800px; height: 600px; background-color: var(--city-sky-blue); border-radius: 20px; border: 8px solid var(--city-dark-blue); margin: 0 auto; padding: 10px; box-sizing: border-box; position: relative; overflow: hidden; background-image: linear-gradient(rgba(255,255,255,0.1) 2px, transparent 2px); background-size: 100% 50px; }
         .field-line { position: absolute; background: rgba(255,255,255,0.5); }
         .field-center-line { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
@@ -87,24 +87,20 @@
         .spot-img-holder.has-player img { display: block; }
         
         .spot-label { font-size: 0.9rem; color: white; font-weight: bold; text-transform: uppercase; text-shadow: 1px 1px 2px black; }
-        .spot-player-name { font-size: 0.75rem; color: var(--city-dark-blue); font-weight: bold; background: white; padding: 2px 6px; border-radius: 4px; width: 90%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .spot-player-name { font-size: 0.75rem; color: var(--city-dark-blue); font-weight: bold; background: white; padding: 2px 6px; border-radius: 4px; width: 95%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .spot-img-holder.has-player + .spot-player-name { display: block; }
-        .spot-img-holder.has-player ~ .spot-label { display: none; }
 
         /* Positions 4-3-3 */
         #spot-rw { top: 12%; left: 75%; }
         #spot-st { top: 8%; left: 45%; }
         #spot-lw { top: 12%; left: 15%; }
-        
         #spot-cm-r { top: 42%; left: 65%; }
         #spot-cdm  { top: 45%; left: 45%; }
         #spot-cm-l { top: 42%; left: 25%; }
-        
         #spot-rb { top: 72%; left: 80%; }
         #spot-cb-r { top: 75%; left: 55%; }
         #spot-cb-l { top: 75%; left: 35%; }
         #spot-lb { top: 72%; left: 10%; }
-        
         #spot-gk { bottom: 3%; left: 45%; }
 
         .compo-squad-list { width: 100%; max-width: 800px; margin: 25px auto 0; text-align: left; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
@@ -117,7 +113,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">CITY FANS 🩵</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.0.21.1</span>
+            <span class="version-tag">v 1.0.22.0</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
@@ -128,38 +124,7 @@
             <li class="menu-item" onclick="showSection('matchs-view')">📅 Matchs</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-effectif')">⚽ Effectif ▾</li>
             <div id="sub-effectif" class="sous-menu">
-                <div class="cat-titre">Gardiens</div>
-                <span class="joueur-link" onclick="afficherJoueur('donnaruma')">Gianluigi Donnarumma</span>
-                <span class="joueur-link" onclick="afficherJoueur('trafford')">James Trafford</span>
-                <span class="joueur-link" onclick="afficherJoueur('bettinelli')">Marcus Bettinelli</span>
-                <div class="cat-titre">Défenseurs</div>
-                <span class="joueur-link" onclick="afficherJoueur('stones')">John Stones</span>
-                <span class="joueur-link" onclick="afficherJoueur('nunes')">Matheus Nunes</span>
-                <span class="joueur-link" onclick="afficherJoueur('ake')">Nathan Aké</span>
-                <span class="joueur-link" onclick="afficherJoueur('guehi')">Marc Guéhi</span>
-                <span class="joueur-link" onclick="afficherJoueur('alleyne')">Max Alleyne</span>
-                <span class="joueur-link" onclick="afficherJoueur('aitnouri')">Rayan Ait-Nouri</span>
-                <span class="joueur-link" onclick="afficherJoueur('dias')">Ruben Dias</span>
-                <span class="joueur-link" onclick="afficherJoueur('oreilly')">Nico O'Reilly</span>
-                <span class="joueur-link" onclick="afficherJoueur('gvardiol')">Josko Gvardiol</span>
-                <span class="joueur-link" onclick="afficherJoueur('khusanov')">Abdukodir Khusanov</span>
-                <span class="joueur-link" onclick="afficherJoueur('lewis')">Rico Lewis</span>
-                <div class="cat-titre">Milieux</div>
-                <span class="joueur-link" onclick="afficherJoueur('rodri')">Rodri</span>
-                <span class="joueur-link" onclick="afficherJoueur('silva')">Bernardo Silva</span>
-                <span class="joueur-link" onclick="afficherJoueur('reijnders')">Tijjani Reijnders</span>
-                <span class="joueur-link" onclick="afficherJoueur('gonzalez')">Nico Gonzalez</span>
-                <span class="joueur-link" onclick="afficherJoueur('kovacic')">Matéo Kovacic</span>
-                <span class="joueur-link" onclick="afficherJoueur('foden')">Phil Foden</span>
-                <span class="joueur-link" onclick="afficherJoueur('cherki')">Rayan Cherki</span>
-                <span class="joueur-link" onclick="afficherJoueur('nypan')">Sverre Nypan</span>
-                <div class="cat-titre">Attaquants</div>
-                <span class="joueur-link" onclick="afficherJoueur('haaland')">Erling Haaland</span>
-                <span class="joueur-link" onclick="afficherJoueur('savinho')">Savinho</span>
-                <span class="joueur-link" onclick="afficherJoueur('marmoush')">Omar Marmoush</span>
-                <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
-                <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
-            </div>
+                </div>
             <li class="menu-item" onclick="showSection('mercato-recap')">🔄 Mercato</li>
             <li class="menu-item" onclick="showSection('transferts')">📝 Actus Mercato</li>
             <li class="menu-item" onclick="preparerContrats()">📄 Contrats</li>
@@ -183,47 +148,27 @@
                     <div class="score-center">2 - 1</div>
                     <div class="team"><img src="static/images/realmadrid.jpg"><p>Chelsea</p></div>
                 </div>
-                <div class="match-details">
-                    <div class="side-details">
-                        <h4>Manchester City</h4>
-                        <div class="stat-line">⚽ <strong>Erling Haaland (12')</strong></div>
-                        <div class="stat-line">👟 <em>Passe : Phil Foden</em></div>
-                        <div class="stat-line">⚽ <strong>Savinho (58')</strong></div>
-                        <div class="stat-line">👟 <em>Passe : Rodri</em></div>
-                    </div>
-                    <div class="side-details">
-                        <h4>Chelsea</h4>
-                        <div class="stat-line">⚽ <strong>Liam Delap (34')</strong></div>
-                        <div class="stat-line">👟 <em>Passe : Cole Palmer</em></div>
-                    </div>
-                </div>
             </div>
         </div>
 
         <div id="ma-compo-view" class="content-section">
             <h2>Ma Compo 🧾</h2>
-            <p style="font-size: 0.95rem; margin-bottom: 20px; color: #444;">1. Clique sur une position (ex: BU) | 2. Choisis un joueur en bas</p>
-            
+            <p>1. Sélectionne un poste | 2. Sélectionne un joueur</p>
             <div class="compo-field">
                 <div class="field-line field-center-line"></div>
                 <div class="field-center-circle"></div>
-                
                 <div class="player-spot" id="spot-lw" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">AG</span></div><div class="spot-player-name"></div></div>
                 <div class="player-spot" id="spot-st" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">BU</span></div><div class="spot-player-name"></div></div>
                 <div class="player-spot" id="spot-rw" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">AD</span></div><div class="spot-player-name"></div></div>
-                
                 <div class="player-spot" id="spot-cm-l" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">MC</span></div><div class="spot-player-name"></div></div>
                 <div class="player-spot" id="spot-cdm"  onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">MDC</span></div><div class="spot-player-name"></div></div>
                 <div class="player-spot" id="spot-cm-r" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">MC</span></div><div class="spot-player-name"></div></div>
-                
                 <div class="player-spot" id="spot-lb" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">DG</span></div><div class="spot-player-name"></div></div>
                 <div class="player-spot" id="spot-cb-l" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">DC</span></div><div class="spot-player-name"></div></div>
                 <div class="player-spot" id="spot-cb-r" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">DC</span></div><div class="spot-player-name"></div></div>
                 <div class="player-spot" id="spot-rb" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">DD</span></div><div class="spot-player-name"></div></div>
-                
                 <div class="player-spot" id="spot-gk" onclick="selectSpot(this)"><div class="spot-img-holder"><img src=""><span class="spot-label">G</span></div><div class="spot-player-name"></div></div>
             </div>
-
             <div class="compo-squad-list">
                 <h3>Equipe ⚽</h3>
                 <div id="liste-joueurs-compo"></div>
@@ -232,13 +177,7 @@
 
         <div id="mercato-recap" class="content-section">
             <h2>Historique du Mercato</h2>
-            <h3>Arrivées</h3>
-            <div class="transfert-card"><img src="static/images/15.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Prix : 23M €</p><p class="transfert-date">Janvier 2026</p></div></div>
-            <div class="transfert-card"><img src="static/images/42.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Prix : 72M €</p><p class="transfert-date">Août 2025</p></div></div>
-            
-            <h3>Départs</h3>
-            <div class="transfert-card"><img src="static/images/bobb.jpg"><div class="transfert-info"><h3>Oscar Bobb</h3><p>Vers : Fulham</p><p>Prix : 31,2M €</p><p class="transfert-date">Janvier 2026</p></div></div>
-            <div class="transfert-card"><img src="static/images/ortega.jpg"><div class="transfert-info"><h3>Stefan Ortega Moreno</h3><p>Vers : Nottingham Forest</p><p>Prix : 0,58M €</p><p class="transfert-date">Janvier 2026</p></div></div>
+            <div class="transfert-card"><img src="static/images/15.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Arrivée Janvier 2026</p></div></div>
         </div>
 
         <div id="joueur-solo" class="content-section">
@@ -246,82 +185,50 @@
             <img id="photo" src="">
             <div class="box-info">
                 <table>
-                    <tr><th>Âge</th><td id="s-age"></td></tr>
-                    <tr><th>Nationalité</th><td id="s-nat"></td></tr>
-                    <tr><th>Salaire / mois</th><td id="s-paye"></td></tr>
-                    <tr><th>Fin de contrat</th><td id="s-fin"></td></tr>
+                    <tr><th>Poste</th><td id="s-poste"></td></tr>
+                    <tr><th>Fin contrat</th><td id="s-fin"></td></tr>
                     <tr><th>Valeur</th><td id="s-valeur"></td></tr>
                 </table>
-                <div class="bio-container">
-                    <strong>Biographie :</strong><br><br>
-                    <span id="s-bio"></span>
-                </div>
             </div>
         </div>
 
-        <div id="transferts" class="content-section">
-            <h2>Dernières Rumeurs</h2>
-            <div class="transfert-card" onclick="ouvrirChat('John Stones')">
-                <img src="static/images/5.jpg"><div class="transfert-info"><h3>John Stones</h3><p>Départ vers Wrexham ?</p></div>
-            </div>
-            <div class="transfert-card" onclick="ouvrirChat('Sean Steur')">
-                <img src="static/images/sean.jpg"><div class="transfert-info"><h3>Sean Steur</h3><p>La pépite de l'Ajax ciblée (6M€)</p></div>
-            </div>
-        </div>
-
-        <div id="contrats" class="content-section">
-            <h2>📄 État des Contrats</h2>
-            <p style="margin-bottom: 20px; font-size: 0.9rem; color: #666;">Joueurs en fin de contrat (échéance ≤ 30/03/2027)</p>
-            <div id="liste-contrats-urgents"></div>
-        </div>
-
-        <div id="chat-section" class="content-section">
-            <button onclick="showSection('transferts')" style="margin-bottom:10px;">⬅ Retour</button>
-            <h2 id="chat-titre">Chat</h2>
-            <div id="chat-messages"></div>
-            <div class="chat-container">
-                <div id="emoji-picker" class="emoji-picker">
-                    <span onclick="addEmoji('🩵')">🩵</span><span onclick="addEmoji('⚽')">⚽</span><span onclick="addEmoji('🔥')">🔥</span>
-                    <span onclick="addEmoji('🏆')">🏆</span><span onclick="addEmoji('💙')">💙</span><span onclick="addEmoji('❤️')">❤️</span>
-                    <span onclick="addEmoji('👍')">👍</span><span onclick="addEmoji('👎')">👎</span><span onclick="addEmoji('🙌')">🙌</span>
-                    <span onclick="addEmoji('🤯')">🤯</span><span onclick="addEmoji('👑')">👑</span><span onclick="addEmoji('💪')">💪</span>
-                </div>
-                <div class="chat-area">
-                    <button class="emoji-toggle" onclick="toggleEmojiPicker()">😊</button>
-                    <input type="text" id="chat-input" placeholder="Pseudo: message">
-                    <button onclick="envoyerMessage()">OK</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="fc26-view" class="content-section">
-            <h2>MA CARTE FC26</h2>
-            <div class="fc26-card"><img src="static/images/cityfc26.jpg" class="fc26-img"></div>
-        </div>
+        <div id="transferts" class="content-section"><h2>Dernières Rumeurs</h2></div>
+        <div id="contrats" class="content-section"><h2>📄 Contrats</h2><div id="liste-contrats-urgents"></div></div>
+        <div id="fc26-view" class="content-section"><h2>🎮 FC26</h2><img src="static/images/cityfc26.jpg" class="fc26-img"></div>
     </main>
 
     <script>
         const firebaseConfig = { apiKey: "CLE", authDomain: "DOM", projectId: "ID", storageBucket: "BUCKET", messagingSenderId: "ID", appId: "APP" };
         firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
 
         const effectif = {
-            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif." },
-            'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Le métronome." },
-            'foden': { nom: "Phil Foden", poste: "Milieu", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "Le joyau de City." },
-            'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "60M €", img: "3.jpg", bio: "Patron de la défense." },
-            'donnaruma': { nom: "G. Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", img: "25.jpg", bio: "Le dernier rempart." },
-            'savinho': { nom: "Savinho", poste: "Attaquant", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg", bio: "Dribbleur fou." },
-            'stones': { nom: "John Stones", poste: "Défenseur", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000 €", fin: "30/06/2026", valeur: "15M €", img: "5.jpg", bio: "Défenseur soyeux." },
-            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "La force croate." },
-            'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Percussion pure." },
-            'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Virtuose." },
-            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "N/A", valeur: "65M €", img: "15.jpg", bio: "Calme et serein." },
-            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Rapide et tueur." },
-            'silva': { nom: "Bernardo Silva", poste: "Milieu", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", img: "20.jpg", bio: "L'infatigable." },
-            'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", img: "6.jpg", bio: "Roc polyvalent." },
-            'aitnouri': { nom: "R. Ait-Nouri", poste: "Défenseur", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", img: "21.jpg", bio: "Offensif à gauche." },
-            'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "32M €", img: "82.jpg", bio: "Le futur." }
+            'donnaruma': { nom: "G. Donnarumma", poste: "Gardien", fin: "30/06/2030", valeur: "45M €", img: "25.jpg" },
+            'trafford': { nom: "James Trafford", poste: "Gardien", fin: "30/06/2029", valeur: "25M €", img: "1.jpg" },
+            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", fin: "30/06/2026", valeur: "0.5M €", img: "13.jpg" },
+            'stones': { nom: "John Stones", poste: "Défenseur", fin: "30/06/2026", valeur: "15M €", img: "5.jpg" },
+            'nunes': { nom: "Matheus Nunes", poste: "Milieu", fin: "30/06/2028", valeur: "45M €", img: "27.jpg" },
+            'ake': { nom: "Nathan Aké", poste: "Défenseur", fin: "30/06/2027", valeur: "15M €", img: "6.jpg" },
+            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", fin: "30/06/2030", valeur: "65M €", img: "15.jpg" },
+            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", fin: "30/06/2026", valeur: "8M €", img: "68.jpg" },
+            'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", fin: "30/06/2030", valeur: "40M €", img: "21.jpg" },
+            'dias': { nom: "Ruben Dias", poste: "Défenseur", fin: "30/06/2029", valeur: "60M €", img: "3.jpg" },
+            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur/Milieu", fin: "30/06/2030", valeur: "50M €", img: "33.jpg" },
+            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", fin: "30/06/2028", valeur: "70M €", img: "24.jpg" },
+            'khusanov': { nom: "A. Khusanov", poste: "Défenseur", fin: "30/06/2029", valeur: "35M €", img: "45.jpg" },
+            'lewis': { nom: "Rico Lewis", poste: "Défenseur", fin: "30/06/2030", valeur: "32M €", img: "82.jpg" },
+            'rodri': { nom: "Rodri", poste: "Milieu", fin: "30/06/2028", valeur: "65M €", img: "16.jpg" },
+            'silva': { nom: "Bernardo Silva", poste: "Milieu", fin: "30/06/2026", valeur: "27M €", img: "20.jpg" },
+            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", fin: "30/06/2030", valeur: "60M €", img: "4.jpg" },
+            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", fin: "30/06/2030", valeur: "45M €", img: "14.jpg" },
+            'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", fin: "30/06/2027", valeur: "12M €", img: "8.jpg" },
+            'foden': { nom: "Phil Foden", poste: "Milieu", fin: "30/06/2027", valeur: "80M €", img: "47.jpg" },
+            'cherki': { nom: "Rayan Cherki", poste: "Milieu", fin: "30/06/2030", valeur: "65M €", img: "10.jpg" },
+            'nypan': { nom: "Sverre Nypan", poste: "Milieu", fin: "30/06/2028", valeur: "15M €", img: "41.jpg" },
+            'haaland': { nom: "Erling Haaland", poste: "Attaquant", fin: "30/06/2034", valeur: "180M €", img: "9.jpg" },
+            'savinho': { nom: "Savinho", poste: "Attaquant", fin: "30/06/2031", valeur: "40M €", img: "26.jpg" },
+            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", fin: "30/06/2029", valeur: "60M €", img: "7.jpg" },
+            'doku': { nom: "Jérémy Doku", poste: "Attaquant", fin: "30/06/2028", valeur: "65M €", img: "11.jpg" },
+            'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", fin: "30/06/2031", valeur: "75M €", img: "42.jpg" }
         };
 
         function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
@@ -332,63 +239,78 @@
             document.getElementById(id).classList.add('active');
             document.getElementById('menu').classList.remove('ouvert');
             selectedSpotElement = null;
-            document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected'));
+        }
+
+        // Remplir le menu effectif dynamiquement
+        function initMenuEffectif() {
+            const container = document.getElementById('sub-effectif');
+            container.innerHTML = "";
+            for (let id in effectif) {
+                const span = document.createElement('span');
+                span.className = "joueur-link";
+                span.innerText = effectif[id].nom;
+                span.onclick = () => afficherJoueur(id);
+                container.appendChild(span);
+            }
         }
 
         function afficherJoueur(id) {
-            const j = effectif[id]; if(!j) return;
+            const j = effectif[id];
             document.getElementById('nom-joueur').innerText = j.nom;
-            document.getElementById('s-age').innerText = j.age;
-            document.getElementById('s-nat').innerText = j.nat;
-            document.getElementById('s-paye').innerText = j.paye;
+            document.getElementById('s-poste').innerText = j.poste;
             document.getElementById('s-fin').innerText = j.fin;
             document.getElementById('s-valeur').innerText = j.valeur;
-            document.getElementById('s-bio').innerText = j.bio;
             document.getElementById('photo').src = "static/images/" + j.img;
             showSection('joueur-solo');
         }
 
         let selectedSpotElement = null;
-        function preparerCompoInteractive() { renderSquadListForCompo(); showSection('ma-compo-view'); }
-
-        function renderSquadListForCompo() {
-            const container = document.getElementById('liste-joueurs-compo');
-            container.innerHTML = "";
-            const postes = { "Gardien": [], "Défenseur": [], "Milieu": [], "Attaquant": [] };
-            for (let id in effectif) { const p = effectif[id].poste; if (postes[p]) postes[p].push({id: id, ...effectif[id]}); }
-            for (let poste in postes) {
-                if (postes[poste].length > 0) {
-                    const titre = document.createElement('div'); titre.className = "cat-titre"; titre.innerText = poste + "s"; container.appendChild(titre);
-                    postes[poste].forEach(j => {
-                        const link = document.createElement('span'); link.className = "compo-joueur-link"; link.innerText = j.nom;
-                        link.onclick = () => placerJoueur(j.id); container.appendChild(link);
-                    });
-                }
-            }
-        }
-
-        function selectSpot(element) {
+        function selectSpot(el) {
             document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected'));
-            selectedSpotElement = element;
-            selectedSpotElement.classList.add('selected');
+            selectedSpotElement = el;
+            el.classList.add('selected');
         }
 
-        function placerJoueur(joueurId) {
-            if (!selectedSpotElement) { alert("Clique d'abord sur un poste sur le terrain !"); return; }
-            const j = effectif[joueurId];
-            const imgHolder = selectedSpotElement.querySelector('.spot-img-holder');
-            const imgEl = imgHolder.querySelector('img');
-            const nameEl = selectedSpotElement.querySelector('.spot-player-name');
-            imgEl.src = "static/images/" + j.img;
-            imgHolder.classList.add('has-player');
-            nameEl.innerText = j.nom;
+        function placerJoueur(id) {
+            if (!selectedSpotElement) return;
+            const j = effectif[id];
+            const holder = selectedSpotElement.querySelector('.spot-img-holder');
+            holder.querySelector('img').src = "static/images/" + j.img;
+            holder.classList.add('has-player');
+            selectedSpotElement.querySelector('.spot-player-name').innerText = j.nom;
             selectedSpotElement.classList.remove('selected');
             selectedSpotElement = null;
         }
 
-        function preparerContrats() { const container = document.getElementById('liste-contrats-urgents'); container.innerHTML = ""; const dateLimite = new Date(2027, 2, 30); for (let id in effectif) { const j = effectif[id]; if (j.fin && j.fin !== "N/A") { const parties = j.fin.split('/'); const dateFin = new Date(parties[2], parties[1] - 1, parties[0]); if (dateFin <= dateLimite) { const card = document.createElement('div'); card.className = "transfert-card urgent-contract"; card.onclick = () => afficherJoueur(id); card.innerHTML = `<img src="static/images/${j.img}"><div class="transfert-info"><h3>${j.nom}</h3><p>Expire le : ${j.fin}</p></div>`; container.appendChild(card); } } } showSection('contrats'); }
-        function toggleEmojiPicker() { const p = document.getElementById('emoji-picker'); p.style.display = (p.style.display === 'grid') ? 'none' : 'grid'; }
-        function addEmoji(e) { document.getElementById('chat-input').value += e; document.getElementById('emoji-picker').style.display = 'none'; }
+        function preparerCompoInteractive() {
+            const container = document.getElementById('liste-joueurs-compo');
+            container.innerHTML = "";
+            for (let id in effectif) {
+                const btn = document.createElement('span');
+                btn.className = "compo-joueur-link";
+                btn.innerText = effectif[id].nom;
+                btn.onclick = () => placerJoueur(id);
+                container.appendChild(btn);
+            }
+            showSection('ma-compo-view');
+        }
+
+        function preparerContrats() {
+            const container = document.getElementById('liste-contrats-urgents');
+            container.innerHTML = "";
+            for (let id in effectif) {
+                if (effectif[id].fin.includes("2026")) {
+                    const div = document.createElement('div');
+                    div.className = "transfert-card urgent-contract";
+                    div.innerHTML = `<img src="static/images/${effectif[id].img}"><div class="transfert-info"><h3>${effectif[id].nom}</h3><p>Fin : ${effectif[id].fin}</p></div>`;
+                    div.onclick = () => afficherJoueur(id);
+                    container.appendChild(div);
+                }
+            }
+            showSection('contrats');
+        }
+
+        initMenuEffectif();
     </script>
 </body>
 </html>
