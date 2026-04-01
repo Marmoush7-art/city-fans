@@ -1,8 +1,3 @@
-Je te présente mes excuses les plus sincères. J'ai fait une erreur inadmissible en oubliant de réintégrer les fonctions critiques (comme l'envoi de messages, la gestion des emojis et le système de placement des joueurs) dans la version précédente.
-
-Voici la version v 1.00.41. Elle est complète : j'ai repris l'intégralité de tes scripts originaux (Firebase, Compo, Quiz, Chat) et j'ai uniquement appliqué le nouveau design pour la section International.
-HTML
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -59,37 +54,22 @@ HTML
             border-radius: 15px; padding: 15px; width: 400px; max-height: 350px; overflow-y: auto;
             grid-template-columns: repeat(9, 1fr); gap: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 10; 
         }
-        @media (max-width: 600px) { .emoji-picker { width: 280px; left: 10px; grid-template-columns: repeat(6, 1fr); } }
-        .emoji-picker span { font-size: 1.6rem; cursor: pointer; text-align: center; padding: 2px; transition: transform 0.1s; }
+        .emoji-picker span { font-size: 1.6rem; cursor: pointer; text-align: center; padding: 2px; }
 
-        .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--city-sky-blue); }
-        .match-header { font-size: 0.8rem; color: #888; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; }
-        .match-main { display: flex; justify-content: space-between; align-items: center; }
-        .team { flex: 1; text-align: center; }
-        .team img { width: 50px; height: 50px; object-fit: contain; }
-        .team p { margin: 8px 0 0; font-weight: bold; font-size: 0.9rem; }
-        .score-center { flex: 1; font-size: 2.2rem; font-weight: 800; color: var(--city-dark-blue); }
+        .compo-field { width: 100%; max-width: 600px; height: 550px; background-color: #4CAF50; border: 5px solid white; position: relative; margin: 0 auto; border-radius: 10px; }
+        .field-line { position: absolute; background: white; }
+        .field-center-line { top: 50%; left: 0; width: 100%; height: 2px; }
+        .field-center-circle { top: 50%; left: 50%; width: 100px; height: 100px; border: 2px solid white; border-radius: 50%; transform: translate(-50%, -50%); }
         
-        #fc26-view.content-section { background: #FF8C00; }
-        .fc26-img { width: 100%; max-width: 500px; border-radius: 20px; display: block; margin: 0 auto; }
-        
-        .urgent-contract { border-left: 8px solid #e74c3c !important; }
-
-        .compo-field { width: 100%; max-width: 600px; height: 550px; background-color: var(--city-sky-blue); border-radius: 20px; border: 6px solid var(--city-dark-blue); margin: 0 auto; padding: 10px; box-sizing: border-box; position: relative; overflow: hidden; }
-        .field-line { position: absolute; background: rgba(255,255,255,0.5); }
-        .field-center-line { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
-        .field-center-circle { top: 50%; left: 50%; width: 110px; height: 110px; border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; transform: translate(-50%, -50%); }
-        
-        .player-spot { width: 70px; height: 95px; position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; cursor: pointer; z-index: 10; transition: transform 0.2s; }
-        .player-spot.selected { border: 3px solid #e74c3c; border-radius: 10px; box-shadow: 0 0 15px rgba(231, 76, 60, 0.7); }
-        .spot-img-holder { width: 60px; height: 60px; background: rgba(255,255,255,0.2); border: 2px dashed var(--city-dark-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 5px; }
+        .player-spot { width: 70px; height: 90px; position: absolute; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+        .player-spot.selected { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
+        .spot-img-holder { width: 50px; height: 50px; border: 2px dashed white; border-radius: 50%; overflow: hidden; margin-bottom: 5px; background: rgba(0,0,0,0.1); }
         .spot-img-holder img { width: 100%; height: 100%; object-fit: cover; display: none; }
-        .spot-img-holder.has-player { border: 3px solid var(--city-dark-blue); background: white; }
         .spot-img-holder.has-player img { display: block; }
-        .spot-label { font-size: 0.8rem; color: white; font-weight: bold; text-transform: uppercase; }
-        .spot-player-name { font-size: 0.7rem; color: var(--city-dark-blue); font-weight: bold; background: rgba(255,255,255,0.8); padding: 2px 4px; border-radius: 4px; width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; }
-        .spot-img-holder.has-player + .spot-player-name { display: block; }
+        .spot-label { color: white; font-size: 0.7rem; font-weight: bold; background: rgba(0,0,0,0.5); padding: 1px 4px; border-radius: 3px; }
+        .spot-player-name { color: white; font-size: 0.7rem; font-weight: bold; margin-top: 2px; text-shadow: 1px 1px 2px black; }
 
+        /* Positions Terrain */
         #spot-att-bu { top: 5%; left: 44%; }
         #spot-att-ag { top: 12%; left: 15%; }
         #spot-att-ad { top: 12%; left: 73%; }
@@ -102,14 +82,11 @@ HTML
         #spot-def-dd { top: 70%; left: 83%; }
         #spot-gk-1 { bottom: 3%; left: 44%; }
 
-        .compo-squad-list { width: 100%; max-width: 600px; margin: 25px auto 0; text-align: left; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .compo-cat-titre { color: var(--city-sky-blue); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin: 15px 0 8px; }
-        .compo-joueur-link { display: inline-block; padding: 6px 12px; margin: 3px; background: #eef6fc; color: var(--city-dark-blue); border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; }
-
-        #quiz-view { background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        .quiz-clues { font-size: 1.4rem; margin-bottom: 20px; line-height: 2.2; text-align: left; background: #f9f9f9; padding: 20px; border-radius: 10px; }
-        .quiz-feedback { font-size: 1.6rem; font-weight: 800; margin-top: 20px; min-height: 40px; }
-        .quiz-img { max-width: 220px; border-radius: 15px; margin: 15px auto; display: none; border: 5px solid var(--city-sky-blue); }
+        .compo-squad-list { width: 100%; max-width: 600px; margin: 20px auto; background: white; padding: 15px; border-radius: 10px; text-align: left; }
+        .compo-joueur-link { display: inline-block; padding: 5px 10px; margin: 3px; background: #eee; border-radius: 5px; cursor: pointer; font-size: 0.85rem; }
+        
+        .urgent-contract { border-left: 8px solid #e74c3c !important; }
+        #fc26-view { background: #FF8C00; padding: 20px; border-radius: 20px; }
     </style>
 </head>
 <body>
@@ -117,7 +94,7 @@ HTML
     <nav>
         <h1 onclick="showSection('accueil')">MANCHESTER CITY FANS</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.00.41</span>
+            <span class="version-tag">v 1.00.43</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
@@ -173,18 +150,14 @@ HTML
     <main>
         <div id="accueil" class="content-section active">
             <h2>BIENVENUE CITYZENS</h2>
-            <img src="static/images/mancityecussonclasse.jpg" style="width: 100%; max-width: 500px; border-radius: 20px;">
+            <img src="static/images/mancityecussonclasse.jpg" style="width:100%; max-width:500px; border-radius:20px;">
         </div>
 
         <div id="matchs-view" class="content-section">
             <h2>RESULTATS</h2>
-            <div class="match-card">
-                <div class="match-header">CARABAO CUP : Finale</div>
-                <div class="match-main">
-                    <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
-                    <div class="score-center">2 - 0</div>
-                    <div class="team"><img src="static/images/arsenal.jpg"><p>Arsenal</p></div>
-                </div>
+            <div class="match-card" style="background:white; padding:20px; border-radius:15px; border-left:8px solid var(--city-sky-blue);">
+                <p>CARABAO CUP : FINALE</p>
+                <p><strong>Man City 2 - 0 Arsenal</strong></p>
             </div>
         </div>
 
@@ -208,6 +181,31 @@ HTML
             <div class="compo-squad-list"><div id="liste-joueurs-compo"></div></div>
         </div>
 
+        <div id="chat-section" class="content-section">
+            <button onclick="showSection('accueil')">⬅ Retour</button>
+            <h2 id="chat-titre">Chat</h2>
+            <div id="chat-messages"></div>
+            <div class="chat-container">
+                <div id="emoji-picker" class="emoji-picker">
+                    <span onclick="addEmoji('🩵')">🩵</span><span onclick="addEmoji('⚽')">⚽</span><span onclick="addEmoji('🔥')">🔥</span>
+                    <span onclick="addEmoji('🏆')">🏆</span><span onclick="addEmoji('💙')">💙</span><span onclick="addEmoji('👍')">👍</span>
+                </div>
+                <div class="chat-area">
+                    <button class="emoji-toggle" onclick="toggleEmojiPicker()">🙂</button>
+                    <input type="text" id="chat-input" placeholder="Votre message...">
+                    <button onclick="envoyerMessage()">OK</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="transferts" class="content-section">
+            <h2>Actus Mercato 📝</h2>
+            <div class="transfert-card" onclick="ouvrirChat('Viktor Gyökeres')">
+                <img src="static/images/gyokeres.jpg" alt="">
+                <div class="transfert-info"><h3>Viktor Gyökeres</h3><p>Rumeur de transfert vers City.</p></div>
+            </div>
+        </div>
+
         <div id="mercato-recap" class="content-section">
             <h2>Historique du Mercato</h2>
             <div class="transfert-card"><img src="static/images/15.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Prix : 23M €</p></div></div>
@@ -217,36 +215,16 @@ HTML
             <h2>Performances Internationales</h2>
             <div class="transfert-card" onclick="ouvrirChat('Rayan Ait-Nouri')">
                 <img src="static/images/21.jpg">
-                <div class="transfert-info">
-                    <h3>Rayan Ait-Nouri 🇩🇿</h3>
-                    <p>Matchs : 3</p>
-                    <p>Buts : 0</p>
-                    <p class="transfert-date">Passes décisives : 1</p>
-                </div>
-            </div>
-            <div class="transfert-card" onclick="ouvrirChat('Gianluigi Donnarumma')">
-                <img src="static/images/25.jpg">
-                <div class="transfert-info">
-                    <h3>Gianluigi Donnarumma 🇮🇹</h3>
-                    <p>Matchs : 3</p>
-                    <p>Buts : 0</p>
-                    <p class="transfert-date">Passes décisives : 0</p>
-                </div>
+                <div class="transfert-info"><h3>Rayan Ait-Nouri 🇩🇿</h3><p>Matchs: 3 | Passes: 1</p></div>
             </div>
         </div>
 
         <div id="joueur-solo" class="content-section">
             <h2 id="nom-joueur"></h2>
-            <img id="photo" src="">
+            <img id="photo" src="" style="width:200px; border-radius:15px;">
             <div class="box-info">
-                <table>
-                    <tr><th>Âge</th><td id="s-age"></td></tr>
-                    <tr><th>Nationalité</th><td id="s-nat"></td></tr>
-                    <tr><th>Salaire / mois</th><td id="s-paye"></td></tr>
-                    <tr><th>Fin de contrat</th><td id="s-fin"></td></tr>
-                    <tr><th>Valeur</th><td id="s-valeur"></td></tr>
-                </table>
-                <div class="bio-container"><span id="s-bio"></span></div>
+                <p id="s-age"></p><p id="s-nat"></p><p id="s-paye"></p><p id="s-valeur"></p>
+                <div class="bio-container" id="s-bio"></div>
             </div>
         </div>
 
@@ -255,36 +233,18 @@ HTML
             <div id="liste-contrats-urgents"></div>
         </div>
 
-        <div id="chat-section" class="content-section">
-            <button onclick="showSection('accueil')">⬅ Retour</button>
-            <h2 id="chat-titre">Chat</h2>
-            <div id="chat-messages"></div>
-            <div class="chat-container">
-                <div id="emoji-picker" class="emoji-picker">
-                    <span onclick="addEmoji('🩵')">🩵</span><span onclick="addEmoji('⚽')">⚽</span><span onclick="addEmoji('🔥')">🔥</span>
-                    <span onclick="addEmoji('🏆')">🏆</span><span onclick="addEmoji('💙')">💙</span><span onclick="addEmoji('👍')">👍</span>
-                    <span onclick="addEmoji('⭐')">⭐</span><span onclick="addEmoji('🤩')">🤩</span><span onclick="addEmoji('⚡')">⚡</span>
-                </div>
-                <div class="chat-area">
-                    <button class="emoji-toggle" onclick="toggleEmojiPicker()">🙂</button>
-                    <input type="text" id="chat-input" placeholder="Message...">
-                    <button onclick="envoyerMessage()">OK</button>
-                </div>
-            </div>
+        <div id="quiz-view" class="content-section">
+            <h2>🔍 QUIZ</h2>
+            <div id="quiz-clues" class="quiz-clues"></div>
+            <input type="text" id="quiz-answer">
+            <button onclick="verifierReponseQuiz()">Valider</button>
+            <div id="quiz-feedback"></div>
+            <img id="quiz-img-result" style="width:150px; display:none; margin:10px auto;">
+            <button onclick="demarrerQuiz()">Suivant</button>
         </div>
 
-        <div id="quiz-view" class="content-section">
-            <h2>🔍 QUIZ : QUI EST-CE ?</h2>
-            <div id="quiz-clues" class="quiz-clues"></div>
-            <input type="text" id="quiz-answer" placeholder="Nom du joueur...">
-            <button onclick="verifierReponseQuiz()">Valider</button>
-            <div id="quiz-feedback" class="quiz-feedback"></div>
-            <img id="quiz-img-result" class="quiz-img">
-            <button onclick="demarrerQuiz()" style="margin-top:20px;">Suivant</button>
-        </div>
-        
         <div id="fc26-view" class="content-section">
-            <img src="static/images/cityfc26.jpg" class="fc26-img">
+            <img src="static/images/cityfc26.jpg" style="width:100%; border-radius:15px;">
         </div>
     </main>
 
@@ -294,36 +254,18 @@ HTML
         const db = firebase.firestore();
 
         const effectif = {
-            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif norvégien." },
-            'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Ballon d'Or 2024. Le métronome." },
-            'foden': { nom: "Phil Foden", poste: "Milieu", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "L'enfant chéri de Stockport." },
-            'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "60M €", img: "3.jpg", bio: "Pilier défensif." },
-            'donnaruma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", img: "25.jpg", bio: "Gardien d'envergure internationale." },
-            'savinho': { nom: "Savinho", poste: "Attaquant", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg", bio: "Dribbleur brésilien électrisant." },
-            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2026", valeur: "0.5 €", img: "13.jpg", bio: "Gardien expérimenté." },
-            'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "35M €", img: "45.jpg", bio: "Révélation ouzbèke." },
-            'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", img: "6.jpg", bio: "Polyvalence tactique exemplaire." },
-            'stones': { nom: "John Stones", poste: "Défenseur", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000 €", fin: "30/06/2026", valeur: "15M €", img: "5.jpg", bio: "Défenseur créateur unique." },
-            'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "32M €", img: "82.jpg", bio: "Futur cadre issu de l'académie." },
-            'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", img: "21.jpg", bio: "Latéral percutant." },
-            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "50M €", img: "33.jpg", bio: "Pépite locale." },
-            'nunes': { nom: "Matheus Nunes", poste: "Milieu", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "45M €", img: "27.jpg", bio: "Milieu puissant." },
-            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", img: "68.jpg", bio: "Espoir en défense centrale." },
-            'silva': { nom: "Bernardo Silva", poste: "Milieu", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", img: "20.jpg", bio: "Génie portugais." },
-            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "Roc croate." },
-            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "30/06/2031", valeur: "65M €", img: "15.jpg", bio: "Nouvelle recrue solide." },
-            'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Gardien prometteur." },
-            'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Puissance offensive brute." },
-            'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Magicien français." },
-            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Attaquant égyptien polyvalent." },
-            'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "30/06/2030", valeur: "15M €", img: "41.jpg", bio: "Futur maître du milieu." },
-            'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Vitesse pure." },
-            'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Expérience croate." },
-            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant." },
-            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Technique espagnole." }
+            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2.5M€", fin: "2034", valeur: "180M€", img: "9.jpg", bio: "Buteur." },
+            'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1.1M€", fin: "2028", valeur: "110M€", img: "16.jpg", bio: "Ballon d'Or." },
+            'foden': { nom: "Phil Foden", poste: "Milieu", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1.1M€", fin: "2027", valeur: "150M€", img: "47.jpg", bio: "Le prince." },
+            'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1.2M€", fin: "2029", valeur: "80M€", img: "3.jpg", bio: "Roc." },
+            'donnaruma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1.2M€", fin: "2030", valeur: "45M€", img: "25.jpg", bio: "Gardien." },
+            'savinho': { nom: "Savinho", poste: "Attaquant", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390k€", fin: "2031", valeur: "40M€", img: "26.jpg", bio: "Dribbleur." },
+            'stones': { nom: "John Stones", poste: "Défenseur", age: "30 ans", nat: "Ang", paye: "1.2M€", fin: "2026", valeur: "15M€", img: "5.jpg", bio: "Technique." },
+            'silva': { nom: "Bernardo Silva", poste: "Milieu", age: "30 ans", nat: "Port", paye: "1.5M€", fin: "2026", valeur: "27M€", img: "20.jpg", bio: "Génie." },
+            'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "24 ans", nat: "Alg", paye: "151k€", fin: "2030", valeur: "40M€", img: "21.jpg", bio: "Offensif." }
         };
 
-        function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
+        function toggleMenu(e) { e.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
         function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
         function showSection(id) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
@@ -335,91 +277,77 @@ HTML
             const j = effectif[id]; if(!j) return;
             document.getElementById('nom-joueur').innerText = j.nom;
             document.getElementById('photo').src = "static/images/" + j.img;
-            document.getElementById('s-age').innerText = j.age;
-            document.getElementById('s-nat').innerText = j.nat;
-            document.getElementById('s-paye').innerText = j.paye || "N/A";
-            document.getElementById('s-fin').innerText = j.fin || "N/A";
-            document.getElementById('s-valeur').innerText = j.valeur;
+            document.getElementById('s-age').innerText = "Âge: " + j.age;
             document.getElementById('s-bio').innerText = j.bio;
             showSection('joueur-solo');
         }
 
-        // MA COMPO LOGIQUE COMPLÈTE
-        let selectedSpotElement = null;
-        function preparerCompoInteractive() { renderSquadListForCompo(); showSection('ma-compo-view'); }
-        function renderSquadListForCompo() {
-            const container = document.getElementById('liste-joueurs-compo'); container.innerHTML = "";
-            const postesLabel = { "Gardien": "🧤 Gardiens", "Défenseur": "🛡️ Défenseurs", "Milieu": "⚡ Milieux", "Attaquant": "⚔️ Attaquants" };
-            const postes = { "Gardien": [], "Défenseur": [], "Milieu": [], "Attaquant": [] };
-            for (let id in effectif) { const p = effectif[id].poste; if (postes[p]) postes[p].push({id: id, ...effectif[id]}); }
-            for (let pKey in postes) {
-                const titre = document.createElement('div'); titre.className = "compo-cat-titre"; titre.innerText = postesLabel[pKey]; container.appendChild(titre);
-                postes[pKey].forEach(j => {
-                    const link = document.createElement('span'); link.className = "compo-joueur-link"; link.innerText = j.nom;
-                    link.onclick = () => placerJoueur(j.id); container.appendChild(link);
-                });
-            }
-        }
-        function selectSpot(element) { document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected')); selectedSpotElement = element; selectedSpotElement.classList.add('selected'); }
-        function placerJoueur(joueurId) {
-            if (!selectedSpotElement) return;
-            const j = effectif[joueurId];
-            const imgHolder = selectedSpotElement.querySelector('.spot-img-holder');
-            imgHolder.querySelector('img').src = "static/images/" + j.img;
-            imgHolder.classList.add('has-player');
-            selectedSpotElement.querySelector('.spot-player-name').innerText = j.nom;
-            selectedSpotElement.classList.remove('selected'); selectedSpotElement = null;
-        }
-
-        // CONTRATS LOGIQUE
-        function preparerContrats() {
-            const container = document.getElementById('liste-contrats-urgents'); container.innerHTML = "";
+        // COMPO LOGIQUE
+        let selectedSpot = null;
+        function preparerCompoInteractive() {
+            const list = document.getElementById('liste-joueurs-compo'); list.innerHTML = "";
             for (let id in effectif) {
-                const j = effectif[id];
-                if (j.fin && j.fin.includes("2026")) {
-                    const card = document.createElement('div'); card.className = "transfert-card urgent-contract";
-                    card.innerHTML = `<img src="static/images/${j.img}"><div class="transfert-info"><h3>${j.nom}</h3><p>Fin : ${j.fin}</p></div>`;
-                    card.onclick = () => afficherJoueur(id); container.appendChild(card);
-                }
+                const s = document.createElement('span'); s.className = "compo-joueur-link"; s.innerText = effectif[id].nom;
+                s.onclick = () => { if(selectedSpot) placerJoueur(id); }; list.appendChild(s);
             }
-            showSection('contrats');
+            showSection('ma-compo-view');
+        }
+        function selectSpot(el) { 
+            document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected'));
+            selectedSpot = el; selectedSpot.classList.add('selected'); 
+        }
+        function placerJoueur(id) {
+            const j = effectif[id]; const holder = selectedSpot.querySelector('.spot-img-holder');
+            holder.querySelector('img').src = "static/images/" + j.img; holder.classList.add('has-player');
+            selectedSpot.querySelector('.spot-player-name').innerText = j.nom;
+            selectedSpot.classList.remove('selected'); selectedSpot = null;
         }
 
-        // CHAT LOGIQUE COMPLÈTE
-        let currentChatTopic = "";
-        function ouvrirChat(nom) { currentChatTopic = nom; document.getElementById('chat-titre').innerText = "Chat : " + nom; loadMessages(); showSection('chat-section'); }
+        // CHAT LOGIQUE
+        let currentTopic = "";
+        function ouvrirChat(nom) { currentTopic = nom; document.getElementById('chat-titre').innerText = "Chat : " + nom; loadMessages(); showSection('chat-section'); }
         function toggleEmojiPicker() { const p = document.getElementById('emoji-picker'); p.style.display = (p.style.display === 'grid') ? 'none' : 'grid'; }
         function addEmoji(e) { document.getElementById('chat-input').value += e; toggleEmojiPicker(); }
         function envoyerMessage() {
             const i = document.getElementById('chat-input'); if(!i.value.trim()) return;
-            db.collection("messages").add({ topic: currentChatTopic, text: i.value, date: firebase.firestore.FieldValue.serverTimestamp() });
+            db.collection("messages").add({ topic: currentTopic, text: i.value, date: firebase.firestore.FieldValue.serverTimestamp() });
             i.value = "";
         }
         function loadMessages() {
-            db.collection("messages").where("topic", "==", currentChatTopic).orderBy("date", "asc").onSnapshot(snap => {
+            db.collection("messages").where("topic", "==", currentTopic).orderBy("date", "asc").onSnapshot(snap => {
                 const c = document.getElementById('chat-messages'); c.innerHTML = "";
                 snap.forEach(doc => { const m = document.createElement('div'); m.className = "msg"; m.innerText = doc.data().text; c.appendChild(m); });
                 c.scrollTop = c.scrollHeight;
             });
         }
 
-        // QUIZ LOGIQUE COMPLÈTE
-        let joueurMystere = null;
+        // QUIZ
+        let mystere = null;
         function demarrerQuiz() {
-            const cles = Object.keys(effectif); joueurMystere = effectif[cles[Math.floor(Math.random()*cles.length)]];
-            document.getElementById('quiz-clues').innerHTML = `Poste : ${joueurMystere.poste}<br>Nation : ${joueurMystere.nat}`;
+            const keys = Object.keys(effectif); mystere = effectif[keys[Math.floor(Math.random()*keys.length)]];
+            document.getElementById('quiz-clues').innerHTML = `Poste: ${mystere.poste} | Nation: ${mystere.nat}`;
             document.getElementById('quiz-img-result').style.display = "none";
-            document.getElementById('quiz-feedback').innerText = "";
-            document.getElementById('quiz-answer').value = "";
             showSection('quiz-view');
         }
         function verifierReponseQuiz() {
-            const r = document.getElementById('quiz-answer').value.toLowerCase().trim();
+            const ans = document.getElementById('quiz-answer').value.toLowerCase();
             const f = document.getElementById('quiz-feedback');
-            if(r === joueurMystere.nom.toLowerCase()) { f.innerText = "VRAI ! ✅"; f.style.color = "green"; }
-            else { f.innerText = "FAUX ❌ : " + joueurMystere.nom; f.style.color = "red"; }
-            document.getElementById('quiz-img-result').src = "static/images/" + joueurMystere.img;
+            if(ans === mystere.nom.toLowerCase()) { f.innerText = "BRAVO !"; f.style.color="green"; }
+            else { f.innerText = "NON : " + mystere.nom; f.style.color="red"; }
+            document.getElementById('quiz-img-result').src = "static/images/" + mystere.img;
             document.getElementById('quiz-img-result').style.display = "block";
+        }
+
+        function preparerContrats() {
+            const cont = document.getElementById('liste-contrats-urgents'); cont.innerHTML = "";
+            for (let id in effectif) {
+                if(effectif[id].fin === "2026") {
+                    const d = document.createElement('div'); d.className = "transfert-card urgent-contract";
+                    d.innerHTML = `<img src="static/images/${effectif[id].img}"><h3>${effectif[id].nom}</h3>`;
+                    d.onclick = () => afficherJoueur(id); cont.appendChild(d);
+                }
+            }
+            showSection('contrats');
         }
     </script>
 </body>
