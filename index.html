@@ -382,11 +382,23 @@
             <div class="fc26-card"><img src="static/images/cityfc26.jpg" class="fc26-img"></div>
         </div>
          <div id="inter" class="content-section">
-            <h2></h2>
-            <div class="inter" onclick="ouvrirChat('Rayan Ait-Nouri')">
-            <img src="static/images/21.jpg" width="150"><div class="perfs inter"><h3>Rayan Ait-Nouri 🇩🇿</h3><p>Matchs : 3</p></div>
-            <div class="inter" onclick="ouvrirChat('Gianluigi Donnarumma')">
-            <img src="static/images/25.jpg" width="150"><div class="perfs inter"><h3>Gianluigi Donnarumma 🇮🇹</h3><p>Matchs : 3</p></div>
+            <h2>Performances Internationales</h2>
+            <div class="transfert-card" onclick="ouvrirChat('Rayan Ait-Nouri')">
+                <img src="static/images/21.jpg">
+                <div class="transfert-info"><h3>Rayan Ait-Nouri 🇩🇿</h3><p>Matchs: 3 |Buts: 0 |Passes: 1</p></div>
+            <div class="transfert-card" onclick="ouvrirChat('Gianluigi Donnarumma')">
+                <img src="static/images/21.jpg">
+                <div class="transfert-info"><h3>Gianluigi Donnarumma</h3><p>Matchs: 3 |Buts: 0| Passes: 0</p></div>
+            </div>
+        </div>
+
+        <div id="joueur-solo" class="content-section">
+            <h2 id="nom-joueur"></h2>
+            <img id="photo" src="" style="width:200px; border-radius:15px;">
+            <div class="box-info">
+                <p id="s-age"></p><p id="s-nat"></p><p id="s-paye"></p><p id="s-valeur"></p>
+                <div class="bio-container" id="s-bio"></div>
+            </div>
         </div>
     </main>
 
@@ -543,4 +555,3 @@
     </script>
 </body>
 </html>
-```
