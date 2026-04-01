@@ -1,32 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚽ City Fans</title>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-
-    <style>
-        :root { --city-sky-blue: #6CABDD; --city-dark-blue: #1C2C5B; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f4f8; color: var(--city-dark-blue); padding-bottom: 50px; }
-        nav { background: var(--city-sky-blue); color: white; height: 65px; display: flex; justify-content: space-between; align-items: center; padding: 0 25px; position: sticky; top: 0; z-index: 1001; }
-        
-        .version-tag { color: white; font-size: 0.8rem; font-weight: bold; margin-right: 15px; }
-        .nav-right { display: flex; align-items: center; }
-
-        #menu { position: fixed; right: -280px; top: 0; width: 280px; height: 100%; background: #1a1a1a; color: white; transition: 0.4s; padding-top: 70px; z-index: 1000; overflow-y: auto; }
-        #menu.ouvert { right: 0; }
-        .menu-item { padding: 18px 25px; border-bottom: 1px solid #333; cursor: pointer; font-weight: bold; display: flex; align-items: center; color: white; text-decoration: none; }
-        .menu-item-icon { margin-right: 12px; font-size: 1.2rem; min-width: 25px; text-align: center; }
-        
-        .sous-menu { display: none; background: #111; padding-bottom: 10px; }
-        .show { display: block !important; }
-        .cat-titre { color: #888; font-size: 0.75rem; font-weight: bold; padding: 12px 25px 5px 35px; text-transform: uppercase; }
-        .joueur-link { color: var(--city-sky-blue); display: block; padding: 8px 45px; cursor: pointer; font-size: 0.9rem; }
-        main { text-align: center; padding: 30px 15px; max-width: 850px; margin: 0 auto; }
-        .content-section { display: none; }
-        .active { display: block !important; }
+.active { display: block !important; }
         .box-info { background: var(--city-sky-blue); padding: 30px; border-radius: 15px; margin-top: 25px; color: #000; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; text-align: left; }
         th, td { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); }
@@ -70,7 +42,7 @@
         .stat-line { font-size: 0.85rem; margin-bottom: 5px; }
         .live-badge { background: #e74c3c; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; animation: blink 1.5s infinite; vertical-align: middle; margin-left: 5px; }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-       
+        
         #fc26-view.content-section { background: #FF8C00; }
         .fc26-card { padding: 0; border-radius: 0; display: inline-block; }
         .fc26-img { width: 100%; max-width: 500px; border-radius: 20px; display: block; margin: 0 auto; }
@@ -129,7 +101,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">MANCHESTER CITY FANS</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.00.37</span>
+            <span class="version-tag">v 1.00.38</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
@@ -206,7 +178,7 @@
         <div id="matchs-view" class="content-section">
             <h2>RESULTATS</h2>
             <div class="match-card" style="border-left-color: #000000;">
-                <div class="match-header">CARABAO CUP : Finale<span class=" "</span></div>
+                <div class="match-header">CARABAO CUP : Finale<span class=" "></span></div>
                 <div class="match-main">
                     <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
                     <div class="score-center">2 - 0</div>
@@ -343,7 +315,7 @@
                     <span onclick="addEmoji('😂')">😂</span><span onclick="addEmoji('🤔')">🤔</span><span onclick="addEmoji('🤫')">🤫</span>
                     <span onclick="addEmoji('😡')">😡</span><span onclick="addEmoji('😊')">😊</span><span onclick="addEmoji('😅')">😅</span>
                     <span onclick="addEmoji('📉')">📉</span><span onclick="addEmoji('📈')">📈</span><span onclick="addEmoji('⚡')">⚡</span>
-                    <span onclick="addEmoji('🧤')">🧤</span><span onclick="addEmoji('🏹')">🏹</span><span onclick="addEmoji('🛡️')">🛡️</span
+                    <span onclick="addEmoji('🧤')">🧤</span><span onclick="addEmoji('🏹')">🏹</span><span onclick="addEmoji('🛡️')">🛡️</span>
                     <span onclick="addEmoji('🎯')">🎯</span><span onclick="addEmoji('⚔️')">⚔️</span><span onclick="addEmoji('😎')">😎</span>
                     <span onclick="addEmoji('🤩')">🤩</span><span onclick="addEmoji('😉')">😉</span><span onclick="addEmoji('🥳')">🥳</span>
                     <span onclick="addEmoji('😍')">😍</span><span onclick="addEmoji('🤪')">🤪</span><span onclick="addEmoji('🙄')">🙄</span>
@@ -381,12 +353,27 @@
             <h2></h2>
             <div class="fc26-card"><img src="static/images/cityfc26.jpg" class="fc26-img"></div>
         </div>
-         <div id="inter" class="content-section">
-            <h2></h2>
-            <div class="inter" onclick="ouvrirChat('Rayan Ait-Nouri')">
-            <img src="static/images/21.jpg" width="150"><div class="perfs inter"><h3>Rayan Ait-Nouri 🇩🇿</h3><p>Matchs : 3</p></div>
-            <div class="inter" onclick="ouvrirChat('Gianluigi Donnarumma')">
-            <img src="static/images/25.jpg" width="150"><div class="perfs inter"><h3>Gianluigi Donnarumma 🇮🇹</h3><p>Matchs : 3</p></div>
+
+        <div id="inter" class="content-section">
+            <h2>Performances Internationales</h2>
+            <div class="transfert-card" onclick="ouvrirChat('Rayan Ait-Nouri')">
+                <img src="static/images/21.jpg">
+                <div class="transfert-info">
+                    <h3>Rayan Ait-Nouri 🇩🇿</h3>
+                    <p>Matchs : 3</p>
+                    <p>Buts : 0</p>
+                    <p class="transfert-date">Passes décisives : 1</p>
+                </div>
+            </div>
+            <div class="transfert-card" onclick="ouvrirChat('Gianluigi Donnarumma')">
+                <img src="static/images/25.jpg">
+                <div class="transfert-info">
+                    <h3>Gianluigi Donnarumma 🇮🇹</h3>
+                    <p>Matchs : 3</p>
+                    <p>Buts : 0</p>
+                    <p class="transfert-date">Passes décisives : 0</p>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -543,4 +530,3 @@
     </script>
 </body>
 </html>
-```
