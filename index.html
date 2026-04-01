@@ -176,6 +176,7 @@
             <li class="menu-item" onclick="showSection('transferts')"><span class="menu-item-icon">📝</span>Actus Mercato</li>
             <li class="menu-item" onclick="preparerContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
+            <li class="menu-item" onclick="showSection('inter')"><span class="menu-item-icon">🌍</span>International</li>
             <li class="menu-item" onclick="showSection('fc26-view')"><span class="menu-item-icon">🎮</span>FC26</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
         </ul>
@@ -205,7 +206,7 @@
         <div id="matchs-view" class="content-section">
             <h2>RESULTATS</h2>
             <div class="match-card" style="border-left-color: #000000;">
-                <div class="match-header">CARABAO CUP : Finale<span class="live-badge"</span></div>
+                <div class="match-header">CARABAO CUP : Finale<span class=" "</span></div>
                 <div class="match-main">
                     <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
                     <div class="score-center">2 - 0</div>
@@ -380,6 +381,12 @@
             <h2></h2>
             <div class="fc26-card"><img src="static/images/cityfc26.jpg" class="fc26-img"></div>
         </div>
+         <div id="inter" class="content-section">
+            <h2></h2>
+            <div class="Performances à l'international"><img src="static/images/inter.jpg" class="inter-img"></div>
+            <div class="inter" onclick="ouvrirChat('Rayan Ait-Nouri')">
+            <img src="static/images/21.jpg"><div class="perfs inter"><h3>Rayan Ait-Nouri 🇩🇿</h3><p>Matchs: 3</p></div>
+        </div>
     </main>
 
     <script>
@@ -405,12 +412,12 @@
             'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", img: "68.jpg", bio: "Espoir en défense centrale." },
             'silva': { nom: "Bernardo Silva", poste: "Milieu", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", img: "20.jpg", bio: "Génie portugais." },
             'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "Roc croate." },
-            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "N/A", valeur: "65M €", img: "15.jpg", bio: "Nouvelle recrue solide." },
+            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "30/06/2031", valeur: "65M €", img: "15.jpg", bio: "Nouvelle recrue solide." },
             'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Gardien prometteur." },
             'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Puissance offensive brute." },
             'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Magicien français." },
             'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Attaquant égyptien polyvalent." },
-            'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "N/A", valeur: "15M €", img: "41.jpg", bio: "Futur maître du milieu." },
+            'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "30/06/2030", valeur: "15M €", img: "41.jpg", bio: "Futur maître du milieu." },
             'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Vitesse pure." },
             'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Expérience croate." },
             'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant." },
