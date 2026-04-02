@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚽ City Fans</title>
+    <title>🩵 City Fans</title>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
@@ -127,7 +127,7 @@
 <body>
 
     <nav>
-        <h1 onclick="showSection('accueil')">MANCHESTER CITY FANS</h1>
+        <h1 onclick="showSection('accueil')">🩵 CITY FANS 🩵</h1>
         <div class="nav-right">
             <span class="version-tag">v 1.00.37</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
@@ -138,7 +138,7 @@
         <ul>
             <li class="menu-item" onclick="showSection('accueil')"><span class="menu-item-icon">🏠</span>Accueil</li>
             <li class="menu-item" onclick="showSection('matchs-view')"><span class="menu-item-icon">📅</span>Matchs</li>
-            <li class="menu-item" onclick="toggleSubMenu('sub-effectif')"><span class="menu-item-icon">⚽</span>Effectif ▾</li>
+            <li class="menu-item" onclick="toggleSubMenu('sub-effectif')"><span class="menu-item-icon">🩵</span>Effectif ▾</li>
             <div id="sub-effectif" class="sous-menu">
                 <div class="cat-titre">🧤 Gardiens</div>
                 <span class="joueur-link" onclick="afficherJoueur('donnaruma')">Gianluigi Donnarumma</span>
@@ -176,7 +176,6 @@
             <li class="menu-item" onclick="showSection('transferts')"><span class="menu-item-icon">📝</span>Actus Mercato</li>
             <li class="menu-item" onclick="preparerContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
-            <li class="menu-item" onclick="showSection('inter')"><span class="menu-item-icon">🌍</span>International</li>
             <li class="menu-item" onclick="showSection('fc26-view')"><span class="menu-item-icon">🎮</span>FC26</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
         </ul>
@@ -381,34 +380,6 @@
             <h2></h2>
             <div class="fc26-card"><img src="static/images/cityfc26.jpg" class="fc26-img"></div>
         </div>
-         <div id="inter" class="content-section">
-            <h2>Performances Internationales</h2>
-            <div class="transfert-card" onclick="ouvrirChat('Rayan Ait-Nouri')">
-                <img src="static/images/21.jpg">
-                <div class="transfert-info">
-                    <h3>Rayan Ait-Nouri 🇩🇿</h3>
-                    <p>Matchs : 3 | Buts : 0</p>
-                    <p class="transfert-date">Passes décisives : 1</p>
-                </div>
-            </div>
-            <div class="transfert-card" onclick="ouvrirChat('Gianluigi Donnarumma')">
-                <img src="static/images/25.jpg">
-                <div class="transfert-info">
-                    <h3>Gianluigi Donnarumma 🇮🇹</h3>
-                    <p>Matchs : 3 | Buts : 0</p>
-                    <p class="transfert-date">Passes décisives : 0</p>
-                </div>
-            </div>
-            <div class="transfert-card" onclick="ouvrirChat('Rayan Cherki')">
-                <img src="static/images/10.jpg">
-                <div class="transfert-info">
-                    <h3>Rayan Cherki 🇫🇷</h3>
-                    <p>Matchs : 1 | Buts : 0</p>
-                    <p class="transfert-date">Passes décisives : 0</p>
-                </div>
-            </div>
-        </div>
-
         <div id="joueur-solo" class="content-section">
             <h2 id="nom-joueur"></h2>
             <img id="photo" src="" style="width:200px; border-radius:15px;">
