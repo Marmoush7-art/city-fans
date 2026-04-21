@@ -340,12 +340,23 @@
 
         <div id="transferts" class="content-section">
             <h2>Dernières Rumeurs</h2>
-            <div class="transfert-card" onclick="ouvrirChat('John Stones')">
+            <div class="transfert-card" onclick="afficherRumeur('stones_rumor')">
                 <img src="static/images/5.jpg"><div class="transfert-info"><h3>John Stones</h3><p>Départ vers Wrexham ?</p></div>
             </div>
-            <div class="transfert-card" onclick="ouvrirChat('Sean Steur')">
+            <div class="transfert-card" onclick="afficherRumeur('steur_rumor')">
                 <img src="static/images/sean.jpg"><div class="transfert-info"><h3>Sean Steur</h3><p>La pépite de l'Ajax ciblée (6M€)</p></div>
             </div>
+        </div>
+
+        <div id="rumeur-detail" class="content-section">
+            <button onclick="showSection('transferts')" style="margin-bottom:20px;">⬅ Retour</button>
+            <h2 id="rumor-name"></h2>
+            <img id="rumor-photo" src="">
+            <div class="box-info">
+                <div class="bio-container" id="rumor-data">
+                    </div>
+            </div>
+            <button id="btn-chat-rumor" style="margin-top:20px; background:var(--city-dark-blue); color:white; padding:10px 20px; border-radius:10px; border:none; cursor:pointer;">Ouvrir le Chat d'Avis</button>
         </div>
 
         <div id="contrats" class="content-section">
@@ -449,6 +460,11 @@
             'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Technique espagnole." }
         };
 
+        const rumeurs = {
+            'stones_rumor': { nom: "John Stones", img: "5.jpg", detail: "Les rumeurs d'un départ vers Wrexham s'intensifient. Le joueur souhaiterait un nouveau défi après tout avoir gagné à City." },
+            'steur_rumor': { nom: "Sean Steur", img: "sean.jpg", detail: "La pépite de l'Ajax est suivie de près. Un profil technique qui plait énormément à la direction pour l'avenir du milieu." }
+        };
+
         function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
         function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
         function showSection(id) {
@@ -480,6 +496,16 @@
             document.getElementById('s-bio').innerText = j.bio;
             document.getElementById('photo').src = "static/images/" + j.img;
             showSection('joueur-solo');
+
+        }
+
+        function afficherRumeur(id) {
+            const r = rumeurs[id]; if(!r) return;
+            document.getElementById('rumor-name').innerText = r.nom;
+            document.getElementById('rumor-photo').src = "static/images/" + r.img;
+            document.getElementById('rumor-data').innerHTML = `<strong>Détails du transfert :</strong><br><br>${r.detail}`;
+            document.getElementById('btn-chat-rumor').onclick = () => ouvrirChat(r.nom);
+            showSection('rumeur-detail');
         }
 
         let selectedSpotElement = null;
