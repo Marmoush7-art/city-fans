@@ -503,7 +503,7 @@
             const r = rumeurs[id]; if(!r) return;
             document.getElementById('rumor-name').innerText = r.nom;
             document.getElementById('rumor-photo').src = "static/images/" + r.img;
-            document.getElementById('rumor-data').innerHTML = `<strong>Détails du transfert :</strong><br><br>${r.detail}`;
+            document.getElementById('rumor-data').innerHTML = `<strong>Détails de la rumeur :</strong><br><br>${r.detail}`;
             document.getElementById('btn-chat-rumor').onclick = () => ouvrirChat(r.nom);
             showSection('rumeur-detail');
         }
