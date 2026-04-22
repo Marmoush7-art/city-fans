@@ -197,6 +197,7 @@
             <li class="menu-item" onclick="showSection('mercato-recap')"><span class="menu-item-icon">🔄</span>Mercato</li>
             <li class="menu-item" onclick="showSection('transferts')"><span class="menu-item-icon">📝</span>Actus Mercato</li>
             <li class="menu-item" onclick="preparerContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
+            <li class="menu-item" onclick="preparerClassement()"><span class="menu-item-icon">🗂️</span>Classement</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
             <li class="menu-item" onclick="showSection('fc26-view')"><span class="menu-item-icon">🎮</span>FC26</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
@@ -614,6 +615,15 @@
                 } 
             } 
             showSection('contrats'); 
+        }
+
+        function preparerClassement() { 
+        const rumeurs = {
+    ' _rumor': { 
+        img: "classement.jpg", 
+                    } 
+                } 
+            }  
         }
 
         let currentChatTopic = ""; 
