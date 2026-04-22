@@ -617,15 +617,6 @@
             showSection('contrats'); 
         }
 
-        function preparerClassement() { 
-        const rumeurs = {
-    ' _rumor': { 
-        img: "classement.jpg", 
-                    } 
-                } 
-            }  
-        }
-
         let currentChatTopic = ""; 
         function ouvrirChat(nom) { currentChatTopic = nom; document.getElementById('chat-titre').innerText = "Avis : " + nom; loadMessages(); showSection('chat-section'); } 
         function toggleEmojiPicker() { const picker = document.getElementById('emoji-picker'); picker.style.display = (picker.style.display === 'grid') ? 'none' : 'grid'; } 
