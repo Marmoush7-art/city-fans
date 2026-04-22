@@ -156,32 +156,6 @@
         </div>
     </nav>
 
-    <nav id="menu">
-    <ul class="menu-list">
-        <li class="menu-item" onclick="showSection('accueil')"><span class="menu-item-icon">🏠</span>Accueil</li>
-        
-        <li class="menu-item" onclick="toggleSubMenu('sub-effectif')"><span class="menu-item-icon">👥</span>Effectif</li>
-        <div id="sub-effectif" class="sous-menu">
-            <li class="menu-sub-item" onclick="showSection('gardien')">Gardiens</li>
-            <li class="menu-sub-item" onclick="showSection('defenseur')">Défenseurs</li>
-            <li class="menu-sub-item" onclick="showSection('milieu')">Milieux</li>
-            <li class="menu-sub-item" onclick="showSection('attaquant')">Attaquants</li>
-        </div>
-
-        <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
-
-        <li class="menu-item" onclick="toggleSubMenu('sub-competitions')"><span class="menu-item-icon">🏆</span>Compétitions</li>
-        <div id="sub-competitions" class="sous-menu">
-            <li class="menu-sub-item" onclick="showSection('prochain-match')">⚽ Prochain Match</li>
-            <li class="menu-sub-item" onclick="showSection('classement-view')">📊 Classement</li>
-        </div>
-
-        <li class="menu-item" onclick="showSection('rumeurs-view')"><span class="menu-item-icon">🗞️</span>Rumeurs</li>
-        <li class="menu-item" onclick="preparerContrats()"><span class="menu-item-icon">📜</span>Contrats</li>
-        <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🎮</span>Quiz</li>
-    </ul>
-</nav>
-    
     <div id="menu">
         <ul>
             <li class="menu-item" onclick="showSection('accueil')"><span class="menu-item-icon">🏠</span>Accueil</li>
@@ -224,13 +198,6 @@
             <li class="menu-item" onclick="showSection('transferts')"><span class="menu-item-icon">📝</span>Actus Mercato</li>
             <li class="menu-item" onclick="preparerContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
-
-            <li class="menu-item" onclick="toggleSubMenu('sub-competitions')"><span class="menu-item-icon">🏆</span>Compétitions</li>
-        <div id="sub-competitions" class="sous-menu">
-            <li class="menu-sub-item" onclick="showSection('prochain-match')">⚽ Prochain Match</li>
-            <li class="menu-sub-item" onclick="showSection('classement-view')">📊 Classement</li>
-        </div>
-            
             <li class="menu-item" onclick="showSection('fc26-view')"><span class="menu-item-icon">🎮</span>FC26</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
         </ul>
@@ -460,6 +427,7 @@
                     <span onclick="addEmoji('🇺🇿')">🇺🇿</span><span onclick="addEmoji('🇧🇪')">🇧🇪</span><span onclick="addEmoji('🇪🇬')">🇪🇬</span>
                     <span onclick="addEmoji('🇳🇴')">🇳🇴</span><span onclick="addEmoji('🇳🇱')">🇳🇱</span><span onclick="addEmoji('🇪🇸')">🇪🇸</span>
                     <span onclick="addEmoji('🇮🇹')">🇮🇹</span><span onclick="addEmoji('🇩🇿')">🇩🇿</span><span onclick="addEmoji('🇧🇷')">🇧🇷</span>
+                </div>
                 <div class="chat-area">
                     <button class="emoji-toggle" onclick="toggleEmojiPicker()">🙂</button>
                     <input type="text" id="chat-input" placeholder="Pseudo: message">
@@ -472,7 +440,6 @@
             <h2></h2>
             <div class="fc26-card"><img src="static/images/cityfc26.jpg" class="fc26-img"></div>
         </div>
-
         <div id="joueur-solo" class="content-section">
             <h2 id="nom-joueur"></h2>
             <img id="photo" src="" style="width:200px; border-radius:15px;">
@@ -481,78 +448,6 @@
                 <div class="bio-container" id="s-bio"></div>
             </div>
         </div>
-
-        <div id="prochain-match" class="content-section">
-            <h2>⚽ PROCHAIN MATCH</h2>
-            <div class="match-card" style="border-left: 8px solid var(--city-sky-blue); text-align: center;">
-                <div class="match-header">PREMIER LEAGUE - J34</div>
-                <div class="match-main" style="display: flex; justify-content: space-around; align-items: center; padding: 20px;">
-                    <div class="team">
-                        <img src="static/images/mancity.jpg" width="60">
-                        <p>Man City</p>
-                    </div>
-                    <div class="score-center" style="font-size: 24px; font-weight: bold;">VS</div>
-                    <div class="team">
-                        <img src="static/images/arsenal.jpg" width="60">
-                        <p>Arsenal</p>
-                    </div>
-                </div>
-                <div class="box-info" style="margin-top: 10px; background: rgba(255,255,255,0.5);">
-                    <p>📅 <strong>Dimanche 26 Avril 2026</strong></p>
-                    <p>⏰ <strong>17:30</strong></p>
-                    <p>🏟️ <strong>Etihad Stadium</strong></p>
-                </div>
-            </div>
-        </div>
-
-        <div id="classement-view" class="content-section">
-            <h2>📊 CLASSEMENT PREMIER LEAGUE</h2>
-            <div style="overflow-x: auto;">
-                <table class="classement-table">
-                    <thead>
-                        <tr>
-                            <th>Pos</th>
-                            <th>Club</th>
-                            <th>Pts</th>
-                            <th>J</th>
-                            <th>BM</th>
-                            <th>BE</th>
-                            <th>Diff</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="background: rgba(108, 171, 221, 0.2); font-weight: bold;">
-                            <td>1</td>
-                            <td>Man City</td>
-                            <td>78</td>
-                            <td>33</td>
-                            <td>82</td>
-                            <td>25</td>
-                            <td>+57</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Arsenal</td>
-                            <td>75</td>
-                            <td>33</td>
-                            <td>74</td>
-                            <td>28</td>
-                            <td>+46</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Liverpool</td>
-                            <td>72</td>
-                            <td>33</td>
-                            <td>70</td>
-                            <td>30</td>
-                            <td>+40</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
     </main>
 
     <script>
@@ -615,7 +510,7 @@
     'maza_rumor': { 
         nom: "Ibrahim Maza", 
         img: "maza.jpg", 
-        detail: "<style>#rumor-photo { width: 300px !important; height: auto; }</style>Le jeune milieu offensif du Bayer 04 Leverkusen serait dans le viseur de l'Etihad pour le prochain mercato. Transfermarkt l'estime à 40 M d'euros" 
+        detail: "LE jeune milieu offensif du Bayer 04 Leverkusen serait dans le viseur de l'Etihad pour le prochain mercato. Transfermarkt l'estime à 40 M d'euros" 
     },
     'anderson_rumor': { 
         nom: "Elliot Anderson", 
