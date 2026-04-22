@@ -10,8 +10,20 @@
     <style>
         :root { --city-sky-blue: #6CABDD; --city-dark-blue: #1C2C5B; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f4f8; color: var(--city-dark-blue); padding-bottom: 50px; }
-        nav { background: var(--city-sky-blue); color: white; height: 65px; display: flex; justify-content: space-between; align-items: center; padding: 0 25px; position: sticky; top: 0; z-index: 1001; }
         
+        /* Écran de verrouillage */
+        #lock-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: var(--city-dark-blue); z-index: 9999; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: white; text-align: center;
+        }
+        .lock-box { background: white; padding: 40px; border-radius: 20px; color: var(--city-dark-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .lock-box input { padding: 12px; border-radius: 10px; border: 2px solid #ccc; width: 200px; font-size: 1rem; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto; }
+        .lock-box button { background: var(--city-sky-blue); color: white; border: none; padding: 12px 30px; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 1rem; }
+        #lock-error { color: #e74c3c; margin-top: 10px; font-weight: bold; font-size: 0.9rem; }
+        
+        nav { background: var(--city-sky-blue); color: white; height: 65px; display: flex; justify-content: space-between; align-items: center; padding: 0 25px; position: sticky; top: 0; z-index: 1001; }
         .version-tag { color: white; font-size: 0.8rem; font-weight: bold; margin-right: 15px; }
         .nav-right { display: flex; align-items: center; }
 
@@ -125,6 +137,16 @@
     </style>
 </head>
 <body>
+    
+    <div id="lock-screen">
+        <div class="lock-box">
+            <h2 style="margin-top:0;">Accès Réservé 🩵</h2>
+            <p>Entrez le mot de passe pour accéder au site :</p>
+            <input type="password" id="site-password" placeholder="Mot de passe">
+            <button onclick="checkPassword()">VALIDER</button>
+            <div id="lock-error"></div>
+        </div>
+    </div>
 
     <nav>
         <h1 onclick="showSection('accueil')">🩵 CITY FANS 🩵</h1>
@@ -429,6 +451,22 @@
         const firebaseConfig = { apiKey: "CLE", authDomain: "DOM", projectId: "ID", storageBucket: "BUCKET", messagingSenderId: "ID", appId: "APP" };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+        
+        // Fonction de vérification du mot de passe
+        function checkPassword() {
+            const input = document.getElementById('site-password').value;
+            const error = document.getElementById('lock-error');
+            if (input === "Raquette") {
+                document.getElementById('lock-screen').style.display = 'none';
+            } else {
+                error.innerText = "Mot de passe incorrect ❌";
+            }
+        }
+
+        // Permettre la touche Entrée pour le mot de passe
+        document.getElementById('site-password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkPassword();
+        });
 
         const effectif = {
             'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif norvégien." },
