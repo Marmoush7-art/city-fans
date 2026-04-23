@@ -506,6 +506,16 @@
             if (e.key === 'Enter') checkPassword();
         });
 
+        // --- AJOUT v1.00.42 : Touche Entrée pour le Quiz ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizInput = document.getElementById('quiz-answer');
+            if(quizInput) {
+                quizInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') verifierReponseQuiz();
+                });
+            }
+        });
+
         const effectif = {
             'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif norvégien." },
             'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Ballon d'Or 2024. Le métronome." },
