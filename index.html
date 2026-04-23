@@ -8,16 +8,16 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
     <style>
-        :root { --city-sky-blue: #6CABDD; --city-dark-blue: #1C2C5B; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f4f8; color: var(--city-dark-blue); padding-bottom: 50px; }
+        :root { --city-sky-blue: #6CABDD; --city-black: #000000; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f4f8; color: var(--city-black); padding-bottom: 50px; }
         
         #lock-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: var(--city-dark-blue); z-index: 9999; 
+            background: var(--city-black); z-index: 9999; 
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             color: white; text-align: center;
         }
-        .lock-box { background: white; padding: 40px; border-radius: 20px; color: var(--city-dark-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .lock-box { background: white; padding: 40px; border-radius: 20px; color: var(--city-black); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .lock-box input { padding: 12px; border-radius: 10px; border: 2px solid #ccc; width: 200px; font-size: 1rem; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto; }
         .lock-box button { background: var(--city-sky-blue); color: white; border: none; padding: 12px 30px; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 1rem; }
         #lock-error { color: #e74c3c; margin-top: 10px; font-weight: bold; font-size: 0.9rem; }
