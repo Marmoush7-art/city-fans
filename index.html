@@ -400,6 +400,9 @@
             <div class="transfert-card" onclick="afficherRumeur('conceicao_rumor')">
                 <img src="static/images/conceicao.jpg"><div class="transfert-info"><h3>Eduardo Conceicao</h3><p>La pépite de Palmeiras ciblée (100M€)</p></div>
             </div>
+            <div class="transfert-card" onclick="afficherRumeur('maza_rumor')">
+                <img src="static/images/maza.jpg"><div class="transfert-info"><h3>Ibrahim Maza</h3><p>Le Bayer 04 prêt à lacher son jeune talent ?</p></div>
+            </div>
             <div class="transfert-card" onclick="afficherRumeur('anderson_rumor')">
                 <img src="static/images/anderson.jpg"><div class="transfert-info"><h3>Elliot Anderson <span style="float: right; color: #2ecc71;">68%</span></h3><p>Le milieu anglais pour remplacer Silva ?</p></div>
             </div>
@@ -499,7 +502,7 @@
         function checkPassword() {
             const input = document.getElementById('site-password').value;
             const error = document.getElementById('lock-error');
-            if (input === "Ficelle") {
+            if (input === "Rider77") {
                 document.getElementById('lock-screen').style.display = 'none';
             } else {
                 error.innerText = "Mot de passe incorrect ❌";
@@ -555,12 +558,12 @@
     'anderson_rumor': { 
         nom: "Elliot Anderson", 
         img: "anderson.jpg",
-        detail: "<style>#rumor-photo { width: 450px !important; height: auto; }</style>Le jeune milieu anglais de Nottingham Forest pourrait rejoindre l'Etihad dès cet été. D'autres gros clubs à l'image de Man Utd seraient sur le coup mais le joueur a clairement exprimé des préférences en faveur de Man City. Les négociations sont en cours, affaire à suivre..." 
+        detail: "<style>#rumor-photo { width: 450px !important; height: auto; }</style>Le jeune milieu anglais de Nottingham Forest pourrait rejoindre l'Etihad dès cet été. Il avait déjà était question de son transfert à l'Etihad au dernier mercato sans cependant d'offre de la part du club. Man Utd serait aussi sur le coup mais heureusement moins intéressé."
     },
     'conceicao_rumor': { 
         nom: "Eduardo Conceicao", 
         img: "conceicao.jpg", 
-        detail: "La pépite de Palmeiras est suivie de près. Un profil technique qui plait énormément à la direction pour l'avenir au poste d'ailier gauche." 
+        detail: "La pépite de Palmeiras est suivie de près. Un profil technique qui plait énormément à la direction pour l'avenir au poste d'ailier gauche polyvalent à l'aile droite et l'attaque notamment. D'autres gros clubs à l'image du PSG, FC Barcelone,de Liverpool, Newcastle Utd, Arsenal, Chelsea ou même Manchester United seraient sur le coup. Le club anglais a même formulé une offre et rassemble actuellement les fonds nécéssaires mais le joueur a clairement exprimé des préférences en faveur du FC Barcelone puis de Manchester City. Cependant, tout le monde sait que le FC Barcelone manque cruellement de fonds et qu'il n'a pas encore remboursé l'ensemble de ses prêts à des clubs tels que Man City. Les négociations sont donc en cours entre les grands d'Europe et Palmeiras, affaire à suivre..." 
     }
 };
 
