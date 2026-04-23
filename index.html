@@ -82,6 +82,17 @@
         .stat-line { font-size: 0.85rem; margin-bottom: 5px; }
         .live-badge { background: #e74c3c; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; animation: blink 1.5s infinite; vertical-align: middle; margin-left: 5px; }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+        #classement-view .classement-img {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
        
         #fc26-view.content-section { background: #FF8C00; }
         .fc26-card { padding: 0; border-radius: 0; display: inline-block; }
@@ -243,7 +254,6 @@
             </div>
             <div class="side-details">
                 <h4>Burnley</h4>
-                <div class="stat-line">⚽ <strong></strong></div>
             </div>
         </div>
     </div>
@@ -415,6 +425,13 @@
             <h2>📄 État des Contrats</h2>
             <div id="liste-contrats-urgents"></div>
         </div>
+
+        <div id="classement-view" class="content-section">
+            <h2>Classement</h2>
+            <div class="fc26-card">
+            <img src="static/images/classement.jpg" class="classement-img">
+        </div>
+    </div>
 
         <div id="chat-section" class="content-section">
             <button onclick="showSection('transferts')" style="margin-bottom:25px;">⬅ Retour</button>
