@@ -116,17 +116,20 @@
         .spot-player-name { font-size: 0.7rem; color: var(--city-dark-blue); font-weight: bold; background: rgba(255,255,255,0.8); padding: 2px 4px; border-radius: 4px; width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; }
         .spot-img-holder.has-player + .spot-player-name { display: block; }
 
-        #spot-att-bu { top: 5%; left: 44%; }
-        #spot-att-ag { top: 12%; left: 15%; }
-        #spot-att-ad { top: 12%; left: 73%; }
-        #spot-mil-moc { top: 32%; left: 44%; }
-        #spot-mil-mc1 { top: 48%; left: 25%; }
-        #spot-mil-mc2 { top: 48%; left: 63%; }
-        #spot-def-dg { top: 70%; left: 5%; }
-        #spot-def-dc1 { top: 75%; left: 33%; }
-        #spot-def-dc2 { top: 75%; left: 55%; }
-        #spot-def-dd { top: 70%; left: 83%; }
-        #spot-gk-1 { bottom: 3%; left: 44%; }
+        <div class="player-spot" id="spot-mil-mdc1" onclick="selectSpot(this)">
+            <div class="spot-img-holder"><img src=""><span class="spot-label">MDC</span></div>
+            <div class="spot-player-name"></div>
+        </div>
+
+        <div class="player-spot" id="spot-mil-mdc2" onclick="selectSpot(this)">
+            <div class="spot-img-holder"><img src=""><span class="spot-label">MDC</span></div>
+            <div class="spot-player-name"></div>
+        </div>
+
+        <div class="player-spot" id="spot-mil-moc" onclick="selectSpot(this)">
+            <div class="spot-img-holder"><img src=""><span class="spot-label">MOC</span></div>
+            <div class="spot-player-name"></div>
+        </div>
 
         .compo-squad-list { width: 100%; max-width: 600px; margin: 25px auto 0; text-align: left; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .compo-cat-titre { color: var(--city-sky-blue); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin: 15px 0 8px; }
@@ -302,57 +305,71 @@
 
         <div id="ma-compo-view" class="content-section">
             <h2>Ma Compo 📋</h2>
-            <p style="font-size: 0.9rem; margin-bottom: 15px; color: #666;">Configuration 4-3-3 Offensif</p>
+            <p style="font-size: 0.9rem; margin-bottom: 15px; color: #666;">Configuration 4-2-3-1</p>
             
-            <div class="compo-field">
-                <div class="field-line field-center-line"></div>
-                <div class="field-center-circle"></div>
-                
-                <div class="player-spot" id="spot-att-bu" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">BU</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-att-ag" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">AG</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-att-ad" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">AD</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-mil-moc" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">MOC</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-mil-mc1" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">MC</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-mil-mc2" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">MC</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-def-dg" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DG</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-def-dc1" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DC</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-def-dc2" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DC</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-def-dd" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">DD</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-                <div class="player-spot" id="spot-gk-1" onclick="selectSpot(this)">
-                    <div class="spot-img-holder"><img src="" alt=""><span class="spot-label">G</span></div>
-                    <div class="spot-player-name"></div>
-                </div>
-            </div>
+<div class="compo-field">
+
+    <!-- Ligne défense -->
+    <div class="player-spot" id="spot-def-dd" style="top: 80%; left: 85%;" onclick="selectSpot(this)">
+        <div class="spot-img-holder"><img><span class="spot-label">DD</span></div>
+        <div class="spot-player-name"></div>
+    </div>
+
+    <div class="player-spot" id="spot-def-dc1" style="top: 78%; left: 55%;" onclick="selectSpot(this)">
+        <div class="spot-img-holder"><img><span class="spot-label">DC</span></div>
+        <div class="spot-player-name"></div>
+    </div>
+
+    <div class="player-spot" id="spot-def-dc2" style="top: 78%; left: 35%;" onclick="selectSpot(this)">
+        <div class="spot-img-holder"><img><span class="spot-label">DC</span></div>
+        <div class="spot-player-name"></div>
+    </div>
+
+    <div class="player-spot" id="spot-def-dg" style="top: 80%; left: 10%;" onclick="selectSpot(this)">
+        <div class="spot-img-holder"><img><span class="spot-label">DG</span></div>
+        <div class="spot-player-name"></div>
+    </div>
+
+    <!-- 2 milieux défensifs -->
+    <div class="player-spot" id="spot-mil-mc1" style="top: 60%; left: 40%;" onclick="selectSpot(this)">
+        <div class="spot-img-holder"><img><span class="spot-label">MC</span></div>
+        <div class="spot-player-name"></div>
+    </div>
+
+    <div class="player-spot" id="spot-mil-mc2" style="top: 60%; left: 60%;" onclick="selectSpot(this)">
+        <div class="spot-img-holder"><img><span class="spot-label">MC</span></div>
+        <div class="spot-player-name"></div>
+    </div>
+
+    <!-- 3 offensifs -->
+    <div class="player-spot" id="spot-att-ag" style="top: 40%; left: 15%;" onclick="selectSpot(this)">
+        <div class="spot-img-holder"><img><span class="spot-label">AG</span></div>
+        <div class="spot-player-name"></div>
+    </div>
+
+    <div class="player-spot" id="spot-mil-moc" style="top: 35%; left: 50%;" onclick="selectSpot(this)">
+        <div class="spot-img-holder"><img><span class="spot-label">MOC</span></div>
+        <div class="spot-player-name"></div>
+    </div>
+
+    <div class="player-spot" id="spot-att-ad" style="top: 40%; left: 85%;" onclick="selectSpot(this)">
+        <div class="spot-img-holder"><img><span class="spot-label">AD</span></div>
+        <div class="spot-player-name"></div>
+    </div>
+
+    <!-- BU -->
+    <div class="player-spot" id="spot-att-bu" style="top: 15%; left: 50%;" onclick="selectSpot(this)">
+        <div class="spot-img-holder"><img><span class="spot-label">BU</span></div>
+        <div class="spot-player-name"></div>
+    </div>
+
+    <!-- Gardien -->
+    <div class="player-spot" id="spot-gk-1" style="top: 90%; left: 50%;" onclick="selectSpot(this)">
+        <div class="spot-img-holder"><img><span class="spot-label">G</span></div>
+        <div class="spot-player-name"></div>
+    </div>
+
+</div>
 
             <div class="compo-squad-list">
                 <h3>Choisir un joueur ⚽</h3>
