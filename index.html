@@ -73,7 +73,7 @@
         .team { flex: 1; text-align: center; }
         .team img { width: 50px; height: 50px; object-fit: contain; }
         .team p { margin: 8px 0 0; font-weight: bold; font-size: 0.9rem; }
-        .score-center { flex: 1; font-size: 2.2rem; font-weight: 800; color: var(--city-dark-blue); }
+        .score-center { flex: 1; font-size: 2.2rem; font-weight: 800; color: var(--city-black); }
         .match-details { margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .side-details h4 { font-size: 0.75rem; margin: 0 0 8px 0; color: var(--city-sky-blue); text-transform: uppercase; }
         .stat-line { font-size: 0.85rem; margin-bottom: 5px; }
@@ -97,7 +97,7 @@
         
         .urgent-contract { border-left: 8px solid #e74c3c !important; }
 
-        .compo-field { width: 100%; max-width: 600px; height: 550px; background-color: var(--city-sky-blue); border-radius: 20px; border: 6px solid var(--city-dark-blue); margin: 0 auto; padding: 10px; box-sizing: border-box; position: relative; overflow: hidden; }
+        .compo-field { width: 100%; max-width: 600px; height: 550px; background-color: var(--city-sky-blue); border-radius: 20px; border: 6px solid var(--city-black); margin: 0 auto; padding: 10px; box-sizing: border-box; position: relative; overflow: hidden; }
         .field-line { position: absolute; background: rgba(255,255,255,0.5); }
         .field-center-line { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
         .field-center-circle { top: 50%; left: 50%; width: 110px; height: 110px; border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; transform: translate(-50%, -50%); }
@@ -106,14 +106,14 @@
         .player-spot:hover { transform: scale(1.1); }
         .player-spot.selected { border: 3px solid #e74c3c; border-radius: 10px; box-shadow: 0 0 15px rgba(231, 76, 60, 0.7); }
 
-        .spot-img-holder { width: 60px; height: 60px; background: rgba(255,255,255,0.2); border: 2px dashed var(--city-dark-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 5px; }
+        .spot-img-holder { width: 60px; height: 60px; background: rgba(255,255,255,0.2); border: 2px dashed var(--city-black); border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 5px; }
         .spot-img-holder img { width: 100%; height: 100%; object-fit: cover; display: none; }
-        .spot-img-holder.has-player { border: 3px solid var(--city-dark-blue); background: white; }
+        .spot-img-holder.has-player { border: 3px solid var(--city-black); background: white; }
         .spot-img-holder.has-player img { display: block; }
         .spot-img-holder.has-player .spot-label { display: none; }
 
         .spot-label { font-size: 0.8rem; color: white; font-weight: bold; text-transform: uppercase; }
-        .spot-player-name { font-size: 0.7rem; color: var(--city-dark-blue); font-weight: bold; background: rgba(255,255,255,0.8); padding: 2px 4px; border-radius: 4px; width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; }
+        .spot-player-name { font-size: 0.7rem; color: var(--city-black); font-weight: bold; background: rgba(255,255,255,0.8); padding: 2px 4px; border-radius: 4px; width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; }
         .spot-img-holder.has-player + .spot-player-name { display: block; }
 
         <div class="player-spot" id="spot-mil-mdc1" onclick="selectSpot(this)">
@@ -133,7 +133,7 @@
 
         .compo-squad-list { width: 100%; max-width: 600px; margin: 25px auto 0; text-align: left; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .compo-cat-titre { color: var(--city-sky-blue); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin: 15px 0 8px; }
-        .compo-joueur-link { display: inline-block; padding: 6px 12px; margin: 3px; background: #eef6fc; color: var(--city-dark-blue); border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
+        .compo-joueur-link { display: inline-block; padding: 6px 12px; margin: 3px; background: #eef6fc; color: var(--city-black); border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
         .compo-joueur-link:hover { background: var(--city-sky-blue); color: white; }
 
         /* Styles Quiz */
@@ -144,7 +144,7 @@
         .quiz-img { max-width: 220px; border-radius: 15px; margin: 15px auto; display: none; border: 5px solid var(--city-sky-blue); }
         .quiz-input-area { margin-top: 20px; display: flex; gap: 10px; justify-content: center; }
         .quiz-input-area input { padding: 12px; border-radius: 10px; border: 2px solid #ccc; width: 60%; font-size: 1rem; }
-        .quiz-input-area button { background: var(--city-dark-blue); color: white; border: none; padding: 10px 25px; border-radius: 10px; cursor: pointer; font-weight: bold; }
+        .quiz-input-area button { background: var(--city-black); color: white; border: none; padding: 10px 25px; border-radius: 10px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -494,7 +494,7 @@
                 <div class="bio-container" id="rumor-data">
                     </div>
             </div>
-            <button id="btn-chat-rumor" style="margin-top:20px; background:var(--city-dark-blue); color:white; padding:10px 20px; border-radius:10px; border:none; cursor:pointer;">Ouvrir le Chat d'Avis</button>
+            <button id="btn-chat-rumor" style="margin-top:20px; background:var(--city-black); color:white; padding:10px 20px; border-radius:10px; border:none; cursor:pointer;">Ouvrir le Chat d'Avis</button>
         </div>
 
         <div id="classement-view" class="content-section">
