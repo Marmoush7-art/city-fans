@@ -57,6 +57,12 @@
         .chat-area input { flex: 1; padding: 12px; border-radius: 25px; border: 1px solid #ccc; outline: none; }
         .chat-area button { background: var(--city-black); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; }
         .emoji-toggle { font-size: 1.5rem; cursor: pointer; background: none; border: none; padding: 0; }
+        .sous-categorie {
+            display: none;
+                }
+        .sous-categorie.show {
+            display: block;
+                }
         
         .emoji-picker { 
             display: none; position: absolute; bottom: 65px; left: -100px; background: white; border: 2px solid var(--city-sky-blue); 
@@ -160,9 +166,9 @@
             <div id="sub-effectif" class="sous-menu">
                 
 
-                <div class="cat-titre">👨 Hommes</div>
-                <div id="menu-hommes"></div>
-
+                <div class="cat-titre" onclick="toggleCat('hommes')">👨 Hommes ▾</div>
+                <div id="cat-hommes" class="sous-categorie">
+                    <!-- joueurs hommes ici -->
                     <div class="cat-titre">🧤 Gardiens</div>
                     <span class="joueur-link" onclick="afficherJoueur('donnaruma')">Gianluigi Donnarumma</span>
                     <span class="joueur-link" onclick="afficherJoueur('trafford')">James Trafford</span>
@@ -194,13 +200,17 @@
                     <span class="joueur-link" onclick="afficherJoueur('marmoush')">Omar Marmoush</span>
                     <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
                     <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
-                
-                <div class="cat-titre">👩 Femmes</div>
-                <div id="menu-femmes"></div>
-                
-                    <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
-                <div class="cat-titre">🧩 EDS</div>
-                <div id="menu-eds"></div>
+                </div>
+
+                <div class="cat-titre" onclick="toggleCat('femmes')">👩 Femmes ▾</div>
+                <div id="cat-femmes" class="sous-categorie">
+                    <!-- joueurs femmes ici -->
+                </div>
+
+                <div class="cat-titre" onclick="toggleCat('eds')">🧩 EDS ▾</div>
+                <div id="cat-eds" class="sous-categorie">
+                    <!-- EDS ici -->
+                </div>
                     
             </div>
             <li class="menu-item" onclick="showSection('mercato-recap')"><span class="menu-item-icon">🔄</span>Mercato</li>
@@ -709,6 +719,12 @@
             document.getElementById('s-bio').innerText = j.bio;
             document.getElementById('photo').src = "static/images/" + j.img;
             showSection('joueur-solo');
+
+        }    
+
+        function toggleCat(id) {
+            const el = document.getElementById("cat-" + id);
+            el.classList.toggle("show");
 
         }
 
