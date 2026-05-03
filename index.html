@@ -63,7 +63,20 @@
         .sous-categorie.show {
             display: block;
                 }
-        
+        .cat-titre {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+                }
+
+        .arrow {
+            transition: transform 0.3s ease;
+                }
+
+        .cat-titre.open .arrow {
+            transform: rotate(180deg);
+                }
         .emoji-picker { 
             display: none; position: absolute; bottom: 65px; left: -100px; background: white; border: 2px solid var(--city-sky-blue); 
             border-radius: 15px; padding: 15px; width: 400px; max-height: 350px; overflow-y: auto;
@@ -166,7 +179,7 @@
             <div id="sub-effectif" class="sous-menu">
                 
 
-                <div class="cat-titre" onclick="toggleCat('hommes')">👨 Hommes ▾</div>
+                <div class="cat-titre" onclick="toggleCat('hommes', this)">👨 Hommes <span class="arrow">▾</span>
                 <div id="cat-hommes" class="sous-categorie">
                     <!-- joueurs hommes ici -->
                     <div class="cat-titre">🧤 Gardiens</div>
@@ -202,12 +215,12 @@
                     <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
                 </div>
 
-                <div class="cat-titre" onclick="toggleCat('femmes')">👩 Femmes ▾</div>
+                <div class="cat-titre" onclick="toggleCat('femmes', this)">👩 Femmes <span class="arrow">▾</span>
                 <div id="cat-femmes" class="sous-categorie">
                     <!-- joueurs femmes ici -->
                 </div>
 
-                <div class="cat-titre" onclick="toggleCat('eds')">🧩 EDS ▾</div>
+                <div class="cat-titre" onclick="toggleCat('eds', this)">🧩 EDS <span class="arrow">▾</span>
                 <div id="cat-eds" class="sous-categorie">
                     <!-- EDS ici -->
                 </div>
@@ -708,6 +721,23 @@
             }
         });
 
+        function toggleCat(id, el) {
+            const content = document.getElementById("cat-" + id);
+
+            // fermer les autres catégories
+            document.querySelectorAll('.sous-categorie').forEach(c => {
+            if (c !== content) c.classList.remove("show");
+        });
+
+            document.querySelectorAll('.cat-titre').forEach(t => {
+            if (t !== el) t.classList.remove("open");
+        });
+
+            // toggle actuel
+            content.classList.toggle("show");
+        el.classList.toggle("open");
+        }
+        
         function afficherJoueur(id) {
             const j = effectif[id]; if(!j) return;
             document.getElementById('nom-joueur').innerText = j.nom;
@@ -722,11 +752,6 @@
 
         }    
 
-        function toggleCat(id) {
-            const el = document.getElementById("cat-" + id);
-            el.classList.toggle("show");
-
-        }
 
         function afficherRumeur(id) {
             const r = rumeurs[id]; if(!r) return;
