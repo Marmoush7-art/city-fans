@@ -158,37 +158,50 @@
             <li class="menu-item" onclick="showSection('matchs-view')"><span class="menu-item-icon">📅</span>Matchs</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-effectif')"><span class="menu-item-icon">🩵</span>Effectif ▾</li>
             <div id="sub-effectif" class="sous-menu">
-                <div class="cat-titre">🧤 Gardiens</div>
-                <span class="joueur-link" onclick="afficherJoueur('donnaruma')">Gianluigi Donnarumma</span>
-                <span class="joueur-link" onclick="afficherJoueur('trafford')">James Trafford</span>
-                <span class="joueur-link" onclick="afficherJoueur('bettinelli')">Marcus Bettinelli</span>
-                <div class="cat-titre">🛡️ Défenseurs</div>
-                <span class="joueur-link" onclick="afficherJoueur('stones')">John Stones</span>
-                <span class="joueur-link" onclick="afficherJoueur('nunes')">Matheus Nunes</span>
-                <span class="joueur-link" onclick="afficherJoueur('ake')">Nathan Aké</span>
-                <span class="joueur-link" onclick="afficherJoueur('guehi')">Marc Guéhi</span>
-                <span class="joueur-link" onclick="afficherJoueur('alleyne')">Max Alleyne</span>
-                <span class="joueur-link" onclick="afficherJoueur('aitnouri')">Rayan Ait-Nouri</span>
-                <span class="joueur-link" onclick="afficherJoueur('dias')">Ruben Dias</span>
-                <span class="joueur-link" onclick="afficherJoueur('oreilly')">Nico O'Reilly</span>
-                <span class="joueur-link" onclick="afficherJoueur('gvardiol')">Josko Gvardiol</span>
-                <span class="joueur-link" onclick="afficherJoueur('khusanov')">Abdukodir Khusanov</span>
-                <span class="joueur-link" onclick="afficherJoueur('lewis')">Rico Lewis</span>
-                <div class="cat-titre">⚡ Milieux</div>
-                <span class="joueur-link" onclick="afficherJoueur('rodri')">Rodri</span>
-                <span class="joueur-link" onclick="afficherJoueur('silva')">Bernardo Silva</span>
-                <span class="joueur-link" onclick="afficherJoueur('reijnders')">Tijjani Reijnders</span>
-                <span class="joueur-link" onclick="afficherJoueur('gonzalez')">Nico Gonzalez</span>
-                <span class="joueur-link" onclick="afficherJoueur('kovacic')">Matéo Kovacic</span>
-                <span class="joueur-link" onclick="afficherJoueur('foden')">Phil Foden</span>
-                <span class="joueur-link" onclick="afficherJoueur('cherki')">Rayan Cherki</span>
-                <span class="joueur-link" onclick="afficherJoueur('nypan')">Sverre Nypan</span>
-                <div class="cat-titre">⚔️ Attaquants</div>
-                <span class="joueur-link" onclick="afficherJoueur('haaland')">Erling Haaland</span>
-                <span class="joueur-link" onclick="afficherJoueur('savinho')">Savinho</span>
-                <span class="joueur-link" onclick="afficherJoueur('marmoush')">Omar Marmoush</span>
-                <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
-                <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
+                
+
+                <div class="cat-titre">👨 Hommes</div>
+                <div id="menu-hommes"></div>
+
+                    <div class="cat-titre">🧤 Gardiens</div>
+                    <span class="joueur-link" onclick="afficherJoueur('donnaruma')">Gianluigi Donnarumma</span>
+                    <span class="joueur-link" onclick="afficherJoueur('trafford')">James Trafford</span>
+                    <span class="joueur-link" onclick="afficherJoueur('bettinelli')">Marcus Bettinelli</span>
+                    <div class="cat-titre">🛡️ Défenseurs</div>
+                    <span class="joueur-link" onclick="afficherJoueur('stones')">John Stones</span>
+                    <span class="joueur-link" onclick="afficherJoueur('nunes')">Matheus Nunes</span>
+                    <span class="joueur-link" onclick="afficherJoueur('ake')">Nathan Aké</span>
+                    <span class="joueur-link" onclick="afficherJoueur('guehi')">Marc Guéhi</span>
+                    <span class="joueur-link" onclick="afficherJoueur('alleyne')">Max Alleyne</span>
+                    <span class="joueur-link" onclick="afficherJoueur('aitnouri')">Rayan Ait-Nouri</span>
+                    <span class="joueur-link" onclick="afficherJoueur('dias')">Ruben Dias</span>
+                    <span class="joueur-link" onclick="afficherJoueur('oreilly')">Nico O'Reilly</span>
+                    <span class="joueur-link" onclick="afficherJoueur('gvardiol')">Josko Gvardiol</span>
+                    <span class="joueur-link" onclick="afficherJoueur('khusanov')">Abdukodir Khusanov</span>
+                    <span class="joueur-link" onclick="afficherJoueur('lewis')">Rico Lewis</span>
+                    <div class="cat-titre">⚡ Milieux</div>
+                    <span class="joueur-link" onclick="afficherJoueur('rodri')">Rodri</span>
+                    <span class="joueur-link" onclick="afficherJoueur('silva')">Bernardo Silva</span>
+                    <span class="joueur-link" onclick="afficherJoueur('reijnders')">Tijjani Reijnders</span>
+                    <span class="joueur-link" onclick="afficherJoueur('gonzalez')">Nico Gonzalez</span>
+                    <span class="joueur-link" onclick="afficherJoueur('kovacic')">Matéo Kovacic</span>
+                    <span class="joueur-link" onclick="afficherJoueur('foden')">Phil Foden</span>
+                    <span class="joueur-link" onclick="afficherJoueur('cherki')">Rayan Cherki</span>
+                    <span class="joueur-link" onclick="afficherJoueur('nypan')">Sverre Nypan</span>
+                    <div class="cat-titre">⚔️ Attaquants</div>
+                    <span class="joueur-link" onclick="afficherJoueur('haaland')">Erling Haaland</span>
+                    <span class="joueur-link" onclick="afficherJoueur('savinho')">Savinho</span>
+                    <span class="joueur-link" onclick="afficherJoueur('marmoush')">Omar Marmoush</span>
+                    <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
+                    <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
+                
+                <div class="cat-titre">👩 Femmes</div>
+                <div id="menu-femmes"></div>
+                
+                    <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
+                <div class="cat-titre">🧩 EDS</div>
+                <div id="menu-eds"></div>
+                    
             </div>
             <li class="menu-item" onclick="showSection('mercato-recap')"><span class="menu-item-icon">🔄</span>Mercato</li>
             <li class="menu-item" onclick="showSection('transferts')"><span class="menu-item-icon">📝</span>Actus Mercato</li>
