@@ -190,8 +190,9 @@
                 <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
                 <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
             </div>
-            <li class="menu-item" onclick="showSection('mercato-recap')"><span class="menu-item-icon">🔄</span>Mercato</li>
-            <li class="menu-item" onclick="showSection('transferts')"><span class="menu-item-icon">📝</span>Actus Mercato</li>
+            <li class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</li>
+            <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('transferts')">📰 Actus Mercato</span>
+            </div>
             <li class="menu-item" onclick="preparerContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
             <li class="menu-item" onclick="showSection('classement-view')"><span class="menu-item-icon">🗂️</span>Classement</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
