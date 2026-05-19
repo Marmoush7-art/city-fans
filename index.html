@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🩵 French City Fans</title>
+    <title>🩵 City Fans</title>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
@@ -96,11 +96,6 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
-
-       
-        #fc26-view.content-section { background: #FF8C00; }
-        .fc26-card { padding: 0; border-radius: 0; display: inline-block; }
-        .fc26-img { width: 100%; max-width: 500px; border-radius: 20px; display: block; margin: 0 auto; }
         
         .urgent-contract { border-left: 8px solid #e74c3c !important; }
 
@@ -212,15 +207,14 @@
             <li class="menu-item" onclick="showSection('classement-view')"><span class="menu-item-icon">🗂️</span>Classement</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
-            <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span>
+            <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
             </div>
-            <li class="menu-item" onclick="showSection('fc26-view')"><span class="menu-item-icon">🎮</span>FC26</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
         </ul>
     </div>
     <div id="quiz-view" class="content-section">
         <h2>🔍 QUIZ : QUI EST-CE ?
-        ⚠️Attention, les fautes ne sont pas supportées par le site⚠️ </h2>
+        ⚠️Attention, les fautes ne sont pas supportées par le site</h2>
         <div class="quiz-box">
             <div id="quiz-clues" class="quiz-clues"></div>
             <div class="quiz-input-area">
@@ -714,10 +708,6 @@
             <img src="static/images/classement.jpg" class="classement-img">
         </div>
         </div>
-        <div id="fc26-view" class="content-section">
-            <h2></h2>
-            <div class="fc26-card"><img src="static/images/cityfc26.jpg" class="fc26-img"></div>
-        </div>
         <div id="joueur-solo" class="content-section">
             <h2 id="nom-joueur"></h2>
             <img id="photo" src="" style="width:200px; border-radius:15px;">
@@ -832,74 +822,258 @@
         const centreFormation = {
     gardiens: [
         {
-            nom: "Lucas Ferreira",
-            age: "17 ans",
-            nat: "Brésil 🇧🇷",
-            potentiel: "87",
+            nom: "Spike Brits",
+            age: "18 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
             poste: "Gardien",
-            img: "gardien1.jpg"
+            img: "gardienspike.jpg"
         },
         {
-            nom: "Ethan Walker",
+            nom: "Oliver Whatmuff",
             age: "18 ans",
-            nat: "Angleterre 🏴",
-            potentiel: "84",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
             poste: "Gardien",
-            img: "gardien2.jpg"
+            img: "gardienoliver.jpg"
+        },
+        {
+            nom: "Jack Wint",
+            age: "19 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Gardien",
+            img: "gardienjack.jpg"
         }
     ],
     defenseurs: [
         {
-            nom: "Noah Bennett",
+            nom: "Finley Burns",
             age: "17 ans",
-            nat: "Angleterre 🏴",
-            potentiel: "88",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
             poste: "Défenseur",
-            img: "defenseur1.jpg"
+            img: "defenseurfinley.jpg"
         },
         {
-            nom: "Rayan Belkacem",
-            age: "18 ans",
-            nat: "Algérie 🇩🇿",
-            potentiel: "85",
+            nom: "Ezra Carrington",
+            age: "20 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
             poste: "Défenseur",
-            img: "defenseur2.jpg"
+            img: "defenseurezra.jpg"
+        },
+        {
+            nom: "Tomas Galvez",
+            age: "17 ans",
+            nat: "Finlande 🇫🇮",
+            potentiel: "",
+            poste: "Défenseur",
+            img: "defenseurtomas.jpg"
+        },
+        {
+            nom: "Matty Henderson-Hall",
+            age: "19 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Défenseur",
+            img: "defenseurmatty.jpg"
+        },
+        {
+            nom: "Luke Mbete",
+            age: "22 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Défenseur",
+            img: "defenseurluke.jpg"
+        },
+        {
+            nom: "Christian McFarlane",
+            age: "19 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Défenseur",
+            img: "defenseurchristian.jpg"
+        },
+        {
+            nom: "Stephen Mfuni",
+            age: "17 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Défenseur",
+            img: "defenseurstephen.jpg"
+        },
+        {
+            nom: "Brooklyn Nfonkeu",
+            age: "18 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Défenseur",
+            img: "defenseurbrooklyn.jpg"
+        },
+        {
+            nom: "Kian Noble",
+            age: "19 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Défenseur",
+            img: "defenseurkian.jpg"
+        },
+        {
+            nom: "Harrison Parker",
+            age: "19 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Défenseur",
+            img: "defenseurharrison.jpg"
+        },
+        {
+            nom: "Lakyle Samuel",
+            age: "20 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Défenseur",
+            img: "defenseurlakyle.jpg"
+        },
+        {
+            nom: "Jahmai Simpson-Pusey",
+            age: "17 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Défenseur",
+            img: "defenseurjahmai.jpg"
+        },
+        {
+            nom: "Isaac Smith",
+            age: "20 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Défenseur",
+            img: "defenseurisaac.jpg"
+        },
+        {
+            nom: "Rhys Thomas",
+            age: "19 ans",
+            nat: "Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+            potentiel: "",
+            poste: "Défenseur",
+            img: "defenseurrhys.jpg"
         }
     ],
     milieux: [
         {
-            nom: "Mateo Silva",
-            age: "16 ans",
-            nat: "Portugal 🇵🇹",
-            potentiel: "91",
+            nom: "Isaiah Dada-Mascoll",
+            age: "19 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
             poste: "Milieu",
-            img: "milieu1.jpg"
+            img: "milieuisaiah.jpg"
         },
         {
-            nom: "Yanis Ait-Lahcen",
-            age: "17 ans",
-            nat: "France 🇫🇷",
-            potentiel: "86",
+            nom: "Femi Fapetu",
+            age: "18 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
             poste: "Milieu",
-            img: "milieu2.jpg"
+            img: "milieufemi.jpg"
+        },
+        {
+            nom: "Charlie Gray",
+            age: "20 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Milieu",
+            img: "milieucharlie.jpg"
+        },
+        {
+            nom: "Jaden Heskey",
+            age: "20 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Milieu",
+            img: "milieujaden.jpg"
+        },
+        {
+            nom: "Divine Mukasa",
+            age: "17 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Milieu",
+            img: "milieudivine.jpg"
         }
     ],
     attaquants: [
         {
-            nom: "Liam Johnson",
-            age: "18 ans",
-            nat: "Angleterre 🏴",
-            potentiel: "90",
+            nom: "Luka Fletcher",
+            age: "19 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
             poste: "Attaquant",
-            img: "attaquant1.jpg"
+            img: "attaquantluka.jpg"
         },
         {
-            nom: "Tiago Mendes",
-            age: "17 ans",
-            nat: "Portugal 🇵🇹",
-            potentiel: "89",
+            nom: "Reighan Heskey",
+            age: "18 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
             poste: "Attaquant",
-            img: "attaquant2.jpg"
+            img: "attaquantreighan.jpg"
+        },
+        {
+            nom: "Emilio Lawrence",
+            age: "20 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Attaquant",
+            img: "attaquantemilio.jpg"
+        },
+        {
+            nom: "Ryan McAidoo",
+            age: "17 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Attaquant",
+            img: "attaquantryan.jpg"
+        },
+        {
+            nom: "Divin Mubama",
+            age: "21 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Attaquant",
+            img: "attaquantdivin.jpg"
+        },
+        {
+            nom: "Ashton Muir",
+            age: "20 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Attaquant",
+            img: "attaquantashton.jpg"
+        },
+        {
+            nom: "Joel Ndala",
+            age: "19 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Attaquant",
+            img: "attaquantjoel.jpg"
+        },
+        {
+            nom: "Mahamadou Sangaré",
+            age: "19 ans",
+            nat: "France 🇫🇷",
+            potentiel: "",
+            poste: "Attaquant",
+            img: "attaquantmahamadou.jpg"
+        },
+        {
+            nom: "Matty Warhurst",
+            age: "19 ans",
+            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+            potentiel: "",
+            poste: "Attaquant",
+            img: "attaquantmatty.jpg"
         }
     ]
 };
