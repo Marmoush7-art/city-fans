@@ -26,6 +26,13 @@
         .version-tag { color: white; font-size: 0.8rem; font-weight: bold; margin-right: 15px; }
         .nav-right { display: flex; align-items: center; }
 
+        .centre-card { background: white; border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.2s; }
+        .centre-card:hover { transform: scale(1.02); }
+        .centre-card img { width: 160px; height: 180px; object-fit: cover; }
+        .centre-info { padding: 20px; text-align: left; flex: 1;}
+        .centre-info h3 { margin-top: 0; color: var(--city-sky-blue); }
+        .centre-info p { margin: 6px 0; font-size: 0.95rem; }
+
         #menu { position: fixed; right: -280px; top: 0; width: 280px; height: 100%; background: #1a1a1a; color: white; transition: 0.4s; padding-top: 70px; z-index: 1000; overflow-y: auto; }
         #menu.ouvert { right: 0; }
         .menu-item { padding: 18px 25px; border-bottom: 1px solid #333; cursor: pointer; font-weight: bold; display: flex; align-items: center; color: white; text-decoration: none; }
@@ -204,6 +211,21 @@
             <li class="menu-item" onclick="preparerContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
             <li class="menu-item" onclick="showSection('classement-view')"><span class="menu-item-icon">🗂️</span>Classement</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
+            </li>
+            <div id="sub-centre-formation" class="sous-menu">
+                <span class="joueur-link" onclick="ouvrirCentre('attaquants')">
+                    ⚔️ Attaquants
+                </span>
+                <span class="joueur-link" onclick="ouvrirCentre('milieux')">
+                    ⚡ Milieux
+                </span>
+                <span class="joueur-link" onclick="ouvrirCentre('defenseurs')">
+                    🛡️ Défenseur
+                </span>
+                <span class="joueur-link" onclick="ouvrirCentre('gardiens')">
+                    🧤 Gardien
+                </span
+            </div>
             <li class="menu-item" onclick="showSection('fc26-view')"><span class="menu-item-icon">🎮</span>FC26</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
         </ul>
@@ -565,6 +587,11 @@
             </div>
         </div>
 
+        <div id="centre-formation-view" class="content-section">
+            <h2 id="centre-title">🧬 Centre de formation</h2>
+            <div id="centre-container"></div>
+        </div>
+
         <div id="mercato-recap" class="content-section">
             <h2>Historique du Mercato (hiver 25-26)</h2>
             <h3>Arrivées</h3>
@@ -814,6 +841,81 @@
     }
 };
 
+        const centreFormation = {
+    gardiens: [
+        {
+            nom: "Lucas Ferreira",
+            age: "17 ans",
+            nat: "Brésil 🇧🇷",
+            potentiel: "87",
+            poste: "Gardien",
+            img: "gardien1.jpg"
+        },
+        {
+            nom: "Ethan Walker",
+            age: "18 ans",
+            nat: "Angleterre 🏴",
+            potentiel: "84",
+            poste: "Gardien",
+            img: "gardien2.jpg"
+        }
+    ],
+    defenseurs: [
+        {
+            nom: "Noah Bennett",
+            age: "17 ans",
+            nat: "Angleterre 🏴",
+            potentiel: "88",
+            poste: "Défenseur",
+            img: "defenseur1.jpg"
+        },
+        {
+            nom: "Rayan Belkacem",
+            age: "18 ans",
+            nat: "Algérie 🇩🇿",
+            potentiel: "85",
+            poste: "Défenseur",
+            img: "defenseur2.jpg"
+        }
+    ],
+    milieux: [
+        {
+            nom: "Mateo Silva",
+            age: "16 ans",
+            nat: "Portugal 🇵🇹",
+            potentiel: "91",
+            poste: "Milieu",
+            img: "milieu1.jpg"
+        },
+        {
+            nom: "Yanis Ait-Lahcen",
+            age: "17 ans",
+            nat: "France 🇫🇷",
+            potentiel: "86",
+            poste: "Milieu",
+            img: "milieu2.jpg"
+        }
+    ],
+    attaquants: [
+        {
+            nom: "Liam Johnson",
+            age: "18 ans",
+            nat: "Angleterre 🏴",
+            potentiel: "90",
+            poste: "Attaquant",
+            img: "attaquant1.jpg"
+        },
+        {
+            nom: "Tiago Mendes",
+            age: "17 ans",
+            nat: "Portugal 🇵🇹",
+            potentiel: "89",
+            poste: "Attaquant",
+            img: "attaquant2.jpg"
+        }
+    ]
+};
+
         function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
         function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
         function showSection(id) {
@@ -932,6 +1034,27 @@
             document.getElementById('quiz-feedback').innerText = "";
             document.getElementById('quiz-img-result').style.display = "none";
             showSection('quiz-view');
+        }
+
+        function ouvrirCentre(categorie) {
+            const container = document.getElementById('centre-container');
+            container.innerHTML = "";
+            const joueurs = centreFormation[categorie];
+            joueurs.forEach(j => {
+                container.innerHTML += `
+                <div class="centre-card">
+                    <img src="static/images/${j.img}">
+                    <div class="centre-info">
+                        <h3>${j.nom}</h3>
+                        <p><strong>🎂 Âge :</strong> ${j.age}</p>
+                        <p><strong>🌍 Nationalité :</strong> ${j.nat}</p>
+                        <p><strong>📈 Potentiel :</strong> ${j.potentiel}</p>
+                        <p><strong>⚽ Poste :</strong> ${j.poste}</p>
+                    </div>
+                </div>
+                `;
+            });
+            showSection('centre-formation-view');
         }
 
         function verifierReponseQuiz() {
