@@ -104,9 +104,6 @@
         
         .urgent-contract { border-left: 8px solid #e74c3c !important; }
 
-        .menu-item { display: flex; align-items: center; justify-content: space-between; }
-        .arrow { margin-left: 10px; font-size: 12px; }
-
         .compo-field { width: 100%; max-width: 600px; height: 550px; background-color: var(--city-sky-blue); border-radius: 20px; border: 6px solid var(--city-black); margin: 0 auto; padding: 10px; box-sizing: border-box; position: relative; overflow: hidden; }
         .field-line { position: absolute; background: rgba(255,255,255,0.5); }
         .field-center-line { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
@@ -214,8 +211,9 @@
             <li class="menu-item" onclick="preparerContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
             <li class="menu-item" onclick="showSection('classement-view')"><span class="menu-item-icon">🗂️</span>Classement</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
-            <div class="menu-item" onclick="toggleSubMenu('formation-submenu')"><span>🧬 Centre de formation</span><span class="arrow">▼</span></div>
-            <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span></div>
+            <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
+            <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span>
+            </div>
             <li class="menu-item" onclick="showSection('fc26-view')"><span class="menu-item-icon">🎮</span>FC26</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
         </ul>
