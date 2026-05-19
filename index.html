@@ -211,13 +211,8 @@
             <li class="menu-item" onclick="preparerContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
             <li class="menu-item" onclick="showSection('classement-view')"><span class="menu-item-icon">🗂️</span>Classement</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
-            </li>
-            <div id="sub-centre-formation" class="sous-menu">
-                <span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
-                <span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span>
-                <span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseur</span>
-                <span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardien</span
-            </div>
+            <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de formation ▾</li>
+            <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span></div>
             <li class="menu-item" onclick="showSection('fc26-view')"><span class="menu-item-icon">🎮</span>FC26</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
         </ul>
