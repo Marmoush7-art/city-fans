@@ -15,8 +15,16 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: var(--city-black); z-index: 9999; 
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            color: white; text-align: center;
-        }
+            color: white; text-align: center; }
+
+        .objectif-card { background: #1c1c1c; color: white; padding: 15px; margin: 10px 0; border-radius: 12px; display: flex; flex-direction: column; gap: 6px; border-left: 6px solid transparent; }
+        .objectif-card.green { border-left-color: #2ecc71; }
+        .objectif-card.orange { border-left-color: #f39c12; }
+        .objectif-card.blue { border-left-color: #3498db; }
+        .objectif-card.red { border-left-color: #e74c3c; }
+
+        .objectif-card h3 { margin: 0; }
+        
         .lock-box { background: white; padding: 40px; border-radius: 20px; color: var(--city-black); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .lock-box input { padding: 12px; border-radius: 10px; border: 2px solid #ccc; width: 200px; font-size: 1rem; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto; }
         .lock-box button { background: var(--city-sky-blue); color: white; border: none; padding: 12px 30px; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 1rem; }
@@ -208,7 +216,7 @@
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
-            </div>
+            <li class="menu-item" onclick="showSection('objectifs')"><span class="menu-item-icon">🎯</span>Objectifs de saison</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
         </ul>
     </div>
@@ -1109,6 +1117,50 @@
             document.getElementById('btn-chat-rumor').onclick = () => ouvrirChat(r.nom);
             showSection('rumeur-detail');
         }
+
+        const objectifsSaison = [
+    {
+        competition: "🏆 Championnat",
+        objectif: "Top 3",
+        positionActuelle: "2e place",
+        couleur: "green"
+    },
+    {
+        competition: "🏆 Coupe nationale",
+        objectif: "Demi-finale",
+        positionActuelle: "Quarts de finale",
+        couleur: "orange"
+    },
+    {
+        competition: "🌍 Ligue des Champions",
+        objectif: "Finale",
+        positionActuelle: "8e de finale",
+        couleur: "blue"
+    },
+    {
+        competition: "🏅 Coupe de la ligue",
+        objectif: "Gagner",
+        positionActuelle: "Éliminé",
+        couleur: "red"
+    }
+];
+
+function ouvrirObjectifs() {
+    const container = document.getElementById("objectifs-container");
+    container.innerHTML = "";
+
+    objectifsSaison.forEach(o => {
+        container.innerHTML += `
+            <div class="objectif-card ${o.couleur}">
+                <h3>${o.competition}</h3>
+                <p><strong>🎯 Objectif :</strong> ${o.objectif}</p>
+                <p><strong>📊 Position actuelle :</strong> ${o.positionActuelle}</p>
+            </div>
+        `;
+    });
+
+    showSection("objectifs");
+}
 
         let selectedSpotElement = null;
         function preparerCompoInteractive() { renderSquadListForCompo(); showSection('ma-compo-view'); }
