@@ -1162,8 +1162,8 @@
 ];
 
 function ouvrirObjectifs() {
-    alert("fonction objectifs OK");
-}
+    const container = document.getElementById("objectifs-container");
+    container.innerHTML = "";
 
     objectifsSaison.forEach(o => {
         container.innerHTML += `
