@@ -217,7 +217,7 @@
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
             </div>
-            <li class="menu-item" onclick="showSection('objectifs')"><span class="menu-item-icon">🎯</span>Objectifs de saison</li>
+            <li class="menu-item" onclick="ouvrirObjectifs()"><span class="menu-item-icon">🎯</span>Objectifs de saison</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
         </ul>
     </div>
@@ -1146,28 +1146,55 @@
         competition: "🏆 Championnat",
         objectif: "Top 3",
         positionActuelle: "2e place",
+        matchs: 38,
+        victoires: 24,
+        nuls: 8,
+        defaites: 6,
+        buts: 78,
+        encaisses: 34,
+        points: 80,
         couleur: "green"
     },
     {
         competition: "🏆 Coupe nationale",
         objectif: "Demi-finale",
         positionActuelle: "Quarts de finale",
+        matchs: 38,
+        victoires: 24,
+        nuls: 8,
+        defaites: 6,
+        buts: 78,
+        encaisses: 34,
+        points: 80,
         couleur: "orange"
     },
     {
         competition: "🌍 Ligue des Champions",
         objectif: "Finale",
         positionActuelle: "8e de finale",
+        matchs: 38,
+        victoires: 24,
+        nuls: 8,
+        defaites: 6,
+        buts: 78,
+        encaisses: 34,
+        points: 80,
         couleur: "blue"
     },
     {
         competition: "🏅 Coupe de la ligue",
         objectif: "Gagner",
         positionActuelle: "Éliminé",
+        matchs: 38,
+        victoires: 24,
+        nuls: 8,
+        defaites: 6,
+        buts: 78,
+        encaisses: 34,
+        points: 80,
         couleur: "red"
     }
 ];
-
 function ouvrirObjectifs() {
     const container = document.getElementById("objectifs-container");
     container.innerHTML = "";
@@ -1176,8 +1203,33 @@ function ouvrirObjectifs() {
         container.innerHTML += `
             <div class="objectif-card ${o.couleur}">
                 <h3>${o.competition}</h3>
+
                 <p><strong>🎯 Objectif :</strong> ${o.objectif}</p>
                 <p><strong>📊 Position actuelle :</strong> ${o.positionActuelle}</p>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <span class="stat-number">${o.matchs}</span>
+                        <span class="stat-label">🎮 Matchs</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-number">${o.victoires}</span>
+                        <span class="stat-label">✅ Victoires</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-number">${o.buts}</span>
+                        <span class="stat-label">⚽ Buts</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-number">${o.points || "-"}</span>
+                        <span class="stat-label">🏅 Points</span>
+                    </div>
+
+                </div>
             </div>
         `;
     });
