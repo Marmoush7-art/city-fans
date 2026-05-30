@@ -232,6 +232,11 @@
   <div class="quiz-box">
 
     <div id="quiz-clues" class="quiz-clues"></div>
+
+    <div class="quiz-input-area">
+    <input type="text" id="quiz-answer" placeholder="Tape le nom du joueur">
+    <button onclick="verifierReponseQuiz()">Valider</button>
+    </div>
       
     <div id="quiz-feedback" class="quiz-feedback"></div>
 
@@ -733,8 +738,8 @@
                 </div>
             </div>
 
-            <p id="quiz-feedback" style="font-weight: bold; margin-top: 15px; font-size: 1.2em;"></p>
-            <img id="quiz-img-result" src="" style="width: 150px; border-radius: 10px; margin: 15px auto; display: none;">
+            <p id="chat-feedback" style="font-weight: bold; margin-top: 15px; font-size: 1.2em;"></p>
+            <img id="chat-img-result" src="" style="width: 150px; border-radius: 10px; margin: 15px auto; display: none;">
             
         </div>
     </main>
