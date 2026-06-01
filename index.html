@@ -210,6 +210,7 @@
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
             </div>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
+            <button onclick="demarrerMercatoBattle()">🎮 Mercato Battle</button>
         </ul>
     </div>
     <div id="quiz-view" class="content-section">
@@ -1197,6 +1198,231 @@
             document.getElementById('quiz-img-result').style.display = "none";
             showSection('quiz-view');
         }
+
+        function terminerPartie(){
+
+    let scoreJoueur = calculerScoreEquipe(equipeJoueur);
+    let scoreBot = calculerScoreEquipe(equipeBot);
+
+    let resultat =
+        scoreJoueur > scoreBot
+        ? "🏆 Victoire"
+        : "❌ Défaite";
+
+    alert(
+        resultat +
+        "\nVotre score : " + scoreJoueur +
+        "\nBot : " + scoreBot
+    );
+}
+
+        function acheterJoueur(id){
+
+    let joueur = effectif[id];
+    let prix = getPrix(joueur);
+
+    if(prix > budgetJoueur){
+        alert("Budget insuffisant !");
+        return;
+    }
+
+    budgetJoueur -= prix;
+
+    equipeJoueur.push(id);
+
+    achatBot();
+
+    prochainTour();
+}
+
+        function getPrix(joueur){
+
+    let prix = joueur.valeur
+        .replace("M €","")
+        .replace(",",".")
+        .trim();
+
+    return parseFloat(prix);
+}
+Achat
+function acheterJoueur(id){
+
+    let joueur = effectif[id];
+    let prix = getPrix(joueur);
+
+    if(prix > budgetJoueur){
+        alert("Budget insuffisant !");
+        return;
+    }
+
+    budgetJoueur -= prix;
+
+    equipeJoueur.push(id);
+
+    achatBot();
+
+    prochainTour();
+}
+IA du bot
+function achatBot(){
+
+    let meilleur = null;
+    let meilleurScore = 0;
+
+    joueursDisponibles.forEach(id => {
+
+        if(equipeBot.includes(id)) return;
+
+        let j = effectif[id];
+
+        let prix = getPrix(j);
+
+        if(prix > budgetBot) return;
+
+        let score = (j.note || 0) / Math.max(prix,1);
+
+        if(score > meilleurScore){
+            meilleurScore = score;
+            meilleur = id;
+        }
+    });
+
+    if(meilleur){
+
+        budgetBot -= getPrix(effectif[meilleur]);
+
+        equipeBot.push(meilleur);
+    }
+}
+Fin de partie
+function calculerScoreEquipe(equipe){
+
+    let total = 0;
+
+    equipe.forEach(id => {
+
+        let j = effectif[id];
+
+        let score =
+            (j.note || 0)
+            + ((j.buts || 0) * 0.5)
+            + ((j.passes || 0) * 0.3);
+
+        total += score;
+    });
+
+    return total.toFixed(1);
+}
+function terminerPartie(){
+
+    let scoreJoueur = calculerScoreEquipe(equipeJoueur);
+    let scoreBot = calculerScoreEquipe(equipeBot);
+
+    let resultat =
+        scoreJoueur > scoreBot
+        ? "🏆 Victoire"
+        : "❌ Défaite";
+
+    alert(
+        resultat +
+        "\nVotre score : " + scoreJoueur +
+        "\nBot : " + scoreBot
+    );
+}
+
+        function demarrerMercatoBattle() {
+    budgetJoueur = 250;
+    budgetBot = 250;
+
+    equipeJoueur = [];
+    equipeBot = [];
+
+    joueursDisponibles = Object.keys(effectif);
+
+    prochainTour();
+}
+
+score = note + (buts * 0.5) + (passes * 0.3)        
+
+let budgetJoueur = 250;
+let budgetBot = 250;
+
+let equipeJoueur = [];
+let equipeBot = [];
+
+let joueursDisponibles = [];
+
+        function prochainTour() {
+
+  if(equipeJoueur.length >= 3 && equipeBot.length >= 3){
+        terminerPartie();
+        return;
+    }
+
+    let joueursTour = [];
+
+    while(joueursTour.length < 3){
+        let id = joueursDisponibles[
+            Math.floor(Math.random() * joueursDisponibles.length)
+        ];
+
+        if(!joueursTour.includes(id)){
+            joueursTour.push(id);
+        }
+    }
+
+    afficherChoix(joueursTour);
+}
+
+        function achatBot(){
+
+    let meilleur = null;
+    let meilleurScore = 0;
+
+    joueursDisponibles.forEach(id => {
+
+        if(equipeBot.includes(id)) return;
+
+        let j = effectif[id];
+
+        let prix = getPrix(j);
+
+        if(prix > budgetBot) return;
+
+        let score = (j.note || 0) / Math.max(prix,1);
+
+        if(score > meilleurScore){
+            meilleurScore = score;
+            meilleur = id;
+        }
+    });
+
+    if(meilleur){
+
+        budgetBot -= getPrix(effectif[meilleur]);
+
+        equipeBot.push(meilleur);
+    }
+}
+
+        function calculerScoreEquipe(equipe){
+
+    let total = 0;
+
+    equipe.forEach(id => {
+
+        let j = effectif[id];
+
+        let score =
+            (j.note || 0)
+            + ((j.buts || 0) * 0.5)
+            + ((j.passes || 0) * 0.3);
+
+        total += score;
+    });
+
+    return total.toFixed(1);
+}
 
         function ouvrirCentre(categorie) {
             const container = document.getElementById('centre-container');
