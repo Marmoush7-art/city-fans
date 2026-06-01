@@ -1156,8 +1156,8 @@
             'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "30/06/2030", valeur: "15M €", img: "41.jpg", bio: "Futur maître du milieu.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 70 },
             'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 84 },
             'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Expérience croate.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 82 },
-            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passe: 0, note: 0.0,notejeu: 85 },
-            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passe: 0, note: 0.0,notejeu: 81 }
+            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 85 },
+            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 81 }
         };
 
         const rumeurs = {
@@ -1511,6 +1511,8 @@
     document.getElementById("equipe-bot").innerHTML = "";
     nextPlayer();
 
+    }        
+
         function nextPlayer() {
     if (joueursJeu.length === 0) {
         finJeu();
@@ -1518,25 +1520,21 @@
     }
 
     const index = Math.floor(Math.random() * joueursJeu.length);
-    joueurActuel = joueursJeu.splice(index, 1)[0]; // IMPORTANT
+    joueurActuel = joueursJeu.splice(index, 1)[0];
 
-    document.getElementById("jeu-photo").src = "static/images/" + joueurActuel.img;
-    document.getElementById("jeu-nom").innerText = joueurActuel.nom;
-    document.getElementById("jeu-note").innerText = joueurActuel.notejeu || "??";
+    document.getElementById("jeu-photo").src =
+        "static/images/" + joueurActuel.img;
+    document.getElementById("jeu-nom").innerText =
+        joueurActuel.nom;
+    document.getElementById("jeu-note").innerText =
+        joueurActuel.notejeu || "??";
 
     enchereActuelle = 0;
     leader = "Aucun";
 }
 
-    joueurActuel = joueursJeu[Math.floor(Math.random() * joueursJeu.length)];
-
-    document.getElementById("jeu-photo").src = "static/images/" + joueurActuel.img;
-    document.getElementById("jeu-nom").innerText = joueurActuel.nom;
-    document.getElementById("jeu-note").innerText = joueurActuel.notejeu;
-    document.getElementById("enchere-actuelle").innerText = "0";
-
-    enchereActuelle = 0;
-    leader = "Aucun";
+        function finJeu() {
+    alert("Fin du jeu !");
 }
 
         function enchereUtilisateur() {
@@ -1570,6 +1568,10 @@
 }
         function passerTour() {
     nextPlayer();
+}
+
+        function finJeu() {
+    alert("Fin du jeu !");
 }
 
         function afficherRumeur(id) {
