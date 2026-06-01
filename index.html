@@ -1484,6 +1484,11 @@
 
         function demarrerJeu() {
     jeuEnCours = true;
+    budgetUser = 250;
+    budgetBot = 250;
+    joueursJeu = Object.values(effectif);
+    document.getElementById("equipe-utilisateur").innerHTML = "";
+    document.getElementById("equipe-bot").innerHTML = "";
     nextPlayer();
 }
 
@@ -1492,6 +1497,17 @@
         finJeu();
         return;
     }
+
+    const index = Math.floor(Math.random() * joueursJeu.length);
+    joueurActuel = joueursJeu.splice(index, 1)[0]; // IMPORTANT
+
+    document.getElementById("jeu-photo").src = "static/images/" + joueurActuel.img;
+    document.getElementById("jeu-nom").innerText = joueurActuel.nom;
+    document.getElementById("jeu-note").innerText = joueurActuel.notejeu || "??";
+
+    enchereActuelle = 0;
+    leader = "Aucun";
+}
 
     joueurActuel = joueursJeu[Math.floor(Math.random() * joueursJeu.length)];
 
@@ -1521,14 +1537,16 @@
         function botRepond() {
     const reaction = Math.random();
 
-    let botOffre = enchereActuelle + Math.floor(Math.random() * 10);
+    if (reaction > 0.5) {
+        const botOffre = enchereActuelle + Math.floor(Math.random() * 10);
 
-    if (reaction > 0.5 && botOffre <= budgetBot) {
-        enchereActuelle = botOffre;
-        leader = "Bot";
+        if (botOffre <= budgetBot) {
+            enchereActuelle = botOffre;
+            leader = "Bot";
 
-        document.getElementById("enchere-actuelle").innerText = enchereActuelle;
-        document.getElementById("leader-enchere").innerText = leader;
+            document.getElementById("enchere-actuelle").innerText = enchereActuelle;
+            document.getElementById("leader-enchere").innerText = leader;
+        }
     }
 }
 
