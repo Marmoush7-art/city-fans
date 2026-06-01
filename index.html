@@ -425,7 +425,7 @@
             </div>
             <li class="menu-item" onclick="ouvrirObjectifs()"><span class="menu-item-icon">🎯</span>Objectifs de saison</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
-            <li class="menu-item" onclick="ouvrirJeu()"> <span class="menu-item-icon">🎮</span>Jeu</li>
+            <button onclick="demarrerJeu()">Démarrer le jeu</button>
         </ul>
     </div>
 
@@ -1473,6 +1473,68 @@
         showSection('jeu-view');
 
         }
+
+        let budgetUser = 250;
+        let budgetBot = 250;
+        let joueursJeu = Object.values(effectif);
+        let joueurActuel = null;
+        let enchereActuelle = 0;
+        let leader = "Aucun";
+        let jeuEnCours = false;
+
+        function demarrerJeu() {
+    jeuEnCours = true;
+    nextPlayer();
+}
+
+        function nextPlayer() {
+    if (joueursJeu.length === 0) {
+        finJeu();
+        return;
+    }
+
+    joueurActuel = joueursJeu[Math.floor(Math.random() * joueursJeu.length)];
+
+    document.getElementById("jeu-photo").src = "static/images/" + joueurActuel.img;
+    document.getElementById("jeu-nom").innerText = joueurActuel.nom;
+    document.getElementById("jeu-note").innerText = joueurActuel.notejeu;
+    document.getElementById("enchere-actuelle").innerText = "0";
+
+    enchereActuelle = 0;
+    leader = "Aucun";
+}
+
+        function enchereUtilisateur() {
+    const offre = parseInt(document.getElementById("offre-utilisateur").value);
+
+    if (!offre || offre <= enchereActuelle || offre > budgetUser) return;
+
+    enchereActuelle = offre;
+    leader = "Vous";
+
+    document.getElementById("enchere-actuelle").innerText = enchereActuelle;
+    document.getElementById("leader-enchere").innerText = leader;
+
+    botRepond();
+}
+
+        function botRepond() {
+    const reaction = Math.random();
+
+    let botOffre = enchereActuelle + Math.floor(Math.random() * 10);
+
+    if (reaction > 0.5 && botOffre <= budgetBot) {
+        enchereActuelle = botOffre;
+        leader = "Bot";
+
+        document.getElementById("enchere-actuelle").innerText = enchereActuelle;
+        document.getElementById("leader-enchere").innerText = leader;
+    }
+}
+
+        function passerTour() {
+    nextPlayer();
+}
 
         function afficherRumeur(id) {
             const r = rumeurs[id]; if(!r) return;
