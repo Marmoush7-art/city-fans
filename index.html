@@ -1430,12 +1430,17 @@
         function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
         function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
         function showSection(id) {
-            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            document.querySelectorAll('.sous-menu').forEach(sm => sm.classList.remove('show'));
-            document.getElementById('menu').classList.remove('ouvert');
-            selectedSpotElement = null; 
-            document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected'));
+    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+
+    const target = document.getElementById(id);
+    if (target) target.classList.add('active');
+
+    document.querySelectorAll('.sous-menu').forEach(sm => sm.classList.remove('show'));
+    document.getElementById('menu').classList.remove('ouvert');
+
+    selectedSpotElement = null;
+    document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected'));
+}
         }
 
         document.addEventListener('click', function(event) {
