@@ -1489,6 +1489,12 @@
 
         }
 
+        function nextPlayer() {
+    if (joueursJeu.length === 0) {
+        finJeu();
+        return;
+    }
+
         function ouvrirJeu() {
         showSection('jeu-view');
 
@@ -1512,12 +1518,6 @@
     nextPlayer();
 
     }        
-
-        function nextPlayer() {
-    if (joueursJeu.length === 0) {
-        finJeu();
-        return;
-    }
 
     const index = Math.floor(Math.random() * joueursJeu.length);
     joueurActuel = joueursJeu.splice(index, 1)[0];
