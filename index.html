@@ -1105,382 +1105,116 @@
 
     <script>
         const firebaseConfig = { apiKey: "CLE", authDomain: "DOM", projectId: "ID", storageBucket: "BUCKET", messagingSenderId: "ID", appId: "APP" };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        
-        function checkPassword() {
-            const input = document.getElementById('site-password').value;
-            const error = document.getElementById('lock-error');
-            if (input === "Rider77") {
-                document.getElementById('lock-screen').style.display = 'none';
-            } else {
-                error.innerText = "Mot de passe incorrect ❌";
-            }
-        }
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-        document.getElementById('site-password').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') checkPassword();
-        });
+// --- État Global ---
+let currentChatTopic = "";
+let selectedSpotElement = null;
+let joueursJeu = [];
+let joueurActuel = null;
+let enchereActuelle = 0;
+let leader = "Aucun";
+let jeuEnCours = false;
+let budgetUser = 250;
+let budgetBot = 250;
+let joueurMystere = null;
 
-        // --- AJOUT v1.00.42 : Touche Entrée pour le Quiz ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const quizInput = document.getElementById('quiz-answer');
-            if(quizInput) {
-                quizInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') verifierReponseQuiz();
-                });
-            }
-        });
-
-        const effectif = {
-            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 91 },
-            'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 89 },
-            'foden': { nom: "Phil Foden", poste: "Milieu", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "L'enfant chéri de Stockport.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 85 },
-            'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "60M €", img: "3.jpg", bio: "Pilier défensif.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 87 },
-            'donnaruma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", img: "25.jpg", bio: "Gardien d'envergure internationale.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 89 },
-            'savinho': { nom: "Savinho", poste: "Attaquant", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg", bio: "Dribbleur brésilien électrisant.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 81 },
-            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2028", valeur: "0.5 €", img: "13.jpg", bio: "Gardien expérimenté.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 70 },
-            'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "35M €", img: "45.jpg", bio: "Révélation ouzbèke.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 80 },
-            'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", img: "6.jpg", bio: "Polyvalence tactique exemplaire.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 82 },
-            'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "32M €", img: "82.jpg", bio: "Futur cadre issu de l'académie.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 77 },
-            'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", img: "21.jpg", bio: "Latéral percutant.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 81 },
-            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "50M €", img: "33.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 81 },
-            'nunes': { nom: "Matheus Nunes", poste: "Milieu", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "45M €", img: "27.jpg", bio: "Défenseur puissant.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 82 },
-            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", img: "68.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 68 },
-            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "Roc croate.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 85 },
-            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "30/06/2031", valeur: "65M €", img: "15.jpg", bio: "Nouvelle recrue solide.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 84 },
-            'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Gardien prometteur.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 77 },
-            'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Puissance offensive brute.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 84 },
-            'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Magicien français.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 84 },
-            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 83 },
-            'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "30/06/2030", valeur: "15M €", img: "41.jpg", bio: "Futur maître du milieu.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 70 },
-            'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 84 },
-            'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Expérience croate.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 82 },
-            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 85 },
-            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0,notejeu: 81 }
-        };
-
-        const rumeurs = {
-    'anderson_rumor': { 
-        nom: "Elliot Anderson", 
-        img: "anderson.jpg",
-        detail: "<style>#rumor-photo { width: 450px !important; height: auto; }</style>Le jeune milieu anglais de Nottingham Forest pourrait rejoindre l'Etihad dès cet été. Il avait déjà était question de son transfert à l'Etihad au dernier mercato sans cependant d'offre de la part du club. Man Utd serait aussi sur le coup mais heureusement moins intéressé."
-    },
-    'kroupi_rumor': { 
-        nom: "Eli Junior Kroupi", 
-        img: "kroupi.jpg",
-        detail: "<style>#rumor-photo { width: 450px !important; height: auto; }</style>Le jeune joueur français de 19 ans intérèsserait le club de Manchester pour remplacer Omar Marmoush dit sur le départ..."    
-    },
-    'conceicao_rumor': { 
-        nom: "Eduardo Conceicao", 
-        img: "conceicao.jpg", 
-        detail: "<style>#rumor-photo { width: 450px !important; height: auto; }</style>La pépite de Palmeiras est suivie de près. Un profil technique qui plait énormément à la direction pour l'avenir au poste d'ailier gauche polyvalent à l'aile droite et l'attaque notamment. D'autres gros clubs à l'image du PSG, FC Barcelone,de Liverpool, Newcastle Utd, Arsenal, Chelsea ou même Manchester United seraient sur le coup. Le club anglais a même formulé une offre et rassemble actuellement les fonds nécéssaires mais le joueur a clairement exprimé des préférences en faveur du FC Barcelone puis de Manchester City. Cependant, tout le monde sait que le FC Barcelone manque cruellement de fonds et qu'il n'a pas encore remboursé l'ensemble de ses prêts à des clubs tels que Man City. Les négociations sont donc en cours entre les grands d'Europe et Palmeiras, affaire à suivre..." 
-        },
-    'enzofernandez_rumor': { 
-        nom: "Enzo Fernandez", 
-        img: "enzofernandez.jpg", 
-        detail: "<style>#rumor-photo { width: 350px !important; height: auto; }</style>Le talentueux milieu argentin de Chelsea serait visé par Manchester City pour le prochain mercato afin de remplacer Bernardo Silva, en effet, l'expérimenté milieu portugais à officialisé sa séparation avec le club en fin de saison ainsi que pour John Stones et Pep Guardiola 😢. Mais pour Enzo Fernandez, le Real Madrid serait déjà sur le coup et le milieu serait plus intéresssé par Madrid que Manchester mais reste à voir si Chelsea est du  même avis..."
-                },
-    'ounahi_rumor': { 
-        nom: "Azzedine Ounahi", 
-        img: "ounahi.jpg", 
-        detail: "<style>#rumor-photo { width: 450px !important; height: auto; }</style>L'international milieu marocain de 26 ans ancien pensonnaire de l'OM actuellement à Girone serait visé par le club après une saison particulièrement remarquée, Girone club membre au côté de Man City et de l'ESTAC du City Football Group ce qui pourrait énormément faciliter la transaction du marocain dont la clause libératoire est fixée à 20 M d'euros mais est-ce que le club mancunien lèvera cette somme pour le joueur qui a profondément déçu à l'Olympique de Marseille..."
-    }
+// --- Données ---
+const effectif = {
+    'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", img: "9.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 91 },
+    'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", img: "16.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 89 },
+    'foden': { nom: "Phil Foden", poste: "Milieu", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "80M €", img: "47.jpg", bio: "L'enfant chéri de Stockport.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 85 },
+    'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "60M €", img: "3.jpg", bio: "Pilier défensif.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 87 },
+    'donnaruma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", img: "25.jpg", bio: "Gardien d'envergure internationale.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 89 },
+    'savinho': { nom: "Savinho", poste: "Attaquant", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "40M €", img: "26.jpg", bio: "Dribbleur brésilien électrisant.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 81 },
+    'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2028", valeur: "0.5 €", img: "13.jpg", bio: "Gardien expérimenté.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 70 },
+    'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "35M €", img: "45.jpg", bio: "Révélation ouzbèke.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 80 },
+    'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", img: "6.jpg", bio: "Polyvalence tactique exemplaire.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 82 },
+    'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "32M €", img: "82.jpg", bio: "Futur cadre issu de l'académie.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 77 },
+    'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", img: "21.jpg", bio: "Latéral percutant.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 81 },
+    'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "50M €", img: "33.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 81 },
+    'nunes': { nom: "Matheus Nunes", poste: "Milieu", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "45M €", img: "27.jpg", bio: "Défenseur puissant.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 82 },
+    'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", img: "68.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 68 },
+    'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", img: "24.jpg", bio: "Roc croate.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 85 },
+    'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "30/06/2031", valeur: "65M €", img: "15.jpg", bio: "Nouvelle recrue solide.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 84 },
+    'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", img: "1.jpg", bio: "Gardien prometteur.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 77 },
+    'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "75M €", img: "42.jpg", bio: "Puissance offensive brute.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 84 },
+    'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "65M €", img: "10.jpg", bio: "Magicien français.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 84 },
+    'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "60M €", img: "7.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 83 },
+    'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "30/06/2030", valeur: "15M €", img: "41.jpg", bio: "Futur maître du milieu.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 70 },
+    'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", img: "11.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 84 },
+    'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", img: "8.jpg", bio: "Expérience croate.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 82 },
+    'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", img: "4.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 85 },
+    'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", img: "14.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0, notejeu: 81 }
 };
 
-        const centreFormation = {
-    gardiens: [
-        {
-            nom: "Spike Brits",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Gardien",
-            img: "gardienspike.jpg"
-        },
-        {
-            nom: "Oliver Whatmuff",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Gardien",
-            img: "gardienoliver.jpg"
-        },
-        {
-            nom: "Jack Wint",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Gardien",
-            img: "gardienjack.jpg"
-        }
-    ],
-    defenseurs: [
-        {
-            nom: "Finley Burns",
-            age: "17 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Défenseur",
-            img: "defenseurfinley.jpg"
-        },
-        {
-            nom: "Ezra Carrington",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Défenseur",
-            img: "defenseurezra.jpg"
-        },
-        {
-            nom: "Tomas Galvez",
-            age: "17 ans",
-            nat: "Finlande 🇫🇮",
-            potentiel: "",
-            poste: "Défenseur",
-            img: "defenseurtomas.jpg"
-        },
-        {
-            nom: "Matty Henderson-Hall",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Défenseur",
-            img: "defenseurmatty.jpg"
-        },
-        {
-            nom: "Luke Mbete",
-            age: "22 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Défenseur",
-            img: "defenseurluke.jpg"
-        },
-        {
-            nom: "Christian McFarlane",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Défenseur",
-            img: "defenseurchristian.jpg"
-        },
-        {
-            nom: "Stephen Mfuni",
-            age: "17 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Défenseur",
-            img: "defenseurstephen.jpg"
-        },
-        {
-            nom: "Brooklyn Nfonkeu",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Défenseur",
-            img: "defenseurbrooklyn.jpg"
-        },
-        {
-            nom: "Kian Noble",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Défenseur",
-            img: "defenseurkian.jpg"
-        },
-        {
-            nom: "Harrison Parker",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Défenseur",
-            img: "defenseurharrison.jpg"
-        },
-        {
-            nom: "Lakyle Samuel",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Défenseur",
-            img: "defenseurlakyle.jpg"
-        },
-        {
-            nom: "Jahmai Simpson-Pusey",
-            age: "17 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Défenseur",
-            img: "defenseurjahmai.jpg"
-        },
-        {
-            nom: "Isaac Smith",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Défenseur",
-            img: "defenseurisaac.jpg"
-        },
-        {
-            nom: "Rhys Thomas",
-            age: "19 ans",
-            nat: "Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿",
-            potentiel: "",
-            poste: "Défenseur",
-            img: "defenseurrhys.jpg"
-        }
-    ],
-    milieux: [
-        {
-            nom: "Isaiah Dada-Mascoll",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Milieu",
-            img: "milieuisaiah.jpg"
-        },
-        {
-            nom: "Femi Fapetu",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Milieu",
-            img: "milieufemi.jpg"
-        },
-        {
-            nom: "Charlie Gray",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Milieu",
-            img: "milieucharlie.jpg"
-        },
-        {
-            nom: "Jaden Heskey",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Milieu",
-            img: "milieujaden.jpg"
-        },
-        {
-            nom: "Divine Mukasa",
-            age: "17 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Milieu",
-            img: "milieudivine.jpg"
-        }
-    ],
-    attaquants: [
-        {
-            nom: "Luka Fletcher",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Attaquant",
-            img: "attaquantluka.jpg"
-        },
-        {
-            nom: "Reighan Heskey",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Attaquant",
-            img: "attaquantreighan.jpg"
-        },
-        {
-            nom: "Emilio Lawrence",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Attaquant",
-            img: "attaquantemilio.jpg"
-        },
-        {
-            nom: "Ryan McAidoo",
-            age: "17 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Attaquant",
-            img: "attaquantryan.jpg"
-        },
-        {
-            nom: "Divin Mubama",
-            age: "21 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Attaquant",
-            img: "attaquantdivin.jpg"
-        },
-        {
-            nom: "Ashton Muir",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Attaquant",
-            img: "attaquantashton.jpg"
-        },
-        {
-            nom: "Joel Ndala",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Attaquant",
-            img: "attaquantjoel.jpg"
-        },
-        {
-            nom: "Mahamadou Sangaré",
-            age: "19 ans",
-            nat: "France 🇫🇷",
-            potentiel: "",
-            poste: "Attaquant",
-            img: "attaquantmahamadou.jpg"
-        },
-        {
-            nom: "Matty Warhurst",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
-            poste: "Attaquant",
-            img: "attaquantmatty.jpg"
-        }
-    ]
+const rumeurs = {
+    'anderson_rumor': { nom: "Elliot Anderson", img: "anderson.jpg", detail: "Le jeune milieu anglais..." },
+    'kroupi_rumor': { nom: "Eli Junior Kroupi", img: "kroupi.jpg", detail: "Le jeune joueur français..." },
+    'conceicao_rumor': { nom: "Eduardo Conceicao", img: "conceicao.jpg", detail: "La pépite de Palmeiras..." },
+    'enzofernandez_rumor': { nom: "Enzo Fernandez", img: "enzofernandez.jpg", detail: "Le talentueux milieu argentin..." },
+    'ounahi_rumor': { nom: "Azzedine Ounahi", img: "ounahi.jpg", detail: "L'international milieu marocain..." }
 };
 
-        function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
-        function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
-        function showSection(id) {
+const centreFormation = {
+    gardiens: [{ nom: "Spike Brits", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Gardien", img: "gardienspike.jpg" }, { nom: "Oliver Whatmuff", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Gardien", img: "gardienoliver.jpg" }, { nom: "Jack Wint", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Gardien", img: "gardienjack.jpg" }],
+    defenseurs: [{ nom: "Finley Burns", age: "17 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Défenseur", img: "defenseurfinley.jpg" }, { nom: "Ezra Carrington", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Défenseur", img: "defenseurezra.jpg" }, { nom: "Tomas Galvez", age: "17 ans", nat: "Finlande 🇫🇮", potentiel: "", poste: "Défenseur", img: "defenseurtomas.jpg" }, { nom: "Matty Henderson-Hall", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Défenseur", img: "defenseurmatty.jpg" }, { nom: "Luke Mbete", age: "22 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Défenseur", img: "defenseurluke.jpg" }, { nom: "Christian McFarlane", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Défenseur", img: "defenseurchristian.jpg" }, { nom: "Stephen Mfuni", age: "17 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Défenseur", img: "defenseurstephen.jpg" }, { nom: "Brooklyn Nfonkeu", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Défenseur", img: "defenseurbrooklyn.jpg" }, { nom: "Kian Noble", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Défenseur", img: "defenseurkian.jpg" }, { nom: "Harrison Parker", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Défenseur", img: "defenseurharrison.jpg" }, { nom: "Lakyle Samuel", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Défenseur", img: "defenseurlakyle.jpg" }, { nom: "Jahmai Simpson-Pusey", age: "17 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Défenseur", img: "defenseurjahmai.jpg" }, { nom: "Isaac Smith", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Défenseur", img: "defenseurisaac.jpg" }, { nom: "Rhys Thomas", age: "19 ans", nat: "Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿", potentiel: "", poste: "Défenseur", img: "defenseurrhys.jpg" }],
+    milieux: [{ nom: "Isaiah Dada-Mascoll", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Milieu", img: "milieuisaiah.jpg" }, { nom: "Femi Fapetu", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Milieu", img: "milieufemi.jpg" }, { nom: "Charlie Gray", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Milieu", img: "milieucharlie.jpg" }, { nom: "Jaden Heskey", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Milieu", img: "milieujaden.jpg" }, { nom: "Divine Mukasa", age: "17 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Milieu", img: "milieudivine.jpg" }],
+    attaquants: [{ nom: "Luka Fletcher", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Attaquant", img: "attaquantluka.jpg" }, { nom: "Reighan Heskey", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Attaquant", img: "attaquantreighan.jpg" }, { nom: "Emilio Lawrence", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Attaquant", img: "attaquantemilio.jpg" }, { nom: "Ryan McAidoo", age: "17 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Attaquant", img: "attaquantryan.jpg" }, { nom: "Divin Mubama", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Attaquant", img: "attaquantdivin.jpg" }, { nom: "Ashton Muir", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Attaquant", img: "attaquantashton.jpg" }, { nom: "Joel Ndala", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Attaquant", img: "attaquantjoel.jpg" }, { nom: "Mahamadou Sangaré", age: "19 ans", nat: "France 🇫🇷", potentiel: "", poste: "Attaquant", img: "attaquantmahamadou.jpg" }, { nom: "Matty Warhurst", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", potentiel: "", poste: "Attaquant", img: "attaquantmatty.jpg" }]
+};
+
+const objectifsSaison = [
+    { competition: "🏆 Premier League", objectif: "Prioritaire", positionActuelle: "13eme", matchs: 0, victoires: 0, nuls: 0, defaites: 0, buts: 0, encaisses: 0, points: 0, couleur: "blue" },
+    { competition: "🏆 FA Cup", objectif: "Secondaire", positionActuelle: "", matchs: 0, victoires: 0, nuls: 0, defaites: 0, buts: 0, encaisses: 0, points: 0, couleur: "orange" },
+    { competition: "🌍 Ligue des Champions", objectif: "Prioritaire", positionActuelle: "Poules", matchs: 0, victoires: 0, nuls: 0, defaites: 0, buts: 0, encaisses: 0, points: 0, couleur: "city-sky-blue" },
+    { competition: "Community Shield", objectif: "Secondaire", positionActuelle: "Finale", matchs: 0, victoires: 0, nuls: 0, defaites: 0, buts: 0, encaisses: 0, points: 0, couleur: "blue" },
+    { competition: "🏅 League Cup", objectif: "Secondaire", positionActuelle: "", matchs: 0, victoires: 0, nuls: 0, defaites: 0, buts: 0, encaisses: 0, points: 0, couleur: "green" }
+];
+
+// --- Fonctions Système ---
+function checkPassword() {
+    const input = document.getElementById('site-password').value;
+    const error = document.getElementById('lock-error');
+    if (input === "Rider77") { document.getElementById('lock-screen').style.display = 'none'; } else { error.innerText = "Mot de passe incorrect ❌"; }
+}
+
+function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
+function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
+function showSection(id) {
     document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-
     const target = document.getElementById(id);
     if (target) target.classList.add('active');
-
     document.querySelectorAll('.sous-menu').forEach(sm => sm.classList.remove('show'));
     document.getElementById('menu').classList.remove('ouvert');
-
     selectedSpotElement = null;
     document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected'));
 }
 
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('menu');
-            const btnMenu = document.getElementById('btn-menu');
-            if (menu.classList.contains('ouvert') && !menu.contains(event.target) && event.target !== btnMenu) {
-                document.querySelectorAll('.sous-menu').forEach(sm => sm.classList.remove('show'));
-                menu.classList.remove('ouvert');
-            }
-        });
+// --- Logique Jeu ---
+function verifierReponseQuiz() {
+    const reponse = document.getElementById('quiz-answer').value.trim();
+    if (joueurMystere && reponse.toLowerCase() === joueurMystere.nom.toLowerCase()) {
+        document.getElementById('quiz-feedback').innerText = "Bien joué ! ✅";
+        document.getElementById('quiz-img-result').style.display = "block";
+    } else {
+        document.getElementById('quiz-feedback').innerText = "Mauvaise réponse ❌";
+    }
+}
 
-        Voici une version corrigée et restructurée de tes fonctions. J'ai nettoyé les imbrications (fonctions dans des fonctions) et supprimé les doublons (comme la fonction finJeu qui était déclarée deux fois).
-
-Place ce bloc dans ton script, il devrait maintenant fonctionner correctement :
-JavaScript
-
-// --- FONCTIONS JOUEURS ET JEU ---
+function demarrerQuiz() {
+    const cles = Object.keys(effectif);
+    joueurMystere = effectif[cles[Math.floor(Math.random() * cles.length)]];
+    const icons = { "Gardien": "🧤", "Défenseur": "🛡️", "Milieu": "⚡", "Attaquant": "⚔️" };
+    document.getElementById('quiz-clues').innerHTML = `Poste : ${icons[joueurMystere.poste]}<br>Âge : ${joueurMystere.age}<br>Nation : ${joueurMystere.nat}<br>Salaire : ${joueurMystere.paye}`;
+    document.getElementById('quiz-answer').value = "";
+    document.getElementById('quiz-feedback').innerText = "";
+    document.getElementById('quiz-img-result').style.display = "none";
+    showSection('quiz-view');
+}
 
 function afficherJoueur(id) {
-    const j = effectif[id]; 
-    if(!j) return;
+    const j = effectif[id]; if(!j) return;
     document.getElementById('nom-joueur').innerText = j.nom;
     document.getElementById('s-age').innerText = j.age;
     document.getElementById('s-nat').innerText = j.nat;
@@ -1496,290 +1230,107 @@ function afficherJoueur(id) {
     showSection('joueur-solo');
 }
 
-function ouvrirJeu() {
-    showSection('jeu-view');
-}
-
+function demarrerJeu() { jeuEnCours = true; budgetUser = 250; budgetBot = 250; joueursJeu = Object.values(effectif); document.getElementById("equipe-utilisateur").innerHTML = ""; document.getElementById("equipe-bot").innerHTML = ""; nextPlayer(); showSection('jeu-view'); }
 function nextPlayer() {
-    if (joueursJeu.length === 0) {
-        finJeu();
-        return;
-    }
-
+    if (joueursJeu.length === 0) { finJeu(); return; }
     const index = Math.floor(Math.random() * joueursJeu.length);
     joueurActuel = joueursJeu.splice(index, 1)[0];
-
     document.getElementById("jeu-photo").src = "static/images/" + joueurActuel.img;
     document.getElementById("jeu-nom").innerText = joueurActuel.nom;
     document.getElementById("jeu-note").innerText = joueurActuel.notejeu || "??";
-
-    enchereActuelle = 0;
-    leader = "Aucun";
-    document.getElementById("enchere-actuelle").innerText = "0";
-    document.getElementById("leader-enchere").innerText = "Aucun";
+    enchereActuelle = 0; leader = "Aucun"; document.getElementById("enchere-actuelle").innerText = "0"; document.getElementById("leader-enchere").innerText = leader;
 }
-
-function demarrerJeu() {
-    jeuEnCours = true;
-    budgetUser = 250;
-    budgetBot = 250;
-    joueursJeu = Object.values(effectif);
-    document.getElementById("equipe-utilisateur").innerHTML = "";
-    document.getElementById("equipe-bot").innerHTML = "";
-    nextPlayer();
-}
-
-function finJeu() {
-    jeuEnCours = false;
-    alert("Fin du jeu !");
-}
-
+function finJeu() { jeuEnCours = false; alert("Fin du jeu !"); }
 function enchereUtilisateur() {
-    const offreInput = document.getElementById("offre-utilisateur");
-    const offre = parseInt(offreInput.value);
-
-    if (!offre || offre <= enchereActuelle || offre > budgetUser) {
-        alert("Offre invalide ou insuffisante !");
-        return;
-    }
-
-    enchereActuelle = offre;
-    leader = "Vous";
-    document.getElementById("enchere-actuelle").innerText = enchereActuelle;
-    document.getElementById("leader-enchere").innerText = leader;
-
-    botRepond();
+    const offre = parseInt(document.getElementById("offre-utilisateur").value);
+    if (!offre || offre <= enchereActuelle || offre > budgetUser) return;
+    enchereActuelle = offre; leader = "Vous"; document.getElementById("enchere-actuelle").innerText = enchereActuelle; document.getElementById("leader-enchere").innerText = leader; botRepond();
 }
-
 function botRepond() {
-    const reaction = Math.random();
-    if (reaction > 0.5) {
+    if (Math.random() > 0.5) {
         const botOffre = enchereActuelle + Math.floor(Math.random() * 10);
-        if (botOffre <= budgetBot) {
-            enchereActuelle = botOffre;
-            leader = "Bot";
-            document.getElementById("enchere-actuelle").innerText = enchereActuelle;
-            document.getElementById("leader-enchere").innerText = leader;
-        }
+        if (botOffre <= budgetBot) { enchereActuelle = botOffre; leader = "Bot"; document.getElementById("enchere-actuelle").innerText = enchereActuelle; document.getElementById("leader-enchere").innerText = leader; }
     }
 }
+function passerTour() { nextPlayer(); }
 
-function passerTour() {
-    nextPlayer();
+// --- Fonctions UI & Divers ---
+function afficherRumeur(id) {
+    const r = rumeurs[id]; if(!r) return;
+    document.getElementById('rumor-name').innerText = r.nom;
+    document.getElementById('rumor-photo').src = "static/images/" + r.img;
+    document.getElementById('rumor-data').innerHTML = `<strong>Détails :</strong><br><br>${r.detail}`;
+    document.getElementById('btn-chat-rumor').onclick = () => ouvrirChat(r.nom);
+    showSection('rumeur-detail');
 }
 
-
-        function afficherRumeur(id) {
-            const r = rumeurs[id]; if(!r) return;
-            document.getElementById('rumor-name').innerText = r.nom;
-            document.getElementById('rumor-photo').src = "static/images/" + r.img;
-            document.getElementById('rumor-data').innerHTML = `<strong>Détails de la rumeur :</strong><br><br>${r.detail}`;
-            document.getElementById('btn-chat-rumor').onclick = () => ouvrirChat(r.nom);
-            showSection('rumeur-detail');
-        }
-
-        const objectifsSaison = [
-    {
-        competition: "🏆 Premier League",
-        objectif: "Prioritaire",
-        positionActuelle: "13eme",
-        matchs: 0,
-        victoires: 0,
-        nuls: 0,
-        defaites: 0,
-        buts: 0,
-        encaisses: 0,
-        points: 0,
-        couleur: "blue"
-    },
-    {
-        competition: "🏆 FA Cup",
-        objectif: "Secondaire",
-        positionActuelle: "",
-        matchs: 0,
-        victoires: 0,
-        nuls: 0,
-        defaites: 0,
-        buts: 0,
-        encaisses: 0,
-        points: 0,
-        couleur: "orange"
-    },
-    {
-        competition: "🌍 Ligue des Champions",
-        objectif: "Prioritaire",
-        positionActuelle: "Poules",
-        matchs: 0,
-        victoires: 0,
-        nuls: 0,
-        defaites: 0,
-        buts: 0,
-        encaisses: 0,
-        points: 0,
-        couleur: "city-sky-blue"
-    },
-    {
-        competition: "Community Shield",
-        objectif: "Secondaire",
-        positionActuelle: "Finale",
-        matchs: 0,
-        victoires: 0,
-        nuls: 0,
-        defaites: 0,
-        buts: 0,
-        encaisses: 0,
-        points: 0,
-        couleur: "blue"
-    },
-    {
-        competition: "🏅 League Cup",
-        objectif: "Secondaire",
-        positionActuelle: "",
-        matchs: 0,
-        victoires: 0,
-        nuls: 0,
-        defaites: 0,
-        buts: 0,
-        encaisses: 0,
-        points: 0,
-        couleur: "green"
-    }
-];
-function ouvrirObjectifs() {
-    const container = document.getElementById("objectifs-container");
+function ouvrirCentre(categorie) {
+    const container = document.getElementById('centre-container');
     container.innerHTML = "";
-
-    objectifsSaison.forEach(o => {
-        container.innerHTML += `
-            <div class="objectif-card ${o.couleur}">
-                <h3>${o.competition}</h3>
-
-                <p><strong>🎯 Objectif :</strong> ${o.objectif}</p>
-                <p><strong>📊 Position actuelle :</strong> ${o.positionActuelle}</p>
-
-                <div class="stats-grid">
-
-                    <div class="stat-card">
-                        <span class="stat-number">${o.matchs}</span>
-                        <span class="stat-label">🎮 Matchs</span>
-                    </div>
-
-                    <div class="stat-card">
-                        <span class="stat-number">${o.victoires}</span>
-                        <span class="stat-label">✅ Victoires</span>
-                    </div>
-
-                    <div class="stat-card">
-                        <span class="stat-number">${o.buts}</span>
-                        <span class="stat-label">⚽ Buts</span>
-                    </div>
-
-                    <div class="stat-card">
-                        <span class="stat-number">${o.points || "-"}</span>
-                        <span class="stat-label">🏅 Points</span>
-                    </div>
-
-                </div>
-            </div>
-        `;
-    });
-
-    showSection("objectifs");
+    const joueurs = centreFormation[categorie];
+    if (joueurs) {
+        joueurs.forEach(j => {
+            container.innerHTML += `<div class="centre-card"><img src="static/images/${j.img}"><div class="centre-info"><h3>${j.nom}</h3><p>🎂 Âge : ${j.age}</p><p>🌍 Nation : ${j.nat}</p><p>⚽ Poste : ${j.poste}</p></div></div>`;
+        });
+    }
+    showSection('centre-formation-view');
 }
 
-        let selectedSpotElement = null;
-        function preparerCompoInteractive() { renderSquadListForCompo(); showSection('ma-compo-view'); }
-        function renderSquadListForCompo() {
-            const container = document.getElementById('liste-joueurs-compo');
-            container.innerHTML = "";
-            const postesLabel = { "Gardien": "🧤 Gardiens", "Défenseur": "🛡️ Défenseurs", "Milieu": "⚡ Milieux", "Attaquant": "⚔️ Attaquants" };
-            const postes = { "Gardien": [], "Défenseur": [], "Milieu": [], "Attaquant": [] };
-            for (let id in effectif) { const p = effectif[id].poste; if (postes[p]) postes[p].push({id: id, ...effectif[id]}); }
-            for (let pKey in postes) {
-                if (postes[pKey].length > 0) {
-                    const titre = document.createElement('div'); titre.className = "compo-cat-titre"; titre.innerText = postesLabel[pKey]; container.appendChild(titre);
-                    postes[pKey].forEach(j => {
-                        const link = document.createElement('span'); link.className = "compo-joueur-link"; link.innerText = j.nom;
-                        link.onclick = () => placerJoueur(j.id); container.appendChild(link);
-                    });
-                }
-            }
-        }
-        function selectSpot(element) { document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected')); selectedSpotElement = element; selectedSpotElement.classList.add('selected'); }
-        function placerJoueur(joueurId) {
-            if (!selectedSpotElement) { alert("Clique d'abord sur une place vide sur le terrain 🏟️"); return; }
-            const j = effectif[joueurId]; if (!j) return;
-            const imgHolder = selectedSpotElement.querySelector('.spot-img-holder');
-            const imgEl = imgHolder.querySelector('img');
-            const nameEl = selectedSpotElement.querySelector('.spot-player-name');
-            imgEl.src = "static/images/" + j.img; imgHolder.classList.add('has-player');
-            nameEl.innerText = j.nom;
-            selectedSpotElement.classList.remove('selected'); selectedSpotElement = null;
-        }
-
-        function preparerContrats() { 
-            const container = document.getElementById('liste-contrats-urgents'); container.innerHTML = ""; 
-            const dateLimite = new Date(2027, 2, 30); 
-            for (let id in effectif) { 
-                const j = effectif[id]; 
-                if (j.fin && j.fin !== "N/A") { 
-                    const parties = j.fin.split('/'); 
-                    const dateFin = new Date(parties[2], parties[1] - 1, parties[0]); 
-                    if (dateFin <= dateLimite) { 
-                        const card = document.createElement('div'); card.className = "transfert-card urgent-contract"; 
-                        card.onclick = () => afficherJoueur(id); 
-                        card.innerHTML = `<img src="static/images/${j.img}"><div class="transfert-info"><h3>${j.nom}</h3><p>Expire le : ${j.fin}</p><p class="transfert-date">Salaire mensuel : ${j.paye}</p></div>`; 
-                        container.appendChild(card); 
-                    } 
-                } 
-            } 
-            showSection('contrats'); 
-        }
-
-        let currentChatTopic = ""; 
-        function ouvrirChat(nom) { currentChatTopic = nom; document.getElementById('chat-titre').innerText = "Avis : " + nom; loadMessages(); showSection('chat-section'); } 
-        function toggleEmojiPicker() { const picker = document.getElementById('emoji-picker'); picker.style.display = (picker.style.display === 'grid') ? 'none' : 'grid'; } 
-        function addEmoji(e) { const i = document.getElementById('chat-input'); i.value += e; document.getElementById('emoji-picker').style.display = 'none'; } 
-        function envoyerMessage() { const i = document.getElementById('chat-input'); const val = i.value.trim(); if(!val || !currentChatTopic) return; db.collection("messages").add({ topic: currentChatTopic, text: val, date: firebase.firestore.FieldValue.serverTimestamp() }); i.value = ""; } 
-        function loadMessages() { 
-            db.collection("messages").where("topic", "==", currentChatTopic).orderBy("date", "asc").onSnapshot((snapshot) => { 
-                const container = document.getElementById('chat-messages'); container.innerHTML = ""; 
-                snapshot.forEach((doc) => { const m = document.createElement('div'); m.className = "msg"; m.innerText = doc.data().text; container.appendChild(m); }); 
-                container.scrollTop = container.scrollHeight; 
-            }); 
-        }
-        let joueurMystere = null;
-        function demarrerQuiz() {
-            const cles = Object.keys(effectif);
-            joueurMystere = effectif[cles[Math.floor(Math.random() * cles.length)]];
-            const icons = { "Gardien": "🧤", "Défenseur": "🛡️", "Milieu": "⚡", "Attaquant": "⚔️" };
-            document.getElementById('quiz-clues').innerHTML = `Poste : ${icons[joueurMystere.poste]}<br>Âge : ${joueurMystere.age}<br>Nation : ${joueurMystere.nat}<br>Salaire : ${joueurMystere.paye}`;
-            document.getElementById('quiz-answer').value = "";
-            document.getElementById('quiz-feedback').innerText = "";
-            document.getElementById('quiz-img-result').style.display = "none";
-            showSection('quiz-view');
-        }
-
-        function ouvrirCentre(categorie) {
-            const container = document.getElementById('centre-container');
-            container.innerHTML = "";
-            const joueurs = centreFormation[categorie];
-            joueurs.forEach(j => {
-                container.innerHTML += `
-                <div class="centre-card">
-                    <img src="static/images/${j.img}">
-                    <div class="centre-info">
-                        <h3>${j.nom}</h3>
-                        <p><strong>🎂 Âge :</strong> ${j.age}</p>
-                        <p><strong>🌍 Nationalité :</strong> ${j.nat}</p>
-                        <p><strong>📈 Potentiel :</strong> ${j.potentiel}</p>
-                        <p><strong>⚽ Poste :</strong> ${j.poste}</p>
-                    </div>
-                </div>
-                `;
+function preparerCompoInteractive() { renderSquadListForCompo(); showSection('ma-compo-view'); }
+function renderSquadListForCompo() {
+    const container = document.getElementById('liste-joueurs-compo');
+    container.innerHTML = "";
+    const postesLabel = { "Gardien": "🧤 Gardiens", "Défenseur": "🛡️ Défenseurs", "Milieu": "⚡ Milieux", "Attaquant": "⚔️ Attaquants" };
+    const postes = { "Gardien": [], "Défenseur": [], "Milieu": [], "Attaquant": [] };
+    for (let id in effectif) { const p = effectif[id].poste; if (postes[p]) postes[p].push({id: id, ...effectif[id]}); }
+    for (let pKey in postes) {
+        if (postes[pKey].length > 0) {
+            const titre = document.createElement('div'); titre.className = "compo-cat-titre"; titre.innerText = postesLabel[pKey]; container.appendChild(titre);
+            postes[pKey].forEach(j => {
+                const link = document.createElement('span'); link.className = "compo-joueur-link"; link.innerText = j.nom;
+                link.onclick = () => placerJoueur(j.id); container.appendChild(link);
             });
-            showSection('centre-formation-view');
         }
+    }
+}
+function selectSpot(element) { document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected')); selectedSpotElement = element; selectedSpotElement.classList.add('selected'); }
+function placerJoueur(joueurId) {
+    if (!selectedSpotElement) { alert("Clique d'abord sur une place vide sur le terrain 🏟️"); return; }
+    const j = effectif[joueurId]; if (!j) return;
+    const imgHolder = selectedSpotElement.querySelector('.spot-img-holder');
+    const imgEl = imgHolder.querySelector('img');
+    const nameEl = selectedSpotElement.querySelector('.spot-player-name');
+    imgEl.src = "static/images/" + j.img; imgHolder.classList.add('has-player');
+    nameEl.innerText = j.nom;
+    selectedSpotElement.classList.remove('selected'); selectedSpotElement = null;
+}
+
+function ouvrirChat(nom) { currentChatTopic = nom; document.getElementById('chat-titre').innerText = "Avis : " + nom + " 💬"; loadMessages(); showSection('chat-section'); }
+function toggleEmojiPicker() { const picker = document.getElementById('emoji-picker'); picker.style.display = (picker.style.display === 'grid') ? 'none' : 'grid'; }
+function addEmoji(e) { const i = document.getElementById('chat-input'); i.value += e; document.getElementById('emoji-picker').style.display = 'none'; }
+function envoyerMessage() { const i = document.getElementById('chat-input'); const val = i.value.trim(); if(!val || !currentChatTopic) return; db.collection("messages").add({ topic: currentChatTopic, text: val, date: firebase.firestore.FieldValue.serverTimestamp() }); i.value = ""; }
+function loadMessages() {
+    db.collection("messages").where("topic", "==", currentChatTopic).orderBy("date", "asc").onSnapshot((snapshot) => {
+        const container = document.getElementById('chat-messages'); container.innerHTML = "";
+        snapshot.forEach((doc) => { const m = document.createElement('div'); m.className = "msg"; m.innerText = doc.data().text; container.appendChild(m); });
+        container.scrollTop = container.scrollHeight;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('site-password').addEventListener('keypress', function(e) { if (e.key === 'Enter') checkPassword(); });
+    const quizInput = document.getElementById('quiz-answer');
+    if(quizInput) { quizInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') verifierReponseQuiz(); }); }
+    document.addEventListener('click', function(event) {
+        const menu = document.getElementById('menu'); const btnMenu = document.getElementById('btn-menu');
+        if (menu && menu.classList.contains('ouvert') && !menu.contains(event.target) && event.target !== btnMenu) {
+            document.querySelectorAll('.sous-menu').forEach(sm => sm.classList.remove('show'));
+            menu.classList.remove('ouvert');
+        }
+    });
+});
+    showSection('centre-formation-view');
+}
 
         function verifierReponseQuiz() {
             const rep = document.getElementById('quiz-answer').value.trim().toLowerCase();
