@@ -1471,44 +1471,55 @@
             }
         });
 
-        function afficherJoueur(id) {
-            const j = effectif[id]; if(!j) return;
-            document.getElementById('nom-joueur').innerText = j.nom;
-            document.getElementById('s-age').innerText = j.age;
-            document.getElementById('s-nat').innerText = j.nat;
-            document.getElementById('s-paye').innerText = j.paye;
-            document.getElementById('s-fin').innerText = j.fin;
-            document.getElementById('s-valeur').innerText = j.valeur;
-            document.getElementById('s-bio').innerText = j.bio;
-            document.getElementById('photo').src = "static/images/" + j.img;
-            document.getElementById('s-buts').innerText = j.buts || 0;
-            document.getElementById('s-passes').innerText = j.passes || 0;
-            document.getElementById('s-matchs').innerText = j.matchs || 0;
-            document.getElementById('s-note').innerText = j.note || "0.0";
-            showSection('joueur-solo');
+        Voici une version corrigée et restructurée de tes fonctions. J'ai nettoyé les imbrications (fonctions dans des fonctions) et supprimé les doublons (comme la fonction finJeu qui était déclarée deux fois).
 
-        }
+Place ce bloc dans ton script, il devrait maintenant fonctionner correctement :
+JavaScript
 
-        function nextPlayer() {
+// --- FONCTIONS JOUEURS ET JEU ---
+
+function afficherJoueur(id) {
+    const j = effectif[id]; 
+    if(!j) return;
+    document.getElementById('nom-joueur').innerText = j.nom;
+    document.getElementById('s-age').innerText = j.age;
+    document.getElementById('s-nat').innerText = j.nat;
+    document.getElementById('s-paye').innerText = j.paye;
+    document.getElementById('s-fin').innerText = j.fin;
+    document.getElementById('s-valeur').innerText = j.valeur;
+    document.getElementById('s-bio').innerText = j.bio;
+    document.getElementById('photo').src = "static/images/" + j.img;
+    document.getElementById('s-buts').innerText = j.buts || 0;
+    document.getElementById('s-passes').innerText = j.passes || 0;
+    document.getElementById('s-matchs').innerText = j.matchs || 0;
+    document.getElementById('s-note').innerText = j.note || "0.0";
+    showSection('joueur-solo');
+}
+
+function ouvrirJeu() {
+    showSection('jeu-view');
+}
+
+function nextPlayer() {
     if (joueursJeu.length === 0) {
         finJeu();
         return;
     }
 
-        function ouvrirJeu() {
-        showSection('jeu-view');
+    const index = Math.floor(Math.random() * joueursJeu.length);
+    joueurActuel = joueursJeu.splice(index, 1)[0];
 
-        }
+    document.getElementById("jeu-photo").src = "static/images/" + joueurActuel.img;
+    document.getElementById("jeu-nom").innerText = joueurActuel.nom;
+    document.getElementById("jeu-note").innerText = joueurActuel.notejeu || "??";
 
-        let budgetUser = 250;
-        let budgetBot = 250;
-        let joueursJeu = Object.values(effectif);
-        let joueurActuel = null;
-        let enchereActuelle = 0;
-        let leader = "Aucun";
-        let jeuEnCours = false;
+    enchereActuelle = 0;
+    leader = "Aucun";
+    document.getElementById("enchere-actuelle").innerText = "0";
+    document.getElementById("leader-enchere").innerText = "Aucun";
+}
 
-        function demarrerJeu() {
+function demarrerJeu() {
     jeuEnCours = true;
     budgetUser = 250;
     budgetBot = 250;
@@ -1516,63 +1527,47 @@
     document.getElementById("equipe-utilisateur").innerHTML = "";
     document.getElementById("equipe-bot").innerHTML = "";
     nextPlayer();
-
-    }        
-
-    const index = Math.floor(Math.random() * joueursJeu.length);
-    joueurActuel = joueursJeu.splice(index, 1)[0];
-
-    document.getElementById("jeu-photo").src =
-        "static/images/" + joueurActuel.img;
-    document.getElementById("jeu-nom").innerText =
-        joueurActuel.nom;
-    document.getElementById("jeu-note").innerText =
-        joueurActuel.notejeu || "??";
-
-    enchereActuelle = 0;
-    leader = "Aucun";
 }
 
-        function finJeu() {
+function finJeu() {
+    jeuEnCours = false;
     alert("Fin du jeu !");
 }
 
-        function enchereUtilisateur() {
-    const offre = parseInt(document.getElementById("offre-utilisateur").value);
+function enchereUtilisateur() {
+    const offreInput = document.getElementById("offre-utilisateur");
+    const offre = parseInt(offreInput.value);
 
-    if (!offre || offre <= enchereActuelle || offre > budgetUser) return;
+    if (!offre || offre <= enchereActuelle || offre > budgetUser) {
+        alert("Offre invalide ou insuffisante !");
+        return;
+    }
 
     enchereActuelle = offre;
     leader = "Vous";
-
     document.getElementById("enchere-actuelle").innerText = enchereActuelle;
     document.getElementById("leader-enchere").innerText = leader;
 
     botRepond();
 }
 
-        function botRepond() {
+function botRepond() {
     const reaction = Math.random();
-
     if (reaction > 0.5) {
         const botOffre = enchereActuelle + Math.floor(Math.random() * 10);
-
         if (botOffre <= budgetBot) {
             enchereActuelle = botOffre;
             leader = "Bot";
-
             document.getElementById("enchere-actuelle").innerText = enchereActuelle;
             document.getElementById("leader-enchere").innerText = leader;
         }
     }
 }
-        function passerTour() {
+
+function passerTour() {
     nextPlayer();
 }
 
-        function finJeu() {
-    alert("Fin du jeu !");
-}
 
         function afficherRumeur(id) {
             const r = rumeurs[id]; if(!r) return;
