@@ -442,6 +442,13 @@
                     </div>
                 </div>
             </div>
+
+        <div id="position-actuelle-view" class="content-section">
+            <div class="titre-zone">📊 Positions Actuelles</div>
+            <div id="positions-container" class="centre-container">
+            <!-- Les cartes des compétitions vont se générer ici -->
+            </div>
+        </div>
             
         <div id="joueur-solo" class="content-section">
             <h2 id="nom-joueur"></h2>
@@ -781,6 +788,50 @@
         }
     ]
 };
+
+        const competitionsActuelles = [
+            {
+                nom: "Premier League",
+                classement: "1er",
+                matchNumero: 28,
+                img: "premier_league.jpg", // Nom de ton image dans static/images/
+                bio: "Course au titre en championnat anglais."
+            },
+            {
+                nom: "UEFA Champions League",
+                classement: "3ème (Phase de ligue)",
+                matchNumero: 6,
+                img: "champions_league.jpg",
+                bio: "L'objectif européen suprême."
+            },
+            {
+                nom: "FA Cup",
+                classement: "Quarts de finale",
+                matchNumero: 3,
+                img: "fa_cup.jpg",
+                bio: "La plus vieille compétition nationale."
+            }
+        ];
+
+        function chargerPositionsActuelles() {
+            const container = document.getElementById('positions-container');
+            container.innerHTML = ""; // On vide le container
+            
+            competitionsActuelles.forEach(c => {
+                container.innerHTML += `
+                <div class="centre-card">
+                    <img src="static/images/${c.img}" alt="${c.nom}">
+                    <div class="centre-info">
+                        <h3>${c.nom}</h3>
+                        <p><strong>🏆 Position :</strong> ${c.classement}</p>
+                        <p><strong>📅 Avancement :</strong> Match n°${c.matchNumero}</p>
+                        <p><strong>📝 Statut :</strong> ${c.bio}</p>
+                    </div>
+                </div>
+                `;
+            });
+            showSection('position-actuelle-view');
+        }
 
         function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
         function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
