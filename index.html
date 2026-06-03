@@ -701,7 +701,7 @@ Réparations en cours
             <h2 id="nom-joueur"></h2>
             <img id="photo" src="" style="width:200px; border-radius:15px;">
             <div class="box-info">
-                <p id="s-age"></p><p id="s-nat"></p><p id="s-paye"></p><p id="s-valeur"></p><p id="s-noteea"></p>
+                <p id="s-age"></p><p id="s-nat"></p><p id="s-paye"></p><p id="s-valeur"></p><p id="s-fin"></p><p id="s-noteea"></p>
                 <div class="bio-container" id="s-bio"></div>
             </div>
         </div>
@@ -1096,6 +1096,20 @@ Réparations en cours
             document.getElementById('s-note').innerText = j.note || "0.0";
             showSection('joueur-solo');
 
+        }
+
+        function showSection(id) {
+            document.querySelectorAll('.content-section')
+            .forEach(s => s.classList.remove('active'));
+
+            const section = document.getElementById(id);
+
+            if (!section) {
+                console.error("Section introuvable :", id);
+                return;
+            }
+
+        section.classList.add('active');
         }
 
         function afficherRumeur(id) {
