@@ -1,4 +1,3 @@
-Réparations en cours
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -164,7 +163,6 @@ Réparations en cours
                 <span class="joueur-link" onclick="afficherJoueur('trafford')">James Trafford</span>
                 <span class="joueur-link" onclick="afficherJoueur('bettinelli')">Marcus Bettinelli</span>
                 <div class="cat-titre">🛡️ Défenseurs</div>
-                <span class="joueur-link" onclick="afficherJoueur('stones')">John Stones</span>
                 <span class="joueur-link" onclick="afficherJoueur('nunes')">Matheus Nunes</span>
                 <span class="joueur-link" onclick="afficherJoueur('ake')">Nathan Aké</span>
                 <span class="joueur-link" onclick="afficherJoueur('guehi')">Marc Guéhi</span>
@@ -175,15 +173,20 @@ Réparations en cours
                 <span class="joueur-link" onclick="afficherJoueur('gvardiol')">Josko Gvardiol</span>
                 <span class="joueur-link" onclick="afficherJoueur('khusanov')">Abdukodir Khusanov</span>
                 <span class="joueur-link" onclick="afficherJoueur('lewis')">Rico Lewis</span>
+                <span class="joueur-link" onclick="afficherJoueur('reis')">Vitor Reis</span>
+                <span class="joueur-link" onclick="afficherJoueur('wilson-esbrand')">Joshua Wilson-Esbrand</span>
+                <span class="joueur-link" onclick="afficherJoueur('akanji')">Manuel Akanji</span>
                 <div class="cat-titre">⚡ Milieux</div>
                 <span class="joueur-link" onclick="afficherJoueur('rodri')">Rodri</span>
-                <span class="joueur-link" onclick="afficherJoueur('silva')">Bernardo Silva</span>
                 <span class="joueur-link" onclick="afficherJoueur('reijnders')">Tijjani Reijnders</span>
                 <span class="joueur-link" onclick="afficherJoueur('gonzalez')">Nico Gonzalez</span>
                 <span class="joueur-link" onclick="afficherJoueur('kovacic')">Matéo Kovacic</span>
                 <span class="joueur-link" onclick="afficherJoueur('foden')">Phil Foden</span>
                 <span class="joueur-link" onclick="afficherJoueur('cherki')">Rayan Cherki</span>
                 <span class="joueur-link" onclick="afficherJoueur('nypan')">Sverre Nypan</span>
+                <span class="joueur-link" onclick="afficherJoueur('echeverri')">Claudio Echeverri</span>
+                <span class="joueur-link" onclick="afficherJoueur('phillips')">Kalvin Phillips</span>
+                <span class="joueur-link" onclick="afficherJoueur('grealish')">Jack Grealish</span>
                 <div class="cat-titre">⚔️ Attaquants</div>
                 <span class="joueur-link" onclick="afficherJoueur('haaland')">Erling Haaland</span>
                 <span class="joueur-link" onclick="afficherJoueur('savinho')">Savinho</span>
@@ -192,9 +195,8 @@ Réparations en cours
                 <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
             </div>
             <li class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</li>
-            <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('transferts')">📰 Actus Mercato</span>
+            <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('actus-mercato')">Actus mercato</span>
             </div>
-            <li class="menu-item" onclick="preparerContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
@@ -490,7 +492,50 @@ Réparations en cours
             </div>
         </div>
     </div>
-</div>          
+</div>      
+
+        <div id="actus-mercato" class="content-section">
+            <h2>Actus Mercato 📰</h2>
+            <div class="transfert-card" onclick="afficherActuConceicao()">
+                <img src="static/images/conceicao.jpg">
+                <div class="transfert-info">
+                    <h3>Eduardo Conceição</h3>
+                    <p>Statut : Signature imminente ✅</p>
+                </div>
+            </div>
+            <div class="transfert-card" onclick="afficherActuFernandez()">
+                <img src="static/images/enzofernandez.jpg">
+                <div class="transfert-info">
+                    <h3>Enzo Fernandez</h3>
+                    <p>Statut : City intéressé</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="joueur-solo" class="content-section">
+            <h2 id="nom-joueur"></h2>
+            <img id="photo" src="" style="width:200px; border-radius:15px;">
+            <div class="box-info">
+                <table>
+                    <tr><th>Âge</th><td id="s-age"></td></tr>
+                    <tr><th>Nationalité</th><td id="s-nat"></td></tr>
+                    <tr><th>Salaire / mois</th><td id="s-paye"></td></tr>
+                    <tr><th>Fin de contrat</th><td id="s-fin"></td></tr>
+                    <tr><th>Valeur</th><td id="s-valeur"></td></tr>
+                    <tr><th>Note EA Sports</th><td id="s-noteea"></td></tr>
+                </table>
+                <div class="bio-container">
+                    <strong>Biographie :</strong><br><br>
+                    <span id="s-bio"></span>
+                    <div class="stat-card"><span class="stat-number" id="s-buts">0</span><span class="stat-label">⚽ Buts</span></div>
+                    <div class="stat-card"><span class="stat-number" id="s-passes">0</span><span class="stat-label">👟 Passes D.</span></div>
+                    <div class="stat-card"><span class="stat-number" id="s-matchs">0</span><span class="stat-label">🎮 Matchs</span></div>
+                    <div class="stat-card"><span class="stat-number" id="s-note">0.0</span><span class="stat-label">⭐ Note</span></div>
+                </div>
+            </div>
+        </div>
+
+        
             
         <div id="ma-compo-view" class="content-section">
             <h2>Ma Compo 📋</h2>
@@ -618,98 +663,14 @@ Réparations en cours
                     </div>
                 </div>
             </div>
-
-        <div id="transferts" class="content-section">
-            <h2>Dernières Rumeurs</h2>
-            <div class="transfert-card" onclick="afficherRumeur('conceicao_rumor')">
-                <img src="static/images/conceicao.jpg"><div class="transfert-info"><h3>Eduardo Conceicao</h3><p>La pépite de Palmeiras ciblée (100M€)</p></div>
-            </div>
-            <div class="transfert-card" onclick="afficherRumeur('enzofernandez_rumor')">
-                <img src="static/images/enzofernandez.jpg"><div class="transfert-info"><h3>Enzo Fernandez</h3><p>A la recherche d'un remplacant de Silva, Fernandez idéal ?</p></div>
-            </div>
-            <div class="transfert-card" onclick="afficherRumeur('kroupi_rumor')">
-                <img src="static/images/kroupi.jpg"><div class="transfert-info"><h3>Eli Junior Kroupi</h3><p>Un jeune talent</p></div>
-            </div>
-            <div class="transfert-card" onclick="afficherRumeur('anderson_rumor')">
-                <img src="static/images/anderson.jpg"><div class="transfert-info"><h3>Elliot Anderson <span style="float: right; color: #2ecc71;">73%</span></h3><p>Le milieu anglais pour remplacer Silva ?</p></div>
-            </div>
-        </div>
-
-        <div id="rumeur-detail" class="content-section">
-            <button onclick="showSection('transferts')" style="margin-bottom:20px;">⬅ Retour</button>
-            <h2 id="rumor-name"></h2>
-            <img id="rumor-photo" src="">
-            <div class="box-info">
-                <div class="bio-container" id="rumor-data">
-                    </div>
-            </div>
-            <button id="btn-chat-rumor" style="margin-top:20px; background:var(--city-black); color:white; padding:10px 20px; border-radius:10px; border:none; cursor:pointer;">Ouvrir le Chat d'Avis</button>
-        </div>
-
-        <div id="contrats" class="content-section">
-            <h2>📄 État des Contrats</h2>
-            <div id="liste-contrats-urgents"></div>
-        </div>
-
-        <div id="chat-section" class="content-section">
-            <button onclick="showSection('transferts')" style="margin-bottom:25px;">⬅ Retour</button>
-            <h2 id="chat-titre">Chat</h2>
-            <div id="chat-messages"></div>
-            <div class="chat-container">
-                <div id="emoji-picker" class="emoji-picker">
-                    <span onclick="addEmoji('🩵')">🩵</span><span onclick="addEmoji('⚽')">⚽</span><span onclick="addEmoji('🔥')">🔥</span>
-                    <span onclick="addEmoji('🏆')">🏆</span><span onclick="addEmoji('💙')">💙</span><span onclick="addEmoji('❤️')">❤️</span>
-                    <span onclick="addEmoji('👍')">👍</span><span onclick="addEmoji('👎')">👎</span><span onclick="addEmoji('🙌')">🙌</span>
-                    <span onclick="addEmoji('🤯')">🤯</span><span onclick="addEmoji('👑')">👑</span><span onclick="addEmoji('💪')">💪</span>
-                    <span onclick="addEmoji('😂')">😂</span><span onclick="addEmoji('🤔')">🤔</span><span onclick="addEmoji('🤫')">🤫</span>
-                    <span onclick="addEmoji('😡')">😡</span><span onclick="addEmoji('😊')">😊</span><span onclick="addEmoji('😅')">😅</span>
-                    <span onclick="addEmoji('📉')">📉</span><span onclick="addEmoji('📈')">📈</span><span onclick="addEmoji('⚡')">⚡</span>
-                    <span onclick="addEmoji('🧤')">🧤</span><span onclick="addEmoji('🏹')">🏹</span><span onclick="addEmoji('🛡️')">🛡️</span>
-                    <span onclick="addEmoji('🎯')">🎯</span><span onclick="addEmoji('⚔️')">⚔️</span><span onclick="addEmoji('😎')">😎</span>
-                    <span onclick="addEmoji('🤩')">🤩</span><span onclick="addEmoji('😉')">😉</span><span onclick="addEmoji('🥳')">🥳</span>
-                    <span onclick="addEmoji('😍')">😍</span><span onclick="addEmoji('🤪')">🤪</span><span onclick="addEmoji('🙄')">🙄</span>
-                    <span onclick="addEmoji('😭')">😭</span><span onclick="addEmoji('😤')">😤</span><span onclick="addEmoji('😮')">😮</span>
-                    <span onclick="addEmoji('🤐')">🤐</span><span onclick="addEmoji('😴')">😴</span><span onclick="addEmoji('🤮')">🤮</span>
-                    <span onclick="addEmoji('🤡')">🤡</span><span onclick="addEmoji('👻')">👻</span><span onclick="addEmoji('👽')">👽</span>
-                    <span onclick="addEmoji('🤖')">🤖</span><span onclick="addEmoji('💀')">💀</span><span onclick="addEmoji('☠️')">☠️</span>
-                    <span onclick="addEmoji('➕')">➕</span><span onclick="addEmoji('➖')">➖</span><span onclick="addEmoji('✅')">✅</span>
-                    <span onclick="addEmoji('❌')">❌</span><span onclick="addEmoji('🚫')">🚫</span><span onclick="addEmoji('💯')">💯</span>
-                    <span onclick="addEmoji('☀️')">☀️</span><span onclick="addEmoji('☁️')">☁️</span><span onclick="addEmoji('☔')">☔</span>
-                    <span onclick="addEmoji('❄️')">❄️</span><span onclick="addEmoji('⭐')">⭐</span><span onclick="addEmoji('🌟')">🌟</span>
-                    <span onclick="addEmoji('🎉')">🎉</span><span onclick="addEmoji('🎁')">🎁</span><span onclick="addEmoji('📅')">📅</span>
-                    <span onclick="addEmoji('✉️')">✉️</span><span onclick="addEmoji('📢')">📢</span><span onclick="addEmoji('💡')">💡</span>
-                    <span onclick="addEmoji('💰')">💰</span><span onclick="addEmoji('💎')">💎</span><span onclick="addEmoji('⌛')">⌛</span>
-                    <span onclick="addEmoji('🗣️')">🗣️</span><span onclick="addEmoji('💤')">💤</span><span onclick="addEmoji('🍀')">🍀</span>
-                    <span onclick="addEmoji('👟')">👟</span><span onclick="addEmoji('📊')">📊</span><span onclick="addEmoji('🔒')">🔒</span>
-                    <span onclick="addEmoji('🔓')">🔓</span><span onclick="addEmoji('✨')">✨</span><span onclick="addEmoji('🥅')">🥅</span>
-                    <span onclick="addEmoji('🙀')">🙀</span><span onclick="addEmoji('📝')">📝</span><span onclick="addEmoji('💘')">💘</span>
-                    <span onclick="addEmoji('🤴')">🤴</span><span onclick="addEmoji('👀')">👀</span><span onclick="addEmoji('🎮')">🎮</span>
-                    <span onclick="addEmoji('⚠️')">⚠️</span><span onclick="addEmoji('🇫🇷')">🇫🇷</span><span onclick="addEmoji('🇭🇷')">🇭🇷</span>
-                    <span onclick="addEmoji('🏴󠁧󠁢󠁥󠁮󠁧󠁿')">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span onclick="addEmoji('🇵🇹')">🇵🇹</span><span onclick="addEmoji('🇬🇭')">🇬🇭</span>
-                    <span onclick="addEmoji('🇺🇿')">🇺🇿</span><span onclick="addEmoji('🇧🇪')">🇧🇪</span><span onclick="addEmoji('🇪🇬')">🇪🇬</span>
-                    <span onclick="addEmoji('🇳🇴')">🇳🇴</span><span onclick="addEmoji('🇳🇱')">🇳🇱</span><span onclick="addEmoji('🇪🇸')">🇪🇸</span>
-                    <span onclick="addEmoji('🇮🇹')">🇮🇹</span><span onclick="addEmoji('🇩🇿')">🇩🇿</span><span onclick="addEmoji('🇧🇷')">🇧🇷</span>
-                </div>
-                <div class="chat-area">
-                    <button class="emoji-toggle" onclick="toggleEmojiPicker()">🙂</button>
-                    <input type="text" id="chat-input" placeholder="Pseudo: message">
-                    <button onclick="envoyerMessage()">OK</button>
-                </div>
-            </div>
-        </div>
+            
         <div id="joueur-solo" class="content-section">
             <h2 id="nom-joueur"></h2>
             <img id="photo" src="" style="width:200px; border-radius:15px;">
             <div class="box-info">
-                <p id="s-age"></p><p id="s-nat"></p><p id="s-paye"></p><p id="s-valeur"></p><p id="s-noteea"></p>
+                <p id="s-age"></p><p id="s-nat"></p><p id="s-paye"></p><p id="s-valeur"></p><p id="s-fin"></p><p id="s-noteea"></p>
                 <div class="bio-container" id="s-bio"></div>
             </div>
-        </div>
-
-            <p id="quiz-feedback" style="font-weight: bold; margin-top: 15px; font-size: 1.2em;"></p>
-            <img id="quiz-img-result" src="" style="width: 150px; border-radius: 10px; margin: 15px auto; display: none;">
-            
-            <button onclick="demarrerQuiz()" style="margin-top: 20px; background: #333; color: white; padding: 8px 15px; border-radius: 5px; border: none; cursor: pointer;">Suivant ➔</button>
         </div>
     </main>
 
@@ -752,13 +713,11 @@ Réparations en cours
             'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2028", valeur: "0.5 €", noteea: "70", img: "13.jpg", bio: "Gardien expérimenté.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "35M €", noteea: "80", img: "45.jpg", bio: "Révélation ouzbèke.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "15M €", noteea: "82", img: "6.jpg", bio: "Polyvalence tactique exemplaire.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'stones': { nom: "John Stones", poste: "Défenseur", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000 €", fin: "30/06/2026", valeur: "15M €", noteea: "82", img: "5.jpg", bio: "Défenseur créateur unique.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "32M €", noteea: "77", img: "82.jpg", bio: "Futur cadre issu de l'académie.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", img: "21.jpg", bio: "Latéral percutant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "50M €", noteea: "81", img: "33.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'nunes': { nom: "Matheus Nunes", poste: "Milieu", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "45M €", noteea: "82", img: "27.jpg", bio: "Défenseur puissant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", noteea: "68", img: "68.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'silva': { nom: "Bernardo Silva", poste: "Milieu", age: "30 ans", nat: "Portugal 🇵🇹", paye: "1 520 000 €", fin: "30/06/2026", valeur: "27M €", noteea: "83", img: "20.jpg", bio: "Génie portugais.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", noteea: "85", img: "24.jpg", bio: "Roc croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "30/06/2031", valeur: "65M €", noteea: "84", img: "15.jpg", bio: "Nouvelle recrue solide.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", noteea: "77", img: "1.jpg", bio: "Gardien prometteur.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
@@ -769,36 +728,14 @@ Réparations en cours
             'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "65M €", noteea: "84", img: "11.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "12M €", noteea: "82", img: "8.jpg", bio: "Expérience croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", noteea: "85", img: "4.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "81", img: "14.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0 }
+            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "81", img: "14.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'reis': { nom: "Vitor Reis", poste: "Défenseur", age: "20 ans", nat: "Brésil 🇧🇷", paye: "200 000", fin: "30/06/2029", valeur: "30M €", noteea: "75", img: "reis.jpg", bio: "Jeune talent brésilien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'wilson-esbrand': { nom: "Joshua Wilson-Esbrands", poste: "Défenseur", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "67", img: "reis.jpg", bio: "Pépite anglaise.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'akanji': { nom: "Manuel Akanji", poste: "Défenseur", age: "20 ans", nat: "Suisse 🇨🇭", paye: "540 000", fin: "30/06/2027", valeur: "17M €", noteea: "83", img: "akanji.jpg", bio: "Défenseur impassable.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'grealish': { nom: "Jack Grealish", poste: "Milieu", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 100 000", fin: "30/06/2027", valeur: "20M €", noteea: "81", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'phillips': { nom: "Kalvin Phillips", poste: "Milieu", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "600 000", fin: "30/06/2028", valeur: "2.5M €", noteea: "74", img: "44.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'echeverri': { nom: "Claudio Echeverri", poste: "Milieu", age: "20 ans", nat: "Argentine 🇦🇷", paye: "78 000", fin: "30/06/2028", valeur: "15M €", noteea: "74", img: "echeverri.jpg", bio: "Jeune pépite argentine.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
         };
-
-        const rumeurs = {
-    'anderson_rumor': { 
-        nom: "Elliot Anderson", 
-        img: "anderson.jpg",
-        detail: "<style>#rumor-photo { width: 450px !important; height: auto; }</style>Le jeune milieu anglais de Nottingham Forest pourrait rejoindre l'Etihad dès cet été. Il avait déjà était question de son transfert à l'Etihad au dernier mercato sans cependant d'offre de la part du club. Man Utd serait aussi sur le coup mais heureusement moins intéressé."
-    },
-    'kroupi_rumor': { 
-        nom: "Eli Junior Kroupi", 
-        img: "kroupi.jpg",
-        detail: "<style>#rumor-photo { width: 450px !important; height: auto; }</style>Le jeune joueur français de 19 ans intérèsserait le club de Manchester pour remplacer Omar Marmoush dit sur le départ..."    
-    },
-    'conceicao_rumor': { 
-        nom: "Eduardo Conceicao", 
-        img: "conceicao.jpg", 
-        detail: "<style>#rumor-photo { width: 450px !important; height: auto; }</style>La pépite de Palmeiras est suivie de près. Un profil technique qui plait énormément à la direction pour l'avenir au poste d'ailier gauche polyvalent à l'aile droite et l'attaque notamment. D'autres gros clubs à l'image du PSG, FC Barcelone,de Liverpool, Newcastle Utd, Arsenal, Chelsea ou même Manchester United seraient sur le coup. Le club anglais a même formulé une offre et rassemble actuellement les fonds nécéssaires mais le joueur a clairement exprimé des préférences en faveur du FC Barcelone puis de Manchester City. Cependant, tout le monde sait que le FC Barcelone manque cruellement de fonds et qu'il n'a pas encore remboursé l'ensemble de ses prêts à des clubs tels que Man City. Les négociations sont donc en cours entre les grands d'Europe et Palmeiras, affaire à suivre..." 
-        },
-    'enzofernandez_rumor': { 
-        nom: "Enzo Fernandez", 
-        img: "enzofernandez.jpg", 
-        detail: "<style>#rumor-photo { width: 350px !important; height: auto; }</style>Le talentueux milieu argentin de Chelsea serait visé par Manchester City pour le prochain mercato afin de remplacer Bernardo Silva, en effet, l'expérimenté milieu portugais à officialisé sa séparation avec le club en fin de saison de meme pour John Stones. Mais pour Enzo Fernandez, le Real Madrid serait déjà sur le coup et le milieu serait plus intéresssé par Madrid que Manchester mais reste à voir si Chelsea est du  même avis..."
-                },
-    'ounahi_rumor': { 
-        nom: "Azzedine Ounahi", 
-        img: "ounahi.jpg", 
-        detail: "<style>#rumor-photo { width: 450px !important; height: auto; }</style>L'international milieu marocain de 26 ans ancien pensonnaire de l'OM actuellement à Girone serait visé par le club après une saison particulièrement remarquée, Girone club membre au côté de Man City et de l'ESTAC du City Football Group ce qui pourrait énormément faciliter la transaction du marocain dont la clause libératoire est fixée à 20 M d'euros mais est-ce que le club mancunien lèvera cette somme pour le joueur qui a profondément déçu à l'Olympique de Marseille..."
-    }
-};
 
         const centreFormation = {
     gardiens: [
@@ -1098,6 +1035,28 @@ Réparations en cours
 
         }
 
+        function afficherActuJoueur(id) {
+            afficherJoueur(id); // Réutilise la logique d'affichage existante
+        }
+
+        function afficherActuConceicao() {
+            document.getElementById('nom-joueur').innerText = "Eduardo Conceição";
+            document.getElementById('photo').src = "static/images/conceicao.jpg";
+            document.getElementById('s-age').innerText = "18 ans";
+            document.getElementById('s-nat').innerText = "Brésil 🇧🇷";
+            document.getElementById('s-paye').innerText = "À venir";
+            document.getElementById('s-fin').innerText = "2031";
+            document.getElementById('s-valeur').innerText = "25M €";
+            document.getElementById('s-noteea').innerText = "76";
+            document.getElementById('s-bio').innerText = "Pépite de Palmeiras, future recrue phare de l'attaque mancunienne.";
+            document.getElementById('s-buts').innerText = "0";
+            document.getElementById('s-passes').innerText = "0";
+            document.getElementById('s-matchs').innerText = "0";
+            document.getElementById('s-note').innerText = "0.0";
+            showSection('joueur-solo');
+        }
+
+
         function afficherRumeur(id) {
             const r = rumeurs[id]; if(!r) return;
             document.getElementById('rumor-name').innerText = r.nom;
@@ -1135,25 +1094,6 @@ Réparations en cours
             imgEl.src = "static/images/" + j.img; imgHolder.classList.add('has-player');
             nameEl.innerText = j.nom;
             selectedSpotElement.classList.remove('selected'); selectedSpotElement = null;
-        }
-
-        function preparerContrats() { 
-            const container = document.getElementById('liste-contrats-urgents'); container.innerHTML = ""; 
-            const dateLimite = new Date(2027, 2, 30); 
-            for (let id in effectif) { 
-                const j = effectif[id]; 
-                if (j.fin && j.fin !== "N/A") { 
-                    const parties = j.fin.split('/'); 
-                    const dateFin = new Date(parties[2], parties[1] - 1, parties[0]); 
-                    if (dateFin <= dateLimite) { 
-                        const card = document.createElement('div'); card.className = "transfert-card urgent-contract"; 
-                        card.onclick = () => afficherJoueur(id); 
-                        card.innerHTML = `<img src="static/images/${j.img}"><div class="transfert-info"><h3>${j.nom}</h3><p>Expire le : ${j.fin}</p><p class="transfert-date">Salaire mensuel : ${j.paye}</p></div>`; 
-                        container.appendChild(card); 
-                    } 
-                } 
-            } 
-            showSection('contrats'); 
         }
 
         let currentChatTopic = ""; 
