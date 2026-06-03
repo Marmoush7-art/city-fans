@@ -192,7 +192,7 @@ Réparations en cours
                 <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
             </div>
             <li class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</li>
-            <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span>
+            <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('actus-mercato')">Actus mercato</span>
             </div>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
@@ -489,7 +489,46 @@ Réparations en cours
             </div>
         </div>
     </div>
-</div>          
+</div>      
+
+        <div id="actus-mercato" class="content-section">
+            <h2>Actus Mercato 📰</h2>
+            <div class="transfert-card" onclick="afficherActuJoueur('haaland')">
+                <img src="static/images/9.jpg">
+                <div class="transfert-info">
+                    <h3>Erling Haaland</h3>
+                    <p>Info : Rumeurs de prolongation</p>
+                </div>
+            </div>
+            </div>
+
+        <div id="joueur-solo" class="content-section">
+            <h2 id="nom-joueur"></h2>
+            <img id="photo" src="" style="width:200px; border-radius:15px;">
+            <div class="box-info">
+                <table>
+                    <tr><th>Âge</th><td id="s-age"></td></tr>
+                    <tr><th>Nationalité</th><td id="s-nat"></td></tr>
+                    <tr><th>Salaire / mois</th><td id="s-paye"></td></tr>
+                    <tr><th>Fin de contrat</th><td id="s-fin"></td></tr>
+                    <tr><th>Valeur</th><td id="s-valeur"></td></tr>
+                    <tr><th>Note EA Sports</th><td id="s-noteea"></td></tr>
+                </table>
+                <div class="bio-container">
+                    <strong>Biographie :</strong><br><br>
+                    <span id="s-bio"></span>
+                    <div class="stat-card"><span class="stat-number" id="s-buts">0</span><span class="stat-label">⚽ Buts</span></div>
+                    <div class="stat-card"><span class="stat-number" id="s-passes">0</span><span class="stat-label">👟 Passes D.</span></div>
+                    <div class="stat-card"><span class="stat-number" id="s-matchs">0</span><span class="stat-label">🎮 Matchs</span></div>
+                    <div class="stat-card"><span class="stat-number" id="s-note">0.0</span><span class="stat-label">⭐ Note</span></div>
+                </div>
+            </div>
+            <p id="quiz-feedback" style="font-weight: bold; margin-top: 15px; font-size: 1.2em;"></p>
+            <img id="quiz-img-result" src="" style="width: 150px; border-radius: 10px; margin: 15px auto; display: none;">
+            <button onclick="demarrerQuiz()" style="margin-top: 20px; background: #333; color: white; padding: 8px 15px; border-radius: 5px; border: none; cursor: pointer;">Suivant ➔</button>
+        </div>
+
+        
             
         <div id="ma-compo-view" class="content-section">
             <h2>Ma Compo 📋</h2>
@@ -1017,6 +1056,10 @@ Réparations en cours
             document.getElementById('s-note').innerText = j.note || "0.0";
             showSection('joueur-solo');
 
+        }
+
+        function afficherActuJoueur(id) {
+            afficherJoueur(id); // Réutilise la logique d'affichage existante
         }
 
 
