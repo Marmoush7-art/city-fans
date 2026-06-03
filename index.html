@@ -1098,19 +1098,6 @@ Réparations en cours
 
         }
 
-        function showSection(id) {
-            document.querySelectorAll('.content-section')
-            .forEach(s => s.classList.remove('active'));
-
-            const section = document.getElementById(id);
-
-            if (!section) {
-                console.error("Section introuvable :", id);
-                return;
-            }
-
-        section.classList.add('active');
-        }
 
         function afficherRumeur(id) {
             const r = rumeurs[id]; if(!r) return;
