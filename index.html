@@ -205,7 +205,6 @@ Réparations en cours
             <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('transferts')">📰 Actus Mercato</span>
             </div>
             <li class="menu-item" onclick="preparerContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
-            <li class="menu-item" onclick="showSection('classement-view')"><span class="menu-item-icon">🗂️</span>Classement</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
@@ -650,11 +649,6 @@ Réparations en cours
             <button id="btn-chat-rumor" style="margin-top:20px; background:var(--city-black); color:white; padding:10px 20px; border-radius:10px; border:none; cursor:pointer;">Ouvrir le Chat d'Avis</button>
         </div>
 
-        <div id="classement-view" class="content-section">
-            <h2>🗂️ Classement</h2>
-            <div class="classement-card"><img src="static/images/classement.jpg" class="classement-img"></div>
-        </div>
-
         <div id="contrats" class="content-section">
             <h2>📄 État des Contrats</h2>
             <div id="liste-contrats-urgents"></div>
@@ -705,10 +699,6 @@ Réparations en cours
                     <button onclick="envoyerMessage()">OK</button>
                 </div>
             </div>
-        <div id="classement-view" class="content-section">
-            <h2>Classement Officiel</h2>
-            <img src="static/images/classement.jpg" class="classement-img">
-        </div>
         </div>
         <div id="joueur-solo" class="content-section">
             <h2 id="nom-joueur"></h2>
@@ -718,14 +708,6 @@ Réparations en cours
                 <div class="bio-container" id="s-bio"></div>
             </div>
         </div>
-        <div id="quiz-view" class="content-section">
-            <h2>Le Joueur Mystère 🕵️‍♂️</h2>
-            <div id="quiz-clues" class="box-info" style="margin-bottom: 20px;"></div>
-            
-            <div style="display: flex; gap: 10px; justify-content: center;">
-                <input type="text" id="quiz-answer" placeholder="Nom du joueur..." style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 60%;">
-                <button onclick="verifierReponseQuiz()" style="padding: 10px 20px; background: #6CABDD; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; color: white;">Valider</button>
-            </div>
 
             <p id="quiz-feedback" style="font-weight: bold; margin-top: 15px; font-size: 1.2em;"></p>
             <img id="quiz-img-result" src="" style="width: 150px; border-radius: 10px; margin: 15px auto; display: none;">
