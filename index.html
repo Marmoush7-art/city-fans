@@ -493,14 +493,14 @@ Réparations en cours
 
         <div id="actus-mercato" class="content-section">
             <h2>Actus Mercato 📰</h2>
-            <div class="transfert-card" onclick="afficherActuJoueur('haaland')">
-                <img src="static/images/9.jpg">
+            <div class="transfert-card" onclick="afficherActuConceicao()">
+                <img src="static/images/conceicao.jpg">
                 <div class="transfert-info">
-                    <h3>Erling Haaland</h3>
-                    <p>Info : Rumeurs de prolongation</p>
+                    <h3>Eduardo Conceição</h3>
+                    <p>Statut : Signature imminente ✅</p>
                 </div>
             </div>
-            </div>
+        </div>
 
         <div id="joueur-solo" class="content-section">
             <h2 id="nom-joueur"></h2>
@@ -1060,6 +1060,23 @@ Réparations en cours
 
         function afficherActuJoueur(id) {
             afficherJoueur(id); // Réutilise la logique d'affichage existante
+        }
+
+        function afficherActuConceicao() {
+            document.getElementById('nom-joueur').innerText = "Eduardo Conceição";
+            document.getElementById('photo').src = "static/images/conceicao.jpg";
+            document.getElementById('s-age').innerText = "18 ans";
+            document.getElementById('s-nat').innerText = "Brésil 🇧🇷";
+            document.getElementById('s-paye').innerText = "À venir";
+            document.getElementById('s-fin').innerText = "2031";
+            document.getElementById('s-valeur').innerText = "25M €";
+            document.getElementById('s-noteea').innerText = "76";
+            document.getElementById('s-bio').innerText = "Pépite de Palmeiras, future recrue phare de l'attaque mancunienne.";
+            document.getElementById('s-buts').innerText = "0";
+            document.getElementById('s-passes').innerText = "0";
+            document.getElementById('s-matchs').innerText = "0";
+            document.getElementById('s-note').innerText = "0.0";
+            showSection('joueur-solo');
         }
 
 
