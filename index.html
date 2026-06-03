@@ -192,7 +192,7 @@ Réparations en cours
                 <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
             </div>
             <li class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</li>
-            <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('transferts')">📰 Actus Mercato</span>
+            <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span>
             </div>
             <li class="menu-item" onclick="preparerContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
@@ -619,84 +619,11 @@ Réparations en cours
                 </div>
             </div>
 
-        <div id="transferts" class="content-section">
-            <h2>Dernières Rumeurs</h2>
-            <div class="transfert-card" onclick="afficherRumeur('conceicao_rumor')">
-                <img src="static/images/conceicao.jpg"><div class="transfert-info"><h3>Eduardo Conceicao</h3><p>La pépite de Palmeiras ciblée (100M€)</p></div>
-            </div>
-            <div class="transfert-card" onclick="afficherRumeur('enzofernandez_rumor')">
-                <img src="static/images/enzofernandez.jpg"><div class="transfert-info"><h3>Enzo Fernandez</h3><p>A la recherche d'un remplacant de Silva, Fernandez idéal ?</p></div>
-            </div>
-            <div class="transfert-card" onclick="afficherRumeur('kroupi_rumor')">
-                <img src="static/images/kroupi.jpg"><div class="transfert-info"><h3>Eli Junior Kroupi</h3><p>Un jeune talent</p></div>
-            </div>
-            <div class="transfert-card" onclick="afficherRumeur('anderson_rumor')">
-                <img src="static/images/anderson.jpg"><div class="transfert-info"><h3>Elliot Anderson <span style="float: right; color: #2ecc71;">73%</span></h3><p>Le milieu anglais pour remplacer Silva ?</p></div>
-            </div>
-        </div>
-
-        <div id="rumeur-detail" class="content-section">
-            <button onclick="showSection('transferts')" style="margin-bottom:20px;">⬅ Retour</button>
-            <h2 id="rumor-name"></h2>
-            <img id="rumor-photo" src="">
-            <div class="box-info">
-                <div class="bio-container" id="rumor-data">
-                    </div>
-            </div>
-            <button id="btn-chat-rumor" style="margin-top:20px; background:var(--city-black); color:white; padding:10px 20px; border-radius:10px; border:none; cursor:pointer;">Ouvrir le Chat d'Avis</button>
-        </div>
-
         <div id="contrats" class="content-section">
             <h2>📄 État des Contrats</h2>
             <div id="liste-contrats-urgents"></div>
         </div>
-
-        <div id="chat-section" class="content-section">
-            <button onclick="showSection('transferts')" style="margin-bottom:25px;">⬅ Retour</button>
-            <h2 id="chat-titre">Chat</h2>
-            <div id="chat-messages"></div>
-            <div class="chat-container">
-                <div id="emoji-picker" class="emoji-picker">
-                    <span onclick="addEmoji('🩵')">🩵</span><span onclick="addEmoji('⚽')">⚽</span><span onclick="addEmoji('🔥')">🔥</span>
-                    <span onclick="addEmoji('🏆')">🏆</span><span onclick="addEmoji('💙')">💙</span><span onclick="addEmoji('❤️')">❤️</span>
-                    <span onclick="addEmoji('👍')">👍</span><span onclick="addEmoji('👎')">👎</span><span onclick="addEmoji('🙌')">🙌</span>
-                    <span onclick="addEmoji('🤯')">🤯</span><span onclick="addEmoji('👑')">👑</span><span onclick="addEmoji('💪')">💪</span>
-                    <span onclick="addEmoji('😂')">😂</span><span onclick="addEmoji('🤔')">🤔</span><span onclick="addEmoji('🤫')">🤫</span>
-                    <span onclick="addEmoji('😡')">😡</span><span onclick="addEmoji('😊')">😊</span><span onclick="addEmoji('😅')">😅</span>
-                    <span onclick="addEmoji('📉')">📉</span><span onclick="addEmoji('📈')">📈</span><span onclick="addEmoji('⚡')">⚡</span>
-                    <span onclick="addEmoji('🧤')">🧤</span><span onclick="addEmoji('🏹')">🏹</span><span onclick="addEmoji('🛡️')">🛡️</span>
-                    <span onclick="addEmoji('🎯')">🎯</span><span onclick="addEmoji('⚔️')">⚔️</span><span onclick="addEmoji('😎')">😎</span>
-                    <span onclick="addEmoji('🤩')">🤩</span><span onclick="addEmoji('😉')">😉</span><span onclick="addEmoji('🥳')">🥳</span>
-                    <span onclick="addEmoji('😍')">😍</span><span onclick="addEmoji('🤪')">🤪</span><span onclick="addEmoji('🙄')">🙄</span>
-                    <span onclick="addEmoji('😭')">😭</span><span onclick="addEmoji('😤')">😤</span><span onclick="addEmoji('😮')">😮</span>
-                    <span onclick="addEmoji('🤐')">🤐</span><span onclick="addEmoji('😴')">😴</span><span onclick="addEmoji('🤮')">🤮</span>
-                    <span onclick="addEmoji('🤡')">🤡</span><span onclick="addEmoji('👻')">👻</span><span onclick="addEmoji('👽')">👽</span>
-                    <span onclick="addEmoji('🤖')">🤖</span><span onclick="addEmoji('💀')">💀</span><span onclick="addEmoji('☠️')">☠️</span>
-                    <span onclick="addEmoji('➕')">➕</span><span onclick="addEmoji('➖')">➖</span><span onclick="addEmoji('✅')">✅</span>
-                    <span onclick="addEmoji('❌')">❌</span><span onclick="addEmoji('🚫')">🚫</span><span onclick="addEmoji('💯')">💯</span>
-                    <span onclick="addEmoji('☀️')">☀️</span><span onclick="addEmoji('☁️')">☁️</span><span onclick="addEmoji('☔')">☔</span>
-                    <span onclick="addEmoji('❄️')">❄️</span><span onclick="addEmoji('⭐')">⭐</span><span onclick="addEmoji('🌟')">🌟</span>
-                    <span onclick="addEmoji('🎉')">🎉</span><span onclick="addEmoji('🎁')">🎁</span><span onclick="addEmoji('📅')">📅</span>
-                    <span onclick="addEmoji('✉️')">✉️</span><span onclick="addEmoji('📢')">📢</span><span onclick="addEmoji('💡')">💡</span>
-                    <span onclick="addEmoji('💰')">💰</span><span onclick="addEmoji('💎')">💎</span><span onclick="addEmoji('⌛')">⌛</span>
-                    <span onclick="addEmoji('🗣️')">🗣️</span><span onclick="addEmoji('💤')">💤</span><span onclick="addEmoji('🍀')">🍀</span>
-                    <span onclick="addEmoji('👟')">👟</span><span onclick="addEmoji('📊')">📊</span><span onclick="addEmoji('🔒')">🔒</span>
-                    <span onclick="addEmoji('🔓')">🔓</span><span onclick="addEmoji('✨')">✨</span><span onclick="addEmoji('🥅')">🥅</span>
-                    <span onclick="addEmoji('🙀')">🙀</span><span onclick="addEmoji('📝')">📝</span><span onclick="addEmoji('💘')">💘</span>
-                    <span onclick="addEmoji('🤴')">🤴</span><span onclick="addEmoji('👀')">👀</span><span onclick="addEmoji('🎮')">🎮</span>
-                    <span onclick="addEmoji('⚠️')">⚠️</span><span onclick="addEmoji('🇫🇷')">🇫🇷</span><span onclick="addEmoji('🇭🇷')">🇭🇷</span>
-                    <span onclick="addEmoji('🏴󠁧󠁢󠁥󠁮󠁧󠁿')">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span><span onclick="addEmoji('🇵🇹')">🇵🇹</span><span onclick="addEmoji('🇬🇭')">🇬🇭</span>
-                    <span onclick="addEmoji('🇺🇿')">🇺🇿</span><span onclick="addEmoji('🇧🇪')">🇧🇪</span><span onclick="addEmoji('🇪🇬')">🇪🇬</span>
-                    <span onclick="addEmoji('🇳🇴')">🇳🇴</span><span onclick="addEmoji('🇳🇱')">🇳🇱</span><span onclick="addEmoji('🇪🇸')">🇪🇸</span>
-                    <span onclick="addEmoji('🇮🇹')">🇮🇹</span><span onclick="addEmoji('🇩🇿')">🇩🇿</span><span onclick="addEmoji('🇧🇷')">🇧🇷</span>
-                </div>
-                <div class="chat-area">
-                    <button class="emoji-toggle" onclick="toggleEmojiPicker()">🙂</button>
-                    <input type="text" id="chat-input" placeholder="Pseudo: message">
-                    <button onclick="envoyerMessage()">OK</button>
-                </div>
-            </div>
-        </div>
+            
         <div id="joueur-solo" class="content-section">
             <h2 id="nom-joueur"></h2>
             <img id="photo" src="" style="width:200px; border-radius:15px;">
