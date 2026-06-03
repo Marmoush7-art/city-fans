@@ -137,7 +137,7 @@
     <div id="lock-screen">
         <div class="lock-box">
             <h2 style="margin-top:0;">🩵 Accès Réservé 🩵</h2>
-            <p>Entrez le mot de passe pour accéder au site :</p>
+            <p>Mot de passe :</p>
             <input type="password" id="site-password" placeholder="Mot de passe">
             <button onclick="checkPassword()">VALIDER</button>
             <div id="lock-error"></div>
@@ -147,7 +147,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">🩵 CITY FANS</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.00.37</span>
+            <span class="version-tag">v 1.01.00</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
@@ -197,6 +197,7 @@
             <li class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</li>
             <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('actus-mercato')">📃 Actus mercato</span>
             </div>
+            <li class="menu-item" onclick="afficherPositionActuelle()"><span class="menu-item-icon">📊</span>Position Actuelle</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
@@ -206,7 +207,7 @@
     </div>
     <div id="quiz-view" class="content-section">
         <h2>🔍 QUIZ : QUI EST-CE ?
-        ⚠️Attention, les fautes ne sont pas supportées par le site</h2>
+        ⚠️ Attention, les fautes ne sont pas supportées par le site</h2>
         <div class="quiz-box">
             <div id="quiz-clues" class="quiz-clues"></div>
             <div class="quiz-input-area">
@@ -470,6 +471,13 @@
         document.getElementById('site-password').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') checkPassword();
         });
+
+        const positionActuelle = {
+            classement: "1er",
+            matchNumero: 28,
+            competitionImg: "compet_presentation.jpg", // Nom de l'image de la compétition
+            nomCompetition: "Premier League"
+        };
 
         // --- AJOUT v1.00.42 : Touche Entrée pour le Quiz ---
         document.addEventListener('DOMContentLoaded', () => {
@@ -926,6 +934,26 @@
             else { f.innerText = "FAUX ❌ (C'était " + joueurMystere.nom + ")"; f.style.color = "red"; }
             const img = document.getElementById('quiz-img-result');
             img.src = "static/images/" + joueurMystere.img; img.style.display = "block";
+        }
+
+        function afficherPositionActuelle() {
+            document.getElementById('nom-joueur').innerText = positionActuelle.nomCompetition;
+            document.getElementById('photo').src = "static/images/" + positionActuelle.competitionImg;
+            document.getElementById('s-age').innerText = positionActuelle.classement;
+            document.getElementById('s-nat').innerText = "Match n°" + positionActuelle.matchNumero;
+            
+            // Masquage ou réinitialisation des champs non pertinents pour la compétition
+            document.getElementById('s-paye').innerText = "N/A";
+            document.getElementById('s-fin').innerText = "N/A";
+            document.getElementById('s-valeur').innerText = "N/A";
+            document.getElementById('s-noteea').innerText = "N/A";
+            document.getElementById('s-bio').innerText = "Suivi de la position et de l'avancement de l'équipe dans la compétition.";
+            document.getElementById('s-buts').innerText = "0";
+            document.getElementById('s-passes').innerText = "0";
+            document.getElementById('s-matchs').innerText = "0";
+            document.getElementById('s-note').innerText = "0.0";
+            
+            showSection('joueur-solo');
         }
     </script>
 </body>
