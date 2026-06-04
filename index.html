@@ -515,6 +515,7 @@
             }
         });
 
+        const firebaseConfig = {
 
         onSnapshot(
           doc(db, "matchs_live", "match_actuel"),
@@ -536,6 +537,21 @@
 
             document.getElementById("statut").textContent =
               m.statut;
+          }
+        );
+        
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        onSnapshot(
+          doc(db, "matchs_live", "match_actuel"),
+          (snapshot) => {
+            const m = snapshot.data();
+
+            document.getElementById("equipe1").textContent = m.equipe1;
+            document.getElementById("equipe2").textContent = m.equipe2;
+            document.getElementById("score").textContent =
+              `${m.score1} - ${m.score2}`;
           }
         );
 
