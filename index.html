@@ -515,46 +515,6 @@
             }
         });
 
-        const firebaseConfig = {
-
-        onSnapshot(
-          doc(db, "matchs_live", "match_actuel"),
-          (snapshot) => {
-
-            const m = snapshot.data();
-
-            document.getElementById("equipe1").textContent = m.equipe1;
-            document.getElementById("equipe2").textContent = m.equipe2;
-
-            document.getElementById("score").textContent =
-              `${m.score1} - ${m.score2}`;
-
-            document.getElementById("minute").textContent =
-              `${m.minute}'`;
-
-            document.getElementById("competition").textContent =
-              m.competition;
-
-            document.getElementById("statut").textContent =
-              m.statut;
-          }
-        );
-        
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        onSnapshot(
-          doc(db, "matchs_live", "match_actuel"),
-          (snapshot) => {
-            const m = snapshot.data();
-
-            document.getElementById("equipe1").textContent = m.equipe1;
-            document.getElementById("equipe2").textContent = m.equipe2;
-            document.getElementById("score").textContent =
-              `${m.score1} - ${m.score2}`;
-          }
-        );
-
         const effectif = {
             'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "180M €", noteea: "91", img: "9.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "65M €", noteea: "89", img: "16.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
