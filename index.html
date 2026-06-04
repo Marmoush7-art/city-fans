@@ -197,7 +197,7 @@
             <li class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</li>
             <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('actus-mercato')">📃 Actus mercato</span>
             </div>
-            <li class="menu-item" onclick="afficherPositionActuelle()"><span class="menu-item-icon">📊</span>Position Actuelle</li>
+            <li class="menu-item" onclick="afficherClassement()"><span class="menu-item-icon">📊</span>Classement</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
@@ -283,9 +283,9 @@
                 </div>
             </div>
             <div class="transfert-card" onclick="afficherActuFernandez()">
-                <img src="static/images/enzofernandez.jpg">
+                <img src="static/images/kroupi.jpg">
                 <div class="transfert-info">
-                    <h3>Enzo Fernandez</h3>
+                    <h3>Eli Jr Kroupi</h3>
                     <p>Statut : City intéressé</p>
                 </div>
             </div>
@@ -479,7 +479,7 @@
             if (e.key === 'Enter') checkPassword();
         });
 
-        const positionActuelle = {
+        const Classement = {
             classement: "1er",
             matchNumero: 28,
             competitionImg: "compet_presentation.jpg", // Nom de l'image de la compétition
@@ -890,13 +890,30 @@
         function afficherActuConceicao() {
             document.getElementById('nom-joueur').innerText = "Eduardo Conceição";
             document.getElementById('photo').src = "static/images/conceicao.jpg";
-            document.getElementById('s-age').innerText = "18 ans";
+            document.getElementById('s-age').innerText = "16 ans";
             document.getElementById('s-nat').innerText = "Brésil 🇧🇷";
             document.getElementById('s-paye').innerText = "À venir";
-            document.getElementById('s-fin').innerText = "2031";
-            document.getElementById('s-valeur').innerText = "25M €";
-            document.getElementById('s-noteea').innerText = "76";
+            document.getElementById('s-fin').innerText = "30/01/2029";
+            document.getElementById('s-valeur').innerText = "INCONNUE €";
+            document.getElementById('s-noteea').innerText = "INCONNUE";
             document.getElementById('s-bio').innerText = "Pépite de Palmeiras, future recrue phare de l'attaque mancunienne.";
+            document.getElementById('s-buts').innerText = "0";
+            document.getElementById('s-passes').innerText = "0";
+            document.getElementById('s-matchs').innerText = "0";
+            document.getElementById('s-note').innerText = "0.0";
+            showSection('joueur-solo');
+        }
+
+        function afficherActuKroupi() {
+            document.getElementById('nom-joueur').innerText = "Eli Junior Kroupi";
+            document.getElementById('photo').src = "static/images/kroupi.jpg";
+            document.getElementById('s-age').innerText = "19 ans";
+            document.getElementById('s-nat').innerText = "France 🇫🇷";
+            document.getElementById('s-paye').innerText = "31 000 €";
+            document.getElementById('s-fin').innerText = "30/06/2030";
+            document.getElementById('s-valeur').innerText = "70M €";
+            document.getElementById('s-noteea').innerText = "74";
+            document.getElementById('s-bio').innerText = "Jeune talent français prometteur évoluant à Bournemouth.";
             document.getElementById('s-buts').innerText = "0";
             document.getElementById('s-passes').innerText = "0";
             document.getElementById('s-matchs').innerText = "0";
@@ -998,18 +1015,18 @@
             img.src = "static/images/" + joueurMystere.img; img.style.display = "block";
         }
         
-        function afficherPositionActuelle() {
+        function afficherClassement() {
             // On change les textes principaux
-            document.getElementById('nom-joueur').innerText = positionActuelle.nomCompetition;
-            document.getElementById('photo').src = "static/images/" + positionActuelle.competitionImg;
+            document.getElementById('nom-joueur').innerText = Classement.nomCompetition;
+            document.getElementById('photo').src = "static/images/" + Classement.competitionImg;
             document.getElementById('s-bio').innerText = "Suivi en direct des performances de l'équipe.";
 
             // On change les LABELS (les titres des lignes) pour que ce soit propre
             document.getElementById('s-age').previousElementSibling.innerText = "🏆 Position :";
-            document.getElementById('s-age').innerText = positionActuelle.classement;
+            document.getElementById('s-age').innerText = Classement.classement;
 
             document.getElementById('s-nat').previousElementSibling.innerText = "📅 Avancement :";
-            document.getElementById('s-nat').innerText = "Match n°" + positionActuelle.matchNumero;
+            document.getElementById('s-nat').innerText = "Match n°" + Classement.matchNumero;
             
             // On cache ou vide les lignes inutiles (salaire, fin de contrat, etc.)
             document.getElementById('s-paye').parentNode.style.display = "none";
