@@ -233,38 +233,14 @@
                 <div class="match-main">
                     <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
                     <div class="score-center">_ - _</div>
-                    <div class="team"><img src="static/images/astonvilla.jpg"><p>Aston Villa</p></div>
+                    <div class="team"><img src="static/images/arsenal.jpg"><p>Arsenal</p></div>
                 </div>
         <div class="match-details">
             <div class="side-details">
                 <h4>Manchester City</h4>
-                <div class="stat-line">⚽ <strong>Antoine Semenyo (23')</strong></div>
             </div>
             <div class="side-details">
-                <h4>Aston Villa</h4>
-                <div class="stat-line">⚽ <strong>Ollie Watkins (47')</strong></div>
-                <div class="stat-line">⚽ <strong>Ollie Watkins (61')</strong></div>
-                <div class="stat-line">👟 <em>Passe : Ross Barkley</em></div>
-            </div>
-        </div>
-    </div>
-
-            <div class="match-card" style="border-left-color: #6CABDD;">
-                <div class="match-header">Premier League </div>
-                <div class="match-main">
-                    <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
-                    <div class="score-center">1 - 1</div>
-                    <div class="team"><img src="static/images/bournemouth.jpg"><p>Bournemouth</p></div>
-                </div>
-        <div class="match-details">
-            <div class="side-details">
-                <h4>Manchester City</h4>
-                <div class="stat-line">⚽ <strong>Erling Haaland (90+5')</strong></div>
-            </div>
-            <div class="side-details">
-                <h4>Bournemouth</h4>
-                <div class="stat-line">⚽ <strong>Eli Jr Kroupi (39')</strong></div>
-                <div class="stat-line">👟 <em>Passe : Adrien Truffert</em></div>
+                <h4>Arsenal</h4>
             </div>
         </div>
     </div>
@@ -281,10 +257,10 @@
                     <p>Statut : Signature imminente ✅</p>
                 </div>
             </div>
-            <div class="transfert-card" onclick="afficherActuFernandez()">
-                <img src="static/images/enzofernandez.jpg">
+            <div class="transfert-card" onclick="afficherActuKroupi()">
+                <img src="static/images/kroupi.jpg">
                 <div class="transfert-info">
-                    <h3>Enzo Fernandez</h3>
+                    <h3>Eli Jr Kroupi</h3>
                     <p>Statut : City intéressé</p>
                 </div>
             </div>
@@ -820,13 +796,30 @@
         function afficherActuConceicao() {
             document.getElementById('nom-joueur').innerText = "Eduardo Conceição";
             document.getElementById('photo').src = "static/images/conceicao.jpg";
-            document.getElementById('s-age').innerText = "18 ans";
+            document.getElementById('s-age').innerText = "16 ans";
             document.getElementById('s-nat').innerText = "Brésil 🇧🇷";
-            document.getElementById('s-paye').innerText = "À venir";
-            document.getElementById('s-fin').innerText = "2031";
-            document.getElementById('s-valeur').innerText = "25M €";
-            document.getElementById('s-noteea').innerText = "76";
+            document.getElementById('s-paye').innerText = "INCONNUE";
+            document.getElementById('s-fin').innerText = "30/01/2029";
+            document.getElementById('s-valeur').innerText = "INCONNUE €";
+            document.getElementById('s-noteea').innerText = "INCONNU";
             document.getElementById('s-bio').innerText = "Pépite de Palmeiras, future recrue phare de l'attaque mancunienne.";
+            document.getElementById('s-buts').innerText = "0";
+            document.getElementById('s-passes').innerText = "0";
+            document.getElementById('s-matchs').innerText = "0";
+            document.getElementById('s-note').innerText = "0.0";
+            showSection('joueur-solo');
+        }
+
+        function afficherActuKroupi() {
+            document.getElementById('nom-joueur').innerText = "Eli Junior Kroupi";
+            document.getElementById('photo').src = "static/images/kroupi.jpg";
+            document.getElementById('s-age').innerText = "19 ans";
+            document.getElementById('s-nat').innerText = "France 🇫🇷";
+            document.getElementById('s-paye').innerText = "31 000 €";
+            document.getElementById('s-fin').innerText = "30/06/2030";
+            document.getElementById('s-valeur').innerText = "70M €";
+            document.getElementById('s-noteea').innerText = "74";
+            document.getElementById('s-bio').innerText = "Jeune talent très prometteur évoluant à Bournemouth";
             document.getElementById('s-buts').innerText = "0";
             document.getElementById('s-passes').innerText = "0";
             document.getElementById('s-matchs').innerText = "0";
