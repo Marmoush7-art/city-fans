@@ -222,8 +222,7 @@
 
     <main>
         <div id="accueil" class="content-section active">
-            <h2>BIENVENUE CITYZENS</h2>
-            <img src="static/images/mancityecussonclasse.jpg" style="width: 100%; max-width: 500px; border-radius: 20px;">
+            <h2>🩵 BIENVENUE CITYZENS 🩵</h2>
             <div class="match-card">
         <h3>📅 Prochain Match</h3>
         <p>Manchester City vs Arsenal</p>
@@ -232,17 +231,17 @@
 
     <div class="match-card">
         <h3>🏆 Classement</h3>
-        <p>Premier League : 1er</p>
+        <p>Premier League : Non défini</p>
     </div>
 
     <div class="match-card">
         <h3>⚽ Meilleur Buteur</h3>
-        <p>Erling Haaland - 28 buts</p>
+        <p></p>
     </div>
 
     <div class="match-card">
         <h3>📰 Dernière Actualité</h3>
-        <p>Eduardo Conceição proche de signer à City.</p>
+        <p>Elliot Anderson proche de signer à City.</p>
     </div>   
         </div>
 
@@ -278,11 +277,18 @@
                     <p>Statut : Signature imminente ✅</p>
                 </div>
             </div>
-            <div class="transfert-card" onclick="afficherActuFernandez()">
+            <div class="transfert-card" onclick="afficherActuKroupi()">
                 <img src="static/images/kroupi.jpg">
                 <div class="transfert-info">
                     <h3>Eli Jr Kroupi</h3>
                     <p>Statut : City intéressé</p>
+                </div>
+            </div>
+            <div class="transfert-card" onclick="afficherActuAnderson()">
+                <img src="static/images/kroupi.jpg">
+                <div class="transfert-info">
+                    <h3>Elliot Anderson</h3>
+                    <p>Statut : City proche de le signer</p>
                 </div>
             </div>
         </div>
@@ -893,6 +899,23 @@
             document.getElementById('s-valeur').innerText = "INCONNUE €";
             document.getElementById('s-noteea').innerText = "INCONNUE";
             document.getElementById('s-bio').innerText = "Pépite de Palmeiras, future recrue phare de l'attaque mancunienne.";
+            document.getElementById('s-buts').innerText = "0";
+            document.getElementById('s-passes').innerText = "0";
+            document.getElementById('s-matchs').innerText = "0";
+            document.getElementById('s-note').innerText = "0.0";
+            showSection('joueur-solo');
+        }
+
+        function afficherActuAnderson() {
+            document.getElementById('nom-joueur').innerText = "Elliot Anderson";
+            document.getElementById('photo').src = "static/images/anderson.jpg";
+            document.getElementById('s-age').innerText = "23 ans";
+            document.getElementById('s-nat').innerText = "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿";
+            document.getElementById('s-paye').innerText = "205 000 €";
+            document.getElementById('s-fin').innerText = "30/06/2029";
+            document.getElementById('s-valeur').innerText = "75M €";
+            document.getElementById('s-noteea').innerText = "80";
+            document.getElementById('s-bio').innerText = "Milieu talentueux très désiré.";
             document.getElementById('s-buts').innerText = "0";
             document.getElementById('s-passes').innerText = "0";
             document.getElementById('s-matchs').innerText = "0";
