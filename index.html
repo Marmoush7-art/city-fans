@@ -1005,6 +1005,7 @@ let joueurDraftActuel = null;
 let enchereActuelle = 0;
 let proprietaireEnchere = null;
 let botPrixMax = 0;
+let premierJoueur = "joueur";
 
 function ouvrirDraft(){
 
@@ -1045,14 +1046,33 @@ function prochainJoueurDraft(){
 
     joueurDraftActuel =
         draftPioche.shift();
+        premierJoueur =
+            premierJoueur === "joueur"
+            ? "bot"
+            : "joueur";
 
     enchereActuelle = 0;
     proprietaireEnchere = null;
 
+    if(joueurDraftActuel.note < 80){
+
+    botPrixMax = 1;
+
+}else if(joueurDraftActuel.note < 85){
+
     botPrixMax =
-        (joueurDraftActuel.note * 1.2)
-        +
-        (Math.random() * 20);
+        40 + Math.random()*25;
+
+}else if(joueurDraftActuel.note < 89){
+
+    botPrixMax =
+        80 + Math.random()*30;
+
+}else{
+
+    botPrixMax =
+        120 + Math.random()*40;
+}
 
     document.getElementById(
         "historique-enchere"
@@ -1071,6 +1091,12 @@ function prochainJoueurDraft(){
             <p>💰 Valeur : ${joueurDraftActuel.prix} M€</p>
         </div>
     `;
+    if(premierJoueur === "bot"){
+
+    setTimeout(
+        tourBotInitial,
+        500
+    );
 }
 
 function faireEnchere(){
@@ -1279,6 +1305,50 @@ function finDraft(){
         <p>Score Bot : ${scoreBot.toFixed(1)}</p>
         <h3>${resultat}</h3>
     `;
+}
+
+        function tourBotInitial(){
+
+    if(draftEquipeBot.length >= 3){
+        return;
+    }
+
+    let miseDepart = 0;
+
+    if(joueurDraftActuel.note < 80){
+
+        miseDepart = 1;
+
+    }else if(joueurDraftActuel.note >= 89){
+
+        miseDepart =
+            40 +
+            Math.floor(
+                Math.random()*20
+            );
+
+    }else{
+
+        miseDepart =
+            10 +
+            Math.floor(
+                Math.random()*15
+            );
+    }
+
+    if(miseDepart > draftBudgetBot){
+        return;
+    }
+
+    enchereActuelle =
+        miseDepart;
+
+    proprietaireEnchere =
+        "bot";
+
+    ajouterHistorique(
+        `🤖 Bot : ${miseDepart} M€`
+    );
 }
 
         function afficherActuJoueur(id) {
