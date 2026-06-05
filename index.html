@@ -112,6 +112,22 @@
         .stat-number { display: block; font-size: 2rem; font-weight: 800; }
         .stat-label { font-size: 0.9rem; margin-top: 5px; display: block; }
 
+        .draft-budget-box{ display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin:20px 0; }
+        .draft-budget-box div{ background:white; padding:20px; border-radius:15px;  min-width:180px; text-align:center; }
+        #draft-carte{ max-width:400px; margin:20px auto; }
+        .draft-player-card{ background:white; border:3px solid #6CABDD; border-radius:15px; padding:20px; text-align:center; }
+        .draft-actions{ text-align:center; margin:20px 0; }
+        .draft-actions input{ padding:10px; width:150px; }
+        .draft-actions button{ padding:10px 15px; margin-left:5px; cursor:pointer; }
+        #historique-enchere{ max-width:500px; margin:20px auto; background:white; padding:15px; border-radius:10px; min-height:120px; }
+        .draft-equipes{ display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; }
+        .draft-colonne{ background:white; padding:20px; border-radius:15px; width:280px; }
+        .draft-colonne ul{ list-style:none; padding:0; }
+        .draft-colonne li{ background:#eef6fc; padding:8px; margin-bottom:8px; border-radius:8px; }
+        #draft-resultat{ text-align:center; margin-top:20px; }
+        .draft-player-card{background:white; border-radius:15px; padding:20px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.15); transition:0.3s; }
+        .draft-player-card:hover{ transform:scale(1.03); }
+
         .spot-label { font-size: 0.8rem; color: white; font-weight: bold; text-transform: uppercase; }
         .spot-player-name { font-size: 0.7rem; color: var(--city-black); font-weight: bold; background: rgba(255,255,255,0.8); padding: 2px 4px; border-radius: 4px; width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; }
         .spot-img-holder.has-player + .spot-player-name { display: block; }
@@ -203,6 +219,7 @@
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
             </div>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
+            <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span><span>Draft EA</span></li>
         </ul>
     </div>
     <div id="quiz-view" class="content-section">
@@ -259,6 +276,81 @@
     <div id="minute"></div>
 
     <div id="statut"></div>
+
+</div>
+
+<div id="draft-view" class="content-section" style="display:none;">
+
+    <h2>🎯 Draft EA Challenge</h2>
+
+    <div class="draft-budget-box">
+
+        <div>
+            <h3>👤 Toi</h3>
+            <span id="budget-joueur">250</span> M€
+        </div>
+
+        <div>
+            <h3>🤖 Bot</h3>
+            <span id="budget-bot">250</span> M€
+        </div>
+
+    </div>
+
+    <div id="draft-carte"></div>
+
+    <div class="draft-actions">
+
+        <input
+            type="number"
+            id="montant-enchere"
+            placeholder="Votre enchère">
+
+        <button onclick="faireEnchere()">
+            💰 Miser
+        </button>
+
+        <button onclick="abandonnerEnchere()">
+            ❌ Abandonner
+        </button>
+
+    </div>
+
+    <div id="historique-enchere"></div>
+
+    <div class="draft-equipes">
+
+        <div class="draft-colonne">
+
+            <h3>Ton Trio</h3>
+
+            <ul id="liste-joueur-draft">
+            </ul>
+
+        </div>
+
+        <div class="draft-colonne">
+
+            <h3>Trio du Bot</h3>
+
+            <ul id="liste-bot-draft">
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div
+    id="zone-restart"
+    style="display:none;text-align:center;margin-top:20px;">
+
+    <button onclick="recommencerDraft()">
+        🔄 Rejouer
+    </button>
+
+</div>
+
+<div id="draft-resultat"></div>
 
 </div>
 
@@ -542,7 +634,7 @@
             'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "60M €", noteea: "85", img: "4.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "81", img: "14.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'reis': { nom: "Vitor Reis", poste: "Défenseur", age: "20 ans", nat: "Brésil 🇧🇷", paye: "200 000", fin: "30/06/2029", valeur: "30M €", noteea: "75", img: "22.jpg", bio: "Jeune talent brésilien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'wilson-esbrand': { nom: "Joshua Wilson-Esbrands", poste: "Défenseur", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "67", img: "97.jpg", bio: "Pépite anglaise.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'wilson-esbrand': { nom: "Joshua Wilson-Esbrand", poste: "Défenseur", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "67", img: "97.jpg", bio: "Pépite anglaise.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'akanji': { nom: "Manuel Akanji", poste: "Défenseur", age: "20 ans", nat: "Suisse 🇨🇭", paye: "540 000", fin: "30/06/2027", valeur: "17M €", noteea: "83", img: "akanji.jpg", bio: "Défenseur impassable.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'grealish': { nom: "Jack Grealish", poste: "Milieu", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 100 000", fin: "30/06/2027", valeur: "20M €", noteea: "81", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'phillips': { nom: "Kalvin Phillips", poste: "Milieu", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "600 000", fin: "30/06/2028", valeur: "2.5M €", noteea: "74", img: "44.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
@@ -901,6 +993,455 @@
             document.getElementById('s-note').innerText = j.note || "0.0";
             showSection('joueur-solo');
         }
+
+        const joueursDraft = Object.values(effectif).map(j => ({
+    nom: j.nom,
+    note: parseInt(j.noteea),
+    prix: parseFloat(
+        String(j.valeur)
+            .replace("M €","")
+            .replace(",",".")
+    )
+}));
+
+let draftPioche = [];
+
+let draftBudgetJoueur = 250;
+let draftBudgetBot = 250;
+
+let draftEquipeJoueur = [];
+let draftEquipeBot = [];
+
+let joueurDraftActuel = null;
+
+let enchereActuelle = 0;
+let proprietaireEnchere = null;
+let botPrixMax = 0;
+let premierJoueur = "joueur";
+
+function ouvrirDraft(){
+
+    if(typeof showSection === "function"){
+        showSection("draft-view");
+    }
+
+    document.getElementById(
+        "zone-restart"
+    ).style.display = "none";
+
+    draftPioche = [...joueursDraft]
+        .sort(() => Math.random() - 0.5);
+
+    draftBudgetJoueur = 250;
+    draftBudgetBot = 250;
+
+    draftEquipeJoueur = [];
+    draftEquipeBot = [];
+
+    document.getElementById(
+        "draft-resultat"
+    ).innerHTML = "";
+
+    majDraft();
+
+    prochainJoueurDraft();
+}
+
+function prochainJoueurDraft(){
+
+    if(
+    draftPioche.length === 0 ||
+    (
+        draftEquipeJoueur.length >= 3 &&
+        draftEquipeBot.length >= 3
+    )
+){
+    finDraft();
+    return;
+}
+
+    joueurDraftActuel =
+        draftPioche.shift();
+        premierJoueur =
+            premierJoueur === "joueur"
+            ? "bot"
+            : "joueur";
+
+    enchereActuelle = 0;
+    proprietaireEnchere = null;
+
+    if(joueurDraftActuel.note < 80){
+
+    botPrixMax = 1;
+
+}else if(joueurDraftActuel.note < 85){
+
+    botPrixMax =
+        40 + Math.random()*25;
+
+}else if(joueurDraftActuel.note < 89){
+
+    botPrixMax =
+        80 + Math.random()*30;
+
+}else{
+
+    botPrixMax =
+        120 + Math.random()*40;
+}
+
+    document.getElementById(
+        "historique-enchere"
+    ).innerHTML = "";
+
+    document.getElementById(
+        "montant-enchere"
+    ).value = "";
+
+    let couleur = "#cd7f32"; // bronze
+
+if(joueurDraftActuel.note >= 85){
+    couleur = "#c0c0c0"; // argent
+}
+
+if(joueurDraftActuel.note >= 89){
+    couleur = "#ffd700"; // or
+}
+
+document.getElementById(
+    "draft-carte"
+).innerHTML = `
+    <div
+        class="draft-player-card"
+        style="border:4px solid ${couleur};"
+    >
+        <h3>${joueurDraftActuel.nom}</h3>
+
+        <p>⭐ Note EA : ${joueurDraftActuel.note}</p>
+
+        <p>💰 Valeur estimée : ${joueurDraftActuel.prix} M€</p>
+    </div>
+`;
+    if(premierJoueur === "bot"){
+
+    setTimeout(
+        tourBotInitial,
+        500
+    );
+}
+
+}
+
+function recommencerDraft(){
+
+    if(
+        confirm(
+            "Recommencer la partie ?"
+        )
+    ){
+
+        ouvrirDraft();
+
+    }
+}
+
+function faireEnchere(){
+
+    const montant =
+        Number(
+            document.getElementById(
+                "montant-enchere"
+            ).value
+        );
+
+    if(montant <= enchereActuelle){
+        alert(
+            "L'enchère doit être supérieure."
+        );
+        return;
+    }
+
+    if(montant > draftBudgetJoueur){
+        alert(
+            "Budget insuffisant."
+        );
+        return;
+    }
+
+    enchereActuelle = montant;
+
+    proprietaireEnchere =
+        "joueur";
+
+    ajouterHistorique(
+        `👤 Toi : ${montant} M€`
+    );
+
+    tourBotEnchere();
+}
+
+function tourBotEnchere(){
+
+    if(draftEquipeBot.length >= 3){
+
+    proprietaireEnchere = "joueur";
+
+    gagnerJoueur();
+
+    return;
+}
+
+    if(joueurDraftActuel.note < 80){
+
+        ajouterHistorique(
+            "🤖 Bot abandonne"
+        );
+
+        gagnerJoueur();
+
+        return;
+    }
+
+    const offreBot =
+        enchereActuelle +
+        Math.floor(
+            Math.random()*8
+        ) +
+        1;
+
+    if(
+        offreBot <= botPrixMax &&
+        offreBot <= draftBudgetBot
+    ){
+
+        enchereActuelle =
+            offreBot;
+
+        proprietaireEnchere =
+            "bot";
+
+        ajouterHistorique(
+            `🤖 Bot : ${offreBot} M€`
+        );
+
+    }else{
+
+        ajouterHistorique(
+            "🤖 Bot abandonne"
+        );
+
+        gagnerJoueur();
+    }
+}
+function abandonnerEnchere(){
+
+    // personne n'a encore misé
+    if(enchereActuelle === 0){
+
+        alert(
+            "Tu dois faire la première enchère."
+        );
+
+        return;
+    }
+
+    if(
+        proprietaireEnchere === "bot"
+    ){
+
+        gagnerJoueur();
+
+    }else{
+
+        tourBotEnchere();
+
+    }
+}
+
+function gagnerJoueur(){
+
+    if(
+    proprietaireEnchere === "joueur"
+){
+
+    if(draftEquipeJoueur.length < 3){
+
+        draftEquipeJoueur.push(
+            joueurDraftActuel
+        );
+
+    }
+
+    draftBudgetJoueur -=
+        enchereActuelle;
+
+    ajouterHistorique(
+        `🏆 ${joueurDraftActuel.nom} rejoint ton équipe`
+    );
+}
+
+    else if(
+    proprietaireEnchere === "bot"
+){
+
+    if(draftEquipeBot.length < 3){
+
+        draftEquipeBot.push(
+            joueurDraftActuel
+        );
+
+    }
+
+    draftBudgetBot -=
+        enchereActuelle;
+
+    ajouterHistorique(
+        `🤖 ${joueurDraftActuel.nom} rejoint le bot`
+    );
+}
+
+    majDraft();
+
+    setTimeout(
+        prochainJoueurDraft,
+        2000
+    );
+}
+
+function ajouterHistorique(txt){
+
+    document.getElementById(
+        "historique-enchere"
+    ).innerHTML +=
+        `<div>${txt}</div>`;
+}
+
+function majDraft(){
+
+    document.getElementById(
+        "budget-joueur"
+    ).innerText =
+        draftBudgetJoueur.toFixed(1);
+
+    document.getElementById(
+        "budget-bot"
+    ).innerText =
+        draftBudgetBot.toFixed(1);
+
+    document.getElementById(
+        "liste-joueur-draft"
+    ).innerHTML =
+        draftEquipeJoueur
+        .map(
+            j => `<li>${j.nom} (${j.note})</li>`
+        )
+        .join("");
+
+    document.getElementById(
+        "liste-bot-draft"
+    ).innerHTML =
+        draftEquipeBot
+        .map(
+            j => `<li>${j.nom} (${j.note})</li>`
+        )
+        .join("");
+}
+
+function finDraft(){
+
+    const noteJoueur =
+        draftEquipeJoueur.reduce(
+            (a,b)=>a+b.note,
+            0
+        );
+
+    const noteBot =
+        draftEquipeBot.reduce(
+            (a,b)=>a+b.note,
+            0
+        );
+
+    const scoreJoueur =
+        noteJoueur +
+        (draftBudgetJoueur/50);
+
+    const scoreBot =
+        noteBot +
+        (draftBudgetBot/50);
+
+    let resultat = "";
+
+    if(scoreJoueur > scoreBot){
+        resultat =
+        "🏆 Tu remportes le Draft";
+    }
+    else if(scoreBot > scoreJoueur){
+        resultat =
+        "🤖 Le bot remporte le Draft";
+    }
+    else{
+        resultat =
+        "🤝 Égalité";
+    }
+
+    document.getElementById(
+        "draft-resultat"
+    ).innerHTML = `
+        <h2>Fin de partie</h2>
+        <p>Score Joueur : ${scoreJoueur.toFixed(1)}</p>
+        <p>Score Bot : ${scoreBot.toFixed(1)}</p>
+        <h3>${resultat}</h3>
+    `;
+
+    document.getElementById(
+    "zone-restart"
+).style.display = "block";
+    
+}
+
+        function tourBotInitial(){
+
+    if(draftEquipeBot.length >= 3){
+        return;
+    }
+
+    let miseDepart = 0;
+
+    if(joueurDraftActuel.note < 80){
+
+        miseDepart = 1;
+
+    }else if(joueurDraftActuel.note >= 89){
+
+        miseDepart =
+            40 +
+            Math.floor(
+                Math.random()*20
+            );
+
+    }else{
+
+        miseDepart =
+            10 +
+            Math.floor(
+                Math.random()*15
+            );
+    }
+
+    if(miseDepart > draftBudgetBot){
+        return;
+    }
+
+    enchereActuelle =
+        miseDepart;
+
+    proprietaireEnchere =
+        "bot";
+
+    ajouterHistorique(
+        `🤖 Bot : ${miseDepart} M€`
+    );
+}
 
         function afficherActuJoueur(id) {
             afficherJoueur(id); // Réutilise la logique d'affichage existante
