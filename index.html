@@ -1136,17 +1136,31 @@ function faireEnchere(){
 
 function tourBotEnchere(){
 
+    if(draftEquipeBot.length >= 3){
+
+        gagnerJoueur();
+        return;
+    }
+
+    if(joueurDraftActuel.note < 80){
+
+        ajouterHistorique(
+            "🤖 Bot abandonne"
+        );
+
+        gagnerJoueur();
+
+        return;
+    }
+
     const offreBot =
-        enchereActuelle
-        +
+        enchereActuelle +
         Math.floor(
             Math.random()*8
-        )
-        +
+        ) +
         1;
 
     if(
-        draftEquipeBot.length < 3 &&
         offreBot <= botPrixMax &&
         offreBot <= draftBudgetBot
     ){
@@ -1160,8 +1174,12 @@ function tourBotEnchere(){
         ajouterHistorique(
             `🤖 Bot : ${offreBot} M€`
         );
-    }
-    else{
+
+    }else{
+
+        ajouterHistorique(
+            "🤖 Bot abandonne"
+        );
 
         gagnerJoueur();
     }
