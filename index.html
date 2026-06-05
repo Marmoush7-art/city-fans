@@ -74,6 +74,20 @@
         .emoji-picker span { font-size: 1.6rem; cursor: pointer; text-align: center; padding: 2px; transition: transform 0.1s; }
         .emoji-picker span:hover { transform: scale(1.2); background-color: #f0f0f0; border-radius: 5px; }
 
+        .draft-budget-box{ display:flex; justify-content:space-around; margin:20px 0; }
+        .draft-budget-box div{ background:white; padding:20px; border-radius:15px; min-width:150px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+        #draft-carte{ margin:20px auto; max-width:400px; }
+        .draft-player-card{ background:white; border:3px solid #6CABDD; border-radius:15px; padding:20px; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+        .draft-player-card h3{ margin-top:0; color:#6CABDD; }
+        .draft-actions{ margin:20px 0; }
+        .draft-actions button{ background:#000; color:white; border:none; padding:12px 25px; margin:5px; border-radius:10px; cursor:pointer; font-weight:bold; }
+        .draft-actions button:hover{ opacity:0.85; }
+        .draft-equipes{ display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-top:25px; }
+        .draft-colonne{ background:white; padding:20px; border-radius:15px; width:280px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+        .draft-colonne ul{ list-style:none; padding:0; }
+        .draft-colonne li{ padding:8px; margin-bottom:8px; background:#eef6fc; border-radius:8px; }
+        #draft-resultat{ margin-top:30px; font-size:1.2rem; font-weight:bold; }
+
         .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--city-sky-blue); }
         .match-header { font-size: 0.8rem; color: #888; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; }
         .match-main { display: flex; justify-content: space-between; align-items: center; }
@@ -202,6 +216,7 @@
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
             </div>
+            <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span>Draft EA</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
         </ul>
     </div>
@@ -259,6 +274,47 @@
     <div id="minute"></div>
 
     <div id="statut"></div>
+
+</div>
+
+        <div id="draft-view" class="content-section">
+
+    <h2>🎯 Draft EA Challenge</h2>
+
+    <div class="draft-budget-box">
+        <div>
+            <h3>👤 Toi</h3>
+            <span id="budget-joueur">250</span> M€
+        </div>
+
+        <div>
+            <h3>🤖 Bot</h3>
+            <span id="budget-bot">250</span> M€
+        </div>
+    </div>
+
+    <div id="draft-carte"></div>
+
+    <div class="draft-actions">
+        <button onclick="acheterJoueurDraft()">💰 Acheter</button>
+        <button onclick="passerDraft()">➡️ Passer</button>
+    </div>
+
+    <div class="draft-equipes">
+
+        <div class="draft-colonne">
+            <h3>Ton Trio</h3>
+            <ul id="liste-joueur-draft"></ul>
+        </div>
+
+        <div class="draft-colonne">
+            <h3>Trio du Bot</h3>
+            <ul id="liste-bot-draft"></ul>
+        </div>
+
+    </div>
+
+    <div id="draft-resultat"></div>
 
 </div>
 
@@ -871,6 +927,189 @@
                 menu.classList.remove('ouvert');
             }
         });
+
+        const joueursDraft = Object.values(effectif).map(j => ({
+    nom: j.nom,
+    note: parseInt(j.noteea),
+    prix: parseFloat(
+        String(j.valeur)
+        .replace("M €","")
+        .replace(",",".")
+    )
+}));
+
+let draftPioche = [];
+let draftBudgetJoueur = 250;
+let draftBudgetBot = 250;
+
+let draftEquipeJoueur = [];
+let draftEquipeBot = [];
+
+let joueurDraftActuel = null;
+
+function ouvrirDraft(){
+
+    draftPioche = [...joueursDraft]
+        .sort(() => Math.random() - 0.5);
+
+    draftBudgetJoueur = 250;
+    draftBudgetBot = 250;
+
+    draftEquipeJoueur = [];
+    draftEquipeBot = [];
+
+    showSection("draft-view");
+
+    majDraft();
+
+    prochainJoueurDraft();
+}
+
+function prochainJoueurDraft(){
+
+    if(
+        draftPioche.length === 0 ||
+        (
+            draftEquipeJoueur.length >= 3 &&
+            draftEquipeBot.length >= 3
+        )
+    ){
+        finDraft();
+        return;
+    }
+
+    joueurDraftActuel = draftPioche.shift();
+
+    document.getElementById("draft-carte").innerHTML = `
+        <div class="draft-player-card">
+            <h3>${joueurDraftActuel.nom}</h3>
+            <p>⭐ Note EA : ${joueurDraftActuel.note}</p>
+            <p>💰 Valeur : ${joueurDraftActuel.prix} M€</p>
+        </div>
+    `;
+}
+
+function acheterJoueurDraft(){
+
+    if(draftEquipeJoueur.length >= 3){
+        passerDraft();
+        return;
+    }
+
+    if(draftBudgetJoueur < joueurDraftActuel.prix){
+        alert("Budget insuffisant");
+        return;
+    }
+
+    draftEquipeJoueur.push(joueurDraftActuel);
+
+    draftBudgetJoueur -= joueurDraftActuel.prix;
+
+    majDraft();
+
+    prochainJoueurDraft();
+}
+
+function passerDraft(){
+
+    tourBotDraft();
+
+    prochainJoueurDraft();
+}
+
+function tourBotDraft(){
+
+    if(draftEquipeBot.length >= 3) return;
+
+    if(draftBudgetBot < joueurDraftActuel.prix) return;
+
+    const ratio =
+        joueurDraftActuel.note /
+        joueurDraftActuel.prix;
+
+    let acheter = false;
+
+    if(joueurDraftActuel.note >= 88)
+        acheter = true;
+
+    if(ratio >= 1.3)
+        acheter = true;
+
+    if(
+        draftEquipeBot.length < 2 &&
+        joueurDraftActuel.note >= 84
+    ){
+        acheter = true;
+    }
+
+    if(acheter){
+
+        draftEquipeBot.push(joueurDraftActuel);
+
+        draftBudgetBot -= joueurDraftActuel.prix;
+    }
+
+    majDraft();
+}
+
+function majDraft(){
+
+    document.getElementById("budget-joueur").innerText =
+        draftBudgetJoueur.toFixed(1);
+
+    document.getElementById("budget-bot").innerText =
+        draftBudgetBot.toFixed(1);
+
+    document.getElementById("liste-joueur-draft").innerHTML =
+        draftEquipeJoueur
+        .map(j => `<li>${j.nom} (${j.note})</li>`)
+        .join("");
+
+    document.getElementById("liste-bot-draft").innerHTML =
+        draftEquipeBot
+        .map(j => `<li>${j.nom} (${j.note})</li>`)
+        .join("");
+}
+
+function finDraft(){
+
+    const noteJoueur =
+        draftEquipeJoueur.reduce(
+            (a,b)=>a+b.note,0
+        );
+
+    const noteBot =
+        draftEquipeBot.reduce(
+            (a,b)=>a+b.note,0
+        );
+
+    const scoreJoueur =
+        noteJoueur + (draftBudgetJoueur/10);
+
+    const scoreBot =
+        noteBot + (draftBudgetBot/10);
+
+    let message = "";
+
+    if(scoreJoueur > scoreBot)
+        message = "🏆 Tu remportes le Draft";
+
+    else if(scoreBot > scoreJoueur)
+        message = "🤖 Le bot gagne";
+
+    else
+        message = "🤝 Égalité";
+
+    document.getElementById("draft-resultat").innerHTML = `
+        <h2>Fin de partie</h2>
+
+        <p>Score Joueur : ${scoreJoueur.toFixed(1)}</p>
+
+        <p>Score Bot : ${scoreBot.toFixed(1)}</p>
+
+        <h3>${message}</h3>
+    `;
+}
 
         function afficherJoueur(id) {
             const j = effectif[id]; if(!j) return;
