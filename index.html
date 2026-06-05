@@ -125,6 +125,8 @@
         .draft-colonne ul{ list-style:none; padding:0; }
         .draft-colonne li{ background:#eef6fc; padding:8px; margin-bottom:8px; border-radius:8px; }
         #draft-resultat{ text-align:center; margin-top:20px; }
+        .draft-player-card{background:white; border-radius:15px; padding:20px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.15); transition:0.3s; }
+        .draft-player-card:hover{ transform:scale(1.03); }
 
         .spot-label { font-size: 0.8rem; color: white; font-weight: bold; text-transform: uppercase; }
         .spot-player-name { font-size: 0.7rem; color: var(--city-black); font-weight: bold; background: rgba(255,255,255,0.8); padding: 2px 4px; border-radius: 4px; width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; }
@@ -1082,15 +1084,30 @@ function prochainJoueurDraft(){
         "montant-enchere"
     ).value = "";
 
-    document.getElementById(
-        "draft-carte"
-    ).innerHTML = `
-        <div class="draft-player-card">
-            <h3>${joueurDraftActuel.nom}</h3>
-            <p>⭐ Note EA : ${joueurDraftActuel.note}</p>
-            <p>💰 Valeur : ${joueurDraftActuel.prix} M€</p>
-        </div>
-    `;
+    let couleur = "#cd7f32"; // bronze
+
+if(joueurDraftActuel.note >= 85){
+    couleur = "#c0c0c0"; // argent
+}
+
+if(joueurDraftActuel.note >= 89){
+    couleur = "#ffd700"; // or
+}
+
+document.getElementById(
+    "draft-carte"
+).innerHTML = `
+    <div
+        class="draft-player-card"
+        style="border:4px solid ${couleur};"
+    >
+        <h3>${joueurDraftActuel.nom}</h3>
+
+        <p>⭐ Note EA : ${joueurDraftActuel.note}</p>
+
+        <p>💰 Valeur estimée : ${joueurDraftActuel.prix} M€</p>
+    </div>
+`;
     if(premierJoueur === "bot"){
 
     setTimeout(
