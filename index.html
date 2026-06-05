@@ -137,7 +137,7 @@
     <div id="lock-screen">
         <div class="lock-box">
             <h2 style="margin-top:0;">🩵 Accès Réservé 🩵</h2>
-            <p>Entrez le mot de passe pour accéder au site :</p>
+            <p>Mot de passe :</p>
             <input type="password" id="site-password" placeholder="Mot de passe">
             <button onclick="checkPassword()">VALIDER</button>
             <div id="lock-error"></div>
@@ -147,7 +147,7 @@
     <nav>
         <h1 onclick="showSection('accueil')">🩵 CITY FANS</h1>
         <div class="nav-right">
-            <span class="version-tag">v 1.00.37</span>
+            <span class="version-tag">v 1.01.00</span>
             <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
         </div>
     </nav>
@@ -195,8 +195,9 @@
                 <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
             </div>
             <li class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</li>
-            <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('actus-mercato')">Actus mercato</span>
+            <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('actus-mercato')">📃 Actus mercato</span>
             </div>
+            <li class="menu-item" onclick="afficherClassement()"><span class="menu-item-icon">📊</span>Classement</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
@@ -206,7 +207,7 @@
     </div>
     <div id="quiz-view" class="content-section">
         <h2>🔍 QUIZ : QUI EST-CE ?
-        ⚠️Attention, les fautes ne sont pas supportées par le site</h2>
+        ⚠️ Attention, les fautes ne sont pas supportées par le site</h2>
         <div class="quiz-box">
             <div id="quiz-clues" class="quiz-clues"></div>
             <div class="quiz-input-area">
@@ -221,15 +222,51 @@
 
     <main>
         <div id="accueil" class="content-section active">
-            <h2>BIENVENUE CITYZENS</h2>
-            <img src="static/images/mancityecussonclasse.jpg" style="width: 100%; max-width: 500px; border-radius: 20px;">
+            <h2>🩵 BIENVENUE CITYZEN 🩵</h2>
+            <img src="static/images/mancityecusson.jpg">
+            <div class="match-card">
+        <h3>📅 Prochain Match</h3>
+        <p>Manchester City vs Arsenal</p>
+        <p>Community Shield</p>
+    </div>
+
+    <div class="match-card">
+        <h3>🏆 Classement</h3>
+        <p>Premier League : Non défini</p>
+    </div>
+
+    <div class="match-card">
+        <h3>⚽ Meilleur Buteur</h3>
+        <p></p>
+    </div>
+
+    <div class="match-card">
+        <h3>📰 Dernière Actualité</h3>
+        <p>Elliot Anderson proche de signer à City.</p>
+    </div>   
         </div>
+
+        <div class="live-match">
+
+    <div id="competition"></div>
+
+    <div>
+        <span id="equipe1"></span>
+        <strong id="score"></strong>
+        <span id="equipe2"></span>
+    </div>
+
+    <div id="minute"></div>
+
+    <div id="statut"></div>
+
+</div>
 
         <div id="matchs-view" class="content-section">
             <h2>RESULTATS</h2>
 
             <div class="match-card" style="border-left-color: #6CABDD;">
-                <div class="match-header">Premier League </div>
+                <div class="match-header">Community Shield : Finale 🏆</div>
                 <div class="match-main">
                     <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
                     <div class="score-center">_ - _</div>
@@ -262,6 +299,13 @@
                 <div class="transfert-info">
                     <h3>Eli Jr Kroupi</h3>
                     <p>Statut : City intéressé</p>
+                </div>
+            </div>
+            <div class="transfert-card" onclick="afficherActuAnderson()">
+                <img src="static/images/kroupi.jpg">
+                <div class="transfert-info">
+                    <h3>Elliot Anderson</h3>
+                    <p>Statut : City proche de le signer</p>
                 </div>
             </div>
         </div>
@@ -417,6 +461,13 @@
                     </div>
                 </div>
             </div>
+
+        <div id="position-actuelle-view" class="content-section">
+            <div class="titre-zone">📊 Positions Actuelles</div>
+            <div id="positions-container" class="centre-container">
+            <!-- Les cartes des compétitions vont se générer ici -->
+            </div>
+        </div>
             
         <div id="joueur-solo" class="content-section">
             <h2 id="nom-joueur"></h2>
@@ -446,6 +497,13 @@
         document.getElementById('site-password').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') checkPassword();
         });
+
+        const Classement = {
+            classement: "Non commencé",
+            matchNumero: 0,
+            competitionImg: "compet_premierleague.jpg", // Nom de l'image de la compétition
+            nomCompetition: "Premier League"
+        };
 
         // --- AJOUT v1.00.42 : Touche Entrée pour le Quiz ---
         document.addEventListener('DOMContentLoaded', () => {
@@ -750,6 +808,50 @@
     ]
 };
 
+        const competitionsActuelles = [
+            {
+                nom: "Premier League",
+                classement: "1er",
+                matchNumero: 28,
+                img: "premier_league.jpg", // Nom de ton image dans static/images/
+                bio: "Course au titre en championnat anglais."
+            },
+            {
+                nom: "UEFA Champions League",
+                classement: "3ème (Phase de ligue)",
+                matchNumero: 6,
+                img: "champions_league.jpg",
+                bio: "L'objectif européen suprême."
+            },
+            {
+                nom: "FA Cup",
+                classement: "Quarts de finale",
+                matchNumero: 3,
+                img: "fa_cup.jpg",
+                bio: "La plus vieille compétition nationale."
+            }
+        ];
+
+        function chargerPositionsActuelles() {
+            const container = document.getElementById('positions-container');
+            container.innerHTML = ""; // On vide le container
+            
+            competitionsActuelles.forEach(c => {
+                container.innerHTML += `
+                <div class="centre-card">
+                    <img src="static/images/${c.img}" alt="${c.nom}">
+                    <div class="centre-info">
+                        <h3>${c.nom}</h3>
+                        <p><strong>🏆 Position :</strong> ${c.classement}</p>
+                        <p><strong>📅 Avancement :</strong> Match n°${c.matchNumero}</p>
+                        <p><strong>📝 Statut :</strong> ${c.bio}</p>
+                    </div>
+                </div>
+                `;
+            });
+            showSection('position-actuelle-view');
+        }
+
         function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
         function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
         function showSection(id) {
@@ -772,6 +874,18 @@
 
         function afficherJoueur(id) {
             const j = effectif[id]; if(!j) return;
+            
+            // RESTAURATION DES LABELS ET AFFICHAGES ORIGINAUX
+            document.getElementById('s-age').previousElementSibling.innerText = "Âge";
+            document.getElementById('s-nat').previousElementSibling.innerText = "Nationalité";
+            document.getElementById('s-paye').parentNode.style.display = "";
+            document.getElementById('s-fin').parentNode.style.display = "";
+            document.getElementById('s-valeur').parentNode.style.display = "";
+            document.getElementById('s-noteea').parentNode.style.display = "";
+            const statsBlock = document.getElementById('s-matchs')?.parentNode?.parentNode;
+            if (statsBlock) statsBlock.style.display = "";
+
+            // Remplissage des données du joueur
             document.getElementById('nom-joueur').innerText = j.nom;
             document.getElementById('s-age').innerText = j.age;
             document.getElementById('s-nat').innerText = j.nat;
@@ -786,7 +900,6 @@
             document.getElementById('s-matchs').innerText = j.matchs || 0;
             document.getElementById('s-note').innerText = j.note || "0.0";
             showSection('joueur-solo');
-
         }
 
         function afficherActuJoueur(id) {
@@ -798,11 +911,28 @@
             document.getElementById('photo').src = "static/images/conceicao.jpg";
             document.getElementById('s-age').innerText = "16 ans";
             document.getElementById('s-nat').innerText = "Brésil 🇧🇷";
-            document.getElementById('s-paye').innerText = "INCONNUE";
+            document.getElementById('s-paye').innerText = "À venir";
             document.getElementById('s-fin').innerText = "30/01/2029";
             document.getElementById('s-valeur').innerText = "INCONNUE €";
-            document.getElementById('s-noteea').innerText = "INCONNU";
+            document.getElementById('s-noteea').innerText = "INCONNUE";
             document.getElementById('s-bio').innerText = "Pépite de Palmeiras, future recrue phare de l'attaque mancunienne.";
+            document.getElementById('s-buts').innerText = "0";
+            document.getElementById('s-passes').innerText = "0";
+            document.getElementById('s-matchs').innerText = "0";
+            document.getElementById('s-note').innerText = "0.0";
+            showSection('joueur-solo');
+        }
+
+        function afficherActuAnderson() {
+            document.getElementById('nom-joueur').innerText = "Elliot Anderson";
+            document.getElementById('photo').src = "static/images/anderson.jpg";
+            document.getElementById('s-age').innerText = "23 ans";
+            document.getElementById('s-nat').innerText = "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿";
+            document.getElementById('s-paye').innerText = "205 000 €";
+            document.getElementById('s-fin').innerText = "30/06/2029";
+            document.getElementById('s-valeur').innerText = "75M €";
+            document.getElementById('s-noteea').innerText = "80";
+            document.getElementById('s-bio').innerText = "Milieu talentueux très désiré.";
             document.getElementById('s-buts').innerText = "0";
             document.getElementById('s-passes').innerText = "0";
             document.getElementById('s-matchs').innerText = "0";
@@ -819,7 +949,7 @@
             document.getElementById('s-fin').innerText = "30/06/2030";
             document.getElementById('s-valeur').innerText = "70M €";
             document.getElementById('s-noteea').innerText = "74";
-            document.getElementById('s-bio').innerText = "Jeune talent très prometteur évoluant à Bournemouth";
+            document.getElementById('s-bio').innerText = "Jeune talent français prometteur évoluant à Bournemouth.";
             document.getElementById('s-buts').innerText = "0";
             document.getElementById('s-passes').innerText = "0";
             document.getElementById('s-matchs').innerText = "0";
@@ -919,6 +1049,32 @@
             else { f.innerText = "FAUX ❌ (C'était " + joueurMystere.nom + ")"; f.style.color = "red"; }
             const img = document.getElementById('quiz-img-result');
             img.src = "static/images/" + joueurMystere.img; img.style.display = "block";
+        }
+        
+        function afficherClassement() {
+            // On change les textes principaux
+            document.getElementById('nom-joueur').innerText = Classement.nomCompetition;
+            document.getElementById('photo').src = "static/images/" + Classement.competitionImg;
+            document.getElementById('s-bio').innerText = "Suivi en direct des performances de l'équipe.";
+
+            // On change les LABELS (les titres des lignes) pour que ce soit propre
+            document.getElementById('s-age').previousElementSibling.innerText = "🏆 Position :";
+            document.getElementById('s-age').innerText = Classement.classement;
+
+            document.getElementById('s-nat').previousElementSibling.innerText = "📅 Avancement :";
+            document.getElementById('s-nat').innerText = "Match n°" + Classement.matchNumero;
+            
+            // On cache ou vide les lignes inutiles (salaire, fin de contrat, etc.)
+            document.getElementById('s-paye').parentNode.style.display = "none";
+            document.getElementById('s-fin').parentNode.style.display = "none";
+            document.getElementById('s-valeur').parentNode.style.display = "none";
+            document.getElementById('s-noteea').parentNode.style.display = "none";
+            
+            // On cache aussi le bloc des statistiques de joueurs s'il existe en bas
+            const statsBlock = document.getElementById('s-matchs')?.parentNode?.parentNode;
+            if (statsBlock) statsBlock.style.display = "none";
+            
+            showSection('joueur-solo');
         }
     </script>
 </body>
