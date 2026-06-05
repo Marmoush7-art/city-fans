@@ -1049,16 +1049,67 @@ function ouvrirDraft(){
 
 function prochainJoueurDraft(){
 
+    // Si un trio est terminé, on complète automatiquement l'autre
     if(
-    draftPioche.length === 0 ||
-    (
+        draftEquipeJoueur.length >= 3 &&
+        draftEquipeBot.length < 3
+    ){
+
+        while(
+    draftEquipeBot.length < 3 &&
+    draftPioche.length > 0
+){
+
+    draftEquipeBot.push(
+        draftPioche.shift()
+    );
+
+    draftBudgetBot -= 0.1;
+}
+
+majDraft();
+
+finDraft();
+return;
+    }
+
+    if(
+        draftEquipeBot.length >= 3 &&
+        draftEquipeJoueur.length < 3
+    ){
+
+        while(
+    draftEquipeJoueur.length < 3 &&
+    draftPioche.length > 0
+){
+
+    draftEquipeJoueur.push(
+        draftPioche.shift()
+    );
+
+    draftBudgetJoueur -= 0.1;
+}
+
+majDraft();
+
+finDraft();
+return;
+    }
+
+    // Les deux trios sont complets
+    if(
         draftEquipeJoueur.length >= 3 &&
         draftEquipeBot.length >= 3
-    )
-){
-    finDraft();
-    return;
-}
+    ){
+        finDraft();
+        return;
+    }
+
+    // Sécurité si la pioche est vide
+    if(draftPioche.length === 0){
+        finDraft();
+        return;
+    }
 
     joueurDraftActuel =
         draftPioche.shift();
