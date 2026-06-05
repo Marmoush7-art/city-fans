@@ -1056,19 +1056,21 @@ function prochainJoueurDraft(){
     ){
 
         while(
-            draftEquipeBot.length < 3 &&
-            draftPioche.length > 0
-        ){
+    draftEquipeBot.length < 3 &&
+    draftPioche.length > 0
+){
 
-            draftEquipeBot.push(
-                draftPioche.shift()
-            );
+    draftEquipeBot.push(
+        draftPioche.shift()
+    );
 
-            draftBudgetBot -= 0.1;
-        }
+    draftBudgetBot -= 0.1;
+}
 
-        finDraft();
-        return;
+majDraft();
+
+finDraft();
+return;
     }
 
     if(
@@ -1077,19 +1079,21 @@ function prochainJoueurDraft(){
     ){
 
         while(
-            draftEquipeJoueur.length < 3 &&
-            draftPioche.length > 0
-        ){
+    draftEquipeJoueur.length < 3 &&
+    draftPioche.length > 0
+){
 
-            draftEquipeJoueur.push(
-                draftPioche.shift()
-            );
+    draftEquipeJoueur.push(
+        draftPioche.shift()
+    );
 
-            draftBudgetJoueur -= 0.1;
-        }
+    draftBudgetJoueur -= 0.1;
+}
 
-        finDraft();
-        return;
+majDraft();
+
+finDraft();
+return;
     }
 
     // Les deux trios sont complets
