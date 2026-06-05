@@ -1050,15 +1050,13 @@ function ouvrirDraft(){
 function prochainJoueurDraft(){
 
     if(
-        draftPioche.length === 0 ||
-        (
-            draftEquipeJoueur.length >= 3 &&
-            draftEquipeBot.length >= 3
-        )
-    ){
-        finDraft();
-        return;
-    }
+    draftPioche.length === 0 ||
+    draftEquipeJoueur.length >= 3 ||
+    draftEquipeBot.length >= 3
+){
+    finDraft();
+    return;
+}
 
     joueurDraftActuel =
         draftPioche.shift();
@@ -1258,9 +1256,13 @@ function abandonnerEnchere(){
 function gagnerJoueur(){
 
     if(
-        proprietaireEnchere === "joueur"
-    ){
+    proprietaireEnchere === "joueur"
+){
 
+    if(draftEquipeJoueur.length >= 3){
+        prochainJoueurDraft();
+        return;
+    }
         draftEquipeJoueur.push(
             joueurDraftActuel
         );
@@ -1274,8 +1276,13 @@ function gagnerJoueur(){
     }
 
     else if(
-        proprietaireEnchere === "bot"
-    ){
+    proprietaireEnchere === "bot"
+){
+
+    if(draftEquipeBot.length >= 3){
+        prochainJoueurDraft();
+        return;
+    }
 
         draftEquipeBot.push(
             joueurDraftActuel
