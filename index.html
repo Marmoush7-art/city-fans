@@ -1051,8 +1051,10 @@ function prochainJoueurDraft(){
 
     if(
     draftPioche.length === 0 ||
-    draftEquipeJoueur.length >= 3 ||
-    draftEquipeBot.length >= 3
+    (
+        draftEquipeJoueur.length >= 3 &&
+        draftEquipeBot.length >= 3
+    )
 ){
     finDraft();
     return;
@@ -1182,9 +1184,12 @@ function tourBotEnchere(){
 
     if(draftEquipeBot.length >= 3){
 
-        gagnerJoueur();
-        return;
-    }
+    proprietaireEnchere = "joueur";
+
+    gagnerJoueur();
+
+    return;
+}
 
     if(joueurDraftActuel.note < 80){
 
@@ -1259,42 +1264,41 @@ function gagnerJoueur(){
     proprietaireEnchere === "joueur"
 ){
 
-    if(draftEquipeJoueur.length >= 3){
-        prochainJoueurDraft();
-        return;
-    }
+    if(draftEquipeJoueur.length < 3){
+
         draftEquipeJoueur.push(
             joueurDraftActuel
         );
 
-        draftBudgetJoueur -=
-            enchereActuelle;
-
-        ajouterHistorique(
-            `🏆 ${joueurDraftActuel.nom} rejoint ton équipe`
-        );
     }
+
+    draftBudgetJoueur -=
+        enchereActuelle;
+
+    ajouterHistorique(
+        `🏆 ${joueurDraftActuel.nom} rejoint ton équipe`
+    );
+}
 
     else if(
     proprietaireEnchere === "bot"
 ){
 
-    if(draftEquipeBot.length >= 3){
-        prochainJoueurDraft();
-        return;
-    }
+    if(draftEquipeBot.length < 3){
 
         draftEquipeBot.push(
             joueurDraftActuel
         );
 
-        draftBudgetBot -=
-            enchereActuelle;
-
-        ajouterHistorique(
-            `🤖 ${joueurDraftActuel.nom} rejoint le bot`
-        );
     }
+
+    draftBudgetBot -=
+        enchereActuelle;
+
+    ajouterHistorique(
+        `🤖 ${joueurDraftActuel.nom} rejoint le bot`
+    );
+}
 
     majDraft();
 
