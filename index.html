@@ -277,20 +277,63 @@
 
 </div>
 
+<div id="draft-view" class="content-section" style="display:none;">
+
+    <h2>🎯 Draft EA Challenge</h2>
+
+    <div class="draft-budget-box">
+
+        <div>
+            <h3>👤 Toi</h3>
+            <span id="budget-joueur">250</span> M€
         </div>
+
+        <div>
+            <h3>🤖 Bot</h3>
+            <span id="budget-bot">250</span> M€
+        </div>
+
+    </div>
+
+    <div id="draft-carte"></div>
+
+    <div class="draft-actions">
+
+        <input
+            type="number"
+            id="montant-enchere"
+            placeholder="Votre enchère">
+
+        <button onclick="faireEnchere()">
+            💰 Miser
+        </button>
+
+        <button onclick="abandonnerEnchere()">
+            ❌ Abandonner
+        </button>
+
+    </div>
 
     <div id="historique-enchere"></div>
 
     <div class="draft-equipes">
 
         <div class="draft-colonne">
+
             <h3>Ton Trio</h3>
-            <ul id="liste-joueur-draft"></ul>
+
+            <ul id="liste-joueur-draft">
+            </ul>
+
         </div>
 
         <div class="draft-colonne">
+
             <h3>Trio du Bot</h3>
-            <ul id="liste-bot-draft"></ul>
+
+            <ul id="liste-bot-draft">
+            </ul>
+
         </div>
 
     </div>
