@@ -340,7 +340,17 @@
 
     </div>
 
-    <div id="draft-resultat"></div>
+    <div
+    id="zone-restart"
+    style="display:none;text-align:center;margin-top:20px;">
+
+    <button onclick="recommencerDraft()">
+        🔄 Rejouer
+    </button>
+
+</div>
+
+<div id="draft-resultat"></div>
 
 </div>
 
@@ -1015,6 +1025,10 @@ function ouvrirDraft(){
         showSection("draft-view");
     }
 
+    document.getElementById(
+        "zone-restart"
+    ).style.display = "none";
+
     draftPioche = [...joueursDraft]
         .sort(() => Math.random() - 0.5);
 
@@ -1118,6 +1132,19 @@ document.getElementById(
 
 }
 
+function recommencerDraft(){
+
+    if(
+        confirm(
+            "Recommencer la partie ?"
+        )
+    ){
+
+        ouvrirDraft();
+
+    }
+}
+
 function faireEnchere(){
 
     const montant =
@@ -1203,16 +1230,28 @@ function tourBotEnchere(){
         gagnerJoueur();
     }
 }
-
 function abandonnerEnchere(){
+
+    // personne n'a encore misé
+    if(enchereActuelle === 0){
+
+        alert(
+            "Tu dois faire la première enchère."
+        );
+
+        return;
+    }
 
     if(
         proprietaireEnchere === "bot"
     ){
+
         gagnerJoueur();
-    }
-    else{
+
+    }else{
+
         tourBotEnchere();
+
     }
 }
 
@@ -1313,11 +1352,11 @@ function finDraft(){
 
     const scoreJoueur =
         noteJoueur +
-        (draftBudgetJoueur/10);
+        (draftBudgetJoueur/50);
 
     const scoreBot =
         noteBot +
-        (draftBudgetBot/10);
+        (draftBudgetBot/50);
 
     let resultat = "";
 
@@ -1342,6 +1381,11 @@ function finDraft(){
         <p>Score Bot : ${scoreBot.toFixed(1)}</p>
         <h3>${resultat}</h3>
     `;
+
+    document.getElementById(
+    "zone-restart"
+).style.display = "block";
+    
 }
 
         function tourBotInitial(){
