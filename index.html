@@ -74,20 +74,6 @@
         .emoji-picker span { font-size: 1.6rem; cursor: pointer; text-align: center; padding: 2px; transition: transform 0.1s; }
         .emoji-picker span:hover { transform: scale(1.2); background-color: #f0f0f0; border-radius: 5px; }
 
-        .draft-budget-box{ display:flex; justify-content:space-around; margin:20px 0; }
-        .draft-budget-box div{ background:white; padding:20px; border-radius:15px; min-width:150px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
-        #draft-carte{ margin:20px auto; max-width:400px; }
-        .draft-player-card{ background:white; border:3px solid #6CABDD; border-radius:15px; padding:20px; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
-        .draft-player-card h3{ margin-top:0; color:#6CABDD; }
-        .draft-actions{ margin:20px 0; }
-        .draft-actions button{ background:#000; color:white; border:none; padding:12px 25px; margin:5px; border-radius:10px; cursor:pointer; font-weight:bold; }
-        .draft-actions button:hover{ opacity:0.85; }
-        .draft-equipes{ display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-top:25px; }
-        .draft-colonne{ background:white; padding:20px; border-radius:15px; width:280px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
-        .draft-colonne ul{ list-style:none; padding:0; }
-        .draft-colonne li{ padding:8px; margin-bottom:8px; background:#eef6fc; border-radius:8px; }
-        #draft-resultat{ margin-top:30px; font-size:1.2rem; font-weight:bold; }
-
         .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--city-sky-blue); }
         .match-header { font-size: 0.8rem; color: #888; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; }
         .match-main { display: flex; justify-content: space-between; align-items: center; }
@@ -125,6 +111,20 @@
         .stat-card:hover { transform: scale(1.05); background: var(--city-sky-blue); color: white; }
         .stat-number { display: block; font-size: 2rem; font-weight: 800; }
         .stat-label { font-size: 0.9rem; margin-top: 5px; display: block; }
+
+        .draft-budget-box{ display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin:20px 0; }
+        .draft-budget-box div{ background:white; padding:20px; border-radius:15px;  min-width:180px; text-align:center; }
+        #draft-carte{ max-width:400px; margin:20px auto; }
+        .draft-player-card{ background:white; border:3px solid #6CABDD; border-radius:15px; padding:20px; text-align:center; }
+        .draft-actions{ text-align:center; margin:20px 0; }
+        .draft-actions input{ padding:10px; width:150px; }
+        .draft-actions button{ padding:10px 15px; margin-left:5px; cursor:pointer; }
+        #historique-enchere{ max-width:500px; margin:20px auto; background:white; padding:15px; border-radius:10px; min-height:120px; }
+        .draft-equipes{ display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; }
+        .draft-colonne{ background:white; padding:20px; border-radius:15px; width:280px; }
+        .draft-colonne ul{ list-style:none; padding:0; }
+        .draft-colonne li{ background:#eef6fc; padding:8px; margin-bottom:8px; border-radius:8px; }
+        #draft-resultat{ text-align:center; margin-top:20px; }
 
         .spot-label { font-size: 0.8rem; color: white; font-weight: bold; text-transform: uppercase; }
         .spot-player-name { font-size: 0.7rem; color: var(--city-black); font-weight: bold; background: rgba(255,255,255,0.8); padding: 2px 4px; border-radius: 4px; width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; }
@@ -216,8 +216,8 @@
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
             </div>
-            <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span>Draft EA</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
+            <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span><span>Draft EA</span></li>
         </ul>
     </div>
     <div id="quiz-view" class="content-section">
@@ -277,28 +277,9 @@
 
 </div>
 
-        <div id="draft-view" class="content-section">
-
-    <h2>🎯 Draft EA Challenge</h2>
-
-    <div class="draft-budget-box">
-        <div>
-            <h3>👤 Toi</h3>
-            <span id="budget-joueur">250</span> M€
         </div>
 
-        <div>
-            <h3>🤖 Bot</h3>
-            <span id="budget-bot">250</span> M€
-        </div>
-    </div>
-
-    <div id="draft-carte"></div>
-
-    <div class="draft-actions">
-        <button onclick="acheterJoueurDraft()">💰 Acheter</button>
-        <button onclick="passerDraft()">➡️ Passer</button>
-    </div>
+    <div id="historique-enchere"></div>
 
     <div class="draft-equipes">
 
@@ -928,189 +909,6 @@
             }
         });
 
-        const joueursDraft = Object.values(effectif).map(j => ({
-    nom: j.nom,
-    note: parseInt(j.noteea),
-    prix: parseFloat(
-        String(j.valeur)
-        .replace("M €","")
-        .replace(",",".")
-    )
-}));
-
-let draftPioche = [];
-let draftBudgetJoueur = 250;
-let draftBudgetBot = 250;
-
-let draftEquipeJoueur = [];
-let draftEquipeBot = [];
-
-let joueurDraftActuel = null;
-
-function ouvrirDraft(){
-
-    draftPioche = [...joueursDraft]
-        .sort(() => Math.random() - 0.5);
-
-    draftBudgetJoueur = 250;
-    draftBudgetBot = 250;
-
-    draftEquipeJoueur = [];
-    draftEquipeBot = [];
-
-    showSection("draft-view");
-
-    majDraft();
-
-    prochainJoueurDraft();
-}
-
-function prochainJoueurDraft(){
-
-    if(
-        draftPioche.length === 0 ||
-        (
-            draftEquipeJoueur.length >= 3 &&
-            draftEquipeBot.length >= 3
-        )
-    ){
-        finDraft();
-        return;
-    }
-
-    joueurDraftActuel = draftPioche.shift();
-
-    document.getElementById("draft-carte").innerHTML = `
-        <div class="draft-player-card">
-            <h3>${joueurDraftActuel.nom}</h3>
-            <p>⭐ Note EA : ${joueurDraftActuel.note}</p>
-            <p>💰 Valeur : ${joueurDraftActuel.prix} M€</p>
-        </div>
-    `;
-}
-
-function acheterJoueurDraft(){
-
-    if(draftEquipeJoueur.length >= 3){
-        passerDraft();
-        return;
-    }
-
-    if(draftBudgetJoueur < joueurDraftActuel.prix){
-        alert("Budget insuffisant");
-        return;
-    }
-
-    draftEquipeJoueur.push(joueurDraftActuel);
-
-    draftBudgetJoueur -= joueurDraftActuel.prix;
-
-    majDraft();
-
-    prochainJoueurDraft();
-}
-
-function passerDraft(){
-
-    tourBotDraft();
-
-    prochainJoueurDraft();
-}
-
-function tourBotDraft(){
-
-    if(draftEquipeBot.length >= 3) return;
-
-    if(draftBudgetBot < joueurDraftActuel.prix) return;
-
-    const ratio =
-        joueurDraftActuel.note /
-        joueurDraftActuel.prix;
-
-    let acheter = false;
-
-    if(joueurDraftActuel.note >= 88)
-        acheter = true;
-
-    if(ratio >= 1.3)
-        acheter = true;
-
-    if(
-        draftEquipeBot.length < 2 &&
-        joueurDraftActuel.note >= 84
-    ){
-        acheter = true;
-    }
-
-    if(acheter){
-
-        draftEquipeBot.push(joueurDraftActuel);
-
-        draftBudgetBot -= joueurDraftActuel.prix;
-    }
-
-    majDraft();
-}
-
-function majDraft(){
-
-    document.getElementById("budget-joueur").innerText =
-        draftBudgetJoueur.toFixed(1);
-
-    document.getElementById("budget-bot").innerText =
-        draftBudgetBot.toFixed(1);
-
-    document.getElementById("liste-joueur-draft").innerHTML =
-        draftEquipeJoueur
-        .map(j => `<li>${j.nom} (${j.note})</li>`)
-        .join("");
-
-    document.getElementById("liste-bot-draft").innerHTML =
-        draftEquipeBot
-        .map(j => `<li>${j.nom} (${j.note})</li>`)
-        .join("");
-}
-
-function finDraft(){
-
-    const noteJoueur =
-        draftEquipeJoueur.reduce(
-            (a,b)=>a+b.note,0
-        );
-
-    const noteBot =
-        draftEquipeBot.reduce(
-            (a,b)=>a+b.note,0
-        );
-
-    const scoreJoueur =
-        noteJoueur + (draftBudgetJoueur/10);
-
-    const scoreBot =
-        noteBot + (draftBudgetBot/10);
-
-    let message = "";
-
-    if(scoreJoueur > scoreBot)
-        message = "🏆 Tu remportes le Draft";
-
-    else if(scoreBot > scoreJoueur)
-        message = "🤖 Le bot gagne";
-
-    else
-        message = "🤝 Égalité";
-
-    document.getElementById("draft-resultat").innerHTML = `
-        <h2>Fin de partie</h2>
-
-        <p>Score Joueur : ${scoreJoueur.toFixed(1)}</p>
-
-        <p>Score Bot : ${scoreBot.toFixed(1)}</p>
-
-        <h3>${message}</h3>
-    `;
-}
-
         function afficherJoueur(id) {
             const j = effectif[id]; if(!j) return;
             
@@ -1140,6 +938,305 @@ function finDraft(){
             document.getElementById('s-note').innerText = j.note || "0.0";
             showSection('joueur-solo');
         }
+
+        const joueursDraft = Object.values(effectif).map(j => ({
+    nom: j.nom,
+    note: parseInt(j.noteea),
+    prix: parseFloat(
+        String(j.valeur)
+            .replace("M €","")
+            .replace(",",".")
+    )
+}));
+
+let draftPioche = [];
+
+let draftBudgetJoueur = 250;
+let draftBudgetBot = 250;
+
+let draftEquipeJoueur = [];
+let draftEquipeBot = [];
+
+let joueurDraftActuel = null;
+
+let enchereActuelle = 0;
+let proprietaireEnchere = null;
+let botPrixMax = 0;
+
+function ouvrirDraft(){
+
+    if(typeof showSection === "function"){
+        showSection("draft-view");
+    }
+
+    draftPioche = [...joueursDraft]
+        .sort(() => Math.random() - 0.5);
+
+    draftBudgetJoueur = 250;
+    draftBudgetBot = 250;
+
+    draftEquipeJoueur = [];
+    draftEquipeBot = [];
+
+    document.getElementById(
+        "draft-resultat"
+    ).innerHTML = "";
+
+    majDraft();
+
+    prochainJoueurDraft();
+}
+
+function prochainJoueurDraft(){
+
+    if(
+        draftPioche.length === 0 ||
+        (
+            draftEquipeJoueur.length >= 3 &&
+            draftEquipeBot.length >= 3
+        )
+    ){
+        finDraft();
+        return;
+    }
+
+    joueurDraftActuel =
+        draftPioche.shift();
+
+    enchereActuelle = 0;
+    proprietaireEnchere = null;
+
+    botPrixMax =
+        (joueurDraftActuel.note * 1.2)
+        +
+        (Math.random() * 20);
+
+    document.getElementById(
+        "historique-enchere"
+    ).innerHTML = "";
+
+    document.getElementById(
+        "montant-enchere"
+    ).value = "";
+
+    document.getElementById(
+        "draft-carte"
+    ).innerHTML = `
+        <div class="draft-player-card">
+            <h3>${joueurDraftActuel.nom}</h3>
+            <p>⭐ Note EA : ${joueurDraftActuel.note}</p>
+            <p>💰 Valeur : ${joueurDraftActuel.prix} M€</p>
+        </div>
+    `;
+}
+
+function faireEnchere(){
+
+    const montant =
+        Number(
+            document.getElementById(
+                "montant-enchere"
+            ).value
+        );
+
+    if(montant <= enchereActuelle){
+        alert(
+            "L'enchère doit être supérieure."
+        );
+        return;
+    }
+
+    if(montant > draftBudgetJoueur){
+        alert(
+            "Budget insuffisant."
+        );
+        return;
+    }
+
+    enchereActuelle = montant;
+
+    proprietaireEnchere =
+        "joueur";
+
+    ajouterHistorique(
+        `👤 Toi : ${montant} M€`
+    );
+
+    tourBotEnchere();
+}
+
+function tourBotEnchere(){
+
+    const offreBot =
+        enchereActuelle
+        +
+        Math.floor(
+            Math.random()*8
+        )
+        +
+        1;
+
+    if(
+        draftEquipeBot.length < 3 &&
+        offreBot <= botPrixMax &&
+        offreBot <= draftBudgetBot
+    ){
+
+        enchereActuelle =
+            offreBot;
+
+        proprietaireEnchere =
+            "bot";
+
+        ajouterHistorique(
+            `🤖 Bot : ${offreBot} M€`
+        );
+    }
+    else{
+
+        gagnerJoueur();
+    }
+}
+
+function abandonnerEnchere(){
+
+    if(
+        proprietaireEnchere === "bot"
+    ){
+        gagnerJoueur();
+    }
+    else{
+        tourBotEnchere();
+    }
+}
+
+function gagnerJoueur(){
+
+    if(
+        proprietaireEnchere === "joueur"
+    ){
+
+        draftEquipeJoueur.push(
+            joueurDraftActuel
+        );
+
+        draftBudgetJoueur -=
+            enchereActuelle;
+
+        ajouterHistorique(
+            `🏆 ${joueurDraftActuel.nom} rejoint ton équipe`
+        );
+    }
+
+    else if(
+        proprietaireEnchere === "bot"
+    ){
+
+        draftEquipeBot.push(
+            joueurDraftActuel
+        );
+
+        draftBudgetBot -=
+            enchereActuelle;
+
+        ajouterHistorique(
+            `🤖 ${joueurDraftActuel.nom} rejoint le bot`
+        );
+    }
+
+    majDraft();
+
+    setTimeout(
+        prochainJoueurDraft,
+        2000
+    );
+}
+
+function ajouterHistorique(txt){
+
+    document.getElementById(
+        "historique-enchere"
+    ).innerHTML +=
+        `<div>${txt}</div>`;
+}
+
+function majDraft(){
+
+    document.getElementById(
+        "budget-joueur"
+    ).innerText =
+        draftBudgetJoueur.toFixed(1);
+
+    document.getElementById(
+        "budget-bot"
+    ).innerText =
+        draftBudgetBot.toFixed(1);
+
+    document.getElementById(
+        "liste-joueur-draft"
+    ).innerHTML =
+        draftEquipeJoueur
+        .map(
+            j => `<li>${j.nom} (${j.note})</li>`
+        )
+        .join("");
+
+    document.getElementById(
+        "liste-bot-draft"
+    ).innerHTML =
+        draftEquipeBot
+        .map(
+            j => `<li>${j.nom} (${j.note})</li>`
+        )
+        .join("");
+}
+
+function finDraft(){
+
+    const noteJoueur =
+        draftEquipeJoueur.reduce(
+            (a,b)=>a+b.note,
+            0
+        );
+
+    const noteBot =
+        draftEquipeBot.reduce(
+            (a,b)=>a+b.note,
+            0
+        );
+
+    const scoreJoueur =
+        noteJoueur +
+        (draftBudgetJoueur/10);
+
+    const scoreBot =
+        noteBot +
+        (draftBudgetBot/10);
+
+    let resultat = "";
+
+    if(scoreJoueur > scoreBot){
+        resultat =
+        "🏆 Tu remportes le Draft";
+    }
+    else if(scoreBot > scoreJoueur){
+        resultat =
+        "🤖 Le bot remporte le Draft";
+    }
+    else{
+        resultat =
+        "🤝 Égalité";
+    }
+
+    document.getElementById(
+        "draft-resultat"
+    ).innerHTML = `
+        <h2>Fin de partie</h2>
+        <p>Score Joueur : ${scoreJoueur.toFixed(1)}</p>
+        <p>Score Bot : ${scoreBot.toFixed(1)}</p>
+        <h3>${resultat}</h3>
+    `;
+}
 
         function afficherActuJoueur(id) {
             afficherJoueur(id); // Réutilise la logique d'affichage existante
