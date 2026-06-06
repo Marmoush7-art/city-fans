@@ -1479,27 +1479,6 @@ function majDraft(){
     ).innerText =
         draftBudgetBot.toFixed(1);
 
-    // Affichage bonus Sauter
-    const bonusJoueur =
-        document.getElementById(
-            "bonus-sauter-joueur"
-        );
-
-    if(bonusJoueur){
-        bonusJoueur.innerText =
-            bonusSauterJoueur;
-    }
-
-    const bonusBot =
-        document.getElementById(
-            "bonus-sauter-bot"
-        );
-
-    if(bonusBot){
-        bonusBot.innerText =
-            bonusSauterBot;
-    }
-
     document.getElementById(
         "liste-joueur-draft"
     ).innerHTML =
@@ -1518,6 +1497,7 @@ function majDraft(){
         )
         .join("");
 }
+        
 function finDraft(){
 
     const valeurJoueur =
