@@ -1330,6 +1330,10 @@ function abandonnerEnchere(){
 
 function gagnerJoueur(){
 
+    if(!joueurDraftActuel){
+        return;
+    }
+
     if(
     proprietaireEnchere === "joueur"
 ){
@@ -1371,6 +1375,8 @@ function gagnerJoueur(){
 }
 
     majDraft();
+
+    joueurDraftActuel = null;
 
     setTimeout(
         prochainJoueurDraft,
