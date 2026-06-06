@@ -49,6 +49,8 @@
         table { width: 100%; border-collapse: collapse; margin-top: 15px; text-align: left; }
         th, td { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); }
         #photo { max-width: 280px; width: 100%; border-radius: 15px; border: 6px solid var(--city-sky-blue); margin-bottom: 25px; }
+
+        .logo-accueil{ width: 250px; height: auto; display: block; margin: 20px auto; }
         
         .bio-container { background: white; padding: 25px; border-radius: 10px; margin-top: 15px; text-align: left; min-height: 300px; line-height: 1.7; font-size: 1.05rem; }
 
@@ -240,8 +242,13 @@
     <main>
         <div id="accueil" class="content-section active">
             <h2>🩵 BIENVENUE CITYZEN 🩵</h2>
-            <img src="static/images/mancityecusson.jpg">
+            <img src="static/images/mancityecussonclasse.jpg" class="logo-accueil">
             <div class="match-card">
+        <h3>📰 Dernière Actualité</h3>
+        <p>Elliot Anderson proche de signer à City.</p>
+    </div>
+
+    <div class="match-card">
         <h3>📅 Prochain Match</h3>
         <p>Manchester City vs Arsenal</p>
         <p>Community Shield</p>
@@ -256,11 +263,7 @@
         <h3>⚽ Meilleur Buteur</h3>
         <p></p>
     </div>
-
-    <div class="match-card">
-        <h3>📰 Dernière Actualité</h3>
-        <p>Elliot Anderson proche de signer à City.</p>
-    </div>   
+            
         </div>
 
         <div class="live-match">
@@ -306,11 +309,15 @@
             id="montant-enchere"
             placeholder="Votre enchère">
 
-        <button onclick="faireEnchere()">
+        <button
+            id="btn-encherir"
+            onclick="faireEnchere()">
             💰 Miser
         </button>
 
-        <button onclick="abandonnerEnchere()">
+        <button
+            id="btn-abandonner"
+            onclick="abandonnerEnchere()">
             ❌ Abandonner
         </button>
 
@@ -424,9 +431,7 @@
                 </div>
             </div>
         </div>
-
-        
-            
+  
         <div id="ma-compo-view" class="content-section">
             <h2>Ma Compo 📋</h2>
             <p style="font-size: 0.9rem; margin-bottom: 15px; color: #666;">Configuration 4-2-3-1</p>
@@ -900,6 +905,16 @@
     ]
 };
 
+        const joueursDraft = Object.values(effectif).map(j => ({
+    nom: j.nom,
+    note: parseInt(j.noteea) || 60,
+    prix: parseFloat(
+        String(j.valeur)
+            .replace("M €","")
+            .replace(",",".")
+    ) || 1
+}));
+
         const competitionsActuelles = [
             {
                 nom: "Premier League",
@@ -994,16 +1009,6 @@
             showSection('joueur-solo');
         }
 
-        const joueursDraft = Object.values(effectif).map(j => ({
-    nom: j.nom,
-    note: parseInt(j.noteea),
-    prix: parseFloat(
-        String(j.valeur)
-            .replace("M €","")
-            .replace(",",".")
-    )
-}));
-
 let draftPioche = [];
 
 let draftBudgetJoueur = 250;
@@ -1019,6 +1024,21 @@ let proprietaireEnchere = null;
 let botPrixMax = 0;
 let premierJoueur = "joueur";
 
+function melangerTableau(tableau){
+
+    for(let i = tableau.length - 1; i > 0; i--){
+
+        const j = Math.floor(
+            Math.random() * (i + 1)
+        );
+
+        [tableau[i], tableau[j]] =
+        [tableau[j], tableau[i]];
+    }
+
+    return tableau;
+}
+
 function ouvrirDraft(){
 
     if(typeof showSection === "function"){
@@ -1029,25 +1049,53 @@ function ouvrirDraft(){
         "zone-restart"
     ).style.display = "none";
 
-    draftPioche = [...joueursDraft]
-        .sort(() => Math.random() - 0.5);
-
+    // Réinitialisation
     draftBudgetJoueur = 250;
     draftBudgetBot = 250;
 
     draftEquipeJoueur = [];
     draftEquipeBot = [];
 
+    joueurDraftActuel = null;
+    enchereActuelle = 0;
+    proprietaireEnchere = null;
+
+    // Nouvelle pioche mélangée
+    draftPioche = melangerTableau(
+        [...joueursDraft]
+    );
+
     document.getElementById(
         "draft-resultat"
     ).innerHTML = "";
+
+    document.getElementById(
+        "historique-enchere"
+    ).innerHTML = "";
+
+    document.getElementById(
+        "draft-carte"
+    ).innerHTML = "";
+
+    document.getElementById(
+        "montant-enchere"
+    ).value = "";
 
     majDraft();
 
     prochainJoueurDraft();
 }
 
+        
 function prochainJoueurDraft(){
+
+    document.getElementById(
+        "btn-encherir"
+    ).disabled = false;
+
+    document.getElementById(
+        "btn-abandonner"
+    ).disabled = false;
 
     // Si un trio est terminé, on complète automatiquement l'autre
     if(
@@ -1064,7 +1112,7 @@ function prochainJoueurDraft(){
         draftPioche.shift()
     );
 
-    draftBudgetBot -= 0.1;
+    draftBudgetBot -= 0;
 }
 
 majDraft();
@@ -1087,7 +1135,7 @@ return;
         draftPioche.shift()
     );
 
-    draftBudgetJoueur -= 0.1;
+    draftBudgetJoueur -= 0;
 }
 
 majDraft();
@@ -1123,22 +1171,22 @@ return;
 
     if(joueurDraftActuel.note < 80){
 
-    botPrixMax = 1;
+    botPrixMax = 5;
 
 }else if(joueurDraftActuel.note < 85){
 
-    botPrixMax =
-        40 + Math.random()*25;
+    botPrixMax = Math.min(
+        draftBudgetBot * 0.35,
+        70
+    );
 
 }else if(joueurDraftActuel.note < 89){
 
-    botPrixMax =
-        80 + Math.random()*30;
+    botPrixMax = draftBudgetBot * 0.60;
 
 }else{
 
-    botPrixMax =
-        120 + Math.random()*40;
+    botPrixMax = draftBudgetBot * 0.85;
 }
 
     document.getElementById(
@@ -1185,15 +1233,8 @@ document.getElementById(
 
 function recommencerDraft(){
 
-    if(
-        confirm(
-            "Recommencer la partie ?"
-        )
-    ){
+    ouvrirDraft();
 
-        ouvrirDraft();
-
-    }
 }
 
 function faireEnchere(){
@@ -1205,12 +1246,12 @@ function faireEnchere(){
             ).value
         );
 
-    if(montant <= enchereActuelle){
-        alert(
-            "L'enchère doit être supérieure."
-        );
-        return;
-    }
+    if(montant < enchereActuelle){
+    alert(
+        "L'enchère doit être supérieure ou égale."
+    );
+    return;
+}
 
     if(montant > draftBudgetJoueur){
         alert(
@@ -1286,16 +1327,6 @@ function tourBotEnchere(){
 }
 function abandonnerEnchere(){
 
-    // personne n'a encore misé
-    if(enchereActuelle === 0){
-
-        alert(
-            "Tu dois faire la première enchère."
-        );
-
-        return;
-    }
-
     if(
         proprietaireEnchere === "bot"
     ){
@@ -1310,6 +1341,10 @@ function abandonnerEnchere(){
 }
 
 function gagnerJoueur(){
+
+    if(!joueurDraftActuel){
+        return;
+    }
 
     if(
     proprietaireEnchere === "joueur"
@@ -1352,6 +1387,16 @@ function gagnerJoueur(){
 }
 
     majDraft();
+
+    joueurDraftActuel = null;
+
+    document.getElementById(
+        "btn-encherir"
+    ).disabled = true;
+
+    document.getElementById(
+        "btn-abandonner"
+    ).disabled = true;
 
     setTimeout(
         prochainJoueurDraft,
@@ -1460,7 +1505,7 @@ function finDraft(){
 
     if(joueurDraftActuel.note < 80){
 
-        miseDepart = 1;
+        miseDepart = 0;
 
     }else if(joueurDraftActuel.note >= 89){
 
@@ -1548,7 +1593,6 @@ function finDraft(){
             document.getElementById('s-note').innerText = "0.0";
             showSection('joueur-solo');
         }
-
 
         function afficherRumeur(id) {
             const r = rumeurs[id]; if(!r) return;
