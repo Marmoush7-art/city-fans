@@ -221,13 +221,13 @@
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
             </div>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
-            <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span><span>Draft EA</span></li>
+            <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span><span>Jeu Draft </span></li>
         </ul>
     </div>
     <div id="quiz-view" class="content-section">
         <h2>🔍 QUIZ : QUI EST-CE ?
         ⚠️ Attention, les fautes ne sont pas supportées par le site</h2>
-        <div class="quiz-box">
+        <div class="quiz-box"
             <div id="quiz-clues" class="quiz-clues"></div>
             <div class="quiz-input-area">
                 <input type="text" id="quiz-answer" placeholder="Nom du joueur...">
@@ -245,7 +245,7 @@
             <img src="static/images/mancityecussonclasse.jpg" class="logo-accueil">
             <div class="match-card">
         <h3>📰 Dernière Actualité</h3>
-        <p>Elliot Anderson proche de signer à City.</p>
+        <p><strong>Elliot Anderson proche de signer à City.</strong></p>
     </div>
 
     <div class="match-card">
@@ -401,7 +401,7 @@
                 </div>
             </div>
             <div class="transfert-card" onclick="afficherActuAnderson()">
-                <img src="static/images/kroupi.jpg">
+                <img src="static/images/anderson.jpg">
                 <div class="transfert-info">
                     <h3>Elliot Anderson</h3>
                     <p>Statut : City proche de le signer</p>
@@ -598,7 +598,7 @@
         const Classement = {
             classement: "Non commencé",
             matchNumero: 0,
-            competitionImg: "compet_premierleague.jpg", // Nom de l'image de la compétition
+            competitionImg: "premierleague.jpg", // Nom de l'image de la compétition
             nomCompetition: "Premier League"
         };
 
@@ -1532,6 +1532,8 @@ const scoreBot =
         }
 
         function afficherActuConceicao() {
+            document.getElementById('s-age').previousElementSibling.innerText = "Âge";
+            document.getElementById('s-nat').previousElementSibling.innerText = "Nationalité";
             document.getElementById('nom-joueur').innerText = "Eduardo Conceição";
             document.getElementById('photo').src = "static/images/conceicao.jpg";
             document.getElementById('s-age').innerText = "16 ans";
@@ -1549,6 +1551,8 @@ const scoreBot =
         }
 
         function afficherActuAnderson() {
+            document.getElementById('s-age').previousElementSibling.innerText = "Âge";
+            document.getElementById('s-nat').previousElementSibling.innerText = "Nationalité";
             document.getElementById('nom-joueur').innerText = "Elliot Anderson";
             document.getElementById('photo').src = "static/images/anderson.jpg";
             document.getElementById('s-age').innerText = "23 ans";
@@ -1566,6 +1570,8 @@ const scoreBot =
         }
 
         function afficherActuKroupi() {
+            document.getElementById('s-age').previousElementSibling.innerText = "Âge";
+            document.getElementById('s-nat').previousElementSibling.innerText = "Nationalité";
             document.getElementById('nom-joueur').innerText = "Eli Junior Kroupi";
             document.getElementById('photo').src = "static/images/kroupi.jpg";
             document.getElementById('s-age').innerText = "19 ans";
