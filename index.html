@@ -280,7 +280,7 @@
 
 <div id="draft-view" class="content-section" style="display:none;">
 
-    <h2>🎯 Draft EA Challenge</h2>
+    <h2>🎯 Draft Challenge</h2>
 
     <div class="draft-budget-box">
 
@@ -1363,12 +1363,23 @@ function tourBotEnchere(){
         return;
     }
 
-    const offreBot =
+    let offreBot =
     enchereActuelle +
-    Math.floor(
-        Math.random()*20
-    ) +
+    Math.floor(Math.random() * 20) +
     5;
+
+// Le joueur ne peut plus suivre
+if(draftBudgetJoueur <= enchereActuelle){
+
+    offreBot = draftBudgetJoueur + 1;
+}
+
+    if(
+        joueurDraftActuel.note >= 85 &&
+        draftBudgetJoueur <= enchereActuelle
+    ){
+        offreBot = draftBudgetJoueur + 1;
+    }
 
     if(
         offreBot <= botPrixMax &&
@@ -1578,13 +1589,14 @@ const scoreBot =
 
             if(
     bonusSautBot &&
-    joueurDraftActuel.prix < 30
+    joueurDraftActuel.prix <= 15 &&
+    joueurDraftActuel.note < 78
 ){
 
     bonusSautBot = false;
 
     ajouterHistorique(
-        `🤖 utilise son bonus SAUT sur ${joueurDraftActuel.nom} (${joueurDraftActuel.prix} M€)`
+        `🤖 utilise son bonus SAUT sur ${joueurDraftActuel.nom}`
     );
 
     joueurDraftActuel = null;
@@ -1851,6 +1863,22 @@ const scoreBot =
             
             showSection('joueur-solo');
         }
-    </script>
+
+        document.getElementById("montant-enchere")
+.addEventListener("keydown", function(event){
+
+    if(event.key === "Enter"){
+
+        event.preventDefault();
+
+        if(
+            !document.getElementById("btn-encherir").disabled
+        ){
+            faireEnchere();
+        }
+    }
+});
+
+</script>
 </body>
 </html>
