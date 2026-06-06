@@ -317,6 +317,12 @@
             ❌ Abandonner
         </button>
 
+        <button
+            id="btn-sauter"
+            onclick="utiliserBonusSaut()">
+            🗑️ Sauter
+        </button>
+
     </div>
 
     <div id="historique-enchere"></div>
@@ -1010,6 +1016,9 @@ let draftPioche = [];
 let draftBudgetJoueur = 250;
 let draftBudgetBot = 250;
 
+let bonusSautJoueur = true;
+let bonusSautBot = true;
+
 let draftEquipeJoueur = [];
 let draftEquipeBot = [];
 
@@ -1036,6 +1045,9 @@ function melangerTableau(tableau){
 }
 
 function ouvrirDraft(){
+
+    bonusSautJoueur = true;
+    bonusSautBot = true;
 
     if(typeof showSection === "function"){
         showSection("draft-view");
@@ -1227,6 +1239,35 @@ function recommencerDraft(){
 
     ouvrirDraft();
 
+}
+
+function utiliserBonusSaut(){
+
+    if(!bonusSautJoueur){
+        alert("Bonus déjà utilisé.");
+        return;
+    }
+
+    if(!joueurDraftActuel){
+        return;
+    }
+
+    bonusSautJoueur = false;
+
+    ajouterHistorique(
+        `🗑️ ${joueurDraftActuel.nom} envoyé à la poubelle`
+    );
+
+    joueurDraftActuel = null;
+
+    document.getElementById(
+        "btn-sauter"
+    ).disabled = true;
+
+    setTimeout(
+        prochainJoueurDraft,
+        1000
+    );
 }
 
 function faireEnchere(){
@@ -1450,6 +1491,11 @@ function majDraft(){
             j => `<li>${j.nom} (${j.note})</li>`
         )
         .join("");
+
+    document.getElementById("btn-sauter").innerText =
+        bonusSautJoueur
+        ? "🗑️ Sauter"
+        : "❌ Saut utilisé";  
 }
 
 function finDraft(){
