@@ -1578,13 +1578,14 @@ const scoreBot =
 
             if(
     bonusSautBot &&
-    joueurDraftActuel.prix < 30
+    joueurDraftActuel.prix <= 10 &&
+    joueurDraftActuel.note < 75
 ){
 
     bonusSautBot = false;
 
     ajouterHistorique(
-        `🤖 utilise son bonus SAUT sur ${joueurDraftActuel.nom} (${joueurDraftActuel.prix} M€)`
+        `🤖 utilise son bonus SAUT sur ${joueurDraftActuel.nom}`
     );
 
     joueurDraftActuel = null;
