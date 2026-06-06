@@ -914,7 +914,8 @@
         String(j.valeur)
             .replace("M €","")
             .replace(",",".")
-    ) || 1
+    ) || 1,
+    img: j.img
 }));
 
         const competitionsActuelles = [
@@ -1225,34 +1226,37 @@ const nomImage =
 document.getElementById(
     "draft-carte"
 ).innerHTML = `
+<div style="
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:30px;
+">
+
     <div
         class="draft-player-card"
         style="
             border:4px solid ${couleur};
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
+            width:350px;
         "
     >
-        <div>
-            <h3>${joueurDraftActuel.nom}</h3>
-
-            <p>💰 Valeur estimée : ${joueurDraftActuel.prix} M€</p>
-
-            <p>⭐ Note EA : ${joueurDraftActuel.note}</p>
-        </div>
-
-        <img
-            src="static/images/${joueurDraftActuel.img}"
-            alt="${joueurDraftActuel.nom}"
-            style="
-                width:120px;
-                height:120px;
-                object-fit:cover;
-                border-radius:10px;
-            "
-        >
+        <h3>${joueurDraftActuel.nom}</h3>
+        <p>💰 Valeur estimée : ${joueurDraftActuel.prix} M€</p>
+        <p>⭐ Note EA : ${joueurDraftActuel.note}</p>
     </div>
+
+    <img
+        src="static/images/${joueurDraftActuel.img}"
+        alt="${joueurDraftActuel.nom}"
+        style="
+            width:180px;
+            height:220px;
+            object-fit:cover;
+            border-radius:15px;
+            box-shadow:0 0 15px rgba(0,0,0,0.5);
+        "
+    >
+</div>
 `;
     if(premierJoueur === "bot"){
 
