@@ -1527,88 +1527,94 @@ const scoreBot =
         }
 
         function afficherActuConceicao() {
-            document.getElementById('s-age').previousElementSibling.innerText = "Âge";
-            document.getElementById('s-nat').previousElementSibling.innerText = "Nationalité";
-            document.getElementById('s-paye').previousElementSibling.innerText = "Paye";
-            document.getElementById('s-fin').previousElementSibling.innerText = "Fin de contrat";
-            document.getElementById('s-valeur').previousElementSibling.innerText = "Valeur";
-            document.getElementById('s-noteea').previousElementSibling.innerText = "Note EA";
-            document.getElementById('s-bio').previousElementSibling.innerText = "Biographie";
-            document.getElementById('s-buts').previousElementSibling.innerText = "Buts";
-            document.getElementById('s-passes').previousElementSibling.innerText = "Passes";
-            document.getElementById('s-matchs').previousElementSibling.innerText = "Matchs";
-            document.getElementById('s-note').previousElementSibling.innerText = "Note";
-            document.getElementById('nom-joueur').innerText = "Eduardo Conceição";
-            document.getElementById('photo').src = "static/images/conceicao.jpg";
-            document.getElementById('s-age').innerText = "16 ans";
-            document.getElementById('s-nat').innerText = "Brésil 🇧🇷";
-            document.getElementById('s-paye').innerText = "À venir";
-            document.getElementById('s-fin').innerText = "30/01/2029";
-            document.getElementById('s-valeur').innerText = "INCONNUE €";
-            document.getElementById('s-noteea').innerText = "INCONNUE";
-            document.getElementById('s-bio').innerText = "Pépite de Palmeiras, future recrue phare de l'attaque mancunienne.";
-            document.getElementById('s-buts').innerText = "0";
-            document.getElementById('s-passes').innerText = "0";
-            document.getElementById('s-matchs').innerText = "0";
-            document.getElementById('s-note').innerText = "0.0";
-            showSection('joueur-solo');
-        }
 
+    resetFiche();
+
+    document.getElementById('nom-joueur').innerText = "Eduardo Conceição";
+    document.getElementById('photo').src = "static/images/conceicao.jpg";
+
+    document.getElementById('s-age').innerText = "16 ans";
+    document.getElementById('s-nat').innerText = "Brésil 🇧🇷";
+    document.getElementById('s-paye').innerText = "À venir";
+    document.getElementById('s-fin').innerText = "30/01/2029";
+    document.getElementById('s-valeur').innerText = "INCONNUE €";
+    document.getElementById('s-noteea').innerText = "INCONNUE";
+
+    document.getElementById('s-bio').innerText =
+        "Pépite de Palmeiras, future recrue phare de l'attaque mancunienne.";
+
+    document.getElementById('s-buts').innerText = "0";
+    document.getElementById('s-passes').innerText = "0";
+    document.getElementById('s-matchs').innerText = "0";
+    document.getElementById('s-note').innerText = "0.0";
+
+    showSection('joueur-solo');
+}
         function afficherActuAnderson() {
-            document.getElementById('s-age').previousElementSibling.innerText = "Âge";
-            document.getElementById('s-nat').previousElementSibling.innerText = "Nationalité";
-            document.getElementById('s-paye').previousElementSibling.innerText = "Paye";
-            document.getElementById('s-fin').previousElementSibling.innerText = "Fin de contrat";
-            document.getElementById('s-valeur').previousElementSibling.innerText = "Valeur";
-            document.getElementById('s-noteea').previousElementSibling.innerText = "Note EA";
-            document.getElementById('s-bio').previousElementSibling.innerText = "Biographie";
-            document.getElementById('s-buts').previousElementSibling.innerText = "Buts";
-            document.getElementById('s-passes').previousElementSibling.innerText = "Passes";
-            document.getElementById('s-matchs').previousElementSibling.innerText = "Matchs";
-            document.getElementById('s-note').previousElementSibling.innerText = "Note";
-            document.getElementById('nom-joueur').innerText = "Elliot Anderson";
-            document.getElementById('photo').src = "static/images/anderson.jpg";
-            document.getElementById('s-age').innerText = "23 ans";
-            document.getElementById('s-nat').innerText = "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿";
-            document.getElementById('s-paye').innerText = "205 000 €";
-            document.getElementById('s-fin').innerText = "30/06/2029";
-            document.getElementById('s-valeur').innerText = "75M €";
-            document.getElementById('s-noteea').innerText = "80";
-            document.getElementById('s-bio').innerText = "Milieu talentueux très désiré.";
-            document.getElementById('s-buts').innerText = "0";
-            document.getElementById('s-passes').innerText = "0";
-            document.getElementById('s-matchs').innerText = "0";
-            document.getElementById('s-note').innerText = "0.0";
-            showSection('joueur-solo');
-        }
+
+    resetFiche();
+
+    document.getElementById('nom-joueur').innerText = "Elliot Anderson";
+    document.getElementById('photo').src = "static/images/anderson.jpg";
+
+    document.getElementById('s-age').innerText = "23 ans";
+    document.getElementById('s-nat').innerText = "Angleterre 🏴";
+    document.getElementById('s-paye').innerText = "205 000 €";
+    document.getElementById('s-fin').innerText = "30/06/2029";
+    document.getElementById('s-valeur').innerText = "75M €";
+    document.getElementById('s-noteea').innerText = "80";
+
+    document.getElementById('s-bio').innerText =
+        "Milieu talentueux très désiré.";
+
+    document.getElementById('s-buts').innerText = "0";
+    document.getElementById('s-passes').innerText = "0";
+    document.getElementById('s-matchs').innerText = "0";
+    document.getElementById('s-note').innerText = "0.0";
+
+    showSection('joueur-solo');
+}
 
         function afficherActuKroupi() {
-            document.getElementById('s-age').previousElementSibling.innerText = "Âge";
-            document.getElementById('s-nat').previousElementSibling.innerText = "Nationalité";
-            document.getElementById('s-paye').previousElementSibling.innerText = "Paye";
-            document.getElementById('s-fin').previousElementSibling.innerText = "Fin de contrat";
-            document.getElementById('s-valeur').previousElementSibling.innerText = "Valeur";
-            document.getElementById('s-noteea').previousElementSibling.innerText = "Note EA";
-            document.getElementById('s-bio').previousElementSibling.innerText = "Biographie";
-            document.getElementById('s-buts').previousElementSibling.innerText = "Buts";
-            document.getElementById('s-passes').previousElementSibling.innerText = "Passes";
-            document.getElementById('s-matchs').previousElementSibling.innerText = "Matchs";
-            document.getElementById('s-note').previousElementSibling.innerText = "Note";
-            document.getElementById('nom-joueur').innerText = "Eli Junior Kroupi";
-            document.getElementById('photo').src = "static/images/kroupi.jpg";
-            document.getElementById('s-age').innerText = "19 ans";
-            document.getElementById('s-nat').innerText = "France 🇫🇷";
-            document.getElementById('s-paye').innerText = "31 000 €";
-            document.getElementById('s-fin').innerText = "30/06/2030";
-            document.getElementById('s-valeur').innerText = "70M €";
-            document.getElementById('s-noteea').innerText = "74";
-            document.getElementById('s-bio').innerText = "Jeune talent français prometteur évoluant à Bournemouth.";
-            document.getElementById('s-buts').innerText = "0";
-            document.getElementById('s-passes').innerText = "0";
-            document.getElementById('s-matchs').innerText = "0";
-            document.getElementById('s-note').innerText = "0.0";
-            showSection('joueur-solo');
-        }
+
+    resetFiche();
+
+    document.getElementById('nom-joueur').innerText = "Eli Junior Kroupi";
+    document.getElementById('photo').src = "static/images/kroupi.jpg";
+
+    document.getElementById('s-age').innerText = "19 ans";
+    document.getElementById('s-nat').innerText = "France 🇫🇷";
+    document.getElementById('s-paye').innerText = "31 000 €";
+    document.getElementById('s-fin').innerText = "30/06/2030";
+    document.getElementById('s-valeur').innerText = "70M €";
+    document.getElementById('s-noteea').innerText = "74";
+
+    document.getElementById('s-bio').innerText =
+        "Jeune talent français prometteur évoluant à Bournemouth.";
+
+    document.getElementById('s-buts').innerText = "0";
+    document.getElementById('s-passes').innerText = "0";
+    document.getElementById('s-matchs').innerText = "0";
+    document.getElementById('s-note').innerText = "0.0";
+
+    showSection('joueur-solo');
+}
+        function resetFiche() {
+
+    // Remet les labels d'origine
+    document.getElementById('s-age').previousElementSibling.innerText = "Âge";
+    document.getElementById('s-nat').previousElementSibling.innerText = "Nationalité";
+
+    // Réaffiche les lignes cachées
+    document.getElementById('s-paye').parentNode.style.display = "";
+    document.getElementById('s-fin').parentNode.style.display = "";
+    document.getElementById('s-valeur').parentNode.style.display = "";
+    document.getElementById('s-noteea').parentNode.style.display = "";
+
+    // Réaffiche le bloc statistiques
+    const statsBlock = document.getElementById('s-matchs')?.parentNode?.parentNode;
+    if (statsBlock) statsBlock.style.display = "";
+}
 
         function afficherRumeur(id) {
             const r = rumeurs[id]; if(!r) return;
