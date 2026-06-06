@@ -1552,6 +1552,27 @@ const scoreBot =
 
         function tourBotInitial(){
 
+            if(
+    bonusSautBot &&
+    joueurDraftActuel.note >= 89
+){
+
+    bonusSautBot = false;
+
+    ajouterHistorique(
+        `🤖 utilise son bonus SAUT sur ${joueurDraftActuel.nom}`
+    );
+
+    joueurDraftActuel = null;
+
+    setTimeout(
+        prochainJoueurDraft,
+        1500
+    );
+
+    return;
+}
+
     if(draftEquipeBot.length >= 3){
         return;
     }
