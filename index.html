@@ -1016,8 +1016,8 @@ let draftPioche = [];
 let draftBudgetJoueur = 250;
 let draftBudgetBot = 250;
 
-let bonusSautJoueur = true;
-let bonusSautBot = true;
+let bonusSauterJoueur = 1;
+let bonusSauterBot = 1;
 
 let draftEquipeJoueur = [];
 let draftEquipeBot = [];
@@ -1046,9 +1046,6 @@ function melangerTableau(tableau){
 
 function ouvrirDraft(){
 
-    bonusSautJoueur = true;
-    bonusSautBot = true;
-
     if(typeof showSection === "function"){
         showSection("draft-view");
     }
@@ -1057,13 +1054,19 @@ function ouvrirDraft(){
         "zone-restart"
     ).style.display = "none";
 
-    // Réinitialisation
+    // Réinitialisation budgets
     draftBudgetJoueur = 250;
     draftBudgetBot = 250;
 
+    // Réinitialisation équipes
     draftEquipeJoueur = [];
     draftEquipeBot = [];
 
+    // Réinitialisation bonus Sauter
+    bonusSauterJoueur = 1;
+    bonusSauterBot = 1;
+
+    // Réinitialisation enchères
     joueurDraftActuel = null;
     enchereActuelle = 0;
     proprietaireEnchere = null;
@@ -1073,6 +1076,7 @@ function ouvrirDraft(){
         [...joueursDraft]
     );
 
+    // Nettoyage interface
     document.getElementById(
         "draft-resultat"
     ).innerHTML = "";
@@ -1089,11 +1093,12 @@ function ouvrirDraft(){
         "montant-enchere"
     ).value = "";
 
+    // Mise à jour affichage
     majDraft();
 
+    // Nouveau draft
     prochainJoueurDraft();
 }
-
         
 function prochainJoueurDraft(){
 
@@ -1474,6 +1479,27 @@ function majDraft(){
     ).innerText =
         draftBudgetBot.toFixed(1);
 
+    // Affichage bonus Sauter
+    const bonusJoueur =
+        document.getElementById(
+            "bonus-sauter-joueur"
+        );
+
+    if(bonusJoueur){
+        bonusJoueur.innerText =
+            bonusSauterJoueur;
+    }
+
+    const bonusBot =
+        document.getElementById(
+            "bonus-sauter-bot"
+        );
+
+    if(bonusBot){
+        bonusBot.innerText =
+            bonusSauterBot;
+    }
+
     document.getElementById(
         "liste-joueur-draft"
     ).innerHTML =
@@ -1491,13 +1517,7 @@ function majDraft(){
             j => `<li>${j.nom} (${j.note})</li>`
         )
         .join("");
-
-    document.getElementById("btn-sauter").innerText =
-        bonusSautJoueur
-        ? "🗑️ Sauter"
-        : "❌ Saut utilisé";  
 }
-
 function finDraft(){
 
     const valeurJoueur =
