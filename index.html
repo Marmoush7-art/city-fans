@@ -1238,12 +1238,21 @@ function faireEnchere(){
             ).value
         );
 
+    if(
+        document.getElementById(
+            "montant-enchere"
+        ).value === ""
+    ){
+        alert("Entre une somme (0 autorisé).");
+        return;
+    }
+
     if(montant < enchereActuelle){
-    alert(
-        "L'enchère doit être supérieure ou égale."
-    );
-    return;
-}
+        alert(
+            "L'enchère doit être supérieure ou égale."
+        );
+        return;
+    }
 
     if(montant > draftBudgetJoueur){
         alert(
@@ -1253,9 +1262,7 @@ function faireEnchere(){
     }
 
     enchereActuelle = montant;
-
-    proprietaireEnchere =
-        "joueur";
+    proprietaireEnchere = "joueur";
 
     ajouterHistorique(
         `👤 Toi : ${montant} M€`
@@ -1318,6 +1325,16 @@ function tourBotEnchere(){
     }
 }
 function abandonnerEnchere(){
+
+    // Si personne n'a encore enchéri
+    if(proprietaireEnchere === null){
+
+        alert(
+            "Tu dois d'abord faire une offre (même 0 M€)."
+        );
+
+        return;
+    }
 
     if(
         proprietaireEnchere === "bot"
