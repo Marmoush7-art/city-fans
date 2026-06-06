@@ -1294,13 +1294,15 @@ function faireEnchere(){
         return;
     }
 
-    if(montant < enchereActuelle){
-        alert(
-            "L'enchère doit être supérieure ou égale."
-        );
-        return;
-    }
-
+    if(
+    proprietaireEnchere !== null &&
+    montant <= enchereActuelle
+){
+    alert(
+        "L'enchère doit être supérieure à l'offre actuelle."
+    );
+    return;
+}
     if(montant > draftBudgetJoueur){
         alert(
             "Budget insuffisant."
@@ -1555,13 +1557,13 @@ const scoreBot =
 
             if(
     bonusSautBot &&
-    joueurDraftActuel.note >= 89
+    joueurDraftActuel.prix < 30
 ){
 
     bonusSautBot = false;
 
     ajouterHistorique(
-        `🤖 utilise son bonus SAUT sur ${joueurDraftActuel.nom}`
+        `🤖 utilise son bonus SAUT sur ${joueurDraftActuel.nom} (${joueurDraftActuel.prix} M€)`
     );
 
     joueurDraftActuel = null;
