@@ -1100,7 +1100,7 @@ function prochainJoueurDraft(){
         draftPioche.shift()
     );
 
-    draftBudgetBot -= 0.1;
+    draftBudgetBot -= 0;
 }
 
 majDraft();
@@ -1123,7 +1123,7 @@ return;
         draftPioche.shift()
     );
 
-    draftBudgetJoueur -= 0.1;
+    draftBudgetJoueur -= 0;
 }
 
 majDraft();
@@ -1234,12 +1234,12 @@ function faireEnchere(){
             ).value
         );
 
-    if(montant <= enchereActuelle){
-        alert(
-            "L'enchère doit être supérieure."
-        );
-        return;
-    }
+    if(montant < enchereActuelle){
+    alert(
+        "L'enchère doit être supérieure ou égale."
+    );
+    return;
+}
 
     if(montant > draftBudgetJoueur){
         alert(
@@ -1314,16 +1314,6 @@ function tourBotEnchere(){
     }
 }
 function abandonnerEnchere(){
-
-    // personne n'a encore misé
-    if(enchereActuelle === 0){
-
-        alert(
-            "Tu dois faire la première enchère."
-        );
-
-        return;
-    }
 
     if(
         proprietaireEnchere === "bot"
@@ -1489,7 +1479,7 @@ function finDraft(){
 
     if(joueurDraftActuel.note < 80){
 
-        miseDepart = 1;
+        miseDepart = 0;
 
     }else if(joueurDraftActuel.note >= 89){
 
