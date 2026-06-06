@@ -1085,6 +1085,14 @@ function ouvrirDraft(){
         
 function prochainJoueurDraft(){
 
+    document.getElementById(
+        "btn-encherir"
+    ).disabled = false;
+
+    document.getElementById(
+        "btn-abandonner"
+    ).disabled = false;
+
     // Si un trio est terminé, on complète automatiquement l'autre
     if(
         draftEquipeJoueur.length >= 3 &&
@@ -1377,6 +1385,14 @@ function gagnerJoueur(){
     majDraft();
 
     joueurDraftActuel = null;
+
+    document.getElementById(
+        "btn-encherir"
+    ).disabled = true;
+
+    document.getElementById(
+        "btn-abandonner"
+    ).disabled = true;
 
     setTimeout(
         prochainJoueurDraft,
