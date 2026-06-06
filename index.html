@@ -1169,25 +1169,12 @@ return;
     enchereActuelle = 0;
     proprietaireEnchere = null;
 
-    if(joueurDraftActuel.note < 80){
-
-    botPrixMax = 5;
-
-}else if(joueurDraftActuel.note < 85){
-
     botPrixMax = Math.min(
-        draftBudgetBot * 0.35,
-        70
-    );
-
-}else if(joueurDraftActuel.note < 89){
-
-    botPrixMax = draftBudgetBot * 0.60;
-
-}else{
-
-    botPrixMax = draftBudgetBot * 0.85;
-}
+    draftBudgetBot,
+    joueurDraftActuel.prix * (
+        1.3 + Math.random() * 1.2
+    )
+);
 
     document.getElementById(
         "historique-enchere"
@@ -1295,11 +1282,11 @@ function tourBotEnchere(){
     }
 
     const offreBot =
-        enchereActuelle +
-        Math.floor(
-            Math.random()*8
-        ) +
-        1;
+    enchereActuelle +
+    Math.floor(
+        Math.random()*20
+    ) +
+    5;
 
     if(
         offreBot <= botPrixMax &&
@@ -1445,25 +1432,25 @@ function majDraft(){
 
 function finDraft(){
 
-    const noteJoueur =
-        draftEquipeJoueur.reduce(
-            (a,b)=>a+b.note,
-            0
-        );
+    const valeurJoueur =
+    draftEquipeJoueur.reduce(
+        (a,b)=>a+b.prix,
+        0
+    );
 
-    const noteBot =
-        draftEquipeBot.reduce(
-            (a,b)=>a+b.note,
-            0
-        );
+const valeurBot =
+    draftEquipeBot.reduce(
+        (a,b)=>a+b.prix,
+        0
+    );
 
-    const scoreJoueur =
-        noteJoueur +
-        (draftBudgetJoueur/50);
+const scoreJoueur =
+    valeurJoueur +
+    draftBudgetJoueur;
 
-    const scoreBot =
-        noteBot +
-        (draftBudgetBot/50);
+const scoreBot =
+    valeurBot +
+    draftBudgetBot;
 
     let resultat = "";
 
@@ -1484,8 +1471,8 @@ function finDraft(){
         "draft-resultat"
     ).innerHTML = `
         <h2>Fin de partie</h2>
-        <p>Score Joueur : ${scoreJoueur.toFixed(1)}</p>
-        <p>Score Bot : ${scoreBot.toFixed(1)}</p>
+        <p>Valeur totale Joueur : ${scoreJoueur.toFixed(1)} M€</p>
+        <p>Valeur totale Bot : ${scoreBot.toFixed(1)} M€</p>
         <h3>${resultat}</h3>
     `;
 
