@@ -1016,8 +1016,11 @@ let draftPioche = [];
 let draftBudgetJoueur = 250;
 let draftBudgetBot = 250;
 
-let bonusSautJoueur = true;
-let bonusSautBot = true;
+bonusSautJoueur = true;
+bonusSautBot = true;
+
+document.getElementById("btn-sauter").disabled = false;
+document.getElementById("btn-sauter").innerText = "Sauter";
 
 let draftEquipeJoueur = [];
 let draftEquipeBot = [];
@@ -1249,15 +1252,14 @@ function recommencerDraft(){
 function utiliserBonusSaut(){
 
     if(!bonusSautJoueur){
-        alert("Bonus déjà utilisé.");
-        return;
-    }
-
-    if(!joueurDraftActuel){
+        alert("Saut déjà utilisé.");
         return;
     }
 
     bonusSautJoueur = false;
+
+    document.getElementById("btn-sauter").disabled = true;
+    document.getElementById("btn-sauter").innerText = "Saut déjà exécuté";
 
     ajouterHistorique(
         `🗑️ ${joueurDraftActuel.nom} envoyé à la poubelle`
@@ -1265,16 +1267,11 @@ function utiliserBonusSaut(){
 
     joueurDraftActuel = null;
 
-    document.getElementById(
-        "btn-sauter"
-    ).disabled = true;
-
     setTimeout(
         prochainJoueurDraft,
         1000
     );
 }
-
 function faireEnchere(){
 
     const montant =
