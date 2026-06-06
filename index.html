@@ -1003,16 +1003,6 @@
             showSection('joueur-solo');
         }
 
-        const joueursDraft = Object.values(effectif).map(j => ({
-    nom: j.nom,
-    note: parseInt(j.noteea),
-    prix: parseFloat(
-        String(j.valeur)
-            .replace("M €","")
-            .replace(",",".")
-    )
-}));
-
 let draftPioche = [];
 
 let draftBudgetJoueur = 250;
@@ -1038,7 +1028,7 @@ function ouvrirDraft(){
         "zone-restart"
     ).style.display = "none";
 
-    function melangerTableau(tableau){
+   function melangerTableau(tableau){
 
     for(let i = tableau.length - 1; i > 0; i--){
 
@@ -1563,6 +1553,7 @@ function finDraft(){
             showSection('joueur-solo');
         }
 
+        draftPioche = melangerTableau([...joueursDraft]);
 
         function afficherRumeur(id) {
             const r = rumeurs[id]; if(!r) return;
