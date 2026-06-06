@@ -1194,6 +1194,15 @@ if(joueurDraftActuel.note >= 85){
 if(joueurDraftActuel.note >= 89){
     couleur = "#ffd700"; // or
 }
+
+const nomImage =
+    joueurDraftActuel.nom
+        .split(" ")
+        .pop()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+    
 document.getElementById(
     "draft-carte"
 ).innerHTML = `
@@ -1211,7 +1220,7 @@ document.getElementById(
         </div>
 
         <img
-            src="static/images/${joueurDraftActuel.img}"
+            src="static/images/${nomImage}.jpg"
             class="draft-player-img"
             alt="${joueurDraftActuel.nom}"
         >
