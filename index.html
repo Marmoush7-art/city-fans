@@ -1435,23 +1435,23 @@ function finDraft(){
 
     const valeurJoueur =
     draftEquipeJoueur.reduce(
-        (a,b)=>a+b.prix,
+        (total, j) => total + j.prix,
         0
     );
 
 const valeurBot =
     draftEquipeBot.reduce(
-        (a,b)=>a+b.prix,
+        (total, j) => total + j.prix,
         0
     );
 
 const scoreJoueur =
     valeurJoueur +
-    draftBudgetJoueur;
+    (draftBudgetJoueur / 50);
 
 const scoreBot =
     valeurBot +
-    draftBudgetBot;
+    (draftBudgetBot / 50);
 
     let resultat = "";
 
