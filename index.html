@@ -1018,17 +1018,7 @@ let proprietaireEnchere = null;
 let botPrixMax = 0;
 let premierJoueur = "joueur";
 
-function ouvrirDraft(){
-
-    if(typeof showSection === "function"){
-        showSection("draft-view");
-    }
-
-    document.getElementById(
-        "zone-restart"
-    ).style.display = "none";
-
-   function melangerTableau(tableau){
+function melangerTableau(tableau){
 
     for(let i = tableau.length - 1; i > 0; i--){
 
@@ -1043,21 +1033,54 @@ function ouvrirDraft(){
     return tableau;
 }
 
+function ouvrirDraft(){
+
+    if(typeof showSection === "function"){
+        showSection("draft-view");
+    }
+
+    document.getElementById(
+        "zone-restart"
+    ).style.display = "none";
+
+    // Réinitialisation
     draftBudgetJoueur = 250;
     draftBudgetBot = 250;
 
     draftEquipeJoueur = [];
     draftEquipeBot = [];
 
+    joueurDraftActuel = null;
+    enchereActuelle = 0;
+    proprietaireEnchere = null;
+
+    // Nouvelle pioche mélangée
+    draftPioche = melangerTableau(
+        [...joueursDraft]
+    );
+
     document.getElementById(
         "draft-resultat"
     ).innerHTML = "";
+
+    document.getElementById(
+        "historique-enchere"
+    ).innerHTML = "";
+
+    document.getElementById(
+        "draft-carte"
+    ).innerHTML = "";
+
+    document.getElementById(
+        "montant-enchere"
+    ).value = "";
 
     majDraft();
 
     prochainJoueurDraft();
 }
 
+        
 function prochainJoueurDraft(){
 
     // Si un trio est terminé, on complète automatiquement l'autre
@@ -1552,8 +1575,6 @@ function finDraft(){
             document.getElementById('s-note').innerText = "0.0";
             showSection('joueur-solo');
         }
-
-        draftPioche = melangerTableau([...joueursDraft]);
 
         function afficherRumeur(id) {
             const r = rumeurs[id]; if(!r) return;
