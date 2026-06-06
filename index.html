@@ -1363,12 +1363,23 @@ function tourBotEnchere(){
         return;
     }
 
-    const offreBot =
+    let offreBot =
     enchereActuelle +
-    Math.floor(
-        Math.random()*20
-    ) +
+    Math.floor(Math.random() * 20) +
     5;
+
+// Le joueur ne peut plus suivre
+if(draftBudgetJoueur <= enchereActuelle){
+
+    offreBot = draftBudgetJoueur + 1;
+}
+
+    if(
+        joueurDraftActuel.note >= 85 &&
+        draftBudgetJoueur <= enchereActuelle
+    ){
+        offreBot = draftBudgetJoueur + 1;
+    }
 
     if(
         offreBot <= botPrixMax &&
