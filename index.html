@@ -1171,22 +1171,22 @@ return;
 
     if(joueurDraftActuel.note < 80){
 
-    botPrixMax = 1;
+    botPrixMax = 5;
 
 }else if(joueurDraftActuel.note < 85){
 
-    botPrixMax =
-        40 + Math.random()*25;
+    botPrixMax = Math.min(
+        draftBudgetBot * 0.35,
+        70
+    );
 
 }else if(joueurDraftActuel.note < 89){
 
-    botPrixMax =
-        80 + Math.random()*30;
+    botPrixMax = draftBudgetBot * 0.60;
 
 }else{
 
-    botPrixMax =
-        120 + Math.random()*40;
+    botPrixMax = draftBudgetBot * 0.85;
 }
 
     document.getElementById(
