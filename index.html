@@ -240,7 +240,7 @@
     <main>
         <div id="accueil" class="content-section active">
             <h2>🩵 BIENVENUE CITYZEN 🩵</h2>
-            <img src="static/images/mancityecusson.jpg">
+            <img src="static/images/mancityecussonclasse.jpg">
             <div class="match-card">
         <h3>📅 Prochain Match</h3>
         <p>Manchester City vs Arsenal</p>
@@ -900,6 +900,16 @@
     ]
 };
 
+        const joueursDraft = Object.values(effectif).map(j => ({
+    nom: j.nom,
+    note: parseInt(j.noteea) || 60,
+    prix: parseFloat(
+        String(j.valeur)
+            .replace("M €","")
+            .replace(",",".")
+    ) || 1
+}));
+
         const competitionsActuelles = [
             {
                 nom: "Premier League",
@@ -1029,8 +1039,20 @@ function ouvrirDraft(){
         "zone-restart"
     ).style.display = "none";
 
-    draftPioche = [...joueursDraft]
-        .sort(() => Math.random() - 0.5);
+    function melangerTableau(tableau){
+
+    for(let i = tableau.length - 1; i > 0; i--){
+
+        const j = Math.floor(
+            Math.random() * (i + 1)
+        );
+
+        [tableau[i], tableau[j]] =
+        [tableau[j], tableau[i]];
+    }
+
+    return tableau;
+}
 
     draftBudgetJoueur = 250;
     draftBudgetBot = 250;
@@ -1185,15 +1207,8 @@ document.getElementById(
 
 function recommencerDraft(){
 
-    if(
-        confirm(
-            "Recommencer la partie ?"
-        )
-    ){
+    ouvrirDraft();
 
-        ouvrirDraft();
-
-    }
 }
 
 function faireEnchere(){
