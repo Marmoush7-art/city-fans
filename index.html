@@ -1863,6 +1863,28 @@ const scoreBot =
             
             showSection('joueur-solo');
         }
+
+            function afficherClassement() {
+    ...
+    showSection('joueur-solo');
+}
+
+// ===== TOUCHE ENTRÉE POUR MISER =====
+
+document.getElementById("montant-enchere")
+.addEventListener("keydown", function(event){
+
+    if(event.key === "Enter"){
+
+        event.preventDefault();
+
+        if(
+            !document.getElementById("btn-encherir").disabled
+        ){
+            faireEnchere();
+        }
+    }
+});
     </script>
 </body>
 </html>
