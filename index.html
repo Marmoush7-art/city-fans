@@ -1019,7 +1019,7 @@ let draftBudgetBot = 250;
 bonusSautJoueur = true;
 bonusSautBot = true;
 
-document.getElementById("btn-sauter").disabled = false;
+document.getElementById("btn-sauter").disabled = true;
 document.getElementById("btn-sauter").innerText = "Sauter";
 
 let draftEquipeJoueur = [];
@@ -1053,6 +1053,9 @@ function ouvrirDraft(){
         showSection("draft-view");
     }
 
+    bonusSautJoueur = true;
+    bonusSautBot = true;
+
     document.getElementById(
         "zone-restart"
     ).style.display = "none";
@@ -1066,8 +1069,12 @@ function ouvrirDraft(){
     draftEquipeBot = [];
 
     // Réinitialisation bonus Sauter
-    bonusSautJoueur = 1;
-    bonusSautBot = 1;
+        bonusSautJoueur = true;
+        bonusSautBot = true;
+
+        const btnSaut = document.getElementById("btn-sauter");
+        btnSaut.disabled = false;
+        btnSaut.innerText = "🗑️ Sauter";
 
     // Réinitialisation enchères
     joueurDraftActuel = null;
@@ -1259,7 +1266,7 @@ function utiliserBonusSaut(){
     bonusSautJoueur = false;
 
     document.getElementById("btn-sauter").disabled = true;
-    document.getElementById("btn-sauter").innerText = "Saut déjà exécuté";
+    document.getElementById("btn-sauter").innerText = "❌ Bonus utilisé";
 
     ajouterHistorique(
         `🗑️ ${joueurDraftActuel.nom} envoyé à la poubelle`
