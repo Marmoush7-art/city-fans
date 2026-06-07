@@ -1382,41 +1382,25 @@ if(montant > draftBudgetJoueur){
 function tourBotEnchere(){
 
     if(draftEquipeBot.length >= 3){
-
-    proprietaireEnchere = "joueur";
-
-    gagnerJoueur();
-
-    return;
-}
+        proprietaireEnchere = "joueur";
+        gagnerJoueur();
+        return;
+    }
 
     if(joueurDraftActuel.note < 80){
-
-        ajouterHistorique(
-            "🤖 Bot abandonne"
-        );
-
+        ajouterHistorique("🤖 Bot abandonne");
         gagnerJoueur();
-
         return;
     }
 
     let offreBot =
-    enchereActuelle +
-    Math.floor(Math.random() * 20) +
-    5;
+        enchereActuelle +
+        Math.floor(Math.random() * 20) +
+        5;
 
-// Le joueur ne peut plus suivre
-if(draftBudgetJoueur <= enchereActuelle){
-
-    offreBot = draftBudgetJoueur;
-}
-
-    if(
-        joueurDraftActuel.note >= 85 &&
-        draftBudgetJoueur <= enchereActuelle
-    ){
-        offreBot = draftBudgetJoueur + 1;
+    // Le joueur ne peut plus suivre
+    if(draftBudgetJoueur <= enchereActuelle){
+        offreBot = enchereActuelle + 1;
     }
 
     if(
@@ -1424,13 +1408,9 @@ if(draftBudgetJoueur <= enchereActuelle){
         offreBot <= draftBudgetBot
     ){
 
-    if(draftBudgetJoueur < enchereActuelle + 1){
+        enchereActuelle = offreBot;
 
-    offreBot = enchereActuelle + 1;
-}
-
-        proprietaireEnchere =
-            "bot";
+        proprietaireEnchere = "bot";
 
         ajouterHistorique(
             `🤖 Bot : ${offreBot} M€`
@@ -1445,6 +1425,7 @@ if(draftBudgetJoueur <= enchereActuelle){
         gagnerJoueur();
     }
 }
+
 function abandonnerEnchere(){
 
     // Si personne n'a encore enchéri
