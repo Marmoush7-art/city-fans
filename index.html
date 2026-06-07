@@ -1332,26 +1332,42 @@ function faireEnchere(){
         alert("Entre une somme (0 autorisé).");
         return;
     }
-
-    if(montant < joueurDraftActuel.prix){
+    // Prix minimum du joueur
+if(montant < joueurDraftActuel.prix){
     alert(
         `L'enchère doit être au moins de ${joueurDraftActuel.prix} M€`
     );
     return;
 }
 
-if(montant <= enchereActuelle){
+// Première enchère
+if(
+    proprietaireEnchere === null &&
+    montant < enchereActuelle
+){
+    alert(
+        `L'offre minimale est ${enchereActuelle} M€`
+    );
+    return;
+}
+
+// Surenchère
+if(
+    proprietaireEnchere !== null &&
+    montant <= enchereActuelle
+){
     alert(
         "L'enchère doit être supérieure à l'offre actuelle."
     );
     return;
 }
-    if(montant > draftBudgetJoueur){
-        alert(
-            "Budget insuffisant."
-        );
-        return;
-    }
+
+if(montant > draftBudgetJoueur){
+    alert(
+        "Budget insuffisant."
+    );
+    return;
+}
 
     enchereActuelle = montant;
     proprietaireEnchere = "joueur";
@@ -1408,8 +1424,10 @@ if(draftBudgetJoueur <= enchereActuelle){
         offreBot <= draftBudgetBot
     ){
 
-        enchereActuelle =
-            offreBot;
+    if(draftBudgetJoueur < enchereActuelle + 1){
+
+    offreBot = enchereActuelle + 1;
+}
 
         proprietaireEnchere =
             "bot";
