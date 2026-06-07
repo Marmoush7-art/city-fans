@@ -1635,28 +1635,10 @@ const scoreBot =
         return;
     }
 
-    let miseDepart = 0;
-
-    if(joueurDraftActuel.note < 80){
-
-        miseDepart = 0;
-
-    }else if(joueurDraftActuel.note >= 89){
-
-        miseDepart =
-            40 +
-            Math.floor(
-                Math.random()*20
-            );
-
-    }else{
-
-        miseDepart =
-            10 +
-            Math.floor(
-                Math.random()*15
-            );
-    }
+    let miseDepart =
+    enchereActuelle +
+    5 +
+    Math.floor(Math.random() * 15);
 
     if(miseDepart > draftBudgetBot){
         return;
