@@ -1028,12 +1028,9 @@ let draftEquipeBot = [];
 
 let joueurDraftActuel = null;
 
-let enchereActuelle = joueurDraftActuel.prix;;
+let enchereActuelle = 0;
 let proprietaireEnchere = null;
-
-       ajouterHistorique(
-    `💰 Prix de départ : ${enchereActuelle} M€`
-); 
+        
 let botPrixMax = 0;
 let premierJoueur = "joueur";
 
@@ -1200,13 +1197,15 @@ return;
 }
 
 premierJoueur =
-    
+    premierJoueur === "joueur"
     ? "bot"
     : "joueur";
-
-enchereActuelle =
-    joueurDraftActuel.prix;
-
+    
+document.getElementById(
+        "historique-enchere"
+    ).innerHTML = "";
+    
+enchereActuelle = joueurDraftActuel.prix;
 proprietaireEnchere = null;
 
 ajouterHistorique(
@@ -1219,10 +1218,6 @@ ajouterHistorique(
         1.3 + Math.random() * 1.2
     )
 );
-
-    document.getElementById(
-        "historique-enchere"
-    ).innerHTML = "";
 
     document.getElementById(
         "montant-enchere"
