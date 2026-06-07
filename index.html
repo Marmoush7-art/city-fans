@@ -1028,8 +1028,12 @@ let draftEquipeBot = [];
 
 let joueurDraftActuel = null;
 
-let enchereActuelle = 0;
+let enchereActuelle = joueurDraftActuel.prix;;
 let proprietaireEnchere = null;
+
+       ajouterHistorique(
+    `💰 Prix de départ : ${enchereActuelle} M€`
+); 
 let botPrixMax = 0;
 let premierJoueur = "joueur";
 
@@ -1181,14 +1185,33 @@ return;
     }
 
     joueurDraftActuel =
-        draftPioche.shift();
-        premierJoueur =
-            premierJoueur === "joueur"
-            ? "bot"
-            : "joueur";
+    draftPioche.shift();
 
-    enchereActuelle = 0;
-    proprietaireEnchere = null;
+    if(
+    draftBudgetJoueur < joueurDraftActuel.prix &&
+    draftBudgetBot < joueurDraftActuel.prix
+){
+    ajouterHistorique(
+        `🗑️ ${joueurDraftActuel.nom} est invendable et part à la poubelle`
+    );
+
+    prochainJoueurDraft();
+    return;
+}
+
+premierJoueur =
+    
+    ? "bot"
+    : "joueur";
+
+enchereActuelle =
+    joueurDraftActuel.prix;
+
+proprietaireEnchere = null;
+
+ajouterHistorique(
+    `💰 Prix de départ : ${enchereActuelle} M€`
+);
 
     botPrixMax = Math.min(
     draftBudgetBot,
@@ -1315,10 +1338,14 @@ function faireEnchere(){
         return;
     }
 
-    if(
-    proprietaireEnchere !== null &&
-    montant <= enchereActuelle
-){
+    if(montant < joueurDraftActuel.prix){
+    alert(
+        `L'enchère doit être au moins de ${joueurDraftActuel.prix} M€`
+    );
+    return;
+}
+
+if(montant <= enchereActuelle){
     alert(
         "L'enchère doit être supérieure à l'offre actuelle."
     );
