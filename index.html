@@ -11,12 +11,7 @@
         :root { --city-sky-blue: #6CABDD; --city-black: #000000; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f4f8; color: var(--city-black); padding-bottom: 50px; }
         
-        #lock-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: var(--city-black); z-index: 9999; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            color: white; text-align: center;
-        }
+        #lock-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--city-black); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; }
         .lock-box { background: white; padding: 40px; border-radius: 20px; color: var(--city-black); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .lock-box input { padding: 12px; border-radius: 10px; border: 2px solid #ccc; width: 200px; font-size: 1rem; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto; }
         .lock-box button { background: var(--city-sky-blue); color: white; border: none; padding: 12px 30px; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 1rem; }
@@ -67,11 +62,7 @@
         .chat-area button { background: var(--city-black); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; }
         .emoji-toggle { font-size: 1.5rem; cursor: pointer; background: none; border: none; padding: 0; }
         
-        .emoji-picker { 
-            display: none; position: absolute; bottom: 65px; left: -100px; background: white; border: 2px solid var(--city-sky-blue); 
-            border-radius: 15px; padding: 15px; width: 400px; max-height: 350px; overflow-y: auto;
-            grid-template-columns: repeat(9, 1fr); gap: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 10; 
-        }
+        .emoji-picker { display: none; position: absolute; bottom: 65px; left: -100px; background: white; border: 2px solid var(--city-sky-blue); border-radius: 15px; padding: 15px; width: 400px; max-height: 350px; overflow-y: auto; grid-template-columns: repeat(9, 1fr); gap: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 10; }
         @media (max-width: 600px) { .emoji-picker { width: 280px; left: 10px; grid-template-columns: repeat(6, 1fr); } }
         .emoji-picker span { font-size: 1.6rem; cursor: pointer; text-align: center; padding: 2px; transition: transform 0.1s; }
         .emoji-picker span:hover { transform: scale(1.2); background-color: #f0f0f0; border-radius: 5px; }
@@ -178,7 +169,7 @@
             <li class="menu-item" onclick="toggleSubMenu('sub-effectif')"><span class="menu-item-icon">⚽</span>Effectif ▾</li>
             <div id="sub-effectif" class="sous-menu">
                 <div class="cat-titre">🧤 Gardiens</div>
-                <span class="joueur-link" onclick="afficherJoueur('donnaruma')">Gianluigi Donnarumma</span>
+                <span class="joueur-link" onclick="afficherJoueur('donnarumma')">Gianluigi Donnarumma</span>
                 <span class="joueur-link" onclick="afficherJoueur('trafford')">James Trafford</span>
                 <span class="joueur-link" onclick="afficherJoueur('bettinelli')">Marcus Bettinelli</span>
                 <div class="cat-titre">🛡️ Défenseurs</div>
@@ -333,6 +324,10 @@
             id="btn-reduction"
             onclick="activerReduction()">
             🎯 -50%
+        </button>
+
+        <button id="btn-bonus-special" onclick="utiliserBonusSpecial()" style="display:none;">
+            🎁 Bonus spécial
         </button>
 
     </div>
@@ -627,37 +622,37 @@
         });
 
         const effectif = {
-            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "200M €", noteea: "91", img: "9.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "89", img: "16.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'foden': { nom: "Phil Foden", poste: "Milieu", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "70M €", noteea: "85", img: "47.jpg", bio: "L'enfant chéri de Stockport.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "55M €", noteea: "87", img: "3.jpg", bio: "Pilier défensif.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'donnaruma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "89", img: "25.jpg", bio: "Gardien d'envergure internationale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'savinho': { nom: "Savinho", poste: "Attaquant", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "35M €", noteea: "81", img: "26.jpg", bio: "Dribbleur brésilien électrisant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2028", valeur: "0.3M €", noteea: "70", img: "13.jpg", bio: "Gardien expérimenté.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "80", img: "45.jpg", bio: "Révélation ouzbèke.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "12M €", noteea: "82", img: "6.jpg", bio: "Polyvalence tactique exemplaire.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "28M €", noteea: "77", img: "82.jpg", bio: "Futur cadre issu de l'académie.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", img: "21.jpg", bio: "Latéral percutant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "70M €", noteea: "81", img: "33.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'nunes': { nom: "Matheus Nunes", poste: "Milieu", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "82", img: "27.jpg", bio: "Défenseur puissant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", noteea: "68", img: "68.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", noteea: "85", img: "24.jpg", bio: "Roc croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "84", img: "15.jpg", bio: "Nouvelle recrue solide.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'donnarumma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "89", img: "25.jpg", bio: "Gardien d'envergure internationale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", noteea: "77", img: "1.jpg", bio: "Gardien prometteur.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "80M €", noteea: "84", img: "42.jpg", bio: "Puissance offensive brute.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "90M €", noteea: "84", img: "10.jpg", bio: "Magicien français.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "83", img: "7.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "30/06/2030", valeur: "13M €", noteea: "70", img: "41.jpg", bio: "Futur maître du milieu.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "75M €", noteea: "84", img: "11.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "10M €", noteea: "82", img: "8.jpg", bio: "Expérience croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "50M €", noteea: "85", img: "4.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", img: "14.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'akanji': { nom: "Manuel Akanji", poste: "Défenseur", age: "30 ans", nat: "Suisse 🇨🇭", paye: "540 000", fin: "30/06/2027", valeur: "17M €", noteea: "83", img: "akanji.jpg", bio: "Défenseur impassable.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "30 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "12M €", noteea: "82", img: "6.jpg", bio: "Polyvalence tactique exemplaire.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", noteea: "68", img: "68.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "24 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", img: "21.jpg", bio: "Latéral percutant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "28 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "55M €", noteea: "87", img: "3.jpg", bio: "Pilier défensif.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "84", img: "15.jpg", bio: "Nouvelle recrue solide.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", noteea: "85", img: "24.jpg", bio: "Roc croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "80", img: "45.jpg", bio: "Révélation ouzbèke.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "28M €", noteea: "77", img: "82.jpg", bio: "Futur cadre issu de l'académie.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'nunes': { nom: "Matheus Nunes", poste: "Défenseur", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "82", img: "27.jpg", bio: "Défenseur puissant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "70M €", noteea: "81", img: "33.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'reis': { nom: "Vitor Reis", poste: "Défenseur", age: "20 ans", nat: "Brésil 🇧🇷", paye: "200 000", fin: "30/06/2029", valeur: "30M €", noteea: "75", img: "22.jpg", bio: "Jeune talent brésilien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'wilson-esbrand': { nom: "Joshua Wilson-Esbrand", poste: "Défenseur", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "67", img: "97.jpg", bio: "Pépite anglaise.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'akanji': { nom: "Manuel Akanji", poste: "Défenseur", age: "30 ans", nat: "Suisse 🇨🇭", paye: "540 000", fin: "30/06/2027", valeur: "17M €", noteea: "83", img: "akanji.jpg", bio: "Défenseur impassable.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'grealish': { nom: "Jack Grealish", poste: "Milieu", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 100 000", fin: "30/06/2027", valeur: "20M €", noteea: "81", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'phillips': { nom: "Kalvin Phillips", poste: "Milieu", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "600 000", fin: "30/06/2028", valeur: "2.5M €", noteea: "74", img: "44.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "90M €", noteea: "84", img: "10.jpg", bio: "Magicien français.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'echeverri': { nom: "Claudio Echeverri", poste: "Milieu", age: "20 ans", nat: "Argentine 🇦🇷", paye: "78 000", fin: "30/06/2028", valeur: "15M €", noteea: "74", img: "30.jpg", bio: "Jeune pépite argentine.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'foden': { nom: "Phil Foden", poste: "Milieu", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "70M €", noteea: "85", img: "47.jpg", bio: "L'enfant chéri de Stockport.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", img: "14.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'grealish': { nom: "Jack Grealish", poste: "Milieu", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 100 000", fin: "30/06/2027", valeur: "20M €", noteea: "81", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "31 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "10M €", noteea: "82", img: "8.jpg", bio: "Expérience croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "30/06/2030", valeur: "13M €", noteea: "70", img: "41.jpg", bio: "Futur maître du milieu.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'phillips': { nom: "Kalvin Phillips", poste: "Milieu", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "600 000", fin: "30/06/2028", valeur: "2.5M €", noteea: "74", img: "44.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "50M €", noteea: "85", img: "4.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "89", img: "16.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "23 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "75M €", noteea: "84", img: "11.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "200M €", noteea: "91", img: "9.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "83", img: "7.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'savinho': { nom: "Savinho", poste: "Attaquant", age: "21 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "35M €", noteea: "81", img: "26.jpg", bio: "Dribbleur brésilien électrisant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "80M €", noteea: "84", img: "42.jpg", bio: "Puissance offensive brute.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
         };
 
         const centreFormation = {
@@ -666,7 +661,6 @@
             nom: "Spike Brits",
             age: "18 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Gardien",
             img: "gardienspike.jpg"
         },
@@ -674,7 +668,6 @@
             nom: "Oliver Whatmuff",
             age: "18 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Gardien",
             img: "gardienoliver.jpg"
         },
@@ -682,7 +675,6 @@
             nom: "Jack Wint",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Gardien",
             img: "gardienjack.jpg"
         }
@@ -692,7 +684,6 @@
             nom: "Finley Burns",
             age: "17 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Défenseur",
             img: "defenseurfinley.jpg"
         },
@@ -700,7 +691,6 @@
             nom: "Ezra Carrington",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Défenseur",
             img: "defenseurezra.jpg"
         },
@@ -708,7 +698,6 @@
             nom: "Tomas Galvez",
             age: "17 ans",
             nat: "Finlande 🇫🇮",
-            potentiel: "",
             poste: "Défenseur",
             img: "defenseurtomas.jpg"
         },
@@ -716,7 +705,6 @@
             nom: "Matty Henderson-Hall",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Défenseur",
             img: "defenseurmatty.jpg"
         },
@@ -724,7 +712,6 @@
             nom: "Luke Mbete",
             age: "22 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Défenseur",
             img: "defenseurluke.jpg"
         },
@@ -732,7 +719,6 @@
             nom: "Christian McFarlane",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Défenseur",
             img: "defenseurchristian.jpg"
         },
@@ -740,7 +726,6 @@
             nom: "Stephen Mfuni",
             age: "17 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Défenseur",
             img: "defenseurstephen.jpg"
         },
@@ -748,7 +733,6 @@
             nom: "Brooklyn Nfonkeu",
             age: "18 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Défenseur",
             img: "defenseurbrooklyn.jpg"
         },
@@ -756,7 +740,6 @@
             nom: "Kian Noble",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Défenseur",
             img: "defenseurkian.jpg"
         },
@@ -764,7 +747,6 @@
             nom: "Harrison Parker",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Défenseur",
             img: "defenseurharrison.jpg"
         },
@@ -772,7 +754,6 @@
             nom: "Lakyle Samuel",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Défenseur",
             img: "defenseurlakyle.jpg"
         },
@@ -780,7 +761,6 @@
             nom: "Jahmai Simpson-Pusey",
             age: "17 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Défenseur",
             img: "defenseurjahmai.jpg"
         },
@@ -788,7 +768,6 @@
             nom: "Isaac Smith",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Défenseur",
             img: "defenseurisaac.jpg"
         },
@@ -796,7 +775,6 @@
             nom: "Rhys Thomas",
             age: "19 ans",
             nat: "Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿",
-            potentiel: "",
             poste: "Défenseur",
             img: "defenseurrhys.jpg"
         }
@@ -806,7 +784,6 @@
             nom: "Isaiah Dada-Mascoll",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Milieu",
             img: "milieuisaiah.jpg"
         },
@@ -814,7 +791,6 @@
             nom: "Femi Fapetu",
             age: "18 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Milieu",
             img: "milieufemi.jpg"
         },
@@ -822,7 +798,6 @@
             nom: "Charlie Gray",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Milieu",
             img: "milieucharlie.jpg"
         },
@@ -830,7 +805,6 @@
             nom: "Jaden Heskey",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Milieu",
             img: "milieujaden.jpg"
         },
@@ -838,7 +812,6 @@
             nom: "Divine Mukasa",
             age: "17 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Milieu",
             img: "milieudivine.jpg"
         }
@@ -848,7 +821,6 @@
             nom: "Luka Fletcher",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Attaquant",
             img: "attaquantluka.jpg"
         },
@@ -856,7 +828,6 @@
             nom: "Reighan Heskey",
             age: "18 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Attaquant",
             img: "attaquantreighan.jpg"
         },
@@ -864,7 +835,6 @@
             nom: "Emilio Lawrence",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Attaquant",
             img: "attaquantemilio.jpg"
         },
@@ -872,7 +842,6 @@
             nom: "Ryan McAidoo",
             age: "17 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Attaquant",
             img: "attaquantryan.jpg"
         },
@@ -880,7 +849,6 @@
             nom: "Divin Mubama",
             age: "21 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Attaquant",
             img: "attaquantdivin.jpg"
         },
@@ -888,7 +856,6 @@
             nom: "Ashton Muir",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Attaquant",
             img: "attaquantashton.jpg"
         },
@@ -896,7 +863,6 @@
             nom: "Joel Ndala",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Attaquant",
             img: "attaquantjoel.jpg"
         },
@@ -904,7 +870,6 @@
             nom: "Mahamadou Sangaré",
             age: "19 ans",
             nat: "France 🇫🇷",
-            potentiel: "",
             poste: "Attaquant",
             img: "attaquantmahamadou.jpg"
         },
@@ -912,7 +877,6 @@
             nom: "Matty Warhurst",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            potentiel: "",
             poste: "Attaquant",
             img: "attaquantmatty.jpg"
         }
@@ -1039,6 +1003,9 @@ let bonusBudgetJoueur = true;
 let bonusReductionJoueur = true;
 let reductionActive = false;
 let bonusReductionBot = false;
+// BONUS SPÉCIAUX (15% de chance)
+let bonusSpecialJoueur = null;
+let bonusSpecialBot = null;
 
 document.getElementById("btn-sauter").disabled = true;
 document.getElementById("btn-sauter").innerText = "Sauter";
@@ -1102,6 +1069,18 @@ bonusBot =
             Math.random() * bonusPossibles.length
         )
     ];
+
+    // BONUS SPECIAUX (15%)
+bonusSpecialJoueur = genererBonusSpecial();
+bonusSpecialBot = genererBonusSpecial();
+
+if(bonusSpecialJoueur){
+    ajouterHistorique("🎁 Bonus spécial joueur débloqué !");
+}
+
+if(bonusSpecialBot){
+    ajouterHistorique("🤖 Le bot prépare un bonus spécial...");
+}
 
     // Réinitialisation équipes
     draftEquipeJoueur = [];
@@ -1242,6 +1221,10 @@ ajouterHistorique(
         
 function prochainJoueurDraft(){
 
+    if(joueurDraftActuel === null){
+    return;
+}
+
     document.getElementById(
         "btn-encherir"
     ).disabled = false;
@@ -1314,6 +1297,31 @@ return;
 
     joueurDraftActuel =
     draftPioche.shift();
+
+    // BONUS SPECIAL JOUEUR
+if(bonusSpecialJoueur){
+    ajouterHistorique("🎁 Tu as un bonus spécial disponible !");
+    document.getElementById("btn-bonus-special").style.display = "inline-block";
+}
+
+// BONUS SPECIAL BOT
+if(bonusSpecialBot){
+    const r = Math.random();
+
+    if(r < 0.33){
+        bonusCash("bot");
+    }
+    else if(r < 0.66){
+        acheterGratuit("bot");
+        bonusSpecialBot = null;
+        return;
+    }
+    else{
+        volerJoueur("bot");
+    }
+
+    bonusSpecialBot = null;
+}
 
     if(
     draftBudgetJoueur <= 0 &&
@@ -1417,6 +1425,100 @@ document.getElementById(
 
 }
 
+function bonusCash(utilisateur){
+    if(utilisateur === "joueur"){
+        draftBudgetJoueur += 50;
+        ajouterHistorique("💰 +50M € ajoutés à ton budget !");
+    } else {
+        draftBudgetBot += 50;
+        ajouterHistorique("🤖 +50M € pour le bot !");
+    }
+}
+
+function acheterGratuit(utilisateur){
+    if(!joueurDraftActuel) return;
+
+    if(utilisateur === "joueur"){
+        draftEquipeJoueur.push(joueurDraftActuel);
+        ajouterHistorique(`🆓 ${joueurDraftActuel.nom} rejoint ton équipe gratuitement !`);
+    } else {
+        draftEquipeBot.push(joueurDraftActuel);
+        ajouterHistorique(`🤖 ${joueurDraftActuel.nom} rejoint le bot gratuitement !`);
+    }
+
+    joueurDraftActuel = null;
+    majDraft();
+    setTimeout(prochainJoueurDraft, 1500);
+}
+
+function utiliserBonusSpecialBot(){
+
+    if(!bonusSpecialBot || !joueurDraftActuel) return;
+
+    const r = Math.random();
+
+    if(r < 0.33){
+        bonusCash("bot");
+    }
+    else if(r < 0.66){
+        acheterGratuit("bot");
+    }
+    else{
+        volerJoueur("bot");
+    }
+
+    bonusSpecialBot = null;
+}
+        
+function volerJoueur(utilisateur){
+    if(!joueurDraftActuel) return;
+
+    let cibleEquipe = (utilisateur === "joueur") ? draftEquipeBot : draftEquipeJoueur;
+
+    if(cibleEquipe.length === 0){
+        ajouterHistorique("❌ Aucun joueur à voler");
+        return;
+    }
+
+    const index = Math.floor(Math.random() * cibleEquipe.length);
+    const vole = cibleEquipe.splice(index, 1)[0];
+
+    if(utilisateur === "joueur"){
+        draftEquipeJoueur.push(vole);
+        ajouterHistorique(`🪄 Tu voles ${vole.nom} au bot !`);
+    } else {
+        draftEquipeBot.push(vole);
+        ajouterHistorique(`🤖 Le bot te vole ${vole.nom} !`);
+    }
+
+    majDraft();
+}
+
+function utiliserBonusSpecial(){
+
+    if(!bonusSpecialJoueur || !joueurDraftActuel) return;
+
+    const choix = prompt("Choisis : cash / free / vol");
+
+    if(choix === "cash"){
+        bonusCash("joueur");
+    }
+    else if(choix === "free"){
+        acheterGratuit("joueur");
+    }
+    else if(choix === "vol"){
+        volerJoueur("joueur");
+    }
+    else{
+        alert("Choix invalide");
+        return;
+    }
+
+    bonusSpecialJoueur = null;
+
+    document.getElementById("btn-bonus-special").style.display = "none";
+}
+    
 function recommencerDraft(){
 
     ouvrirDraft();
@@ -1897,6 +1999,14 @@ if(joueurDraftActuel.note < 80){
     );
 }
 
+function genererBonusSpecial(){
+    const r = Math.random();
+    if(r < 0.15) return "vol";
+    if(r < 0.30) return "free";
+    if(r < 0.45) return "cash";
+    return null;
+}
+
         function afficherActuJoueur(id) {
             afficherJoueur(id); // Réutilise la logique d'affichage existante
         }
@@ -2066,7 +2176,6 @@ if(joueurDraftActuel.note < 80){
                         <h3>${j.nom}</h3>
                         <p><strong>🎂 Âge :</strong> ${j.age}</p>
                         <p><strong>🌍 Nationalité :</strong> ${j.nat}</p>
-                        <p><strong>📈 Potentiel :</strong> ${j.potentiel}</p>
                         <p><strong>⚽ Poste :</strong> ${j.poste}</p>
                     </div>
                 </div>
