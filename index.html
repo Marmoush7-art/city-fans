@@ -1031,12 +1031,14 @@ let draftPioche = [];
 let draftBudgetJoueur = 250;
 let draftBudgetBot = 250;
 
+
 let bonusSautJoueur = 2;
 let bonusSautBot = 0;
 
 let bonusBudgetJoueur = true;
 let bonusReductionJoueur = true;
 let reductionActive = false;
+let bonusReductionBot = false;
 
 document.getElementById("btn-sauter").disabled = true;
 document.getElementById("btn-sauter").innerText = "Sauter";
@@ -1136,6 +1138,10 @@ if(bonusBot === "budget"){
 
 if(bonusBot === "doubleSaut"){
     bonusSautBot = 2;
+}
+
+if(bonusBot === "reduction"){
+    bonusReductionBot = true;
 }
 
         const btnSaut = document.getElementById("btn-sauter");
@@ -1686,8 +1692,20 @@ draftBudgetJoueur -= prixFinal;
 
     }
 
-    draftBudgetBot -=
-        enchereActuelle;
+    let prixBot = enchereActuelle;
+
+    if(bonusReductionBot){
+
+        prixBot = Math.ceil(prixBot / 2);
+
+        bonusReductionBot = false;
+
+        ajouterHistorique(
+            `🤖 utilise son bonus réduction : ${prixBot} M€`
+        );
+    }
+
+    draftBudgetBot -= prixBot;
 
     ajouterHistorique(
         `🤖 ${joueurDraftActuel.nom} rejoint le bot`
