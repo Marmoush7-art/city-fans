@@ -1166,6 +1166,24 @@ if(bonusBot === "doubleSaut"){
         ).innerText =
         "🗑️ Saut (2)";
 
+        // Cache tous les bonus
+document.getElementById("btn-budget").style.display = "none";
+document.getElementById("btn-reduction").style.display = "none";
+document.getElementById("btn-sauter").style.display = "none";
+
+// Affiche uniquement le bonus obtenu
+if (bonusJoueur === "budget") {
+    document.getElementById("btn-budget").style.display = "inline-block";
+}
+
+if (bonusJoueur === "reduction") {
+    document.getElementById("btn-reduction").style.display = "inline-block";
+}
+
+if (bonusJoueur === "doubleSaut") {
+    document.getElementById("btn-sauter").style.display = "inline-block";
+}
+
     // Réinitialisation enchères
     joueurDraftActuel = null;
     enchereActuelle = 0;
