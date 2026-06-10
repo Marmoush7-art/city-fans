@@ -323,6 +323,12 @@
             🗑️ Sauter
         </button>
 
+        <button
+            id="btn-budget"
+            onclick="utiliserBonusBudget()">
+            💸 +20 M€
+        </button>
+
     </div>
 
     <div id="historique-enchere"></div>
@@ -1019,6 +1025,9 @@ let draftBudgetBot = 250;
 
 bonusSautJoueur = true;
 bonusSautBot = true;
+bonusBudgetJoueur = true;
+
+let bonusBudgetJoueur = true;
 
 document.getElementById("btn-sauter").disabled = true;
 document.getElementById("btn-sauter").innerText = "Sauter";
@@ -1074,6 +1083,13 @@ function ouvrirDraft(){
         const btnSaut = document.getElementById("btn-sauter");
         btnSaut.disabled = false;
         btnSaut.innerText = "🗑️ Sauter";
+        document.getElementById(
+            "btn-budget"
+        ).disabled = false;
+
+        document.getElementById(
+            "btn-budget"
+        ).innerText = "💸 +20 M€";
 
     // Réinitialisation enchères
     joueurDraftActuel = null;
@@ -1315,6 +1331,33 @@ function utiliserBonusSaut(){
         1000
     );
 }
+
+function utiliserBonusBudget(){
+
+    if(!bonusBudgetJoueur){
+        alert("Bonus déjà utilisé.");
+        return;
+    }
+
+    bonusBudgetJoueur = false;
+
+    draftBudgetJoueur += 20;
+
+    document.getElementById(
+        "btn-budget"
+    ).disabled = true;
+
+    document.getElementById(
+        "btn-budget"
+    ).innerText = "❌ Utilisé";
+
+    ajouterHistorique(
+        "💸 Bonus budget : +20 M€"
+    );
+
+    majDraft();
+}
+     
 function faireEnchere(){
 
     const montant =
