@@ -1539,13 +1539,6 @@ function volerJoueur(utilisateur){
     
     if(!joueurDraftActuel) return;
 
-    let cibleEquipe = (utilisateur === "joueur") ? draftEquipeBot : draftEquipeJoueur;
-
-    if(cibleEquipe.length === 0){
-        ajouterHistorique("❌ Aucun joueur à voler");
-        return;
-    }
-
     let meilleurIndex = 0;
 
 for(let i = 1; i < cibleEquipe.length; i++){
