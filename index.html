@@ -1074,6 +1074,18 @@ bonusBot =
 bonusSpecialJoueur = genererBonusSpecial();
 bonusSpecialBot = genererBonusSpecial();
 
+if(bonusSpecialJoueur === "cash"){
+    ajouterHistorique("🎁 Bonus spécial : +50 M€");
+}
+
+if(bonusSpecialJoueur === "free"){
+    ajouterHistorique("🎁 Bonus spécial : achat gratuit");
+}
+
+if(bonusSpecialJoueur === "vol"){
+    ajouterHistorique("🎁 Bonus spécial : vol de joueur");
+}
+
 if(bonusSpecialJoueur){
     ajouterHistorique("🎁 Bonus spécial joueur débloqué !");
 }
@@ -1498,25 +1510,21 @@ function utiliserBonusSpecial(){
 
     if(!bonusSpecialJoueur || !joueurDraftActuel) return;
 
-    const choix = prompt("Choisis : cash / free / vol");
-
-    if(choix === "cash"){
+    if(bonusSpecialJoueur === "cash"){
         bonusCash("joueur");
     }
-    else if(choix === "free"){
+    else if(bonusSpecialJoueur === "free"){
         acheterGratuit("joueur");
     }
-    else if(choix === "vol"){
+    else if(bonusSpecialJoueur === "vol"){
         volerJoueur("joueur");
-    }
-    else{
-        alert("Choix invalide");
-        return;
     }
 
     bonusSpecialJoueur = null;
 
-    document.getElementById("btn-bonus-special").style.display = "none";
+    document.getElementById(
+        "btn-bonus-special"
+    ).style.display = "none";
 }
     
 function recommencerDraft(){
