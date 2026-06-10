@@ -1472,6 +1472,8 @@ function bonusCash(utilisateur){
         draftBudgetBot += 50;
         ajouterHistorique("🤖 +50M € pour le bot !");
     }
+
+    majDraft(); // ✅ IMPORTANT : synchronise l'affichage
 }
 
 function acheterGratuit(utilisateur){
@@ -2086,9 +2088,9 @@ if(joueurDraftActuel.note < 80){
 
 function genererBonusSpecial(){
     const r = Math.random();
-    if(r < 0.15) return "vol";
-    if(r < 0.30) return "free";
-    if(r < 0.45) return "cash";
+    if(r < 0.20) return "vol";
+    if(r < 0.40) return "free";
+    if(r < 0.60) return "cash";
     return null;
 }
 
