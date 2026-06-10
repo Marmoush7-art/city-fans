@@ -1023,14 +1023,16 @@
             document.getElementById('s-note').innerText = j.note || "0.0";
             showSection('joueur-solo');
         }
-
+        
+let bonusJoueur = "";
+let bonusBot = "";
 let draftPioche = [];
 
 let draftBudgetJoueur = 250;
 let draftBudgetBot = 250;
 
-bonusSautJoueur = 2;
-bonusSautBot = true;
+let bonusSautJoueur = 2;
+let bonusSautBot = 0;
 
 let bonusBudgetJoueur = true;
 let bonusReductionJoueur = true;
@@ -1079,15 +1081,62 @@ function ouvrirDraft(){
     draftBudgetJoueur = 250;
     draftBudgetBot = 250;
 
+    const bonusPossibles = [
+    "budget",
+    "reduction",
+    "doubleSaut"
+];
+
+bonusJoueur =
+    bonusPossibles[
+        Math.floor(
+            Math.random() * bonusPossibles.length
+        )
+    ];
+
+bonusBot =
+    bonusPossibles[
+        Math.floor(
+            Math.random() * bonusPossibles.length
+        )
+    ];
+
     // Réinitialisation équipes
     draftEquipeJoueur = [];
     draftEquipeBot = [];
 
     // Réinitialisation bonus Sauter
-        bonusSautJoueur = 2;
-        bonusSautBot = true;
-        bonusReductionJoueur = true;
+        bonusSautJoueur = 0;
+        bonusSautBot = 0;
+
+        bonusBudgetJoueur = false;
+        bonusReductionJoueur = false;
+
         reductionActive = false;
+
+        // Bonus joueur
+
+if(bonusJoueur === "budget"){
+    bonusBudgetJoueur = true;
+}
+
+if(bonusJoueur === "reduction"){
+    bonusReductionJoueur = true;
+}
+
+if(bonusJoueur === "doubleSaut"){
+    bonusSautJoueur = 2;
+}
+
+// Bonus bot
+
+if(bonusBot === "budget"){
+    draftBudgetBot += 20;
+}
+
+if(bonusBot === "doubleSaut"){
+    bonusSautBot = 2;
+}
 
         const btnSaut = document.getElementById("btn-sauter");
         btnSaut.disabled = false;
@@ -1143,6 +1192,22 @@ function ouvrirDraft(){
     document.getElementById(
         "montant-enchere"
     ).value = "";
+
+    if(bonusJoueur === "budget"){
+    ajouterHistorique("🎁 Ton bonus : 💸 +20 M€");
+}
+
+if(bonusJoueur === "reduction"){
+    ajouterHistorique("🎁 Ton bonus : 🎯 Réduction 50%");
+}
+
+if(bonusJoueur === "doubleSaut"){
+    ajouterHistorique("🎁 Ton bonus : 🔥 Double saut");
+}
+
+ajouterHistorique(
+    "🤖 Le bot reçoit un bonus secret"
+);
 
     // Mise à jour affichage
     majDraft();
@@ -1723,12 +1788,12 @@ const scoreBot =
         function tourBotInitial(){
 
             if(
-    bonusSautBot &&
+    bonusSautBot > 0 &&
     joueurDraftActuel.prix <= 15 &&
     joueurDraftActuel.note < 78
 ){
 
-    bonusSautBot = false;
+    bonusSautBot--;
 
     ajouterHistorique(
         `🤖 utilise son bonus SAUT sur ${joueurDraftActuel.nom}`
