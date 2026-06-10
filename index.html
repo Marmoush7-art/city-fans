@@ -32,6 +32,9 @@
         #menu.ouvert { right: 0; }
         .menu-item { padding: 18px 25px; border-bottom: 1px solid #333; cursor: pointer; font-weight: bold; display: flex; align-items: center; color: white; text-decoration: none; }
         .menu-item-icon { margin-right: 12px; font-size: 1.2rem; min-width: 25px; text-align: center; }
+
+        .menu-stats{ padding:15px; display:flex; gap:10px; }
+        .menu-card{ flex:1; background:#1f1f1f; color:white; padding:10px; border-radius:10px; text-align:center; font-size:14px; box-shadow:0 0 10px rgba(0,0,0,0.2); }
         
         .sous-menu { display: none; background: #111; padding-bottom: 10px; }
         .show { display: block !important; }
@@ -937,6 +940,21 @@
             }
         ];
 
+function majMenuDraft() {
+
+    document.getElementById("menu-joueur-count").innerText =
+        `${draftEquipeJoueur.length} / 3 joueurs`;
+
+    document.getElementById("menu-bot-count").innerText =
+        `${draftEquipeBot.length} / 3 joueurs`;
+
+    document.getElementById("menu-joueur-list").innerHTML =
+        draftEquipeJoueur.map(j => `<li>${j.nom}</li>`).join("");
+
+    document.getElementById("menu-bot-list").innerHTML =
+        draftEquipeBot.map(j => `<li>${j.nom}</li>`).join("");
+}
+
         function chargerPositionsActuelles() {
             const container = document.getElementById('positions-container');
             container.innerHTML = ""; // On vide le container
@@ -1026,8 +1044,8 @@ let bonusReductionBot = false;
 let bonusSpecialJoueur = null;
 let bonusSpecialBot = null;
 
-document.getElementById("btn-sauter").disabled = true;
-document.getElementById("btn-sauter").innerText = "Sauter";
+const btn = document.getElementById("btn-sauter"); if (!btn) return;.disabled = true;
+const btn = document.getElementById("btn-sauter"); if (!btn) return;.innerText = "Sauter";
 
 let draftEquipeJoueur = [];
 let draftEquipeBot = [];
@@ -1154,7 +1172,7 @@ if(bonusBot === "reduction"){
     bonusReductionBot = true;
 }
 
-        const btnSaut = document.getElementById("btn-sauter");
+        const btnSaut = document.getElementById("btn-sauter"); if (!btn) return;
         btnSaut.disabled = false;
         btnSaut.innerText = "🗑️ Sauter";
         document.getElementById(
@@ -1185,7 +1203,7 @@ if(bonusBot === "reduction"){
         // Cache tous les bonus
 document.getElementById("btn-budget").style.display = "none";
 document.getElementById("btn-reduction").style.display = "none";
-document.getElementById("btn-sauter").style.display = "none";
+const btn = document.getElementById("btn-sauter"); if (!btn) return;.style.display = "none";
 
 // Affiche uniquement le bonus obtenu
 if (bonusJoueur === "budget") {
@@ -1197,7 +1215,7 @@ if (bonusJoueur === "reduction") {
 }
 
 if (bonusJoueur === "doubleSaut") {
-    document.getElementById("btn-sauter").style.display = "inline-block";
+    const btn = document.getElementById("btn-sauter"); if (!btn) return;.style.display = "inline-block";
 }
 
     // Réinitialisation enchères
@@ -1215,10 +1233,14 @@ if (bonusJoueur === "doubleSaut") {
         "draft-resultat"
     ).innerHTML = "";
 
-    document.getElementById(
-        "historique-enchere"
-    ).innerHTML = "";
+    function ajouterHistorique(txt){
+    const zone = document.getElementById("historique-enchere");
+    if (!zone) return;
 
+    const div = document.createElement("div");
+    div.innerText = txt;
+    zone.appendChild(div);
+}
     document.getElementById(
         "draft-carte"
     ).innerHTML = "";
@@ -1516,7 +1538,7 @@ if(bonusSpecialBot){
     draftBudgetBot <= 0
 ){
     ajouterHistorique(
-        `🗑️ ${joueurDraftActuel.nom} part à la poubelle (plus aucun budget)`
+        `🗑️ ${if (!joueurDraftActuel) return;} part à la poubelle (plus aucun budget)`
     );
 
     prochainJoueurDraft();
@@ -1561,7 +1583,7 @@ if(joueurDraftActuel.note >= 89){
 }
 
 const nomImage =
-    joueurDraftActuel.nom
+    if (!joueurDraftActuel) return;
         .split(" ")
         .pop()
         .toLowerCase()
@@ -1585,14 +1607,14 @@ document.getElementById(
             width:350px;
         "
     >
-        <h3>${joueurDraftActuel.nom}</h3>
+        <h3>${if (!joueurDraftActuel) return;}</h3>
         <p>💰 Valeur estimée : ${joueurDraftActuel.prix} M€</p>
         <p>⭐ Note EA : ${joueurDraftActuel.note}</p>
     </div>
 
     <img
         src="static/images/${joueurDraftActuel.img}"
-        alt="${joueurDraftActuel.nom}"
+        alt="${if (!joueurDraftActuel) return;}"
         style="
             width:180px;
             height:220px;
@@ -1630,10 +1652,10 @@ function acheterGratuit(utilisateur){
 
     if(utilisateur === "joueur"){
         draftEquipeJoueur.push(joueurDraftActuel);
-        ajouterHistorique(`🆓 ${joueurDraftActuel.nom} rejoint ton équipe gratuitement !`);
+        ajouterHistorique(`🆓 ${if (!joueurDraftActuel) return;} rejoint ton équipe gratuitement !`);
     } else {
         draftEquipeBot.push(joueurDraftActuel);
-        ajouterHistorique(`🤖 ${joueurDraftActuel.nom} rejoint le bot gratuitement !`);
+        ajouterHistorique(`🤖 ${if (!joueurDraftActuel) return;} rejoint le bot gratuitement !`);
     }
 
     joueurDraftActuel = null;
@@ -1773,7 +1795,7 @@ function utiliserBonusSaut(){
 }
 
     ajouterHistorique(
-        `🗑️ ${joueurDraftActuel.nom} envoyé à la poubelle`
+        `🗑️ ${if (!joueurDraftActuel) return;} envoyé à la poubelle`
     );
 
     joueurDraftActuel = null;
@@ -1916,10 +1938,7 @@ function tourBotEnchere(){
         offreBot = enchereActuelle + 1;
     }
 
-    if(
-        offreBot <= botPrixMax &&
-        offreBot <= draftBudgetBot
-    ){
+    if (offreBot <= botPrixMax && offreBot <= game.budgetBot)
 
         enchereActuelle = offreBot;
 
@@ -1999,10 +2018,10 @@ if(reductionActive){
     );
 }
 
-draftBudgetJoueur -= prixFinal;
+game.budgetJoueur -= prixFinal;
 
     ajouterHistorique(
-        `🏆 ${joueurDraftActuel.nom} rejoint ton équipe`
+        `🏆 ${if (!joueurDraftActuel) return;} rejoint ton équipe`
     );
 }
 
@@ -2034,13 +2053,13 @@ draftBudgetJoueur -= prixFinal;
     draftBudgetBot -= prixBot;
 
     ajouterHistorique(
-        `🤖 ${joueurDraftActuel.nom} rejoint le bot`
+        `🤖 ${if (!joueurDraftActuel) return;} rejoint le bot`
     );
 }
 
     majDraft();
 
-    joueurDraftActuel = null;
+    game.joueurActuel = null;
 
     document.getElementById(
         "btn-encherir"
@@ -2062,7 +2081,7 @@ function afficherJoueurDraft(){
 
     document.getElementById("draft-carte").innerHTML = `
     <div>
-        <h3>${joueurDraftActuel.nom}</h3>
+        <h3>${if (!joueurDraftActuel) return;}</h3>
         <p>💰 ${joueurDraftActuel.prix} M€</p>
         <p>⭐ ${joueurDraftActuel.note}</p>
     </div>
@@ -2078,6 +2097,12 @@ function ajouterHistorique(txt){
 }
 
 function majDraft(){
+
+    document.getElementById("menu-joueur-count").innerText =
+    draftEquipeJoueur.length + "/3";
+
+    document.getElementById("menu-bot-count").innerText =
+    draftEquipeBot.length + "/3";
 
     document.getElementById(
         "budget-joueur"
@@ -2171,7 +2196,7 @@ const scoreBot =
     bonusSautBot--;
 
     ajouterHistorique(
-        `🤖 utilise son bonus SAUT sur ${joueurDraftActuel.nom}`
+        `🤖 utilise son bonus SAUT sur ${if (!joueurDraftActuel) return;}`
     );
 
     joueurDraftActuel = null;
