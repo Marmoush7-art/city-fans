@@ -32,9 +32,6 @@
         #menu.ouvert { right: 0; }
         .menu-item { padding: 18px 25px; border-bottom: 1px solid #333; cursor: pointer; font-weight: bold; display: flex; align-items: center; color: white; text-decoration: none; }
         .menu-item-icon { margin-right: 12px; font-size: 1.2rem; min-width: 25px; text-align: center; }
-
-        .menu-stats{ padding:15px; display:flex; gap:10px; }
-        .menu-card{ flex:1; background:#1f1f1f; color:white; padding:10px; border-radius:10px; text-align:center; font-size:14px; box-shadow:0 0 10px rgba(0,0,0,0.2); }
         
         .sous-menu { display: none; background: #111; padding-bottom: 10px; }
         .show { display: block !important; }
@@ -47,8 +44,6 @@
         table { width: 100%; border-collapse: collapse; margin-top: 15px; text-align: left; }
         th, td { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); }
         #photo { max-width: 280px; width: 100%; border-radius: 15px; border: 6px solid var(--city-sky-blue); margin-bottom: 25px; }
-
-        .carte-defi { background: #1e1e1e; color: white; padding: 20px; border-radius: 12px; width: 200px; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
 
         .logo-accueil{ width: 250px; height: auto; display: block; margin: 20px auto; }
         
@@ -219,8 +214,6 @@
             </div>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
             <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span><span>Jeu Draft </span></li>
-            <li onclick="ouvrirDefiNature()">⚔️ Défis Nature</li>
-            
         </ul>
     </div>
     <div id="quiz-view" class="content-section">
@@ -375,11 +368,6 @@
 
 <div id="draft-resultat"></div>
 
-</div>
-
-<div id="defi-nature-view" class="content-section">
-    <h2>⚔️ Défis Nature Man City</h2>
-    <div id="defi-zone"></div>
 </div>
 
         <div id="matchs-view" class="content-section">
@@ -598,16 +586,6 @@
     </main>
 
     <script>
-        let deckJoueur = [];
-        let deckBot = [];
-
-        let carteJoueur = null;
-        let carteBot = null;
-
-        let carteCourante = null;
-
-        let statChoisie = "noteea"; // stat actuelle
-        
         const firebaseConfig = { apiKey: "CLE", authDomain: "DOM", projectId: "ID", storageBucket: "BUCKET", messagingSenderId: "ID", appId: "APP" };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
@@ -940,21 +918,6 @@
             }
         ];
 
-function majMenuDraft() {
-
-    document.getElementById("menu-joueur-count").innerText =
-        `${draftEquipeJoueur.length} / 3 joueurs`;
-
-    document.getElementById("menu-bot-count").innerText =
-        `${draftEquipeBot.length} / 3 joueurs`;
-
-    document.getElementById("menu-joueur-list").innerHTML =
-        draftEquipeJoueur.map(j => `<li>${j.nom}</li>`).join("");
-
-    document.getElementById("menu-bot-list").innerHTML =
-        draftEquipeBot.map(j => `<li>${j.nom}</li>`).join("");
-}
-
         function chargerPositionsActuelles() {
             const container = document.getElementById('positions-container');
             container.innerHTML = ""; // On vide le container
@@ -1044,8 +1007,8 @@ let bonusReductionBot = false;
 let bonusSpecialJoueur = null;
 let bonusSpecialBot = null;
 
-const btn = document.getElementById("btn-sauter"); if (!btn) return;.disabled = true;
-const btn = document.getElementById("btn-sauter"); if (!btn) return;.innerText = "Sauter";
+document.getElementById("btn-sauter").disabled = true;
+document.getElementById("btn-sauter").innerText = "Sauter";
 
 let draftEquipeJoueur = [];
 let draftEquipeBot = [];
@@ -1172,7 +1135,7 @@ if(bonusBot === "reduction"){
     bonusReductionBot = true;
 }
 
-        const btnSaut = document.getElementById("btn-sauter"); if (!btn) return;
+        const btnSaut = document.getElementById("btn-sauter");
         btnSaut.disabled = false;
         btnSaut.innerText = "🗑️ Sauter";
         document.getElementById(
@@ -1203,7 +1166,7 @@ if(bonusBot === "reduction"){
         // Cache tous les bonus
 document.getElementById("btn-budget").style.display = "none";
 document.getElementById("btn-reduction").style.display = "none";
-const btn = document.getElementById("btn-sauter"); if (!btn) return;.style.display = "none";
+document.getElementById("btn-sauter").style.display = "none";
 
 // Affiche uniquement le bonus obtenu
 if (bonusJoueur === "budget") {
@@ -1215,7 +1178,7 @@ if (bonusJoueur === "reduction") {
 }
 
 if (bonusJoueur === "doubleSaut") {
-    const btn = document.getElementById("btn-sauter"); if (!btn) return;.style.display = "inline-block";
+    document.getElementById("btn-sauter").style.display = "inline-block";
 }
 
     // Réinitialisation enchères
@@ -1233,14 +1196,10 @@ if (bonusJoueur === "doubleSaut") {
         "draft-resultat"
     ).innerHTML = "";
 
-    function ajouterHistorique(txt){
-    const zone = document.getElementById("historique-enchere");
-    if (!zone) return;
+    document.getElementById(
+        "historique-enchere"
+    ).innerHTML = "";
 
-    const div = document.createElement("div");
-    div.innerText = txt;
-    zone.appendChild(div);
-}
     document.getElementById(
         "draft-carte"
     ).innerHTML = "";
@@ -1271,136 +1230,6 @@ ajouterHistorique(
     // Nouveau draft
     prochainJoueurDraft();
 }
-
-function ouvrirDefiNature() {
-
-    showSection("defi-nature-view");
-
-    // reset
-    deckJoueur = [];
-    deckBot = [];
-    carteJoueur = null;
-    carteBot = null;
-
-    const cartes = melangerTableau([...joueursDraft]);
-
-    // distribution alternée
-    cartes.forEach((c, i) => {
-        if (i % 2 === 0) deckJoueur.push(c);
-        else deckBot.push(c);
-    });
-
-    ajouterHistorique("🎮 Défis Nature Man City lancé !");
-    prochaineCarte();
-}
-
-function prochaineCarte() {
-
-    if (deckJoueur.length === 0) {
-        ajouterHistorique("🤖 Le bot gagne (plus de cartes)");
-        return;
-    }
-
-    if (deckBot.length === 0) {
-        ajouterHistorique("🏆 Tu gagnes !");
-        return;
-    }
-
-    // tirage aléatoire
-    carteJoueur = deckJoueur.shift();
-    carteBot = deckBot.shift();
-
-    statChoisie = choisirStatAleatoire();
-
-    afficherCartesCachees();
-
-    comparerCartes();
-}
-
-function choisirStatAleatoire() {
-    const stats = ["noteea", "prix", "age"];
-    return stats[Math.floor(Math.random() * stats.length)];
-}
-
-function afficherCartesCachees() {
-
-    document.getElementById("defi-zone").innerHTML = `
-        <div style="display:flex;gap:40px;justify-content:center;">
-
-            <div class="carte-defi">
-                <h3>TON JOUEUR</h3>
-                <p>❓❓❓</p>
-                <p>Stat utilisée : ${statChoisie}</p>
-            </div>
-
-            <div class="carte-defi">
-                <h3>BOT</h3>
-                <p>❓❓❓</p>
-                <p>Stat utilisée : ${statChoisie}</p>
-            </div>
-
-        </div>
-    `;
-}
-
-function comparerCartes() {
-
-    let valJ = getStat(carteJoueur, statChoisie);
-    let valB = getStat(carteBot, statChoisie);
-
-    let resultat = "";
-
-    if (statChoisie === "age") {
-        // âge = plus petit gagne
-        if (valJ < valB) resultat = "tu";
-        else if (valB < valJ) resultat = "bot";
-        else resultat = "egal";
-    } else {
-        // autres = plus grand gagne
-        if (valJ > valB) resultat = "tu";
-        else if (valB > valJ) resultat = "bot";
-        else resultat = "egal";
-    }
-
-    appliquerResultat(resultat);
-}
-
-function getStat(j, stat) {
-
-    if (!j) return 0;
-
-    if (stat === "noteea") return j.note;
-    if (stat === "prix") return j.prix;
-    if (stat === "age") return j.age;
-
-    return 0;
-}
-
-function appliquerResultat(resultat) {
-
-    if (resultat === "tu") {
-        deckJoueur.push(carteJoueur, carteBot);
-        ajouterHistorique("🏆 Tu gagnes le duel !");
-    }
-
-    else if (resultat === "bot") {
-        deckBot.push(carteJoueur, carteBot);
-        ajouterHistorique("🤖 Le bot gagne le duel !");
-    }
-
-    else {
-        deckJoueur.push(carteJoueur);
-        deckBot.push(carteBot);
-        ajouterHistorique("🤝 Égalité !");
-    }
-
-    // prochain tour
-    setTimeout(() => {
-        prochaineCarte();
-    }, 1500);
-}
-
-
         
 function prochainJoueurDraft(){
 
@@ -1538,7 +1367,7 @@ if(bonusSpecialBot){
     draftBudgetBot <= 0
 ){
     ajouterHistorique(
-        `🗑️ ${if (!joueurDraftActuel) return;} part à la poubelle (plus aucun budget)`
+        `🗑️ ${joueurDraftActuel.nom} part à la poubelle (plus aucun budget)`
     );
 
     prochainJoueurDraft();
@@ -1583,7 +1412,7 @@ if(joueurDraftActuel.note >= 89){
 }
 
 const nomImage =
-    if (!joueurDraftActuel) return;
+    joueurDraftActuel.nom
         .split(" ")
         .pop()
         .toLowerCase()
@@ -1607,14 +1436,14 @@ document.getElementById(
             width:350px;
         "
     >
-        <h3>${if (!joueurDraftActuel) return;}</h3>
+        <h3>${joueurDraftActuel.nom}</h3>
         <p>💰 Valeur estimée : ${joueurDraftActuel.prix} M€</p>
         <p>⭐ Note EA : ${joueurDraftActuel.note}</p>
     </div>
 
     <img
         src="static/images/${joueurDraftActuel.img}"
-        alt="${if (!joueurDraftActuel) return;}"
+        alt="${joueurDraftActuel.nom}"
         style="
             width:180px;
             height:220px;
@@ -1652,10 +1481,10 @@ function acheterGratuit(utilisateur){
 
     if(utilisateur === "joueur"){
         draftEquipeJoueur.push(joueurDraftActuel);
-        ajouterHistorique(`🆓 ${if (!joueurDraftActuel) return;} rejoint ton équipe gratuitement !`);
+        ajouterHistorique(`🆓 ${joueurDraftActuel.nom} rejoint ton équipe gratuitement !`);
     } else {
         draftEquipeBot.push(joueurDraftActuel);
-        ajouterHistorique(`🤖 ${if (!joueurDraftActuel) return;} rejoint le bot gratuitement !`);
+        ajouterHistorique(`🤖 ${joueurDraftActuel.nom} rejoint le bot gratuitement !`);
     }
 
     joueurDraftActuel = null;
@@ -1795,7 +1624,7 @@ function utiliserBonusSaut(){
 }
 
     ajouterHistorique(
-        `🗑️ ${if (!joueurDraftActuel) return;} envoyé à la poubelle`
+        `🗑️ ${joueurDraftActuel.nom} envoyé à la poubelle`
     );
 
     joueurDraftActuel = null;
@@ -1938,7 +1767,10 @@ function tourBotEnchere(){
         offreBot = enchereActuelle + 1;
     }
 
-    if (offreBot <= botPrixMax && offreBot <= game.budgetBot)
+    if(
+        offreBot <= botPrixMax &&
+        offreBot <= draftBudgetBot
+    ){
 
         enchereActuelle = offreBot;
 
@@ -2018,10 +1850,10 @@ if(reductionActive){
     );
 }
 
-game.budgetJoueur -= prixFinal;
+draftBudgetJoueur -= prixFinal;
 
     ajouterHistorique(
-        `🏆 ${if (!joueurDraftActuel) return;} rejoint ton équipe`
+        `🏆 ${joueurDraftActuel.nom} rejoint ton équipe`
     );
 }
 
@@ -2053,13 +1885,13 @@ game.budgetJoueur -= prixFinal;
     draftBudgetBot -= prixBot;
 
     ajouterHistorique(
-        `🤖 ${if (!joueurDraftActuel) return;} rejoint le bot`
+        `🤖 ${joueurDraftActuel.nom} rejoint le bot`
     );
 }
 
     majDraft();
 
-    game.joueurActuel = null;
+    joueurDraftActuel = null;
 
     document.getElementById(
         "btn-encherir"
@@ -2081,7 +1913,7 @@ function afficherJoueurDraft(){
 
     document.getElementById("draft-carte").innerHTML = `
     <div>
-        <h3>${if (!joueurDraftActuel) return;}</h3>
+        <h3>${joueurDraftActuel.nom}</h3>
         <p>💰 ${joueurDraftActuel.prix} M€</p>
         <p>⭐ ${joueurDraftActuel.note}</p>
     </div>
@@ -2097,12 +1929,6 @@ function ajouterHistorique(txt){
 }
 
 function majDraft(){
-
-    document.getElementById("menu-joueur-count").innerText =
-    draftEquipeJoueur.length + "/3";
-
-    document.getElementById("menu-bot-count").innerText =
-    draftEquipeBot.length + "/3";
 
     document.getElementById(
         "budget-joueur"
@@ -2196,7 +2022,7 @@ const scoreBot =
     bonusSautBot--;
 
     ajouterHistorique(
-        `🤖 utilise son bonus SAUT sur ${if (!joueurDraftActuel) return;}`
+        `🤖 utilise son bonus SAUT sur ${joueurDraftActuel.nom}`
     );
 
     joueurDraftActuel = null;
