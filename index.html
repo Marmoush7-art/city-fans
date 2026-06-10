@@ -329,6 +329,12 @@
             💸 +20 M€
         </button>
 
+        <button
+            id="btn-reduction"
+            onclick="activerReduction()">
+            🎯 -50%
+        </button>
+
     </div>
 
     <div id="historique-enchere"></div>
@@ -1027,6 +1033,8 @@ bonusSautJoueur = true;
 bonusSautBot = true;
 
 let bonusBudgetJoueur = true;
+let bonusReductionJoueur = true;
+let reductionActive = false;
 
 document.getElementById("btn-sauter").disabled = true;
 document.getElementById("btn-sauter").innerText = "Sauter";
@@ -1078,6 +1086,8 @@ function ouvrirDraft(){
     // Réinitialisation bonus Sauter
         bonusSautJoueur = true;
         bonusSautBot = true;
+        bonusReductionJoueur = true;
+        reductionActive = false;
 
         const btnSaut = document.getElementById("btn-sauter");
         btnSaut.disabled = false;
@@ -1089,6 +1099,14 @@ function ouvrirDraft(){
         document.getElementById(
             "btn-budget"
         ).innerText = "💸 +20 M€";
+
+        document.getElementById(
+            "btn-reduction"
+        ).disabled = false;
+
+        document.getElementById(
+            "btn-reduction"
+        ).innerText = "🎯 -50%";
 
     // Réinitialisation enchères
     joueurDraftActuel = null;
@@ -1356,6 +1374,29 @@ function utiliserBonusBudget(){
 
     majDraft();
 }
+
+function activerReduction(){
+
+    if(!bonusReductionJoueur){
+        alert("Bonus déjà utilisé.");
+        return;
+    }
+
+    bonusReductionJoueur = false;
+    reductionActive = true;
+
+    document.getElementById(
+        "btn-reduction"
+    ).disabled = true;
+
+    document.getElementById(
+        "btn-reduction"
+    ).innerText = "🎯 Actif";
+
+    ajouterHistorique(
+        "🎯 Réduction 50% activée"
+    );
+}
      
 function faireEnchere(){
 
@@ -1504,8 +1545,23 @@ function gagnerJoueur(){
 
     }
 
-    draftBudgetJoueur -=
-        enchereActuelle;
+    let prixFinal = enchereActuelle;
+
+if(reductionActive){
+
+    prixFinal =
+        Math.ceil(
+            enchereActuelle / 2
+        );
+
+    reductionActive = false;
+
+    ajouterHistorique(
+        `🎯 Réduction appliquée : ${prixFinal} M€`
+    );
+}
+
+draftBudgetJoueur -= prixFinal;
 
     ajouterHistorique(
         `🏆 ${joueurDraftActuel.nom} rejoint ton équipe`
