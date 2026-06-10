@@ -67,6 +67,13 @@
         .emoji-picker span { font-size: 1.6rem; cursor: pointer; text-align: center; padding: 2px; transition: transform 0.1s; }
         .emoji-picker span:hover { transform: scale(1.2); background-color: #f0f0f0; border-radius: 5px; }
 
+        #jeu2 { padding: 20px; }
+        #defi-zone { margin-top: 20px; display: flex; flex-direction: column; gap: 20px; }
+        .carte-duel { display: flex; justify-content: center; gap: 40px; align-items: center; }
+        .carte { width: 180px; padding: 10px; border-radius: 12px; background: #1e1e1e; color: white; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.4); }
+        .carte img { width: 100%; border-radius: 10px; }
+        .critere { font-size: 18px; font-weight: bold; margin-top: 10px; }
+
         .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--city-sky-blue); }
         .match-header { font-size: 0.8rem; color: #888; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; }
         .match-main { display: flex; justify-content: space-between; align-items: center; }
@@ -213,7 +220,9 @@
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
             </div>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
-            <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span><span>Jeu Draft </span></li>
+            <li class="menu-item" onclick="toggleSubMenu('sub-jeux')"><span class="menu-item-icon">🎮</span>Jeux </li><div id="sub-jeux" class="sous-menu"><span class="joueur-link" onclick="ouvrirDraft()">🎯 Draft</span><span class="joueur-link" onclick="showSection('jeu2')">🕹️ Jeu de cartes</span>
+
+</div>
         </ul>
     </div>
     <div id="quiz-view" class="content-section">
@@ -439,6 +448,16 @@
                     <div class="stat-card"><span class="stat-number" id="s-note">0.0</span><span class="stat-label">⭐ Note</span></div>
                 </div>
             </div>
+        </div>
+
+        <div id="jeu2" class="section" style="display:none;">
+
+            <h2>🕹️ Défis Cartes</h2>
+
+            <button onclick="demarrerJeu2()">🎮 Lancer la partie</button>
+
+            <div id="defi-zone"></div>
+
         </div>
   
         <div id="ma-compo-view" class="content-section">
@@ -1927,7 +1946,7 @@ function ajouterHistorique(txt){
     ).innerHTML +=
         `<div>${txt}</div>`;
 }
-
+        
 function majDraft(){
 
     document.getElementById(
@@ -2270,6 +2289,146 @@ function genererBonusSpecial(){
             });
             showSection('centre-formation-view');
         }
+
+        let deckJoueur = [];
+        let deckBot = [];
+        let carteJoueur = null;
+        let carteBot = null;
+        let critereActuel = null;
+
+function melanger(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
+
+function demarrerJeu2() {
+
+    const cartes = melanger(Object.values(effectif));
+
+    deckJoueur = cartes.slice(0, Math.floor(cartes.length / 2));
+    deckBot = cartes.slice(Math.floor(cartes.length / 2));
+
+    prochaineManche();
+}
+
+function prochaineManche() {
+
+    if (deckJoueur.length === 0 || deckBot.length === 0) {
+        finJeu2();
+        return;
+    }
+
+    carteJoueur = deckJoueur.shift();
+    carteBot = deckBot.shift();
+
+    const criteres = ["note", "prix", "age"];
+    critereActuel = criteres[Math.floor(Math.random() * criteres.length)];
+
+    jouerManche();
+}
+
+function jouerManche() {
+
+    let valJ = carteJoueur[critereActuel];
+    let valB = carteBot[critereActuel];
+
+    let gagnant = null;
+
+    if (valJ > valB) gagnant = "joueur";
+    else if (valB > valJ) gagnant = "bot";
+
+    let pot = [carteJoueur, carteBot];
+
+    if (gagnant === "joueur") {
+        deckJoueur.push(...pot);
+        choixCritereJoueur();
+    }
+
+    else if (gagnant === "bot") {
+        deckBot.push(...pot);
+        choixCritereBot();
+    }
+
+    afficherManche(gagnant);
+}
+
+function choixCritereJoueur() {
+
+    let choix = prompt("Choisis critère : note / prix / age");
+
+    if (["note", "prix", "age"].includes(choix)) {
+        critereActuel = choix;
+    }
+}
+
+function choixCritereBot() {
+
+    let options = ["note", "prix", "age"];
+
+    // stratégie simple : prend la meilleure stat de sa prochaine carte
+    let best = "note";
+    let bestValue = 0;
+
+    options.forEach(c => {
+        if (carteBot[c] > bestValue) {
+            bestValue = carteBot[c];
+            best = c;
+        }
+    });
+
+    critereActuel = best;
+}
+
+function afficherManche(gagnant) {
+
+    document.getElementById("defi-zone").innerHTML = `
+        <div style="display:flex; gap:40px;">
+
+            <div>
+                <h3>Toi</h3>
+                <p>${carteJoueur.nom}</p>
+                <p>⭐ ${carteJoueur.note}</p>
+                <p>💰 ${carteJoueur.prix}</p>
+                <p>🎂 ${carteJoueur.age}</p>
+            </div>
+
+            <h2>VS</h2>
+
+            <div>
+                <h3>Bot</h3>
+                <p>${carteBot.nom}</p>
+                <p>⭐ ${carteBot.note}</p>
+                <p>💰 ${carteBot.prix}</p>
+                <p>🎂 ${carteBot.age}</p>
+            </div>
+
+        </div>
+
+        <h2>Critère : ${critereActuel}</h2>
+
+        <h3>
+            ${
+                gagnant === "joueur"
+                ? "🏆 Tu gagnes la manche"
+                : gagnant === "bot"
+                ? "🤖 Bot gagne"
+                : "🤝 Égalité"
+            }
+        </h3>
+    `;
+}
+
+function finJeu2() {
+
+    let result =
+        deckJoueur.length > deckBot.length
+        ? "🏆 Tu gagnes"
+        : "🤖 Bot gagne";
+
+    document.getElementById("defi-zone").innerHTML =
+        `<h2>Fin du jeu</h2><h3>${result}</h3>`;
+}
+
+
 
         function verifierReponseQuiz() {
             const rep = document.getElementById('quiz-answer').value.trim().toLowerCase();
