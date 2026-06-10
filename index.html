@@ -1546,8 +1546,23 @@ function volerJoueur(utilisateur){
         return;
     }
 
-    const index = Math.floor(Math.random() * cibleEquipe.length);
-    const vole = cibleEquipe.splice(index, 1)[0];
+    let meilleurIndex = 0;
+
+for(let i = 1; i < cibleEquipe.length; i++){
+
+    if(
+        cibleEquipe[i].note >
+        cibleEquipe[meilleurIndex].note
+    ){
+        meilleurIndex = i;
+    }
+}
+
+const vole =
+    cibleEquipe.splice(
+        meilleurIndex,
+        1
+    )[0];
 
     if(utilisateur === "joueur"){
         draftEquipeJoueur.push(vole);
