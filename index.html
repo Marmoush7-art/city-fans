@@ -1374,13 +1374,6 @@ function faireEnchere(){
         alert("Entre une somme (0 autorisé).");
         return;
     }
-    // Prix minimum du joueur
-if(montant < joueurDraftActuel.prix){
-    alert(
-        `L'enchère doit être au moins de ${joueurDraftActuel.prix} M€`
-    );
-    return;
-}
 
 // Première enchère
 if(
