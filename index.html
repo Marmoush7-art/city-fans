@@ -45,6 +45,8 @@
         th, td { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); }
         #photo { max-width: 280px; width: 100%; border-radius: 15px; border: 6px solid var(--city-sky-blue); margin-bottom: 25px; }
 
+        .carte-defi { background: #1e1e1e; color: white; padding: 20px; border-radius: 12px; width: 200px; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
+
         .logo-accueil{ width: 250px; height: auto; display: block; margin: 20px auto; }
         
         .bio-container { background: white; padding: 25px; border-radius: 10px; margin-top: 15px; text-align: left; min-height: 300px; line-height: 1.7; font-size: 1.05rem; }
@@ -214,6 +216,8 @@
             </div>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
             <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span><span>Jeu Draft </span></li>
+            <li onclick="ouvrirDefiNature()">⚔️ Défis Nature</li>
+            
         </ul>
     </div>
     <div id="quiz-view" class="content-section">
@@ -368,6 +372,11 @@
 
 <div id="draft-resultat"></div>
 
+</div>
+
+<div id="defi-nature-view" class="content-section">
+    <h2>⚔️ Défis Nature Man City</h2>
+    <div id="defi-zone"></div>
 </div>
 
         <div id="matchs-view" class="content-section">
@@ -586,6 +595,16 @@
     </main>
 
     <script>
+        let deckJoueur = [];
+        let deckBot = [];
+
+        let carteJoueur = null;
+        let carteBot = null;
+
+        let carteCourante = null;
+
+        let statChoisie = "noteea"; // stat actuelle
+        
         const firebaseConfig = { apiKey: "CLE", authDomain: "DOM", projectId: "ID", storageBucket: "BUCKET", messagingSenderId: "ID", appId: "APP" };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
@@ -1230,6 +1249,136 @@ ajouterHistorique(
     // Nouveau draft
     prochainJoueurDraft();
 }
+
+function ouvrirDefiNature() {
+
+    showSection("defi-nature-view");
+
+    // reset
+    deckJoueur = [];
+    deckBot = [];
+    carteJoueur = null;
+    carteBot = null;
+
+    const cartes = melangerTableau([...joueursDraft]);
+
+    // distribution alternée
+    cartes.forEach((c, i) => {
+        if (i % 2 === 0) deckJoueur.push(c);
+        else deckBot.push(c);
+    });
+
+    ajouterHistorique("🎮 Défis Nature Man City lancé !");
+    prochaineCarte();
+}
+
+function prochaineCarte() {
+
+    if (deckJoueur.length === 0) {
+        ajouterHistorique("🤖 Le bot gagne (plus de cartes)");
+        return;
+    }
+
+    if (deckBot.length === 0) {
+        ajouterHistorique("🏆 Tu gagnes !");
+        return;
+    }
+
+    // tirage aléatoire
+    carteJoueur = deckJoueur.shift();
+    carteBot = deckBot.shift();
+
+    statChoisie = choisirStatAleatoire();
+
+    afficherCartesCachees();
+
+    comparerCartes();
+}
+
+function choisirStatAleatoire() {
+    const stats = ["noteea", "prix", "age"];
+    return stats[Math.floor(Math.random() * stats.length)];
+}
+
+function afficherCartesCachees() {
+
+    document.getElementById("defi-zone").innerHTML = `
+        <div style="display:flex;gap:40px;justify-content:center;">
+
+            <div class="carte-defi">
+                <h3>TON JOUEUR</h3>
+                <p>❓❓❓</p>
+                <p>Stat utilisée : ${statChoisie}</p>
+            </div>
+
+            <div class="carte-defi">
+                <h3>BOT</h3>
+                <p>❓❓❓</p>
+                <p>Stat utilisée : ${statChoisie}</p>
+            </div>
+
+        </div>
+    `;
+}
+
+function comparerCartes() {
+
+    let valJ = getStat(carteJoueur, statChoisie);
+    let valB = getStat(carteBot, statChoisie);
+
+    let resultat = "";
+
+    if (statChoisie === "age") {
+        // âge = plus petit gagne
+        if (valJ < valB) resultat = "tu";
+        else if (valB < valJ) resultat = "bot";
+        else resultat = "egal";
+    } else {
+        // autres = plus grand gagne
+        if (valJ > valB) resultat = "tu";
+        else if (valB > valJ) resultat = "bot";
+        else resultat = "egal";
+    }
+
+    appliquerResultat(resultat);
+}
+
+function getStat(j, stat) {
+
+    if (!j) return 0;
+
+    if (stat === "noteea") return j.note;
+    if (stat === "prix") return j.prix;
+    if (stat === "age") return j.age;
+
+    return 0;
+}
+
+function appliquerResultat(resultat) {
+
+    if (resultat === "tu") {
+        deckJoueur.push(carteJoueur, carteBot);
+        ajouterHistorique("🏆 Tu gagnes le duel !");
+    }
+
+    else if (resultat === "bot") {
+        deckBot.push(carteJoueur, carteBot);
+        ajouterHistorique("🤖 Le bot gagne le duel !");
+    }
+
+    else {
+        deckJoueur.push(carteJoueur);
+        deckBot.push(carteBot);
+        ajouterHistorique("🤝 Égalité !");
+    }
+
+    // prochain tour
+    setTimeout(() => {
+        prochaineCarte();
+    }, 1500);
+}
+
+
         
 function prochainJoueurDraft(){
 
