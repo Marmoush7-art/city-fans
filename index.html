@@ -1029,7 +1029,7 @@ let draftPioche = [];
 let draftBudgetJoueur = 250;
 let draftBudgetBot = 250;
 
-bonusSautJoueur = true;
+bonusSautJoueur = 2;
 bonusSautBot = true;
 
 let bonusBudgetJoueur = true;
@@ -1084,7 +1084,7 @@ function ouvrirDraft(){
     draftEquipeBot = [];
 
     // Réinitialisation bonus Sauter
-        bonusSautJoueur = true;
+        bonusSautJoueur = 2;
         bonusSautBot = true;
         bonusReductionJoueur = true;
         reductionActive = false;
@@ -1107,6 +1107,15 @@ function ouvrirDraft(){
         document.getElementById(
             "btn-reduction"
         ).innerText = "🎯 -50%";
+
+        document.getElementById(
+            "btn-sauter"
+        ).disabled = false;
+
+        document.getElementById(
+            "btn-sauter"
+        ).innerText =
+        "🗑️ Saut (2)";
 
     // Réinitialisation enchères
     joueurDraftActuel = null;
@@ -1327,15 +1336,29 @@ function recommencerDraft(){
 
 function utiliserBonusSaut(){
 
-    if(!bonusSautJoueur){
-        alert("Saut déjà utilisé.");
+    if(bonusSautJoueur <= 0){
+        alert("Plus de saut disponible.");
         return;
     }
 
-    bonusSautJoueur = false;
+    bonusSautJoueur--;
 
-    document.getElementById("btn-sauter").disabled = true;
-    document.getElementById("btn-sauter").innerText = "❌ Bonus utilisé";
+    document.getElementById(
+        "btn-sauter"
+    ).innerText =
+    `🗑️ Saut (${bonusSautJoueur})`;
+
+    if(bonusSautJoueur === 0){
+
+    document.getElementById(
+        "btn-sauter"
+    ).disabled = true;
+
+    document.getElementById(
+        "btn-sauter"
+    ).innerText =
+    "❌ Plus de saut";
+}
 
     ajouterHistorique(
         `🗑️ ${joueurDraftActuel.nom} envoyé à la poubelle`
