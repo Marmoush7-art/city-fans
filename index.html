@@ -2295,6 +2295,18 @@ function genererBonusSpecial(){
         let carteJoueur = null;
         let carteBot = null;
         let critereActuel = null;
+        let j = parseInt(carteJoueurActuelle.noteea);
+        let b = parseInt(carteBotActuelle.noteea);
+        let joueurGagne = false;
+
+if(critere === "note"){
+    joueurGagne = j > b;
+}
+
+if(j === b){
+    document.getElementById("resultat-cartes").innerText = "🤝 Égalité";
+    return;
+}
 
 function melanger(array) {
     return array.sort(() => Math.random() - 0.5);
@@ -2417,6 +2429,20 @@ function afficherManche(gagnant) {
             }
         </h3>
     `;
+}
+
+function comparer(noteJ, noteB){
+
+    noteJ = parseInt(noteJ);
+    noteB = parseInt(noteB);
+
+    if(noteJ > noteB){
+        return "joueur";
+    }
+    if(noteB > noteJ){
+        return "bot";
+    }
+    return "egalite";
 }
 
 function finJeu2() {
