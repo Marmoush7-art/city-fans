@@ -329,6 +329,12 @@
             💸 +20 M€
         </button>
 
+        <button
+            id="btn-reduction"
+            onclick="activerReduction()">
+            🎯 -50%
+        </button>
+
     </div>
 
     <div id="historique-enchere"></div>
@@ -1017,16 +1023,20 @@
             document.getElementById('s-note').innerText = j.note || "0.0";
             showSection('joueur-solo');
         }
-
+        
+let bonusJoueur = "";
+let bonusBot = "";
 let draftPioche = [];
 
 let draftBudgetJoueur = 250;
 let draftBudgetBot = 250;
 
-bonusSautJoueur = true;
-bonusSautBot = true;
+let bonusSautJoueur = 2;
+let bonusSautBot = 0;
 
 let bonusBudgetJoueur = true;
+let bonusReductionJoueur = true;
+let reductionActive = false;
 
 document.getElementById("btn-sauter").disabled = true;
 document.getElementById("btn-sauter").innerText = "Sauter";
@@ -1071,13 +1081,62 @@ function ouvrirDraft(){
     draftBudgetJoueur = 250;
     draftBudgetBot = 250;
 
+    const bonusPossibles = [
+    "budget",
+    "reduction",
+    "doubleSaut"
+];
+
+bonusJoueur =
+    bonusPossibles[
+        Math.floor(
+            Math.random() * bonusPossibles.length
+        )
+    ];
+
+bonusBot =
+    bonusPossibles[
+        Math.floor(
+            Math.random() * bonusPossibles.length
+        )
+    ];
+
     // Réinitialisation équipes
     draftEquipeJoueur = [];
     draftEquipeBot = [];
 
     // Réinitialisation bonus Sauter
-        bonusSautJoueur = true;
-        bonusSautBot = true;
+        bonusSautJoueur = 0;
+        bonusSautBot = 0;
+
+        bonusBudgetJoueur = false;
+        bonusReductionJoueur = false;
+
+        reductionActive = false;
+
+        // Bonus joueur
+
+if(bonusJoueur === "budget"){
+    bonusBudgetJoueur = true;
+}
+
+if(bonusJoueur === "reduction"){
+    bonusReductionJoueur = true;
+}
+
+if(bonusJoueur === "doubleSaut"){
+    bonusSautJoueur = 2;
+}
+
+// Bonus bot
+
+if(bonusBot === "budget"){
+    draftBudgetBot += 20;
+}
+
+if(bonusBot === "doubleSaut"){
+    bonusSautBot = 2;
+}
 
         const btnSaut = document.getElementById("btn-sauter");
         btnSaut.disabled = false;
@@ -1089,6 +1148,41 @@ function ouvrirDraft(){
         document.getElementById(
             "btn-budget"
         ).innerText = "💸 +20 M€";
+
+        document.getElementById(
+            "btn-reduction"
+        ).disabled = false;
+
+        document.getElementById(
+            "btn-reduction"
+        ).innerText = "🎯 -50%";
+
+        document.getElementById(
+            "btn-sauter"
+        ).disabled = false;
+
+        document.getElementById(
+            "btn-sauter"
+        ).innerText =
+        "🗑️ Saut (2)";
+
+        // Cache tous les bonus
+document.getElementById("btn-budget").style.display = "none";
+document.getElementById("btn-reduction").style.display = "none";
+document.getElementById("btn-sauter").style.display = "none";
+
+// Affiche uniquement le bonus obtenu
+if (bonusJoueur === "budget") {
+    document.getElementById("btn-budget").style.display = "inline-block";
+}
+
+if (bonusJoueur === "reduction") {
+    document.getElementById("btn-reduction").style.display = "inline-block";
+}
+
+if (bonusJoueur === "doubleSaut") {
+    document.getElementById("btn-sauter").style.display = "inline-block";
+}
 
     // Réinitialisation enchères
     joueurDraftActuel = null;
@@ -1116,6 +1210,22 @@ function ouvrirDraft(){
     document.getElementById(
         "montant-enchere"
     ).value = "";
+
+    if(bonusJoueur === "budget"){
+    ajouterHistorique("🎁 Ton bonus : 💸 +20 M€");
+}
+
+if(bonusJoueur === "reduction"){
+    ajouterHistorique("🎁 Ton bonus : 🎯 Réduction 50%");
+}
+
+if(bonusJoueur === "doubleSaut"){
+    ajouterHistorique("🎁 Ton bonus : 🔥 Double saut");
+}
+
+ajouterHistorique(
+    "🤖 Le bot reçoit un bonus secret"
+);
 
     // Mise à jour affichage
     majDraft();
@@ -1309,15 +1419,29 @@ function recommencerDraft(){
 
 function utiliserBonusSaut(){
 
-    if(!bonusSautJoueur){
-        alert("Saut déjà utilisé.");
+    if(bonusSautJoueur <= 0){
+        alert("Plus de saut disponible.");
         return;
     }
 
-    bonusSautJoueur = false;
+    bonusSautJoueur--;
 
-    document.getElementById("btn-sauter").disabled = true;
-    document.getElementById("btn-sauter").innerText = "❌ Bonus utilisé";
+    document.getElementById(
+        "btn-sauter"
+    ).innerText =
+    `🗑️ Saut (${bonusSautJoueur})`;
+
+    if(bonusSautJoueur === 0){
+
+    document.getElementById(
+        "btn-sauter"
+    ).disabled = true;
+
+    document.getElementById(
+        "btn-sauter"
+    ).innerText =
+    "❌ Plus de saut";
+}
 
     ajouterHistorique(
         `🗑️ ${joueurDraftActuel.nom} envoyé à la poubelle`
@@ -1355,6 +1479,29 @@ function utiliserBonusBudget(){
     );
 
     majDraft();
+}
+
+function activerReduction(){
+
+    if(!bonusReductionJoueur){
+        alert("Bonus déjà utilisé.");
+        return;
+    }
+
+    bonusReductionJoueur = false;
+    reductionActive = true;
+
+    document.getElementById(
+        "btn-reduction"
+    ).disabled = true;
+
+    document.getElementById(
+        "btn-reduction"
+    ).innerText = "🎯 Actif";
+
+    ajouterHistorique(
+        "🎯 Réduction 50% activée"
+    );
 }
      
 function faireEnchere(){
@@ -1504,8 +1651,23 @@ function gagnerJoueur(){
 
     }
 
-    draftBudgetJoueur -=
-        enchereActuelle;
+    let prixFinal = enchereActuelle;
+
+if(reductionActive){
+
+    prixFinal =
+        Math.ceil(
+            enchereActuelle / 2
+        );
+
+    reductionActive = false;
+
+    ajouterHistorique(
+        `🎯 Réduction appliquée : ${prixFinal} M€`
+    );
+}
+
+draftBudgetJoueur -= prixFinal;
 
     ajouterHistorique(
         `🏆 ${joueurDraftActuel.nom} rejoint ton équipe`
@@ -1644,12 +1806,12 @@ const scoreBot =
         function tourBotInitial(){
 
             if(
-    bonusSautBot &&
+    bonusSautBot > 0 &&
     joueurDraftActuel.prix <= 15 &&
     joueurDraftActuel.note < 78
 ){
 
-    bonusSautBot = false;
+    bonusSautBot--;
 
     ajouterHistorique(
         `🤖 utilise son bonus SAUT sur ${joueurDraftActuel.nom}`
