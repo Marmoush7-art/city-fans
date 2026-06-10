@@ -116,7 +116,7 @@
 
         .draft-budget-box{ display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin:20px 0; }
         .draft-budget-box div{ background:white; padding:20px; border-radius:15px;  min-width:180px; text-align:center; }
-        #draft-carte{ max-width:400px; margin:20px auto; }
+        #draft-carte{ width:100%; max-width:700px; margin:20px auto; }
         .draft-player-card{ background:white; border:3px solid #6CABDD; border-radius:15px; padding:20px; text-align:center; }
         .draft-actions{ text-align:center; margin:20px 0; }
         .draft-actions input{ padding:10px; width:150px; }
@@ -321,6 +321,12 @@
             id="btn-sauter"
             onclick="utiliserBonusSaut()">
             🗑️ Sauter
+        </button>
+
+        <button
+            id="btn-budget"
+            onclick="utiliserBonusBudget()">
+            💸 +20 M€
         </button>
 
     </div>
@@ -1020,6 +1026,8 @@ let draftBudgetBot = 250;
 bonusSautJoueur = true;
 bonusSautBot = true;
 
+let bonusBudgetJoueur = true;
+
 document.getElementById("btn-sauter").disabled = true;
 document.getElementById("btn-sauter").innerText = "Sauter";
 
@@ -1074,6 +1082,13 @@ function ouvrirDraft(){
         const btnSaut = document.getElementById("btn-sauter");
         btnSaut.disabled = false;
         btnSaut.innerText = "🗑️ Sauter";
+        document.getElementById(
+            "btn-budget"
+        ).disabled = false;
+
+        document.getElementById(
+            "btn-budget"
+        ).innerText = "💸 +20 M€";
 
     // Réinitialisation enchères
     joueurDraftActuel = null;
@@ -1315,6 +1330,33 @@ function utiliserBonusSaut(){
         1000
     );
 }
+
+function utiliserBonusBudget(){
+
+    if(!bonusBudgetJoueur){
+        alert("Bonus déjà utilisé.");
+        return;
+    }
+
+    bonusBudgetJoueur = false;
+
+    draftBudgetJoueur += 20;
+
+    document.getElementById(
+        "btn-budget"
+    ).disabled = true;
+
+    document.getElementById(
+        "btn-budget"
+    ).innerText = "❌ Utilisé";
+
+    ajouterHistorique(
+        "💸 Bonus budget : +20 M€"
+    );
+
+    majDraft();
+}
+     
 function faireEnchere(){
 
     const montant =
@@ -1332,13 +1374,6 @@ function faireEnchere(){
         alert("Entre une somme (0 autorisé).");
         return;
     }
-    // Prix minimum du joueur
-if(montant < joueurDraftActuel.prix){
-    alert(
-        `L'enchère doit être au moins de ${joueurDraftActuel.prix} M€`
-    );
-    return;
-}
 
 // Première enchère
 if(
