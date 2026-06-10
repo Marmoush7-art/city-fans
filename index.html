@@ -1185,11 +1185,11 @@ return;
     draftPioche.shift();
 
     if(
-    draftBudgetJoueur < joueurDraftActuel.prix &&
-    draftBudgetBot < joueurDraftActuel.prix
+    draftBudgetJoueur <= 0 &&
+    draftBudgetBot <= 0
 ){
     ajouterHistorique(
-        `🗑️ ${joueurDraftActuel.nom} est invendable et part à la poubelle`
+        `🗑️ ${joueurDraftActuel.nom} part à la poubelle (plus aucun budget)`
     );
 
     prochainJoueurDraft();
@@ -1205,11 +1205,11 @@ document.getElementById(
         "historique-enchere"
     ).innerHTML = "";
     
-enchereActuelle = joueurDraftActuel.prix;
+enchereActuelle = 0;
 proprietaireEnchere = null;
 
 ajouterHistorique(
-    `💰 Prix de départ : ${enchereActuelle} M€`
+    `💰 Prix de départ : 0 M€`
 );
 
     botPrixMax = Math.min(
