@@ -1318,21 +1318,48 @@ if(bonusSpecialJoueur){
 
 // BONUS SPECIAL BOT
 if(bonusSpecialBot){
-    const r = Math.random();
 
-    if(r < 0.33){
-        bonusCash("bot");
+    let utiliser = false;
+
+    if(
+        bonusSpecialBot === "free" &&
+        joueurDraftActuel.note >= 88
+    ){
+        utiliser = true;
     }
-    else if(r < 0.66){
-        acheterGratuit("bot");
+
+    if(
+        bonusSpecialBot === "cash" &&
+        draftBudgetBot <= 80
+    ){
+        utiliser = true;
+    }
+
+    if(
+        bonusSpecialBot === "vol" &&
+        draftEquipeJoueur.length >= 2
+    ){
+        utiliser = true;
+    }
+
+    if(utiliser){
+
+        if(bonusSpecialBot === "cash"){
+            bonusCash("bot");
+        }
+
+        if(bonusSpecialBot === "free"){
+            acheterGratuit("bot");
+            bonusSpecialBot = null;
+            return;
+        }
+
+        if(bonusSpecialBot === "vol"){
+            volerJoueur("bot");
+        }
+
         bonusSpecialBot = null;
-        return;
     }
-    else{
-        volerJoueur("bot");
-    }
-
-    bonusSpecialBot = null;
 }
 
     if(
@@ -1483,6 +1510,33 @@ function utiliserBonusSpecialBot(){
 }
         
 function volerJoueur(utilisateur){
+
+    if(!joueurDraftActuel) return;
+
+    if(
+        utilisateur === "bot" &&
+        draftEquipeBot.length >= 3
+    ){
+        return;
+    }
+
+    if(
+        utilisateur === "joueur" &&
+        draftEquipeJoueur.length >= 3
+    ){
+        return;
+    }
+
+    let cibleEquipe =
+        (utilisateur === "joueur")
+        ? draftEquipeBot
+        : draftEquipeJoueur;
+
+    if(cibleEquipe.length === 0){
+        ajouterHistorique("❌ Aucun joueur à voler");
+        return;
+    }
+    
     if(!joueurDraftActuel) return;
 
     let cibleEquipe = (utilisateur === "joueur") ? draftEquipeBot : draftEquipeJoueur;
@@ -1660,13 +1714,15 @@ if(
     return;
 }
 
-if(montant > draftBudgetJoueur){
-    alert(
-        "Budget insuffisant."
-    );
+const coutReel =
+    reductionActive
+        ? Math.ceil(montant / 2)
+        : montant;
+
+if(coutReel > draftBudgetJoueur){
+    alert("Budget insuffisant.");
     return;
 }
-
     enchereActuelle = montant;
     proprietaireEnchere = "joueur";
 
