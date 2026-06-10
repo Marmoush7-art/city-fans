@@ -53,6 +53,78 @@
         .transfert-card img { width: 100px; height: 130px; object-fit: cover; }
         .transfert-info { padding: 15px; text-align: left; color: #000; font-weight: bold; flex: 1; }
         .transfert-date { font-size: 0.8rem; color: #666; margin-top: 5px; }
+
+        /* =========================
+   🌍 DEFI NATURE STYLE
+========================= */
+
+#defi-nature-view {
+    text-align: center;
+    padding: 20px;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.cartes-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.carte-defi {
+    background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+    border-radius: 15px;
+    padding: 20px;
+    width: 200px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
+}
+
+.carte-defi:hover {
+    transform: scale(1.05);
+}
+
+.carte-defi h3 {
+    margin-bottom: 10px;
+    color: #ffd700;
+}
+
+.cache {
+    font-size: 24px;
+    letter-spacing: 3px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #4caf50;
+    color: white;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+.historique-box {
+    margin-top: 20px;
+    background: #111;
+    padding: 10px;
+    border-radius: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: left;
+    font-size: 14px;
+}
+
+.historique-box div {
+    padding: 3px 0;
+    border-bottom: 1px solid #222;
+}
         
         #chat-messages { height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 15px; background: #fff; border-radius: 10px; display: flex; flex-direction: column; text-align: left; }
         .msg { background: var(--city-sky-blue); color: white; padding: 10px 15px; border-radius: 18px; margin-bottom: 10px; align-self: flex-start; max-width: 80%; word-wrap: break-word; }
@@ -391,7 +463,23 @@
     </div>
 
     </div>
-</div>      
+</div> 
+
+<div class="cartes-container">
+
+    <div class="carte-defi">
+        <h3>TON JOUEUR</h3>
+        <p class="cache">❓❓❓</p>
+        <p>Stat : <span id="stat-joueur"></span></p>
+    </div>
+
+    <div class="carte-defi">
+        <h3>BOT</h3>
+        <p class="cache">❓❓❓</p>
+        <p>Stat : <span id="stat-bot"></span></p>
+    </div>
+
+</div>
 
         <div id="actus-mercato" class="content-section">
             <h2>Actus Mercato 📰</h2>
@@ -918,6 +1006,146 @@
             }
         ];
 
+        // =========================
+// 🌍 DEFI NATURE - CLEAN
+// =========================
+
+function ouvrirDefiNature() {
+
+    showSection("defi-nature-view");
+
+    // reset
+    deckJoueur = [];
+    deckBot = [];
+    carteJoueur = null;
+    carteBot = null;
+
+    const cartes = melangerTableau([...joueursDraft]);
+
+    cartes.forEach((c, i) => {
+        if (i % 2 === 0) deckJoueur.push(c);
+        else deckBot.push(c);
+    });
+
+    ajouterHistorique("🎮 Défis Nature lancé !");
+
+    prochaineCarte();
+}
+
+        function prochaineCarte() {
+
+    if (deckJoueur.length === 0) {
+        ajouterHistorique("🤖 Le bot gagne (plus de cartes)");
+        return;
+    }
+
+    if (deckBot.length === 0) {
+        ajouterHistorique("🏆 Tu gagnes !");
+        return;
+    }
+
+    carteJoueur = deckJoueur.shift();
+    carteBot = deckBot.shift();
+
+    statChoisie = choisirStatAleatoire();
+
+    afficherCartesCachees();
+
+    comparerCartes();
+}
+
+function choisirStatAleatoire() {
+    const stats = ["noteea", "prix", "age"];
+    return stats[Math.floor(Math.random() * stats.length)];
+}
+
+function afficherCartesCachees() {
+
+    document.getElementById("defi-zone").innerHTML = `
+        <div style="display:flex;gap:40px;justify-content:center;">
+
+            <div class="carte-defi">
+                <h3>TON JOUEUR</h3>
+                <p>❓❓❓</p>
+                <p>Stat : ${statChoisie}</p>
+            </div>
+
+            <div class="carte-defi">
+                <h3>BOT</h3>
+                <p>❓❓❓</p>
+                <p>Stat : ${statChoisie}</p>
+            </div>
+
+        </div>
+    `;
+}
+
+function comparerCartes() {
+
+    const valJ = getStat(carteJoueur, statChoisie);
+    const valB = getStat(carteBot, statChoisie);
+
+    let resultat = "";
+
+    if (statChoisie === "age") {
+
+        // plus petit gagne
+        if (valJ < valB) resultat = "tu";
+        else if (valB < valJ) resultat = "bot";
+        else resultat = "egal";
+
+    } else {
+
+        // plus grand gagne
+        if (valJ > valB) resultat = "tu";
+        else if (valB > valJ) resultat = "bot";
+        else resultat = "egal";
+    }
+
+    appliquerResultat(resultat);
+}
+        
+function getStat(j, stat) {
+
+    if (!j) return 0;
+
+    if (stat === "noteea") return j.note || 0;
+    if (stat === "prix") return j.prix || 0;
+    if (stat === "age") return j.age || 0;
+
+    return 0;
+}
+
+function appliquerResultat(resultat) {
+
+    if (!carteJoueur || !carteBot) return;
+
+    if (resultat === "tu") {
+
+        deckJoueur.push(carteJoueur, carteBot);
+        ajouterHistorique("🏆 Tu gagnes le duel !");
+
+    } else if (resultat === "bot") {
+
+        deckBot.push(carteJoueur, carteBot);
+        ajouterHistorique("🤖 Le bot gagne le duel !");
+
+    } else {
+
+        deckJoueur.push(carteJoueur);
+        deckBot.push(carteBot);
+        ajouterHistorique("🤝 Égalité !");
+    }
+
+    setTimeout(() => {
+        prochaineCarte();
+    }, 1200);
+}
+
+function safeName(j) {
+    return j && j.nom ? j.nom : "Joueur";
+}
+
         function chargerPositionsActuelles() {
             const container = document.getElementById('positions-container');
             container.innerHTML = ""; // On vide le container
@@ -1197,7 +1425,7 @@ if (bonusJoueur === "doubleSaut") {
     ).innerHTML = "";
 
     document.getElementById(
-        "historique-enchere"
+        "historique-defi"
     ).innerHTML = "";
 
     document.getElementById(
