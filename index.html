@@ -2451,7 +2451,7 @@ function prochaineManche() {
     carteJoueur = deckJoueur.shift();
     carteBot = deckBot.shift();
 
-    const criteres = ["note", "prix", "age"];
+    const criteres = ["note", "valeur", "age"];
     critereActuel = criteres[Math.floor(Math.random() * criteres.length)];
 
     jouerManche();
@@ -2497,16 +2497,16 @@ function jouerManche() {
         
 function choixCritereJoueur() {
 
-    let choix = prompt("Choisis critère : note / prix / age");
+    let choix = prompt("Choisis critère : note / valeur / age");
 
-    if (["note", "prix", "age"].includes(choix)) {
+    if (["note", "valeur", "age"].includes(choix)) {
         critereActuel = choix;
     }
 }
 
 function choixCritereBot() {
 
-    let options = ["note", "prix", "age"];
+    let options = ["note", "valeufr", "age"];
 
     // stratégie simple : prend la meilleure stat de sa prochaine carte
     let best = "note";
