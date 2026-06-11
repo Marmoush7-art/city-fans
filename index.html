@@ -97,6 +97,132 @@
         .spot-img-holder.has-player img { display: block; }
         .spot-img-holder.has-player .spot-label { display: none; }
 
+/* ===========================
+   DEFIS NATURE UNIQUEMENT
+   =========================== */
+
+#defi-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 25px;
+}
+
+
+/* zone des deux cartes */
+#defi-view .defi-zone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    width: 100%;
+}
+
+
+/* cartes joueurs */
+#defi-view .defi-card {
+    width: 260px;
+    min-height: 380px;
+    background: linear-gradient(145deg,#1b1b1b,#303030);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,.4);
+    transition: .2s;
+}
+
+
+#defi-view .defi-card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* images */
+#defi-view .defi-card img {
+    width: 150px;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+
+/* nom */
+#defi-view .defi-card h3 {
+    font-size: 22px;
+    margin: 10px 0;
+}
+
+
+/* stats */
+#defi-view .defi-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+
+#defi-view .defi-stats p {
+    margin: 0;
+    background: rgba(255,255,255,.08);
+    padding: 8px;
+    border-radius: 10px;
+}
+
+
+/* VS */
+#defi-view .defi-vs {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+/* boutons critères */
+#defi-view button {
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 25px;
+    font-size: 16px;
+    transition: .2s;
+}
+
+
+#defi-view button:hover {
+    transform: scale(1.05);
+}
+
+
+/* message */
+#defi-view #defi-message {
+    min-height: 35px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* responsive téléphone */
+@media(max-width:700px){
+
+    #defi-view .defi-zone {
+        flex-direction: column;
+        gap:15px;
+    }
+
+
+    #defi-view .defi-card {
+        width:90%;
+    }
+
+
+    #defi-view .defi-vs {
+        font-size:30px;
+    }
+
+}
+
         .player-stats-box { background: white; margin-top: 25px; padding: 20px; border-radius: 15px; color: var(--city-black); }
         .player-stats-box h3 { text-align: center; margin-bottom: 20px; color: var(--city-sky-blue); }
         .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
