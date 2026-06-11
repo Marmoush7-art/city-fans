@@ -2428,9 +2428,16 @@ function demarrerJeu2() {
 
     const cartes = melanger(Object.values(effectif));
 
-    deckJoueur = cartes.slice(0, Math.floor(cartes.length / 2));
-    deckBot = cartes.slice(Math.floor(cartes.length / 2));
+    deckJoueur = [];
+    deckBot = [];
 
+    cartes.forEach((carte, index) => {
+        if(index % 2 === 0){
+            deckJoueur.push(carte);
+        } else {
+            deckBot.push(carte);
+        }
+    });
     prochaineManche();
 }
 
@@ -2460,21 +2467,34 @@ function jouerManche() {
     if (valJ > valB) gagnant = "joueur";
     else if (valB > valJ) gagnant = "bot";
 
-    let pot = [carteJoueur, carteBot];
 
-    if (gagnant === "joueur") {
-        deckJoueur.push(...pot);
+    if(gagnant === "joueur"){
+
+        deckJoueur.push(carteJoueur);
+        deckJoueur.push(carteBot);
+
         choixCritereJoueur();
+
     }
 
-    else if (gagnant === "bot") {
-        deckBot.push(...pot);
+    else if(gagnant === "bot"){
+
+        deckBot.push(carteJoueur);
+        deckBot.push(carteBot);
+
         choixCritereBot();
+
     }
+
+
+    if(deckJoueur.length === 0 || deckBot.length === 0){
+        finJeu2();
+        return;
+    }
+
 
     afficherManche(gagnant);
 }
-
 function choixCritereJoueur() {
 
     let choix = prompt("Choisis critère : note / prix / age");
