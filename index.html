@@ -2511,22 +2511,21 @@ function afficherManche(gagnant) {
 
 <div class="joueur-carte">
 
-<img src="static/images/${joueur.img}">
+<img src="static/images/${carteJoueur.img}">
 
 <h3>👤 TOI</h3>
 
-<h2>${joueur.nom}</h2>
+<h2>${carteJoueur.nom}</h2>
 
-<p>⭐ ${joueur.note}</p>
-<p>💰 ${joueur.prix} M€</p>
-<p>🎂 ${joueur.age || "?"} ans</p>
+<p>⭐ ${carteJoueur.noteea}</p>
+<p>💰 ${carteJoueur.valeur}</p>
+<p>🎂 ${carteJoueur.age}</p>
 
 <div class="cartes-restantes">
-🃏 ${cartesJoueur.length} cartes restantes
+🃏 ${deckJoueur.length} cartes restantes
 </div>
 
 </div>
-
 
 
 <div class="critere-zone">
@@ -2535,37 +2534,47 @@ function afficherManche(gagnant) {
 
 <br><br>
 
-🔥 Critère :
+Critère :
 <br>
 
-${critere}
+${critereActuel}
 
 </div>
-
 
 
 <div class="joueur-carte">
 
-<img src="static/images/${bot.img}">
+<img src="static/images/${carteBot.img}">
 
 <h3>🤖 BOT</h3>
 
-<h2>${bot.nom}</h2>
+<h2>${carteBot.nom}</h2>
 
-<p>⭐ ${bot.note}</p>
-<p>💰 ${bot.prix} M€</p>
-<p>🎂 ${bot.age || "?"} ans</p>
+<p>⭐ ${carteBot.noteea}</p>
+<p>💰 ${carteBot.valeur}</p>
+<p>🎂 ${carteBot.age}</p>
 
 <div class="cartes-restantes">
-🃏 ${cartesBot.length} cartes restantes
+🃏 ${deckBot.length} cartes restantes
 </div>
 
 </div>
 
-
 </div>
+
+
+<h3>
+${
+gagnant === "joueur"
+? "🏆 Tu gagnes la manche"
+: gagnant === "bot"
+? "🤖 Bot gagne"
+: "🤝 Égalité"
+}
+</h3>
 
 `;
+
 }
     
 function comparer(noteJ, noteB){
