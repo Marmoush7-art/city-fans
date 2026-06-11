@@ -2554,96 +2554,49 @@ function melanger(array) {
 }
         
 // =====================
-// DEFIE NATURE
+// DEFIE NATURE FIX
 // =====================
 
-
-let defiJoueur=[];
-
-let defiBot=[];
-
-let carteDefiJoueur;
-
-let carteDefiBot;
-
-let defiCritere;
-
+let defiJoueur = [];
+let defiBot = [];
+let carteDefiJoueur = null;
+let carteDefiBot = null;
+let defiCritere = "noteea";
 
 
 function melangerDefi(tab){
-
-return [...tab].sort(
-()=>Math.random()-0.5
-);
-
+    return [...tab].sort(() => Math.random() - 0.5);
 }
-
 
 
 function lancerDefi(){
 
+    defiJoueur = melangerDefi(Object.values(effectif)).slice(0,10);
+    defiBot = melangerDefi(Object.values(effectif)).slice(0,10);
 
-defiJoueur =
-melangerDefi(
-Object.values(effectif)
-)
-.slice(0,15);
+    carteDefiJoueur = defiJoueur[0];
+    carteDefiBot = defiBot[0];
 
+    choisirCritereDefi();
 
+    afficherDefi();
 
-defiBot =
-melangerDefi(
-Object.values(effectif)
-)
-.slice(0,15);
-
-
-
-carteDefiJoueur =
-defiJoueur[0];
-
-
-carteDefiBot =
-defiBot[0];
-
-
-
-// critère départ hasard
-
-let choix =
-["valeur","noteea","age"];
-
-
-defiCritere =
-choix[
-Math.floor(Math.random()*3)
-];
-
-
-
-afficherDefi();
-
-
-document.getElementById(
-"defi-message"
-).innerHTML =
-"Premier critère : "+defiCritere;
-
-
+    document.getElementById("defi-message").innerHTML =
+    "Début du duel ! Critère : " + defiCritere;
 }
 
-function ouvrirJeu2(){
-
-    // cache toutes les sections comme ton système actuel
-    document.querySelectorAll("section").forEach(s=>{
-        s.style.display="none";
-    });
 
 
-    document.getElementById("jeu2").style.display="block";
+function choisirCritereDefi(){
 
+    const choix = [
+        "valeur",
+        "noteea",
+        "age"
+    ];
 
-    lancerDefi();
+    defiCritere =
+    choix[Math.floor(Math.random()*choix.length)];
 
 }
 
@@ -2651,212 +2604,127 @@ function ouvrirJeu2(){
 
 function afficherDefi(){
 
+    if(!carteDefiJoueur || !carteDefiBot){
+        return;
+    }
 
 
-document.getElementById(
-"defi-img-joueur"
-).src =
-"static/images/"+carteDefiJoueur.img;
+    document.getElementById("defi-img-joueur").src =
+    "static/images/"+carteDefiJoueur.img;
 
 
-
-document.getElementById(
-"defi-nom-joueur"
-).innerText =
-carteDefiJoueur.nom;
+    document.getElementById("defi-nom-joueur").innerText =
+    carteDefiJoueur.nom;
 
 
-
-document.getElementById(
-"defi-valeur-joueur"
-).innerText =
-carteDefiJoueur.valeur;
+    document.getElementById("defi-valeur-joueur").innerText =
+    carteDefiJoueur.valeur || "0";
 
 
+    document.getElementById("defi-note-joueur").innerText =
+    carteDefiJoueur.noteea || "0";
 
-document.getElementById(
-"defi-note-joueur"
-).innerText =
-carteDefiJoueur.noteea;
+
+    document.getElementById("defi-age-joueur").innerText =
+    carteDefiJoueur.age;
 
 
 
-document.getElementById(
-"defi-age-joueur"
-).innerText =
-carteDefiJoueur.age;
+    document.getElementById("defi-img-bot").src =
+    "static/images/"+carteDefiBot.img;
 
 
-
-
-
-document.getElementById(
-"defi-img-bot"
-).src =
-"static/images/"+carteDefiBot.img;
-
-
-
-document.getElementById(
-"defi-nom-bot"
-).innerText =
-"???";
-
+    document.getElementById("defi-nom-bot").innerText =
+    "???";
 }
-
-
 
 
 
 function jouerDefi(critere){
 
+    if(!carteDefiJoueur || !carteDefiBot){
+        return;
+    }
 
-let gagnant;
 
+    let joueurValeur;
+    let botValeur;
 
 
-if(critere==="age"){
+    if(critere==="age"){
 
+        // plus jeune gagne
+        joueurValeur = -Number(carteDefiJoueur.age);
+        botValeur = -Number(carteDefiBot.age);
 
-if(
-carteDefiJoueur.age <
-carteDefiBot.age
-)
+    }
+    else{
 
-gagnant="joueur";
+        joueurValeur =
+        Number(carteDefiJoueur[critere]) || 0;
 
+        botValeur =
+        Number(carteDefiBot[critere]) || 0;
+    }
 
-else
 
-gagnant="bot";
 
+    document.getElementById("defi-nom-bot").innerText =
+    carteDefiBot.nom;
 
 
-}
 
-else{
+    if(joueurValeur >= botValeur){
 
 
-if(
-carteDefiJoueur[critere] >
-carteDefiBot[critere]
-)
+        defiJoueur.push(carteDefiBot);
 
-gagnant="joueur";
+        defiJoueur.shift();
 
 
-else
+        document.getElementById("defi-message").innerHTML =
+        "🏆 Tu gagnes "+carteDefiBot.nom;
 
-gagnant="bot";
 
-}
+    }else{
 
 
+        defiBot.push(carteDefiJoueur);
 
-document.getElementById(
-"defi-nom-bot"
-).innerText =
-carteDefiBot.nom;
+        defiJoueur.shift();
 
 
+        document.getElementById("defi-message").innerHTML =
+        "🤖 Le bot gagne "+carteDefiJoueur.nom;
 
-if(gagnant==="joueur"){
+    }
 
 
 
-defiJoueur.push(carteDefiBot);
+    if(
+        defiJoueur.length === 0 ||
+        defiBot.length === 0
+    ){
 
-defiBot.shift();
+        document.getElementById("defi-message").innerHTML =
+        "🏁 Fin du Défi Nature";
 
+        return;
+    }
 
 
-document.getElementById(
-"defi-message"
-).innerHTML =
-"🏆 Tu gagnes ! Tu récupères "+carteDefiBot.nom;
 
+    carteDefiJoueur = defiJoueur[0];
+    carteDefiBot = defiBot[0];
 
 
-}
+    choisirCritereDefi();
 
-else{
 
-
-defiBot.push(carteDefiJoueur);
-
-defiJoueur.shift();
-
-
-
-document.getElementById(
-"defi-message"
-).innerHTML =
-"🤖 Le bot gagne et récupère "+carteDefiJoueur.nom;
-
-
-}
-
-
-
-
-if(
-defiJoueur.length===0 ||
-defiBot.length===0
-){
-
-alert(
-"Fin du Défi Nature !"
-);
-
-return;
-
-}
-
-
-
-carteDefiJoueur =
-defiJoueur[0];
-
-
-carteDefiBot =
-defiBot[0];
-
-
-
-// nouveau critère choisi par gagnant
-
-if(gagnant==="joueur"){
-
-defiCritere =
-prompt(
-"Choisis le prochain critère : valeur / noteea / age"
-);
-
-
-}
-
-else{
-
-
-let choixBot =
-["valeur","noteea","age"];
-
-
-defiCritere =
-choixBot[
-Math.floor(Math.random()*3)
-];
-
-
-}
-
-
-
-setTimeout(
-afficherDefi,
-1000
-);
-
+    setTimeout(
+        afficherDefi,
+        800
+    );
 
 }
 
