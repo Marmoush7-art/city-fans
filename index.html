@@ -126,7 +126,40 @@
         grid-template-columns:1fr;
     }
 }
+.duel-container{
+display:grid;
+grid-template-columns:1fr 200px 1fr;
+gap:30px;
+align-items:center;
+}
 
+.joueur-carte{
+background:white;
+border-radius:20px;
+padding:20px;
+box-shadow:0 5px 15px #0003;
+}
+
+.joueur-carte img{
+width:180px;
+height:220px;
+object-fit:cover;
+border-radius:15px;
+}
+
+.critere-zone{
+font-size:25px;
+font-weight:bold;
+}
+
+.cartes-restantes{
+margin-top:15px;
+background:#6CABDD;
+padding:10px;
+border-radius:12px;
+font-weight:bold;
+}
+        
         .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--city-sky-blue); }
         .match-header { font-size: 0.8rem; color: #888; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; }
         .match-main { display: flex; justify-content: space-between; align-items: center; }
@@ -2472,44 +2505,67 @@ function choixCritereBot() {
 function afficherManche(gagnant) {
 
     document.getElementById("defi-zone").innerHTML = `
-        <div style="display:flex; gap:40px;">
 
-            <div>
-                <h3>Toi</h3>
-                <p>${carteJoueur.nom}</p>
-                <p>⭐ ${carteJoueur.noteea}</p>
-                <p>💰 ${carteJoueur.valeur}</p>
-                <p>🎂 ${carteJoueur.age}</p>
-                <p>💵 ${carteJoueur.paye}</p>
-            </div>
+<div class="duel-container">
 
-            <h2>VS</h2>
 
-            <div>
-                <h3>Bot</h3>
-                <p>${carteBot.nom}</p>
-                <p>⭐ ${carteBot.noteea}</p>
-                <p>💰 ${carteBot.valeur}</p>
-                <p>🎂 ${carteBot.age}</p>
-                <p>💵 ${carteBot.paye}</p>
-            </div>
+<div class="joueur-carte">
 
-        </div>
+<img src="static/images/${joueur.img}">
 
-        <h2>Critère : ${critereActuel}</h2>
+<h3>👤 TOI</h3>
 
-        <h3>
-            ${
-                gagnant === "joueur"
-                ? "🏆 Tu gagnes la manche"
-                : gagnant === "bot"
-                ? "🤖 Bot gagne"
-                : "🤝 Égalité"
-            }
-        </h3>
-    `;
-}
+<h2>${joueur.nom}</h2>
 
+<p>⭐ ${joueur.note}</p>
+<p>💰 ${joueur.prix} M€</p>
+<p>🎂 ${joueur.age || "?"} ans</p>
+
+<div class="cartes-restantes">
+🃏 ${cartesJoueur.length} cartes restantes
+</div>
+
+</div>
+
+
+
+<div class="critere-zone">
+
+⚔️ VS
+
+<br><br>
+
+🔥 Critère :
+<br>
+
+${critere}
+
+</div>
+
+
+
+<div class="joueur-carte">
+
+<img src="static/images/${bot.img}">
+
+<h3>🤖 BOT</h3>
+
+<h2>${bot.nom}</h2>
+
+<p>⭐ ${bot.note}</p>
+<p>💰 ${bot.prix} M€</p>
+<p>🎂 ${bot.age || "?"} ans</p>
+
+<div class="cartes-restantes">
+🃏 ${cartesBot.length} cartes restantes
+</div>
+
+</div>
+
+
+</div>
+
+`;
 function comparer(noteJ, noteB){
 
     noteJ = parseInt(noteJ);
