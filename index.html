@@ -2487,14 +2487,14 @@ function jouerManche() {
     }
 
 
-    if(deckJoueur.length === 0 || deckBot.length === 0){
-        finJeu2();
-        return;
-    }
-
-
     afficherManche(gagnant);
+
+
+    setTimeout(() => {
+        prochaineManche();
+    }, 1000);
 }
+        
 function choixCritereJoueur() {
 
     let choix = prompt("Choisis critère : note / prix / age");
