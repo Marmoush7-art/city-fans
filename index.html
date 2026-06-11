@@ -67,96 +67,13 @@
         .emoji-picker span { font-size: 1.6rem; cursor: pointer; text-align: center; padding: 2px; transition: transform 0.1s; }
         .emoji-picker span:hover { transform: scale(1.2); background-color: #f0f0f0; border-radius: 5px; }
 
-        /* JEU 2 NOUVELLE PRESENTATION */
         #jeu2 { padding: 20px; }
+        #defi-zone { margin-top: 20px; display: flex; flex-direction: column; gap: 20px; }
+        .carte-duel { display: flex; justify-content: center; gap: 40px; align-items: center; }
+        .carte { width: 180px; padding: 10px; border-radius: 12px; background: #1e1e1e; color: white; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.4); }
+        .carte img { width: 100%; border-radius: 10px; }
+        .critere { font-size: 18px; font-weight: bold; margin-top: 10px; }
 
-#defi-zone {
-    margin-top: 30px;
-}
-
-.duel-container {
-    display: grid;
-    grid-template-columns: 1fr 180px 1fr;
-    align-items: center;
-    gap: 25px;
-}
-
-.joueur-carte {
-    background: white;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 5px 15px #0002;
-    text-align:center;
-}
-
-.joueur-carte img {
-    width:150px;
-    height:180px;
-    object-fit:cover;
-    border-radius:15px;
-}
-
-.joueur-carte h3 {
-    margin:10px 0;
-}
-
-.stats-carte {
-    text-align:left;
-    margin-top:15px;
-}
-
-.critere-zone {
-    font-size:24px;
-    font-weight:bold;
-}
-
-.cartes-restantes {
-    margin-top:20px;
-    background:#6CABDD;
-    padding:10px;
-    border-radius:15px;
-    font-weight:bold;
-}
-
-@media(max-width:700px){
-    .duel-container{
-        grid-template-columns:1fr;
-    }
-}
-.duel-container{
-display:grid;
-grid-template-columns:1fr 200px 1fr;
-gap:30px;
-align-items:center;
-}
-
-.joueur-carte{
-background:white;
-border-radius:20px;
-padding:20px;
-box-shadow:0 5px 15px #0003;
-}
-
-.joueur-carte img{
-width:180px;
-height:220px;
-object-fit:cover;
-border-radius:15px;
-}
-
-.critere-zone{
-font-size:25px;
-font-weight:bold;
-}
-
-.cartes-restantes{
-margin-top:15px;
-background:#6CABDD;
-padding:10px;
-border-radius:12px;
-font-weight:bold;
-}
-        
         .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--city-sky-blue); }
         .match-header { font-size: 0.8rem; color: #888; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; }
         .match-main { display: flex; justify-content: space-between; align-items: center; }
@@ -303,7 +220,7 @@ font-weight:bold;
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
             </div>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
-            <li class="menu-item" onclick="toggleSubMenu('sub-jeux')"><span class="menu-item-icon">🎮</span>Jeux </li><div id="sub-jeux" class="sous-menu"><span class="joueur-link" onclick="ouvrirDraft()">🎯 Draft</span><span class="joueur-link" onclick="showSection('jeu2')">🕹️ Jeu de cartes</span>
+            <li class="menu-item" onclick="toggleSubMenu('sub-jeux')"><span class="menu-item-icon">🎮</span>Jeux </li><div id="sub-jeux" class="sous-menu"><span class="joueur-link" onclick="ouvrirDraft()">🎯 Draft</span>
 
 </div>
         </ul>
@@ -320,7 +237,6 @@ font-weight:bold;
             <div id="quiz-feedback" class="quiz-feedback"></div>
             <img id="quiz-img-result" class="quiz-img" src="">
             <button onclick="demarrerQuiz()" style="margin-top:20px;">Suivant ➔</button>
-            <button onclick="lancerDefiNature()">🌿 Défi Nature</button>
         </div>
     </div>
 
@@ -462,14 +378,6 @@ font-weight:bold;
 <div id="draft-resultat"></div>
 
 </div>
-
-<section id="defi-nature" style="display:none">
-
-<h1>🌿 Défi Nature</h1>
-
-<div id="defi-nature-zone"></div>
-
-</section>
 
         <div id="matchs-view" class="content-section">
             <h2>RESULTATS</h2>
@@ -1187,10 +1095,8 @@ if(bonusSpecialJoueur === "vol"){
     ajouterHistorique("🎁 Bonus spécial : vol de joueur");
 }
 
-const btnBonus = document.getElementById("btn-bonus-special");
-
-if(btnBonus && bonusSpecialJoueur){
-    btnBonus.style.display = "inline-block";
+if(bonusSpecialJoueur){
+    ajouterHistorique("🎁 Bonus spécial joueur débloqué !");
 }
 
 if(bonusSpecialBot){
@@ -1663,9 +1569,6 @@ const vole =
     )[0];
 
     if(utilisateur === "joueur"){
-        if(cibleEquipe.length >= 3){
-            return;
-        }
         draftEquipeJoueur.push(vole);
         ajouterHistorique(`🪄 Tu voles ${vole.nom} au bot !`);
     } else {
@@ -2382,508 +2285,19 @@ function genererBonusSpecial(){
         let carteJoueur = null;
         let carteBot = null;
         let critereActuel = null;
-        let jeu2EnCours = false;
-        let jeu2Termine = false;
-
-
-// LANCEMENT DU DEFI NATURE
-function lancerDefiNature(){
-
-    const cartes = melanger(
-        Object.values(effectif)
-    );
-
-    deckJoueur = [];
-    deckBot = [];
-
-    cartes.forEach((carte,i)=>{
-
-        if(i % 2 === 0){
-            deckJoueur.push(carte);
-        }else{
-            deckBot.push(carte);
-        }
-
-    });
-
-    afficherDefiNature();
-
-    nouvelleMancheNature();
-}
-
-
-
-let dernierGagnant = "joueur";
-
-function choisirCritereNature(critere){
-
-    critereActuel = critere;
-
-    let valeurJ = Number(carteJoueur[critere]);
-    let valeurB = Number(carteBot[critere]);
-
-    let gagnant;
-
-
-    // age = plus petit gagne
-    if(critere === "age"){
-
-        if(valeurJ < valeurB){
-            gagnant="joueur";
-        }
-        else if(valeurB < valeurJ){
-            gagnant="bot";
-        }
-        else{
-            gagnant="egalite";
-        }
-
-    } else {
-
-        if(valeurJ > valeurB){
-            gagnant="joueur";
-        }
-        else if(valeurB > valeurJ){
-            gagnant="bot";
-        }
-        else{
-            gagnant="egalite";
-        }
-    }
-
-
-    if(gagnant === "joueur"){
-
-        deckJoueur.push(carteJoueur);
-        deckJoueur.push(carteBot);
-
-        dernierGagnant="joueur";
-    }
-
-
-    if(gagnant === "bot"){
-
-        deckBot.push(carteJoueur);
-        deckBot.push(carteBot);
-
-        dernierGagnant="bot";
-    }
-
-
-    afficherCartesNature();
-
-    document.getElementById(
-        "resultat-nature"
-    ).innerHTML =
-    gagnant==="joueur"
-    ? "🏆 Tu gagnes !"
-    : gagnant==="bot"
-    ? "🤖 Bot gagne"
-    : "🤝 Egalité";
-
-
-    setTimeout(
-        nouvelleMancheNature,
-        1500
-    );
-}
-
-
-
-function nouvelleMancheNature(){
-
-    if(
-        deckJoueur.length===0 ||
-        deckBot.length===0
-    ){
-        finDefiNature();
-        return;
-    }
-
-
-    carteJoueur =
-        deckJoueur.shift();
-
-    carteBot =
-        deckBot.shift();
-
-
-    afficherCartesNature();
-
-
-    // Si le bot a gagné avant → il choisit
-    if(dernierGagnant==="bot"){
-
-        setTimeout(
-            choixCritereBotNature,
-            1000
-        );
-
-    }
-
-}
-
-function choixCritereBotNature(){
-
-    let choix = "noteea";
-
-
-    if(
-        carteBot.valeur > carteBot.noteea &&
-        carteBot.valeur > carteBot.age
-    ){
-        choix="valeur";
-    }
-
-
-    if(
-        carteBot.age < carteBot.noteea &&
-        carteBot.age < carteBot.valeur
-    ){
-        choix="age";
-    }
-
-
-    choisirCritereNature(choix);
-
-}
-
-
-
-function afficherCartesNature(){
-
-document.getElementById(
-"defi-nature-zone"
-).innerHTML = `
-
-
-<div class="duel-container">
-
-
-<div class="joueur-carte">
-
-<h3>👤 TOI</h3>
-
-<img src="static/images/${carteJoueur.img}">
-
-<h2>${carteJoueur.nom}</h2>
-
-<div id="choix-joueur">
-<div>
-<h3>Choisis ton critère :</h3>
-
-<button onclick="choisirCritereNature('noteea')">
-⭐ Meilleure note
-</button>
-
-<button onclick="choisirCritereNature('valeur')">
-💰 Plus grosse valeur
-</button>
-
-<button onclick="choisirCritereNature('age')">
-🎂 Plus jeune
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-
-<div>
-
-<h1>VS</h1>
-
-<p>
-Cartes :
-${deckJoueur.length}
--
-${deckBot.length}
-</p>
-
-
-<h2 id="resultat-nature"></h2>
-
-
-</div>
-
-
-
-
-
-<div class="joueur-carte">
-
-
-<h3>🤖 BOT</h3>
-
-
-<img src="static/images/${carteBot.img}">
-
-
-<h2>${carteBot.nom}</h2>
-
-
-</div>
-
-
-</div>
-
-`;
-
-}
-
-
-
-
-function afficherDefiNature(){
-
-showSection(
-"defi-nature"
-);
-
-}
-
-
-
-
-function finDefiNature(){
-
-document.getElementById(
-"defi-nature-zone"
-).innerHTML =
-`
-<h2>Fin du Défi Nature</h2>
-
-<h3>
-${
-deckJoueur.length >
-deckBot.length
-?
-"🏆 Tu remportes le jeu"
-:
-"🤖 Le bot gagne"
-}
-</h3>
-
-`;
-
-}
 
 function melanger(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
-function demarrerJeu2() {
-
-    const cartes = melanger(Object.values(effectif));
-
-    deckJoueur = [];
-    deckBot = [];
-
-    cartes.forEach((carte, index) => {
-        if(index % 2 === 0){
-            deckJoueur.push(carte);
-        } else {
-            deckBot.push(carte);
-        }
-    });
-    prochaineManche();
+function verifierReponseQuiz() {
+    const rep = document.getElementById('quiz-answer').value.trim().toLowerCase();
+    const f = document.getElementById('quiz-feedback');
+    if (rep === joueurMystere.nom.toLowerCase()) { f.innerText = "VRAI ! ✅"; f.style.color = "green"; }
+    else { f.innerText = "FAUX ❌ (C'était " + joueurMystere.nom + ")"; f.style.color = "red"; }
+    const img = document.getElementById('quiz-img-result');
+    img.src = "static/images/" + joueurMystere.img; img.style.display = "block";
 }
-
-function prochaineManche() {
-
-    if (deckJoueur.length === 0 || deckBot.length === 0) {
-        finJeu2();
-        return;
-    }
-
-    carteJoueur = deckJoueur.shift();
-    carteBot = deckBot.shift();
-
-    const criteres = ["note", "valeur", "age"];
-    critereActuel = criteres[Math.floor(Math.random() * criteres.length)];
-
-    jouerManche();
-}
-
-function jouerManche() {
-
-    let valJ = carteJoueur[critereActuel];
-    let valB = carteBot[critereActuel];
-
-    let gagnant = null;
-
-    if (valJ > valB) gagnant = "joueur";
-    else if (valB > valJ) gagnant = "bot";
-
-
-    if(gagnant === "joueur"){
-
-        deckJoueur.push(carteJoueur);
-        deckJoueur.push(carteBot);
-
-        choixCritereJoueur();
-
-    }
-
-    else if(gagnant === "bot"){
-
-        deckBot.push(carteJoueur);
-        deckBot.push(carteBot);
-
-        choixCritereBot();
-
-    }
-
-
-    afficherManche(gagnant);
-
-
-    setTimeout(() => {
-        prochaineManche();
-    }, 1000);
-}
-        
-function choixCritereJoueur() {
-
-    let choix = prompt("Choisis critère : note / valeur / age");
-
-    if (["note", "valeur", "age"].includes(choix)) {
-        critereActuel = choix;
-    }
-}
-
-function choixCritereBot() {
-
-    let options = ["note", "valeur", "age"];
-
-    // stratégie simple : prend la meilleure stat de sa prochaine carte
-    let best = "note";
-    let bestValue = 0;
-
-    options.forEach(c => {
-        if (carteBot[c] > bestValue) {
-            bestValue = carteBot[c];
-            best = c;
-        }
-    });
-
-    critereActuel = best;
-}
-
-function afficherManche(gagnant) {
-
-    document.getElementById("defi-zone").innerHTML = `
-
-<div class="duel-container">
-
-
-<div class="joueur-carte">
-
-<img src="static/images/${carteJoueur.img}">
-
-<h3>👤 TOI</h3>
-
-<h2>${carteJoueur.nom}</h2>
-
-<p>⭐ ${carteJoueur.noteea}</p>
-<p>💰 ${carteJoueur.valeur}</p>
-<p>🎂 ${carteJoueur.age}</p>
-
-<div class="cartes-restantes">
-🃏 ${deckJoueur.length} cartes restantes
-</div>
-
-</div>
-
-
-<div class="critere-zone">
-
-⚔️ VS
-
-<br><br>
-
-Critère :
-<br>
-
-${critereActuel}
-
-</div>
-
-
-<div class="joueur-carte">
-
-<img src="static/images/${carteBot.img}">
-
-<h3>🤖 BOT</h3>
-
-<h2>${carteBot.nom}</h2>
-
-<p>⭐ ${carteBot.noteea}</p>
-<p>💰 ${carteBot.valeur}</p>
-<p>🎂 ${carteBot.age}</p>
-
-<div class="cartes-restantes">
-🃏 ${deckBot.length} cartes restantes
-</div>
-
-</div>
-
-</div>
-
-
-<h3>
-${
-gagnant === "joueur"
-? "🏆 Tu gagnes la manche"
-: gagnant === "bot"
-? "🤖 Bot gagne"
-: "🤝 Égalité"
-}
-</h3>
-
-`;
-
-}
-    
-function comparer(noteJ, noteB){
-
-    noteJ = parseInt(noteJ);
-    noteB = parseInt(noteB);
-
-    if(noteJ > noteB){
-        return "joueur";
-    }
-    if(noteB > noteJ){
-        return "bot";
-    }
-    return "egalite";
-}
-
-function finJeu2() {
-
-    let result =
-        deckJoueur.length > deckBot.length
-        ? "🏆 Tu gagnes"
-        : "🤖 Bot gagne";
-
-    document.getElementById("defi-zone").innerHTML =
-        `<h2>Fin du jeu</h2><h3>${result}</h3>`;
-}
-
-
-
-        function verifierReponseQuiz() {
-            const rep = document.getElementById('quiz-answer').value.trim().toLowerCase();
-            const f = document.getElementById('quiz-feedback');
-            if (rep === joueurMystere.nom.toLowerCase()) { f.innerText = "VRAI ! ✅"; f.style.color = "green"; }
-            else { f.innerText = "FAUX ❌ (C'était " + joueurMystere.nom + ")"; f.style.color = "red"; }
-            const img = document.getElementById('quiz-img-result');
-            img.src = "static/images/" + joueurMystere.img; img.style.display = "block";
-        }
         
         function afficherClassement() {
             // On change les textes principaux
