@@ -67,12 +67,65 @@
         .emoji-picker span { font-size: 1.6rem; cursor: pointer; text-align: center; padding: 2px; transition: transform 0.1s; }
         .emoji-picker span:hover { transform: scale(1.2); background-color: #f0f0f0; border-radius: 5px; }
 
-        #jeu2 { padding: 20px; }
-        #defi-zone { margin-top: 20px; display: flex; flex-direction: column; gap: 20px; }
-        .carte-duel { display: flex; justify-content: center; gap: 40px; align-items: center; }
-        .carte { width: 180px; padding: 10px; border-radius: 12px; background: #1e1e1e; color: white; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.4); }
-        .carte img { width: 100%; border-radius: 10px; }
-        .critere { font-size: 18px; font-weight: bold; margin-top: 10px; }
+        /* JEU 2 NOUVELLE PRESENTATION */
+
+#jeu2 {
+    padding: 20px;
+}
+
+#defi-zone {
+    margin-top: 30px;
+}
+
+.duel-container {
+    display: grid;
+    grid-template-columns: 1fr 180px 1fr;
+    align-items: center;
+    gap: 25px;
+}
+
+.joueur-carte {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 5px 15px #0002;
+    text-align:center;
+}
+
+.joueur-carte img {
+    width:150px;
+    height:180px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.joueur-carte h3 {
+    margin:10px 0;
+}
+
+.stats-carte {
+    text-align:left;
+    margin-top:15px;
+}
+
+.critere-zone {
+    font-size:24px;
+    font-weight:bold;
+}
+
+.cartes-restantes {
+    margin-top:20px;
+    background:#6CABDD;
+    padding:10px;
+    border-radius:15px;
+    font-weight:bold;
+}
+
+@media(max-width:700px){
+    .duel-container{
+        grid-template-columns:1fr;
+    }
+}
 
         .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--city-sky-blue); }
         .match-header { font-size: 0.8rem; color: #888; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; }
@@ -450,15 +503,15 @@
             </div>
         </div>
 
-        <div id="jeu2" class="section" style="display:none;">
+        <div id="jeu2" class="section">
+    
+        <h2>🕹️ Défis Cartes</h2>
 
-            <h2>🕹️ Défis Cartes</h2>
+        <button id="btn-start-jeu2" onclick="demarrerJeu2()">🎮 Lancer la partie</button>
 
-            <button onclick="demarrerJeu2()">🎮 Lancer la partie</button>
+        <div id="defi-zone"></div>
 
-            <div id="defi-zone"></div>
-
-        </div>
+    </div>
   
         <div id="ma-compo-view" class="content-section">
             <h2>Ma Compo 📋</h2>
@@ -2295,6 +2348,44 @@ function genererBonusSpecial(){
         let carteJoueur = null;
         let carteBot = null;
         let critereActuel = null;
+        let jeu2EnCours = false;
+        let jeu2Termine = false;
+
+
+function demarrerJeu2(){
+
+    if(jeu2EnCours){
+    alert("Partie déjà en cours !");
+    return;
+}
+
+jeu2EnCours = true;
+
+document.getElementById("btn-start-jeu2").style.display="none";
+
+    if(jeu2EnCours){
+        alert("⚠️ La partie est déjà en cours !");
+        return;
+    }
+
+    jeu2EnCours = true;
+    jeu2Termine = false;
+
+    document.getElementById("btn-start-jeu2").style.display="none";
+
+    lancerManche();
+}
+
+
+
+function finJeu2(){
+
+    jeu2EnCours=false;
+    jeu2Termine=true;
+
+    document.getElementById("btn-start-jeu2").style.display="inline-block";
+
+}
 
 function melanger(array) {
     return array.sort(() => Math.random() - 0.5);
