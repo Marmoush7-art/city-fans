@@ -477,27 +477,31 @@
 </div>
 
 
-        <section id="jeu2" style="display:none">
+        <section id="defi-view">
 
-            <h1>🌿 Défi Nature Foot</h1>
-
-            <div class="defi-zone">
-
-            <div class="carte-defi joueur">
-
-            <h2>👤 Ton joueur</h2>
-
+        <div>
             <img id="defi-img-joueur">
-
             <h3 id="defi-nom-joueur"></h3>
-
-            <p>💰 Valeur : <span id="defi-valeur-joueur"></span>M</p>
-
-            <p>⭐ Note EA : <span id="defi-note-joueur"></span></p>
-
-            <p>🎂 Age : <span id="defi-age-joueur"></span></p>
-
+            <p id="defi-valeur-joueur"></p>
+            <p id="defi-note-joueur"></p>
+            <p id="defi-age-joueur"></p>
         </div>
+
+        <div>VS</div>
+
+        <div>
+            <img id="defi-img-bot">
+            <h3 id="defi-nom-bot"></h3>
+        </div>
+
+        <div id="defi-message"></div>
+
+        <button onclick="jouerDefi('valeur')">Valeur</button>
+        <button onclick="jouerDefi('noteea')">Note EA</button>
+        <button onclick="jouerDefi('age')">Âge</button>
+
+    </section>
+
 
         
 
