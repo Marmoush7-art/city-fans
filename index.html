@@ -2413,11 +2413,88 @@ function lancerDefiNature(){
 
 
 
+let dernierGagnant = "joueur";
+
+function choisirCritereNature(critere){
+
+    critereActuel = critere;
+
+    let valeurJ = Number(carteJoueur[critere]);
+    let valeurB = Number(carteBot[critere]);
+
+    let gagnant;
+
+
+    // age = plus petit gagne
+    if(critere === "age"){
+
+        if(valeurJ < valeurB){
+            gagnant="joueur";
+        }
+        else if(valeurB < valeurJ){
+            gagnant="bot";
+        }
+        else{
+            gagnant="egalite";
+        }
+
+    } else {
+
+        if(valeurJ > valeurB){
+            gagnant="joueur";
+        }
+        else if(valeurB > valeurJ){
+            gagnant="bot";
+        }
+        else{
+            gagnant="egalite";
+        }
+    }
+
+
+    if(gagnant === "joueur"){
+
+        deckJoueur.push(carteJoueur);
+        deckJoueur.push(carteBot);
+
+        dernierGagnant="joueur";
+    }
+
+
+    if(gagnant === "bot"){
+
+        deckBot.push(carteJoueur);
+        deckBot.push(carteBot);
+
+        dernierGagnant="bot";
+    }
+
+
+    afficherCartesNature();
+
+    document.getElementById(
+        "resultat-nature"
+    ).innerHTML =
+    gagnant==="joueur"
+    ? "🏆 Tu gagnes !"
+    : gagnant==="bot"
+    ? "🤖 Bot gagne"
+    : "🤝 Egalité";
+
+
+    setTimeout(
+        nouvelleMancheNature,
+        1500
+    );
+}
+
+
+
 function nouvelleMancheNature(){
 
     if(
-        deckJoueur.length === 0 ||
-        deckBot.length === 0
+        deckJoueur.length===0 ||
+        deckBot.length===0
     ){
         finDefiNature();
         return;
@@ -2427,93 +2504,49 @@ function nouvelleMancheNature(){
     carteJoueur =
         deckJoueur.shift();
 
-
     carteBot =
         deckBot.shift();
 
 
     afficherCartesNature();
 
-}
 
+    // Si le bot a gagné avant → il choisit
+    if(dernierGagnant==="bot"){
 
-
-
-function choisirCritereNature(critere){
-
-    critereActuel = critere;
-
-
-    let valeurJ =
-        Number(
-            carteJoueur[critere]
+        setTimeout(
+            choixCritereBotNature,
+            1000
         );
 
-    let valeurB =
-        Number(
-            carteBot[critere]
-        );
-
-
-    let gagnant;
-
-
-    if(valeurJ > valeurB){
-
-        gagnant="joueur";
-
-    }else if(valeurB > valeurJ){
-
-        gagnant="bot";
-
-    }else{
-
-        gagnant="egalite";
-
     }
-
-
-
-    if(gagnant==="joueur"){
-
-        deckJoueur.push(carteJoueur);
-        deckJoueur.push(carteBot);
-
-    }
-
-
-    if(gagnant==="bot"){
-
-        deckBot.push(carteJoueur);
-        deckBot.push(carteBot);
-
-    }
-
-
-
-    document.getElementById(
-        "resultat-nature"
-    ).innerHTML =
-
-    gagnant==="joueur"
-    ?
-    "🏆 Tu gagnes la manche"
-    :
-    gagnant==="bot"
-    ?
-    "🤖 Le bot gagne"
-    :
-    "🤝 Egalité";
-
-
-    setTimeout(
-        nouvelleMancheNature,
-        1500
-    );
 
 }
 
+function choixCritereBotNature(){
 
+    let choix = "noteea";
+
+
+    if(
+        carteBot.valeur > carteBot.noteea &&
+        carteBot.valeur > carteBot.age
+    ){
+        choix="valeur";
+    }
+
+
+    if(
+        carteBot.age < carteBot.noteea &&
+        carteBot.age < carteBot.valeur
+    ){
+        choix="age";
+    }
+
+
+    choisirCritereNature(choix);
+
+}
 
 
 
@@ -2535,21 +2568,25 @@ document.getElementById(
 
 <h2>${carteJoueur.nom}</h2>
 
+<div id="choix-joueur">
+<div>
+<h3>Choisis ton critère :</h3>
 
 <button onclick="choisirCritereNature('noteea')">
-⭐ Note
+⭐ Meilleure note
 </button>
-
 
 <button onclick="choisirCritereNature('valeur')">
-💰 Valeur
+💰 Plus grosse valeur
 </button>
-
 
 <button onclick="choisirCritereNature('age')">
-🎂 Age
+🎂 Plus jeune
 </button>
 
+</div>
+
+</div>
 
 </div>
 
