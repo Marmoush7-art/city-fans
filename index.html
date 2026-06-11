@@ -465,6 +465,14 @@ font-weight:bold;
 
 </div>
 
+<section id="defi-nature" style="display:none">
+
+<h1>🌿 Défi Nature</h1>
+
+<div id="defi-nature-zone"></div>
+
+</section>
+
         <div id="matchs-view" class="content-section">
             <h2>RESULTATS</h2>
 
@@ -1191,8 +1199,10 @@ if(bonusSpecialJoueur === "vol"){
     ajouterHistorique("🎁 Bonus spécial : vol de joueur");
 }
 
-if(bonusSpecialJoueur){
-    ajouterHistorique("🎁 Bonus spécial joueur débloqué !");
+const btnBonus = document.getElementById("btn-bonus-special");
+
+if(btnBonus && bonusSpecialJoueur){
+    btnBonus.style.display = "inline-block";
 }
 
 if(bonusSpecialBot){
@@ -1665,6 +1675,9 @@ const vole =
     )[0];
 
     if(utilisateur === "joueur"){
+        if(cibleEquipe.length >= 3){
+            return;
+        }
         draftEquipeJoueur.push(vole);
         ajouterHistorique(`🪄 Tu voles ${vole.nom} au bot !`);
     } else {
@@ -2385,38 +2398,252 @@ function genererBonusSpecial(){
         let jeu2Termine = false;
 
 
-function demarrerJeu2(){
+// LANCEMENT DU DEFI NATURE
+function lancerDefiNature(){
 
-    if(jeu2EnCours){
-    alert("Partie déjà en cours !");
-    return;
+    const cartes = melanger(
+        Object.values(effectif)
+    );
+
+    deckJoueur = [];
+    deckBot = [];
+
+    cartes.forEach((carte,i)=>{
+
+        if(i % 2 === 0){
+            deckJoueur.push(carte);
+        }else{
+            deckBot.push(carte);
+        }
+
+    });
+
+    afficherDefiNature();
+
+    nouvelleMancheNature();
 }
 
-jeu2EnCours = true;
 
-document.getElementById("btn-start-jeu2").style.display="none";
 
-    if(jeu2EnCours){
-        alert("⚠️ La partie est déjà en cours !");
+function nouvelleMancheNature(){
+
+    if(
+        deckJoueur.length === 0 ||
+        deckBot.length === 0
+    ){
+        finDefiNature();
         return;
     }
 
-    jeu2EnCours = true;
-    jeu2Termine = false;
 
-    document.getElementById("btn-start-jeu2").style.display="none";
+    carteJoueur =
+        deckJoueur.shift();
 
-    lancerManche();
+
+    carteBot =
+        deckBot.shift();
+
+
+    afficherCartesNature();
+
 }
 
 
 
-function finJeu2(){
 
-    jeu2EnCours=false;
-    jeu2Termine=true;
+function choisirCritereNature(critere){
 
-    document.getElementById("btn-start-jeu2").style.display="inline-block";
+    critereActuel = critere;
+
+
+    let valeurJ =
+        Number(
+            carteJoueur[critere]
+        );
+
+    let valeurB =
+        Number(
+            carteBot[critere]
+        );
+
+
+    let gagnant;
+
+
+    if(valeurJ > valeurB){
+
+        gagnant="joueur";
+
+    }else if(valeurB > valeurJ){
+
+        gagnant="bot";
+
+    }else{
+
+        gagnant="egalite";
+
+    }
+
+
+
+    if(gagnant==="joueur"){
+
+        deckJoueur.push(carteJoueur);
+        deckJoueur.push(carteBot);
+
+    }
+
+
+    if(gagnant==="bot"){
+
+        deckBot.push(carteJoueur);
+        deckBot.push(carteBot);
+
+    }
+
+
+
+    document.getElementById(
+        "resultat-nature"
+    ).innerHTML =
+
+    gagnant==="joueur"
+    ?
+    "🏆 Tu gagnes la manche"
+    :
+    gagnant==="bot"
+    ?
+    "🤖 Le bot gagne"
+    :
+    "🤝 Egalité";
+
+
+    setTimeout(
+        nouvelleMancheNature,
+        1500
+    );
+
+}
+
+
+
+
+
+function afficherCartesNature(){
+
+document.getElementById(
+"defi-nature-zone"
+).innerHTML = `
+
+
+<div class="duel-container">
+
+
+<div class="joueur-carte">
+
+<h3>👤 TOI</h3>
+
+<img src="static/images/${carteJoueur.img}">
+
+<h2>${carteJoueur.nom}</h2>
+
+
+<button onclick="choisirCritereNature('noteea')">
+⭐ Note
+</button>
+
+
+<button onclick="choisirCritereNature('valeur')">
+💰 Valeur
+</button>
+
+
+<button onclick="choisirCritereNature('age')">
+🎂 Age
+</button>
+
+
+</div>
+
+
+
+
+<div>
+
+<h1>VS</h1>
+
+<p>
+Cartes :
+${deckJoueur.length}
+-
+${deckBot.length}
+</p>
+
+
+<h2 id="resultat-nature"></h2>
+
+
+</div>
+
+
+
+
+
+<div class="joueur-carte">
+
+
+<h3>🤖 BOT</h3>
+
+
+<img src="static/images/${carteBot.img}">
+
+
+<h2>${carteBot.nom}</h2>
+
+
+</div>
+
+
+</div>
+
+`;
+
+}
+
+
+
+
+function afficherDefiNature(){
+
+showSection(
+"defi-nature"
+);
+
+}
+
+
+
+
+function finDefiNature(){
+
+document.getElementById(
+"defi-nature-zone"
+).innerHTML =
+`
+<h2>Fin du Défi Nature</h2>
+
+<h3>
+${
+deckJoueur.length >
+deckBot.length
+?
+"🏆 Tu remportes le jeu"
+:
+"🤖 Le bot gagne"
+}
+</h3>
+
+`;
 
 }
 
@@ -2506,7 +2733,7 @@ function choixCritereJoueur() {
 
 function choixCritereBot() {
 
-    let options = ["note", "valeufr", "age"];
+    let options = ["note", "valeur", "age"];
 
     // stratégie simple : prend la meilleure stat de sa prochaine carte
     let best = "note";
