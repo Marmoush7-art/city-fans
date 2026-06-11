@@ -97,128 +97,83 @@
         .spot-img-holder.has-player img { display: block; }
         .spot-img-holder.has-player .spot-label { display: none; }
 
-/* ===========================
-   DEFIS NATURE UNIQUEMENT
-   =========================== */
+/* ==========================
+   DEFIS NATURE (compatible TON JS)
+   ========================== */
 
 #defi-view {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
+    text-align: center;
     padding: 25px;
 }
 
 
-/* zone des deux cartes */
-#defi-view .defi-zone {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 35px;
-    width: 100%;
-}
-
-
-/* cartes joueurs */
-#defi-view .defi-card {
-    width: 260px;
-    min-height: 380px;
-    background: linear-gradient(145deg,#1b1b1b,#303030);
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,.4);
-    transition: .2s;
-}
-
-
-#defi-view .defi-card:hover {
-    transform: translateY(-5px);
-}
-
-
-/* images */
-#defi-view .defi-card img {
-    width: 150px;
-    height: 190px;
+#defi-view img {
+    width: 170px;
+    height: 220px;
     object-fit: cover;
-    border-radius: 15px;
-    margin-bottom: 15px;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.35);
 }
 
 
-/* nom */
-#defi-view .defi-card h3 {
+#defi-view #defi-img-joueur,
+#defi-view #defi-img-bot {
+    transition: .25s;
+}
+
+
+#defi-view #defi-img-joueur:hover,
+#defi-view #defi-img-bot:hover {
+    transform: scale(1.05);
+}
+
+
+/* blocs cartes si ton HTML utilise des div autour */
+#defi-view div {
+    border-radius: 18px;
+}
+
+
+/* noms */
+#defi-view #defi-nom-joueur,
+#defi-view #defi-nom-bot {
     font-size: 22px;
-    margin: 10px 0;
+    font-weight: bold;
+    margin: 10px;
 }
 
 
 /* stats */
-#defi-view .defi-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 15px;
-}
-
-
-#defi-view .defi-stats p {
-    margin: 0;
-    background: rgba(255,255,255,.08);
-    padding: 8px;
-    border-radius: 10px;
-}
-
-
-/* VS */
-#defi-view .defi-vs {
-    font-size: 40px;
-    font-weight: bold;
-}
-
-
-/* boutons critères */
-#defi-view button {
-    cursor: pointer;
-    border: none;
-    border-radius: 12px;
-    padding: 12px 25px;
-    font-size: 16px;
-    transition: .2s;
-}
-
-
-#defi-view button:hover {
-    transform: scale(1.05);
+#defi-view #defi-valeur-joueur,
+#defi-view #defi-note-joueur,
+#defi-view #defi-age-joueur {
+    font-size: 18px;
 }
 
 
 /* message */
 #defi-view #defi-message {
-    min-height: 35px;
-    font-size: 20px;
-    font-weight: bold;
+    margin-top:20px;
+    font-size:22px;
+    font-weight:bold;
 }
 
 
-/* responsive téléphone */
+/* boutons du défi seulement */
+#defi-view button {
+    margin:8px;
+    padding:12px 20px;
+    border-radius:12px;
+    border:none;
+    cursor:pointer;
+}
+
+
 @media(max-width:700px){
 
-    #defi-view .defi-zone {
-        flex-direction: column;
-        gap:15px;
-    }
-
-
-    #defi-view .defi-card {
-        width:90%;
-    }
-
-
-    #defi-view .defi-vs {
-        font-size:30px;
+    #defi-view img {
+        width:130px;
+        height:170px;
     }
 
 }
