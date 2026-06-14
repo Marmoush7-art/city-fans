@@ -446,7 +446,7 @@
 
         <div id="actus-mercato-b" class="content-section">
             <h2>Actus Mercato 📰</h2>
-            <div class="transfert-card" onclick="afficherActuSavinho()">
+            <div class="transfert-card" onclick="afficherJoueur('savinho')">
                 <img src="static/images/savinhotransfermarkt.jpg">
                 <div class="transfert-info">
                     <h3>Savinho</h3>
@@ -2191,32 +2191,6 @@ function genererBonusSpecial(){
     showSection('joueur-solo');
 }
 
-function afficherActuSavinho() {
-
-    resetFiche();
-
-    document.getElementById('nom-joueur').innerText = "Savinho";
-    document.getElementById('photo').src = "static/images/savinho.jpg";
-
-    document.getElementById('s-age').innerText = "22 ans";
-    document.getElementById('s-nat').innerText = "Brésil 🇧🇷";
-    document.getElementById('s-paye').innerText = "390 000";
-    document.getElementById('s-fin').innerText = "30/06/2031";
-    document.getElementById('s-valeur').innerText = "35M €";
-    document.getElementById('s-noteea').innerText = "81";
-
-    document.getElementById('s-bio').innerText =
-        "Pépite de Man City, réclame plus de temps de jeu et Tottenham est prêt à le lui offrir...";
-
-    document.getElementById('s-buts').innerText = "0";
-    document.getElementById('s-passes').innerText = "0";
-    document.getElementById('s-matchs').innerText = "0";
-    document.getElementById('s-note').innerText = "0.0";
-
-    showSection('joueur-solo');
-}
-
-        
         function afficherActuDetourbet() {
 
     resetFiche();
