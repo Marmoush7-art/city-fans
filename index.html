@@ -205,7 +205,7 @@
                 <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
             </div>
             <li class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</li>
-            <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('actus-mercato')">📃 Actus mercato</span>
+            <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('actus-mercato')">📃 Rumeurs arrivées</span><span class="joueur-link" onclick="showSection('actus-mercato-b')">📃 Rumeurs départs</span>
             </div>
             <li class="menu-item" onclick="afficherClassement()"><span class="menu-item-icon">📊</span>Classement</li>
             <li class="menu-item" onclick="showSection('joueursinter-recap')"><span class="menu-item-icon">🏁</span>Joueurs Inter</li>
@@ -417,6 +417,40 @@
                 <div class="transfert-info">
                     <h3>Elliot Anderson</h3>
                     <p>Statut : City proche de le signer</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="joueur-solo" class="content-section">
+            <h2 id="nom-joueur"></h2>
+            <img id="photo" src="" style="width:200px; border-radius:15px;">
+            <div class="box-info">
+                <table>
+                    <tr><th>Âge</th><td id="s-age"></td></tr>
+                    <tr><th>Nationalité</th><td id="s-nat"></td></tr>
+                    <tr><th>Salaire / mois</th><td id="s-paye"></td></tr>
+                    <tr><th>Fin de contrat</th><td id="s-fin"></td></tr>
+                    <tr><th>Valeur</th><td id="s-valeur"></td></tr>
+                    <tr><th>Note EA Sports</th><td id="s-noteea"></td></tr>
+                </table>
+                <div class="bio-container">
+                    <strong>Biographie :</strong><br><br>
+                    <span id="s-bio"></span>
+                    <div class="stat-card"><span class="stat-number" id="s-buts">0</span><span class="stat-label">⚽ Buts</span></div>
+                    <div class="stat-card"><span class="stat-number" id="s-passes">0</span><span class="stat-label">👟 Passes D.</span></div>
+                    <div class="stat-card"><span class="stat-number" id="s-matchs">0</span><span class="stat-label">🎮 Matchs</span></div>
+                    <div class="stat-card"><span class="stat-number" id="s-note">0.0</span><span class="stat-label">⭐ Note</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="actus-mercato-b" class="content-section">
+            <h2>Actus Mercato 📰</h2>
+            <div class="transfert-card" onclick="afficherActuSavinho()">
+                <img src="static/images/savinho.jpg">
+                <div class="transfert-info">
+                    <h3>Savinho</h3>
+                    <p>Statut : Tottenham ne le lache pas</p>
                 </div>
             </div>
         </div>
@@ -2157,6 +2191,32 @@ function genererBonusSpecial(){
     showSection('joueur-solo');
 }
 
+function afficherActuSavinho() {
+
+    resetFiche();
+
+    document.getElementById('nom-joueur').innerText = "Savinho";
+    document.getElementById('photo').src = "static/images/savinho.jpg";
+
+    document.getElementById('s-age').innerText = "22 ans";
+    document.getElementById('s-nat').innerText = "Brésil 🇧🇷";
+    document.getElementById('s-paye').innerText = "390 000";
+    document.getElementById('s-fin').innerText = "30/06/2031";
+    document.getElementById('s-valeur').innerText = "35M €";
+    document.getElementById('s-noteea').innerText = "81";
+
+    document.getElementById('s-bio').innerText =
+        "Pépite de Man City, réclame plus de temps de jeu et Tottenham est prêt à le lui offir...";
+
+    document.getElementById('s-buts').innerText = "0";
+    document.getElementById('s-passes').innerText = "0";
+    document.getElementById('s-matchs').innerText = "0";
+    document.getElementById('s-note').innerText = "0.0";
+
+    showSection('joueur-solo');
+}
+
+        
         function afficherActuDetourbet() {
 
     resetFiche();
