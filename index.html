@@ -402,14 +402,14 @@
                 <img src="static/images/conceicao.jpg">
                 <div class="transfert-info">
                     <h3>Eduardo Conceição</h3>
-                    <p>Statut : Signature imminente ✅</p>
+                    <p>Statut : Très convoité</p>
                 </div>
             </div>
-            <div class="transfert-card" onclick="afficherActuKroupi()">
-                <img src="static/images/kroupi.jpg">
+            <div class="transfert-card" onclick="afficherActuDetourbet()">
+                <img src="static/images/detourbet.jpg">
                 <div class="transfert-info">
-                    <h3>Eli Jr Kroupi</h3>
-                    <p>Statut : City intéressé</p>
+                    <h3>Mathys Detourbet</h3>
+                    <p>Statut : Signature imminente ✅</p>
                 </div>
             </div>
             <div class="transfert-card" onclick="afficherActuAnderson()">
@@ -2141,9 +2141,9 @@ function genererBonusSpecial(){
 
     document.getElementById('s-age').innerText = "16 ans";
     document.getElementById('s-nat').innerText = "Brésil 🇧🇷";
-    document.getElementById('s-paye').innerText = "À venir";
+    document.getElementById('s-paye').innerText = "INCONNUE";
     document.getElementById('s-fin').innerText = "30/01/2029";
-    document.getElementById('s-valeur').innerText = "INCONNUE €";
+    document.getElementById('s-valeur').innerText = "INCONNUE";
     document.getElementById('s-noteea').innerText = "INCONNUE";
 
     document.getElementById('s-bio').innerText =
@@ -2156,6 +2156,32 @@ function genererBonusSpecial(){
 
     showSection('joueur-solo');
 }
+
+        function afficherActuDetourbet() {
+
+    resetFiche();
+
+    document.getElementById('nom-joueur').innerText = "Mathys Detourbet";
+    document.getElementById('photo').src = "static/images/detourbet.jpg";
+
+    document.getElementById('s-age').innerText = "19 ans";
+    document.getElementById('s-nat').innerText = "France ";
+    document.getElementById('s-paye').innerText = "INCONNUE";
+    document.getElementById('s-fin').innerText = "30/06/2028";
+    document.getElementById('s-valeur').innerText = "15M €";
+    document.getElementById('s-noteea').innerText = "64";
+
+    document.getElementById('s-bio').innerText =
+        "Pépite de l'ESTAC ( City Group ), révélation en Ligue II ( 2025-2026 )";
+
+    document.getElementById('s-buts').innerText = "0";
+    document.getElementById('s-passes').innerText = "0";
+    document.getElementById('s-matchs').innerText = "0";
+    document.getElementById('s-note').innerText = "0.0";
+
+    showSection('joueur-solo');
+}
+        
         function afficherActuAnderson() {
 
     resetFiche();
@@ -2181,30 +2207,6 @@ function genererBonusSpecial(){
     showSection('joueur-solo');
 }
 
-        function afficherActuKroupi() {
-
-    resetFiche();
-
-    document.getElementById('nom-joueur').innerText = "Eli Junior Kroupi";
-    document.getElementById('photo').src = "static/images/kroupi.jpg";
-
-    document.getElementById('s-age').innerText = "19 ans";
-    document.getElementById('s-nat').innerText = "France 🇫🇷";
-    document.getElementById('s-paye').innerText = "31 000 €";
-    document.getElementById('s-fin').innerText = "30/06/2030";
-    document.getElementById('s-valeur').innerText = "70M €";
-    document.getElementById('s-noteea').innerText = "74";
-
-    document.getElementById('s-bio').innerText =
-        "Jeune talent français prometteur évoluant à Bournemouth.";
-
-    document.getElementById('s-buts').innerText = "0";
-    document.getElementById('s-passes').innerText = "0";
-    document.getElementById('s-matchs').innerText = "0";
-    document.getElementById('s-note').innerText = "0.0";
-
-    showSection('joueur-solo');
-}
         function resetFiche() {
 
     // Remet les labels d'origine
