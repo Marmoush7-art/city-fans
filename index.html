@@ -67,6 +67,9 @@
         .emoji-picker span { font-size: 1.6rem; cursor: pointer; text-align: center; padding: 2px; transition: transform 0.1s; }
         .emoji-picker span:hover { transform: scale(1.2); background-color: #f0f0f0; border-radius: 5px; }
 
+        .statut.en-lice { color: green; font-weight: bold; }
+        .statut.elimine { color: red; font-weight: bold; }
+
         .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--city-sky-blue); }
         .match-header { font-size: 0.8rem; color: #888; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; }
         .match-main { display: flex; justify-content: space-between; align-items: center; }
@@ -620,10 +623,10 @@
         <div id="classement-recap" class="content-section">
             <h2>Classement</h2>
             <div class="transfert-card"><img src="static/images/premierleague.jpg"><div class="transfert-info"><h3>Premier League</h3><p>Position : 13ème</p><p>Points : 0</p><p>Différence : 0</p><p class="transfert-date">Journée n°0</p></div></div>
-            <div class="transfert-card"><img src="static/images/facup.jpg"><div class="transfert-info"><h3>FA Cup</h3><p>Position : </p><p>Statut : En lice</p><p class="transfert-date"></p></div></div>
-            <div class="transfert-card"><img src="static/images/carabaocup.jpg"><div class="transfert-info"><h3>CARABAO Cup</h3><p>Statut : En lice</p><p class="transfert-date"></p></div></div>
-            <div class="transfert-card"><img src="static/images/communityshield.jpg"><div class="transfert-info"><h3>Community Shield</h3><p>Position : Finale</p><p>Statut : En lice</p><p class="transfert-date">Finale </p></div></div>
-            <div class="transfert-card"><img src="static/images/championsleague.jpg"><div class="transfert-info"><h3>FA Cup</h3><p>Position : Poules</p><p>Points : 0</p><p class="transfert-date"></p></div></div>
+            <div class="transfert-card"><img src="static/images/facup.jpg"><div class="transfert-info"><h3>FA Cup</h3><p>Position : </p><p class="statut en-lice">Statut : En lice</p><p class="transfert-date"></p></div></div>
+            <div class="transfert-card"><img src="static/images/carabaocup.jpg"><div class="transfert-info"><h3>Carabao Cup</h3><p class="statut en-lice">Statut : En lice</p><p class="transfert-date"></p></div></div>
+            <div class="transfert-card"><img src="static/images/communityshield.jpg"><div class="transfert-info"><h3>Community Shield</h3><p>Position : Finale</p><p class="statut en-lice">Statut : En lice</p><p class="transfert-date">Finale </p></div></div>
+            <div class="transfert-card"><img src="static/images/championsleague.jpg"><div class="transfert-info"><h3>Champions League</h3><p>Position : Poules</p><p>Points : 0</p><p class="transfert-date"></p></div></div>
             
         </div>
 
