@@ -207,7 +207,7 @@
             <li class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</li>
             <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('actus-mercato')">📃 Rumeurs arrivées</span><span class="joueur-link" onclick="showSection('actus-mercato-b')">📃 Rumeurs départs</span>
             </div>
-            <li class="menu-item" onclick="afficherClassement()"><span class="menu-item-icon">📊</span>Classement</li>
+            <li class="menu-item" onclick="showSection('classement-recap')"><span class="menu-item-icon">📊</span>Classement</li>
             <li class="menu-item" onclick="showSection('joueursinter-recap')"><span class="menu-item-icon">🏁</span>Joueurs Inter</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
@@ -614,6 +614,14 @@
             <div class="transfert-card" onclick="afficherJoueur('akanji')"><img src="static/images/akanjiinter.jpg"><div class="transfert-info"><h3>Manuel Akanji</h3><p>Suisse 🇨🇭</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°5</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('gvardiol')"><img src="static/images/gvardiolinter.jpg"><div class="transfert-info"><h3>Josko Gvardiol</h3><p>Croatie 🇭🇷</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°20</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('kovacic')"><img src="static/images/kovacicinter.jpg"><div class="transfert-info"><h3>Matéo Kovacic</h3><p>Croatie 🇭🇷</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°8</p></div></div>
+            
+        </div>
+
+        <div id="classement-recap" class="content-section">
+            <h2>Classement</h2>
+            <div class="transfert-card"><img src="static/images/premierleague.jpg"><div class="transfert-info"><h3>Premier League</h3><p>Position : 13ème</p><p>Points : 0</p><p>Différence : 0</p><p class="transfert-date">Journée n°0</p></div></div>
+            
+
             
         </div>
 
