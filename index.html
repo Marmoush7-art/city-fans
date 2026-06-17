@@ -654,6 +654,24 @@
                 </div>
             </div>
 
+        <section id="competitions-view">
+
+    <h2>🏆 Compétitions</h2>
+
+            <button onclick="afficherCompetition('premierleague')">
+                Premier League
+            </button>
+
+            <button onclick="afficherCompetition('ldc')">
+                Ligue des Champions
+            </button>
+
+            <button onclick="afficherCompetition('fa')">
+                FA Cup
+            </button>
+
+        </section>
+
         <div id="position-actuelle-view" class="content-section">
             <div class="titre-zone">📊 Positions Actuelles</div>
             <div id="positions-container" class="centre-container">
@@ -980,7 +998,7 @@
     img: j.img
 }));
 
-        const competitionsActuelles = [
+        const competitions = [
             {
                 nom: "Premier League",
                 classement: "1er",
@@ -2376,6 +2394,60 @@ function verifierReponseQuiz() {
     else { f.innerText = "FAUX ❌ (C'était " + joueurMystere.nom + ")"; f.style.color = "red"; }
     const img = document.getElementById('quiz-img-result');
     img.src = "static/images/" + joueurMystere.img; img.style.display = "block";
+}
+
+        function afficherCompetition(id){
+
+    const c = competitions[id];
+
+    if(!c) return;
+
+    resetFiche();
+
+    document.getElementById("nom-joueur").innerText =
+    c.nom;
+
+    document.getElementById("photo").src =
+    "static/images/" + c.img;
+
+    document.getElementById("s-bio").innerText =
+    c.bio;
+
+    document.getElementById("s-age")
+        .previousElementSibling.innerText =
+    "🏆 Classement";
+
+    document.getElementById("s-age").innerText =
+    c.position;
+
+    document.getElementById("s-nat")
+        .previousElementSibling.innerText =
+    "📅 Matchs";
+
+    document.getElementById("s-nat").innerText =
+    c.match;
+
+    document.getElementById("s-paye")
+        .parentNode.style.display = "none";
+
+    document.getElementById("s-fin")
+        .parentNode.style.display = "none";
+
+    document.getElementById("s-valeur")
+        .parentNode.style.display = "none";
+
+    document.getElementById("s-noteea")
+        .parentNode.style.display = "none";
+
+    const statsBlock =
+    document.getElementById("s-matchs")
+        ?.parentNode?.parentNode;
+
+    if(statsBlock){
+        statsBlock.style.display = "none";
+    }
+
+    showSection("joueur-solo");
 }
         
         function afficherClassement() {
