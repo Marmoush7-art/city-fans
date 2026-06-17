@@ -708,13 +708,6 @@
             if (e.key === 'Enter') checkPassword();
         });
 
-        const Classement = {
-            classement: "Non commencé",
-            matchNumero: 0,
-            competitionImg: "premierleague.jpg", // Nom de l'image de la compétition
-            nomCompetition: "Premier League"
-        };
-
         // --- AJOUT v1.00.42 : Touche Entrée pour le Quiz ---
         document.addEventListener('DOMContentLoaded', () => {
             const quizInput = document.getElementById('quiz-answer');
@@ -997,30 +990,6 @@
     ) || 1,
     img: j.img
 }));
-
-        const competitions = [
-            {
-                nom: "Premier League",
-                classement: "1er",
-                matchNumero: 28,
-                img: "premier_league.jpg", // Nom de ton image dans static/images/
-                bio: "Course au titre en championnat anglais."
-            },
-            {
-                nom: "UEFA Champions League",
-                classement: "3ème (Phase de ligue)",
-                matchNumero: 6,
-                img: "champions_league.jpg",
-                bio: "L'objectif européen suprême."
-            },
-            {
-                nom: "FA Cup",
-                classement: "Quarts de finale",
-                matchNumero: 3,
-                img: "fa_cup.jpg",
-                bio: "La plus vieille compétition nationale."
-            }
-        ];
 
         function chargerPositionsActuelles() {
             const container = document.getElementById('positions-container');
@@ -2396,100 +2365,6 @@ function verifierReponseQuiz() {
     img.src = "static/images/" + joueurMystere.img; img.style.display = "block";
 }
 
-        function afficherCompetition(id){
-
-    const c = competitions[id];
-
-    if(!c) return;
-
-    resetFiche();
-
-    document.getElementById("nom-joueur").innerText =
-    c.nom;
-
-    document.getElementById("photo").src =
-    "static/images/" + c.img;
-
-    document.getElementById("s-bio").innerText =
-    c.bio;
-
-    document.getElementById("s-age")
-        .previousElementSibling.innerText =
-    "🏆 Classement";
-
-    document.getElementById("s-age").innerText =
-    c.position;
-
-    document.getElementById("s-nat")
-        .previousElementSibling.innerText =
-    "📅 Matchs";
-
-    document.getElementById("s-nat").innerText =
-    c.match;
-
-    document.getElementById("s-paye")
-        .parentNode.style.display = "none";
-
-    document.getElementById("s-fin")
-        .parentNode.style.display = "none";
-
-    document.getElementById("s-valeur")
-        .parentNode.style.display = "none";
-
-    document.getElementById("s-noteea")
-        .parentNode.style.display = "none";
-
-    const statsBlock =
-    document.getElementById("s-matchs")
-        ?.parentNode?.parentNode;
-
-    if(statsBlock){
-        statsBlock.style.display = "none";
-    }
-
-    showSection("joueur-solo");
-}
-        
-        function afficherClassement() {
-            // On change les textes principaux
-            document.getElementById('nom-joueur').innerText = Classement.nomCompetition;
-            document.getElementById('photo').src = "static/images/" + Classement.competitionImg;
-            document.getElementById('s-bio').innerText = "Suivi en direct des performances de l'équipe.";
-
-            // On change les LABELS (les titres des lignes) pour que ce soit propre
-            document.getElementById('s-age').previousElementSibling.innerText = "🏆 Position :";
-            document.getElementById('s-age').innerText = Classement.classement;
-
-            document.getElementById('s-nat').previousElementSibling.innerText = "📅 Avancement :";
-            document.getElementById('s-nat').innerText = "Match n°" + Classement.matchNumero;
-            
-            // On cache ou vide les lignes inutiles (salaire, fin de contrat, etc.)
-            document.getElementById('s-paye').parentNode.style.display = "none";
-            document.getElementById('s-fin').parentNode.style.display = "none";
-            document.getElementById('s-valeur').parentNode.style.display = "none";
-            document.getElementById('s-noteea').parentNode.style.display = "none";
-            
-            // On cache aussi le bloc des statistiques de joueurs s'il existe en bas
-            const statsBlock = document.getElementById('s-matchs')?.parentNode?.parentNode;
-            if (statsBlock) statsBlock.style.display = "none";
-            
-            showSection('joueur-solo');
-        }
-
-        document.getElementById("montant-enchere")
-.addEventListener("keydown", function(event){
-
-    if(event.key === "Enter"){
-
-        event.preventDefault();
-
-        if(
-            !document.getElementById("btn-encherir").disabled
-        ){
-            faireEnchere();
-        }
-    }
-});
 
 </script>
 </body>
