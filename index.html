@@ -28,6 +28,19 @@
         .centre-info h3 { margin-top: 0; color: var(--city-sky-blue); }
         .centre-info p { margin: 6px 0; font-size: 0.95rem; }
 
+        /* Mode nuit */
+        body.night-mode { background: #121212; color: #e0e0e0; }
+        body.night-mode .content-section,
+        body.night-mode .centre-card,
+        body.night-mode .draft-player-card,
+        body.night-mode .msg { background: #1e1e1e; color: #e0e0e0; border-color: #444; }
+        body.night-mode input,
+        body.night-mode textarea,
+        body.night-mode select { background: #2a2a2a; color: white; border: 1px solid #555; }
+        body.night-mode #menu { background: #1b1b1b; }
+        body.night-mode button { background: #333; color: white; }
+        body.night-mode img { filter: brightness(0.9); }
+
         #menu { position: fixed; right: -280px; top: 0; width: 280px; height: 100%; background: #1a1a1a; color: white; transition: 0.4s; padding-top: 70px; z-index: 1000; overflow-y: auto; }
         #menu.ouvert { right: 0; }
         .menu-item { padding: 18px 25px; border-bottom: 1px solid #333; cursor: pointer; font-weight: bold; display: flex; align-items: center; color: white; text-decoration: none; }
@@ -1113,6 +1126,29 @@
             document.getElementById('s-note').innerText = j.note || "0.0";
             showSection('joueur-solo');
         }
+
+function activerModeNuitAutomatique() {
+
+    const maintenant = new Date();
+
+    const h = maintenant.getHours();
+    const m = maintenant.getMinutes();
+
+    const apres1830 =
+        h > 18 ||
+        (h === 18 && m >= 30);
+
+    const avant7h = h < 7;
+
+    if (apres1830 || avant7h) {
+        document.body.classList.add("night-mode");
+    } else {
+        document.body.classList.remove("night-mode");
+    }
+}
+
+activerModeNuitAutomatique();
+setInterval(activerModeNuitAutomatique, 60000);
         
 let bonusJoueur = "";
 let bonusBot = "";
