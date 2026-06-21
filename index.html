@@ -1082,16 +1082,15 @@
             showSection('position-actuelle-view');
         }
 
-        function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
         function toggleSubMenu(id) {
-            const menu = document.getElementById(id);
+    const el = document.getElementById(id);
 
-            document.querySelectorAll('.sous-menu').forEach(sm => {
-                if (sm.id !== id) sm.classList.remove('show');
-            });
-
-            menu.classList.toggle('show');
-        }
+    if (el.style.display === "block") {
+        el.style.display = "none";
+    } else {
+        el.style.display = "block";
+    }
+}
         function showSection(id) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
