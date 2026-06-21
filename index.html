@@ -28,19 +28,6 @@
         .centre-info h3 { margin-top: 0; color: var(--city-sky-blue); }
         .centre-info p { margin: 6px 0; font-size: 0.95rem; }
 
-        /* Mode nuit */
-        body.night-mode { background: #121212; color: #e0e0e0; }
-        body.night-mode .content-section,
-        body.night-mode .centre-card,
-        body.night-mode .draft-player-card,
-        body.night-mode .msg { background: #1e1e1e; color: #e0e0e0; border-color: #444; }
-        body.night-mode input,
-        body.night-mode textarea,
-        body.night-mode select { background: #2a2a2a; color: white; border: 1px solid #555; }
-        body.night-mode #menu { background: #1b1b1b; }
-        body.night-mode button { background: #333; color: white; }
-        body.night-mode img { filter: brightness(0.9); }
-
         #menu { position: fixed; right: -280px; top: 0; width: 280px; height: 100%; background: #1a1a1a; color: white; transition: 0.4s; padding-top: 70px; z-index: 1000; overflow-y: auto; }
         #menu.ouvert { right: 0; }
         .menu-item { padding: 18px 25px; border-bottom: 1px solid #333; cursor: pointer; font-weight: bold; display: flex; align-items: center; color: white; text-decoration: none; }
@@ -79,9 +66,6 @@
         @media (max-width: 600px) { .emoji-picker { width: 280px; left: 10px; grid-template-columns: repeat(6, 1fr); } }
         .emoji-picker span { font-size: 1.6rem; cursor: pointer; text-align: center; padding: 2px; transition: transform 0.1s; }
         .emoji-picker span:hover { transform: scale(1.2); background-color: #f0f0f0; border-radius: 5px; }
-
-        .statut.en-lice { color: green; font-weight: bold; }
-        .statut.elimine { color: red; font-weight: bold; }
 
         .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--city-sky-blue); }
         .match-header { font-size: 0.8rem; color: #888; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; }
@@ -182,10 +166,7 @@
         <ul>
             <li class="menu-item" onclick="showSection('accueil')"><span class="menu-item-icon">🏠</span>Accueil</li>
             <li class="menu-item" onclick="showSection('matchs-view')"><span class="menu-item-icon">📅</span>Matchs</li>
-            <li>
-            <div class="menu-item" onclick="toggleSubMenu('sub-effectif')">
-                ⚽ Effectif ▾
-            </div>
+            <li class="menu-item" onclick="toggleSubMenu('sub-effectif')"><span class="menu-item-icon">⚽</span>Effectif ▾</li>
             <div id="sub-effectif" class="sous-menu">
                 <div class="cat-titre">🧤 Gardiens</div>
                 <span class="joueur-link" onclick="afficherJoueur('bettinelli')">Marcus Bettinelli</span>
@@ -223,13 +204,10 @@
                 <span class="joueur-link" onclick="afficherJoueur('savinho')">Savinho</span>
                 <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
             </div>
-            </li>
-            <li>
-            <div class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</div>
+            <li class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</li>
             <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('actus-mercato')">📃 Rumeurs arrivées</span><span class="joueur-link" onclick="showSection('actus-mercato-b')">📃 Rumeurs départs</span>
             </div>
-            </li>
-            <li class="menu-item" onclick="showSection('classement-recap')"><span class="menu-item-icon">📊</span>Classement</li>
+            <li class="menu-item" onclick="afficherClassement()"><span class="menu-item-icon">📊</span>Classement</li>
             <li class="menu-item" onclick="showSection('joueursinter-recap')"><span class="menu-item-icon">🏁</span>Joueurs Inter</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
@@ -238,6 +216,7 @@
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
             <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span>Jeu Draft</li>
 
+</div>
         </ul>
     </div>
     <div id="quiz-view" class="content-section">
@@ -261,24 +240,18 @@
             <img src="static/images/mancityecussonclasse.jpg" class="logo-accueil">
             <div class="match-card">
         <h3>📰 Dernière Actualité</h3>
-        <p><strong>📳 Bernardo Silva s'engage librement avec le Real Madrid</strong></p>
-        <p><strong>📳 Mathys Detourbet proche de signer à Man City</strong></p>
+        <p><strong>📳 Elliot Anderson proche de signer à City.</strong></p>
     </div>
 
     <div class="match-card">
         <h3>📅 Prochain Match</h3>
-        <p>Manchester City vs Inter de Milan</p>
-        <p>Match amical</p>
+        <p>Manchester City vs Arsenal</p>
+        <p>Community Shield : Finale 🏆</p>
     </div>
 
     <div class="match-card">
         <h3>⚽ Meilleur Buteur</h3>
         <p></p>
-    </div>
-
-    <div class="match-card">
-        <h3>🏆 Coupe du Monde</h3>
-        <p>Haaland commence la compétition en beauté.</p>
     </div>
             
         </div>
@@ -403,24 +376,7 @@
         <div id="matchs-view" class="content-section">
             <h2>RESULTATS</h2>
 
-            <div class="match-card" style="border-left-color: #28a745;">
-                <div class="match-header">Match Amical</div>
-                <div class="match-main">
-                    <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
-                    <div class="score-center">_ - _</div>
-                    <div class="team"><img src="static/images/intermilan.jpg"><p>Inter Milan</p></div>
-                </div>
-        <div class="match-details">
-            <div class="side-details">
-                <h4>Manchester City</h4>
-            </div>
-            <div class="side-details">
-                <h4>Inter de Milan</h4>
-            </div>
-        </div>
-    </div>
-
-            <div class="match-card" style="border-left-color: #dc3545;">
+            <div class="match-card" style="border-left-color: #6CABDD;">
                 <div class="match-header">Community Shield : Finale 🏆</div>
                 <div class="match-main">
                     <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
@@ -490,7 +446,7 @@
 
         <div id="actus-mercato-b" class="content-section">
             <h2>Actus Mercato 📰</h2>
-            <div class="transfert-card" onclick="afficherJoueur('savinho')">
+            <div class="transfert-card" onclick="afficherActuSavinho()">
                 <img src="static/images/savinhotransfermarkt.jpg">
                 <div class="transfert-info">
                     <h3>Savinho</h3>
@@ -603,10 +559,6 @@
 
         <div id="mercato-recap" class="content-section">
             <h2>Historique du Mercato (été 2026)</h2>
-            <h3>Arrivées</h3>
-            
-            <h3>Départs</h3>
-            <div class="transfert-card"><img src="static/images/20.jpg"><div class="transfert-info"><h3>Bernardo Silva</h3><p>Vers : Real Madrid</p><p>Prix : Transfert libre</p><p class="transfert-date">Juin 2026</p></div></div>
             <h2>Historique du Mercato (hiver 2025-2026)</h2>
             <h3>Arrivées</h3>
             <div class="transfert-card" onclick="afficherJoueur('guehi')"><img src="static/images/15.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Depuis Crystal Palace</p><p>Prix : 23M €</p><p class="transfert-date">Janvier 2026</p></div></div>
@@ -625,35 +577,25 @@
         </div>
 
         <div id="joueursinter-recap" class="content-section">
-            <h2>Coupe du monde 2026</h2>
-            <div class="transfert-card" onclick="afficherJoueur('guehi')"><img src="static/images/guehiinter.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°6</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('trafford')"><img src="static/images/traffordinter.jpg"><div class="transfert-info"><h3>James Trafford</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°23</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('oreilly')"><img src="static/images/o'reillyinter.jpg"><div class="transfert-info"><h3>Nico O'Reilly</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°3</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('marmoush')"><img src="static/images/marmoushinter.jpg"><div class="transfert-info"><h3>Omar Marmoush</h3><p>Egypte 🇪🇬</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°22</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('cherki')"><img src="static/images/cherkiinter.jpg"><div class="transfert-info"><h3>Rayan Cherki</h3><p>France 🇫🇷</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°24</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('semenyo')"><img src="static/images/semenyointer.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Ghana 🇬🇭</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°11</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('doku')"><img src="static/images/dokuinter.jpg"><div class="transfert-info"><h3>Jérémy Doku</h3><p>Belgique 🇧🇪</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°11</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('haaland')"><img src="static/images/haalandinter.jpg"><div class="transfert-info"><h3>Erling Haaland</h3><p>Norvège 🇳🇴</p><p>Matchs : 1</p><p>Buts : 2</p><p>Passes D : 0</p><p class="transfert-date">N°9</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('ake')"><img src="static/images/akeinter.jpg"><div class="transfert-info"><h3>Nathan Aké</h3><p>Pays-Bas 🇳🇱</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°5</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('reijnders')"><img src="static/images/reijndersinter.jpg"><div class="transfert-info"><h3>Tijjani Reijnders</h3><p>Pays-Bas 🇳🇱</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°14</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('rodri')"><img src="static/images/rodriinter.jpg"><div class="transfert-info"><h3>Rodri</h3><p>Espagne 🇪🇸</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°16</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('dias')"><img src="static/images/diasinter.jpg"><div class="transfert-info"><h3>Ruben Dias</h3><p>Portugal 🇵🇹</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°3</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('nunes')"><img src="static/images/nunesinter.jpg"><div class="transfert-info"><h3>Matheus Nunes</h3><p>Portugal 🇵🇹</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°6</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('khusanov')"><img src="static/images/khusanovinter.jpg"><div class="transfert-info"><h3>Abdukodir Khusanov</h3><p>Ouzbékistan 🇺🇿</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°2</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('ait-nouri')"><img src="static/images/ait-nouriinter.jpg"><div class="transfert-info"><h3>Rayan Ait-Nouri</h3><p>Algérie 🇩🇿</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°15</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('akanji')"><img src="static/images/akanjiinter.jpg"><div class="transfert-info"><h3>Manuel Akanji</h3><p>Suisse 🇨🇭</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°5</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('gvardiol')"><img src="static/images/gvardiolinter.jpg"><div class="transfert-info"><h3>Josko Gvardiol</h3><p>Croatie 🇭🇷</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°4</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('kovacic')"><img src="static/images/kovacicinter.jpg"><div class="transfert-info"><h3>Matéo Kovacic</h3><p>Croatie 🇭🇷</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°8</p></div></div>
-            
-        </div>
-
-        <div id="classement-recap" class="content-section">
-            <h2>Classement</h2>
-            <div class="transfert-card"><img src="static/images/premierleague.jpg"><div class="transfert-info"><h3>Premier League</h3><p>Position : 13ème</p><p>Points : 0</p><p>Différence : 0</p><p class="transfert-date">Journée n°0</p></div></div>
-            <div class="transfert-card"><img src="static/images/facup.jpg"><div class="transfert-info"><h3>FA Cup</h3><p>Position : 3ème tour</p><p class="statut en-lice">Statut : En lice</p><p class="transfert-date"></p></div></div>
-            <div class="transfert-card"><img src="static/images/carabaocup.jpg"><div class="transfert-info"><h3>Carabao Cup</h3><p>Position : 3ème tour</p><p class="statut en-lice">Statut : En lice</p><p class="transfert-date"></p></div></div>
-            <div class="transfert-card"><img src="static/images/communityshield.jpg"><div class="transfert-info"><h3>Community Shield</h3><p>Position : Finale</p><p class="statut en-lice">Statut : En lice</p><p class="transfert-date"></p></div></div>
-            <div class="transfert-card"><img src="static/images/championsleague.jpg"><div class="transfert-info"><h3>Champions League</h3><p>Position : Poules</p><p>Points : 0</p><p class="statut en-lice">Statut : En lice</p><p class="transfert-date"></p></div></div>
+            <h2>Joueurs internationaux</h2>
+            <div class="transfert-card" onclick="afficherJoueur('guehi')"><img src="static/images/guehiinter.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°6</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('trafford')"><img src="static/images/traffordinter.jpg"><div class="transfert-info"><h3>James Trafford</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°23</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('oreilly')"><img src="static/images/o'reillyinter.jpg"><div class="transfert-info"><h3>Nico O'Reilly</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°3</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('marmoush')"><img src="static/images/marmoushinter.jpg"><div class="transfert-info"><h3>Omar Marmoush</h3><p>Egypte 🇪🇬</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°22</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('cherki')"><img src="static/images/cherkiinter.jpg"><div class="transfert-info"><h3>Rayan Cherki</h3><p>France 🇫🇷</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°24</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('semenyo')"><img src="static/images/semenyointer.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Ghana 🇬🇭</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°11</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('doku')"><img src="static/images/dokuinter.jpg"><div class="transfert-info"><h3>Jérémy Doku</h3><p>Belgique 🇧🇪</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°11</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('haaland')"><img src="static/images/haalandinter.jpg"><div class="transfert-info"><h3>Erling Haaland</h3><p>Norvège 🇳🇴</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°9</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('ake')"><img src="static/images/akeinter.jpg"><div class="transfert-info"><h3>Nathan Aké</h3><p>Pays-Bas 🇳🇱</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°6</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('reijnders')"><img src="static/images/reijndersinter.jpg"><div class="transfert-info"><h3>Tijjani Reijnders</h3><p>Pays-Bas 🇳🇱</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°14</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('rodri')"><img src="static/images/rodriinter.jpg"><div class="transfert-info"><h3>Rodri</h3><p>Espagne 🇪🇸</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°16</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('dias')"><img src="static/images/diasinter.jpg"><div class="transfert-info"><h3>Ruben Dias</h3><p>Portugal 🇵🇹</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°3</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('nunes')"><img src="static/images/nunesinter.jpg"><div class="transfert-info"><h3>Matheus Nunes</h3><p>Portugal 🇵🇹</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°16</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('khusanov')"><img src="static/images/khusanovinter.jpg"><div class="transfert-info"><h3>Abdukodir Khusanov</h3><p>Ouzbékistan 🇺🇿</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°3</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('ait-nouri')"><img src="static/images/ait-nouriinter.jpg"><div class="transfert-info"><h3>Rayan Ait-Nouri</h3><p>Algérie 🇩🇿</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°15</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('akanji')"><img src="static/images/akanjiinter.jpg"><div class="transfert-info"><h3>Manuel Akanji</h3><p>Suisse 🇨🇭</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°5</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('gvardiol')"><img src="static/images/gvardiolinter.jpg"><div class="transfert-info"><h3>Josko Gvardiol</h3><p>Croatie 🇭🇷</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°20</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('kovacic')"><img src="static/images/kovacicinter.jpg"><div class="transfert-info"><h3>Matéo Kovacic</h3><p>Croatie 🇭🇷</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°8</p></div></div>
             
         </div>
 
@@ -694,24 +636,6 @@
                 </div>
             </div>
 
-        <section id="competitions-view">
-
-    <h2>🏆 Compétitions</h2>
-
-            <button onclick="afficherCompetition('premierleague')">
-                Premier League
-            </button>
-
-            <button onclick="afficherCompetition('ldc')">
-                Ligue des Champions
-            </button>
-
-            <button onclick="afficherCompetition('fa')">
-                FA Cup
-            </button>
-
-        </section>
-
         <div id="position-actuelle-view" class="content-section">
             <div class="titre-zone">📊 Positions Actuelles</div>
             <div id="positions-container" class="centre-container">
@@ -748,6 +672,13 @@
             if (e.key === 'Enter') checkPassword();
         });
 
+        const Classement = {
+            classement: "Non commencé",
+            matchNumero: 0,
+            competitionImg: "premierleague.jpg", // Nom de l'image de la compétition
+            nomCompetition: "Premier League"
+        };
+
         // --- AJOUT v1.00.42 : Touche Entrée pour le Quiz ---
         document.addEventListener('DOMContentLoaded', () => {
             const quizInput = document.getElementById('quiz-answer');
@@ -759,37 +690,37 @@
         });
 
         const effectif = {
-            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "177 000 €", fin: "30/06/2028", valeur: "0.3M €", noteea: "70", img: "bettinelli.jpg", bio: "Gardien expérimenté.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'donnarumma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "89", img: "donnarumma.jpg", bio: "Gardien d'envergure internationale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", noteea: "77", img: "trafford.jpg", bio: "Gardien prometteur.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2028", valeur: "0.3M €", noteea: "70", img: "13.jpg", bio: "Gardien expérimenté.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'donnarumma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "89", img: "25.jpg", bio: "Gardien d'envergure internationale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", noteea: "77", img: "1.jpg", bio: "Gardien prometteur.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'akanji': { nom: "Manuel Akanji", poste: "Défenseur", age: "30 ans", nat: "Suisse 🇨🇭", paye: "540 000", fin: "30/06/2027", valeur: "17M €", noteea: "83", img: "akanji.jpg", bio: "Défenseur impassable.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "31 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "12M €", noteea: "82", img: "ake.jpg", bio: "Polyvalence tactique exemplaire.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "8M €", noteea: "68", img: "alleyne.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "25 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", img: "ait-nouri.jpg", bio: "Latéral percutant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "29 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "55M €", noteea: "87", img: "dias.jpg", bio: "Pilier défensif.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "84", img: "guehi.jpg", bio: "Nouvelle recrue solide.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", noteea: "85", img: "gvardiol.jpg", bio: "Roc croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "80", img: "khusanov.jpg", bio: "Révélation ouzbèke.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "28M €", noteea: "77", img: "lewis.jpg", bio: "Futur cadre issu de l'académie.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'nunes': { nom: "Matheus Nunes", poste: "Défenseur", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "82", img: "nunes.jpg", bio: "Défenseur puissant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "70M €", noteea: "81", img: "o'reilly.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'reis': { nom: "Vitor Reis", poste: "Défenseur", age: "20 ans", nat: "Brésil 🇧🇷", paye: "200 000", fin: "30/06/2029", valeur: "30M €", noteea: "75", img: "reis.jpg", bio: "Jeune talent brésilien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'wilson-esbrand': { nom: "Joshua Wilson-Esbrand", poste: "Défenseur", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "67", img: "wilson-esbrand.jpg", bio: "Pépite anglaise.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "90M €", noteea: "84", img: "cherki.jpg", bio: "Magicien français.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'echeverri': { nom: "Claudio Echeverri", poste: "Milieu", age: "20 ans", nat: "Argentine 🇦🇷", paye: "78 000", fin: "30/06/2028", valeur: "15M €", noteea: "74", img: "echeverri.jpg", bio: "Jeune pépite argentine.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'foden': { nom: "Phil Foden", poste: "Milieu", age: "26 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "70M €", noteea: "85", img: "foden.jpg", bio: "L'enfant chéri de Stockport.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", img: "gonzalez.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "31 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "12M €", noteea: "82", img: "6.jpg", bio: "Polyvalence tactique exemplaire.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", noteea: "68", img: "68.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "25 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", img: "21.jpg", bio: "Latéral percutant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "29 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "55M €", noteea: "87", img: "3.jpg", bio: "Pilier défensif.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "84", img: "15.jpg", bio: "Nouvelle recrue solide.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", noteea: "85", img: "24.jpg", bio: "Roc croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "80", img: "45.jpg", bio: "Révélation ouzbèke.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "28M €", noteea: "77", img: "82.jpg", bio: "Futur cadre issu de l'académie.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'nunes': { nom: "Matheus Nunes", poste: "Défenseur", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "82", img: "27.jpg", bio: "Défenseur puissant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "70M €", noteea: "81", img: "33.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'reis': { nom: "Vitor Reis", poste: "Défenseur", age: "20 ans", nat: "Brésil 🇧🇷", paye: "200 000", fin: "30/06/2029", valeur: "30M €", noteea: "75", img: "22.jpg", bio: "Jeune talent brésilien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'wilson-esbrand': { nom: "Joshua Wilson-Esbrand", poste: "Défenseur", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "67", img: "97.jpg", bio: "Pépite anglaise.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "90M €", noteea: "84", img: "10.jpg", bio: "Magicien français.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'echeverri': { nom: "Claudio Echeverri", poste: "Milieu", age: "20 ans", nat: "Argentine 🇦🇷", paye: "78 000", fin: "30/06/2028", valeur: "15M €", noteea: "74", img: "30.jpg", bio: "Jeune pépite argentine.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'foden': { nom: "Phil Foden", poste: "Milieu", age: "26 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "70M €", noteea: "85", img: "47.jpg", bio: "L'enfant chéri de Stockport.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", img: "14.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'grealish': { nom: "Jack Grealish", poste: "Milieu", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 100 000", fin: "30/06/2027", valeur: "20M €", noteea: "81", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "32 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "10M €", noteea: "82", img: "kovacic.jpg", bio: "Expérience croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "30/06/2030", valeur: "13M €", noteea: "70", img: "nypan.jpg", bio: "Futur maître du milieu.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'phillips': { nom: "Kalvin Phillips", poste: "Milieu", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "600 000", fin: "30/06/2028", valeur: "2.5M €", noteea: "74", img: "phillips.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "50M €", noteea: "85", img: "reijnders.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "89", img: "rodri.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "24 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "75M €", noteea: "84", img: "doku.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "200M €", noteea: "91", img: "haaland.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "83", img: "marmoush.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'savinho': { nom: "Savinho", poste: "Attaquant", age: "22 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "35M €", noteea: "81", img: "savinho.jpg", bio: "Dribbleur brésilien électrisant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "80M €", noteea: "84", img: "semenyo.jpg", bio: "Puissance offensive brute.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "32 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "10M €", noteea: "82", img: "8.jpg", bio: "Expérience croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "30/06/2030", valeur: "13M €", noteea: "70", img: "41.jpg", bio: "Futur maître du milieu.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'phillips': { nom: "Kalvin Phillips", poste: "Milieu", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "600 000", fin: "30/06/2028", valeur: "2.5M €", noteea: "74", img: "44.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "50M €", noteea: "85", img: "4.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "89", img: "16.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "24 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "75M €", noteea: "84", img: "11.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "200M €", noteea: "91", img: "9.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "83", img: "7.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'savinho': { nom: "Savinho", poste: "Attaquant", age: "22 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "35M €", noteea: "81", img: "26.jpg", bio: "Dribbleur brésilien électrisant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "80M €", noteea: "84", img: "42.jpg", bio: "Puissance offensive brute.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
         };
 
         const centreFormation = {
@@ -799,24 +730,21 @@
             age: "18 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Gardien",
-            img: "gardienspike.jpg",
-            anniv: "24/06/2007"
+            img: "gardienspike.jpg"
         },
         {
             nom: "Oliver Whatmuff",
             age: "18 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Gardien",
-            img: "gardienoliver.jpg",
-            anniv: "06/11/2007"
+            img: "gardienoliver.jpg"
         },
         {
             nom: "Jack Wint",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Gardien",
-            img: "gardienjack.jpg",
-            anniv: "08/10/2006"
+            img: "gardienjack.jpg"
         }
     ],
     defenseurs: [
@@ -825,112 +753,98 @@
             age: "22 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Défenseur",
-            img: "defenseurfinley.jpg",
-            anniv: "17/06/2003"
+            img: "defenseurfinley.jpg"
         },
         {
             nom: "Ezra Carrington",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Défenseur",
-            img: "defenseurezra.jpg",
-            anniv: "16/12/2005"
+            img: "defenseurezra.jpg"
         },
         {
             nom: "Tomas Galvez",
             age: "21 ans",
             nat: "Finlande 🇫🇮",
             poste: "Défenseur",
-            img: "defenseurtomas.jpg",
-            anniv: "28/01/2005"
+            img: "defenseurtomas.jpg"
         },
         {
             nom: "Matty Henderson-Hall",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Défenseur",
-            img: "defenseurmatty.jpg",
-            anniv: "08/12/2006"
+            img: "defenseurmatty.jpg"
         },
         {
             nom: "Luke Mbete",
             age: "22 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Défenseur",
-            img: "defenseurluke.jpg",
-            anniv: "18/09/2003"
+            img: "defenseurluke.jpg"
         },
         {
             nom: "Christian McFarlane",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Défenseur",
-            img: "defenseurchristian.jpg",
-            anniv: "25/01/2007"
+            img: "defenseurchristian.jpg"
         },
         {
             nom: "Stephen Mfuni",
             age: "18 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Défenseur",
-            img: "defenseurstephen.jpg",
-            anniv: "12/02/2008"
+            img: "defenseurstephen.jpg"
         },
         {
             nom: "Brooklyn Nfonkeu",
             age: "18 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Défenseur",
-            img: "defenseurbrooklyn.jpg",
-            anniv: "01/07/2007"
+            img: "defenseurbrooklyn.jpg"
         },
         {
             nom: "Kian Noble",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Défenseur",
-            img: "defenseurkian.jpg",
-            anniv: "26/02/2007"
+            img: "defenseurkian.jpg"
         },
         {
             nom: "Harrison Parker",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Défenseur",
-            img: "defenseurharrison.jpg",
-            anniv: "22/09/2006"
+            img: "defenseurharrison.jpg"
         },
         {
             nom: "Lakyle Samuel",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Défenseur",
-            img: "defenseurlakyle.jpg",
-            anniv: "06/05/2006"
+            img: "defenseurlakyle.jpg"
         },
         {
             nom: "Jahmai Simpson-Pusey",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Défenseur",
-            img: "defenseurjahmai.jpg",
-            anniv: "04/11/2005"
+            img: "defenseurjahmai.jpg"
         },
         {
             nom: "Isaac Smith",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Défenseur",
-            img: "defenseurisaac.jpg",
-            anniv: "26/07/2005"
+            img: "defenseurisaac.jpg"
         },
         {
             nom: "Rhys Thomas",
             age: "19 ans",
             nat: "Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿",
             poste: "Défenseur",
-            img: "defenseurrhys.jpg",
-            anniv: "05/09/2006"
+            img: "defenseurrhys.jpg"
         }
     ],
     milieux: [
@@ -939,114 +853,100 @@
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Milieu",
-            img: "milieuisaiah.jpg",
-            anniv: "24/05/2006"
+            img: "milieuisaiah.jpg"
         },
         {
             nom: "Femi Fapetu",
             age: "18 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Milieu",
-            img: "milieufemi.jpg",
-            anniv: "04/08/2007"
+            img: "milieufemi.jpg"
         },
         {
             nom: "Charlie Gray",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Milieu",
-            img: "milieucharlie.jpg",
-            anniv: "22/02/2006"
+            img: "milieucharlie.jpg"
         },
         {
             nom: "Jaden Heskey",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Milieu",
-            img: "milieujaden.jpg",
-            anniv: "17/12/2005"
+            img: "milieujaden.jpg"
         },
         {
             nom: "Divine Mukasa",
             age: "18 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Milieu",
-            img: "milieudivine.jpg",
-            anniv: "22/08/2007"
+            img: "milieudivine.jpg"
         }
     ],
     attaquants: [
         {
-            nom: "Luca Fletcher",
+            nom: "Luka Fletcher",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Attaquant",
-            img: "attaquantluka.jpg",
-            anniv: "18/04/2007"
+            img: "attaquantluka.jpg"
         },
         {
             nom: "Reighan Heskey",
             age: "18 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Attaquant",
-            img: "attaquantreighan.jpg",
-            anniv: "19/01/2008"
+            img: "attaquantreighan.jpg"
         },
         {
             nom: "Emilio Lawrence",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Attaquant",
-            img: "attaquantemilio.jpg",
-            anniv: "20/09/2005"
+            img: "attaquantemilio.jpg"
         },
         {
             nom: "Ryan McAidoo",
             age: "17 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Attaquant",
-            img: "attaquantryan.jpg",
-            anniv: "24/06/2008"
+            img: "attaquantryan.jpg"
         },
         {
             nom: "Divin Mubama",
             age: "21 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Attaquant",
-            img: "attaquantdivin.jpg",
-            anniv: "06/09/2007"
+            img: "attaquantdivin.jpg"
         },
         {
             nom: "Ashton Muir",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Attaquant",
-            img: "attaquantashton.jpg",
-            anniv: "06/09/2007"
+            img: "attaquantashton.jpg"
         },
         {
             nom: "Joel Ndala",
             age: "20 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Attaquant",
-            img: "attaquantjoel.jpg",
-            anniv: "31/05/2006"
+            img: "attaquantjoel.jpg"
         },
         {
             nom: "Mahamadou Sangaré",
             age: "19 ans",
             nat: "France 🇫🇷",
             poste: "Attaquant",
-            img: "attaquantmahamadou.jpg",
-            anniv: "06/03/2007"
+            img: "attaquantmahamadou.jpg"
         },
         {
             nom: "Matty Warhurst",
             age: "19 ans",
             nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
             poste: "Attaquant",
-            img: "attaquantmatty.jpg",
-            anniv: "25/09/2006"
+            img: "attaquantmatty.jpg"
         }
     ]
 };
@@ -1061,6 +961,30 @@
     ) || 1,
     img: j.img
 }));
+
+        const competitionsActuelles = [
+            {
+                nom: "Premier League",
+                classement: "1er",
+                matchNumero: 28,
+                img: "premier_league.jpg", // Nom de ton image dans static/images/
+                bio: "Course au titre en championnat anglais."
+            },
+            {
+                nom: "UEFA Champions League",
+                classement: "3ème (Phase de ligue)",
+                matchNumero: 6,
+                img: "champions_league.jpg",
+                bio: "L'objectif européen suprême."
+            },
+            {
+                nom: "FA Cup",
+                classement: "Quarts de finale",
+                matchNumero: 3,
+                img: "fa_cup.jpg",
+                bio: "La plus vieille compétition nationale."
+            }
+        ];
 
         function chargerPositionsActuelles() {
             const container = document.getElementById('positions-container');
@@ -1082,9 +1006,8 @@
             showSection('position-actuelle-view');
         }
 
-        function toggleSubMenu(id) {
-    alert(id);
-}
+        function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
+        function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
         function showSection(id) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
@@ -1132,29 +1055,6 @@
             document.getElementById('s-note').innerText = j.note || "0.0";
             showSection('joueur-solo');
         }
-
-function activerModeNuitAutomatique() {
-
-    const maintenant = new Date();
-
-    const h = maintenant.getHours();
-    const m = maintenant.getMinutes();
-
-    const apres1830 =
-        h > 18 ||
-        (h === 18 && m >= 30);
-
-    const avant7h = h < 7;
-
-    if (apres1830 || avant7h) {
-        document.body.classList.add("night-mode");
-    } else {
-        document.body.classList.remove("night-mode");
-    }
-}
-
-activerModeNuitAutomatique();
-setInterval(activerModeNuitAutomatique, 60000);
         
 let bonusJoueur = "";
 let bonusBot = "";
@@ -1535,7 +1435,7 @@ if(bonusSpecialBot){
     draftBudgetBot <= 0
 ){
     ajouterHistorique(
-        `🗑️ ${joueurDraftActuel.nom} part (plus aucun budget)`
+        `🗑️ ${joueurDraftActuel.nom} part à la poubelle (plus aucun budget)`
     );
 
     prochainJoueurDraft();
@@ -1792,7 +1692,7 @@ function utiliserBonusSaut(){
 }
 
     ajouterHistorique(
-        `🗑️ ${joueurDraftActuel.nom} parti`
+        `🗑️ ${joueurDraftActuel.nom} envoyé à la poubelle`
     );
 
     joueurDraftActuel = null;
@@ -2281,7 +2181,7 @@ function genererBonusSpecial(){
     document.getElementById('s-noteea').innerText = "INCONNUE";
 
     document.getElementById('s-bio').innerText =
-        "Pépite de Palmeiras, pourrait être une future recrue phare de l'attaque mancunienne.";
+        "Pépite de Palmeiras, future recrue phare de l'attaque mancunienne.";
 
     document.getElementById('s-buts').innerText = "0";
     document.getElementById('s-passes').innerText = "0";
@@ -2291,6 +2191,32 @@ function genererBonusSpecial(){
     showSection('joueur-solo');
 }
 
+function afficherActuSavinho() {
+
+    resetFiche();
+
+    document.getElementById('nom-joueur').innerText = "Savinho";
+    document.getElementById('photo').src = "static/images/savinho.jpg";
+
+    document.getElementById('s-age').innerText = "22 ans";
+    document.getElementById('s-nat').innerText = "Brésil 🇧🇷";
+    document.getElementById('s-paye').innerText = "390 000";
+    document.getElementById('s-fin').innerText = "30/06/2031";
+    document.getElementById('s-valeur').innerText = "35M €";
+    document.getElementById('s-noteea').innerText = "81";
+
+    document.getElementById('s-bio').innerText =
+        "Pépite de Man City, réclame plus de temps de jeu et Tottenham est prêt à le lui offrir...";
+
+    document.getElementById('s-buts').innerText = "0";
+    document.getElementById('s-passes').innerText = "0";
+    document.getElementById('s-matchs').innerText = "0";
+    document.getElementById('s-note').innerText = "0.0";
+
+    showSection('joueur-solo');
+}
+
+        
         function afficherActuDetourbet() {
 
     resetFiche();
@@ -2306,7 +2232,7 @@ function genererBonusSpecial(){
     document.getElementById('s-noteea').innerText = "64";
 
     document.getElementById('s-bio').innerText =
-        "Pépite de l'ESTAC, révélation en Ligue II cette saison.";
+        "Pépite de l'ESTAC ( City Group ), révélation en Ligue II ( 2025-2026 )";
 
     document.getElementById('s-buts').innerText = "0";
     document.getElementById('s-passes').innerText = "0";
@@ -2324,7 +2250,7 @@ function genererBonusSpecial(){
     document.getElementById('photo').src = "static/images/anderson.jpg";
 
     document.getElementById('s-age').innerText = "23 ans";
-    document.getElementById('s-nat').innerText = "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿";
+    document.getElementById('s-nat').innerText = "Angleterre 🏴";
     document.getElementById('s-paye').innerText = "205 000 €";
     document.getElementById('s-fin').innerText = "30/06/2029";
     document.getElementById('s-valeur').innerText = "75M €";
@@ -2431,10 +2357,9 @@ function genererBonusSpecial(){
                     <img src="static/images/${j.img}">
                     <div class="centre-info">
                         <h3>${j.nom}</h3>
-                        <p><strong>🕗 Âge :</strong> ${j.age}</p>
+                        <p><strong>🎂 Âge :</strong> ${j.age}</p>
                         <p><strong>🌍 Nationalité :</strong> ${j.nat}</p>
                         <p><strong>⚽ Poste :</strong> ${j.poste}</p>
-                        <p><strong>🎂 Anniversaire :</strong> ${j.anniv}</p>
                     </div>
                 </div>
                 `;
@@ -2460,18 +2385,47 @@ function verifierReponseQuiz() {
     const img = document.getElementById('quiz-img-result');
     img.src = "static/images/" + joueurMystere.img; img.style.display = "block";
 }
+        
+        function afficherClassement() {
+            // On change les textes principaux
+            document.getElementById('nom-joueur').innerText = Classement.nomCompetition;
+            document.getElementById('photo').src = "static/images/" + Classement.competitionImg;
+            document.getElementById('s-bio').innerText = "Suivi en direct des performances de l'équipe.";
 
-document.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        const active = document.activeElement;
-        const isInput = active && active.tagName === "INPUT";
+            // On change les LABELS (les titres des lignes) pour que ce soit propre
+            document.getElementById('s-age').previousElementSibling.innerText = "🏆 Position :";
+            document.getElementById('s-age').innerText = Classement.classement;
 
-        if (isInput && active.id === "montant-enchere") {
+            document.getElementById('s-nat').previousElementSibling.innerText = "📅 Avancement :";
+            document.getElementById('s-nat').innerText = "Match n°" + Classement.matchNumero;
+            
+            // On cache ou vide les lignes inutiles (salaire, fin de contrat, etc.)
+            document.getElementById('s-paye').parentNode.style.display = "none";
+            document.getElementById('s-fin').parentNode.style.display = "none";
+            document.getElementById('s-valeur').parentNode.style.display = "none";
+            document.getElementById('s-noteea').parentNode.style.display = "none";
+            
+            // On cache aussi le bloc des statistiques de joueurs s'il existe en bas
+            const statsBlock = document.getElementById('s-matchs')?.parentNode?.parentNode;
+            if (statsBlock) statsBlock.style.display = "none";
+            
+            showSection('joueur-solo');
+        }
+
+        document.getElementById("montant-enchere")
+.addEventListener("keydown", function(event){
+
+    if(event.key === "Enter"){
+
+        event.preventDefault();
+
+        if(
+            !document.getElementById("btn-encherir").disabled
+        ){
             faireEnchere();
         }
     }
 });
-
 
 </script>
 </body>
