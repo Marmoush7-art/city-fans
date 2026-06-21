@@ -1077,7 +1077,15 @@
         }
 
         function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
-        function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
+        function toggleSubMenu(id) {
+            const menu = document.getElementById(id);
+
+            document.querySelectorAll('.sous-menu').forEach(sm => {
+                if (sm.id !== id) sm.classList.remove('show');
+            });
+
+            menu.classList.toggle('show');
+        }
         function showSection(id) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
