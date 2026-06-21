@@ -226,9 +226,11 @@
                 <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
             </div>
             </li>
-            <li class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</li>
+            <li>
+            <div class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</div>
             <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('actus-mercato')">📃 Rumeurs arrivées</span><span class="joueur-link" onclick="showSection('actus-mercato-b')">📃 Rumeurs départs</span>
             </div>
+            </li>
             <li class="menu-item" onclick="showSection('classement-recap')"><span class="menu-item-icon">📊</span>Classement</li>
             <li class="menu-item" onclick="showSection('joueursinter-recap')"><span class="menu-item-icon">🏁</span>Joueurs Inter</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
