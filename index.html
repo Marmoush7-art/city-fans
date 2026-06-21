@@ -1083,15 +1083,8 @@
         }
 
         function toggleSubMenu(id) {
-    const el = document.getElementById(id);
-
-    if (el.style.display === "block") {
-        el.style.display = "none";
-    } else {
-        el.style.display = "block";
-    }
+    document.getElementById(id).classList.toggle('show');
 }
-        
         function showSection(id) {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
