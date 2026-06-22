@@ -415,6 +415,38 @@
 
 </div>
 
+<div id="compte" class="content-section">
+
+<h2>👤 Mon compte</h2>
+
+<div class="box-info">
+
+<input id="pseudo" placeholder="Nom d'utilisateur">
+
+<input id="email" placeholder="Adresse mail">
+
+<input id="password" type="password" placeholder="Mot de passe">
+
+<br><br>
+
+<button onclick="creerCompte()">
+Créer un compte
+</button>
+
+<button onclick="connexion()">
+Connexion
+</button>
+
+<button onclick="deconnexion()">
+Déconnexion
+</button>
+
+<p id="compte-message"></p>
+
+</div>
+
+</div>
+
 <div id="draft-resultat"></div>
 
 </div>
@@ -2471,6 +2503,100 @@ result.appendChild(div);
 
 result.style.display="block";
 
+
+}
+
+function ouvrirCompte(){
+showSection("compte");
+}
+
+
+
+function creerCompte(){
+
+let email =
+document.getElementById("email").value;
+
+let password =
+document.getElementById("password").value;
+
+let pseudo =
+document.getElementById("pseudo").value;
+
+
+auth.createUserWithEmailAndPassword(email,password)
+
+.then((result)=>{
+
+
+return db.collection("users")
+.doc(result.user.uid)
+.set({
+
+pseudo:pseudo,
+email:email,
+date:new Date()
+
+});
+
+
+})
+
+.then(()=>{
+
+document.getElementById("compte-message").innerHTML =
+"✅ Compte créé !";
+
+})
+
+.catch(error=>{
+
+document.getElementById("compte-message").innerHTML =
+error.message;
+
+});
+
+}
+
+
+
+
+function connexion(){
+
+let email =
+document.getElementById("email").value;
+
+let password =
+document.getElementById("password").value;
+
+
+auth.signInWithEmailAndPassword(email,password)
+
+.then(()=>{
+
+document.getElementById("compte-message").innerHTML =
+"🩵 Connecté !";
+
+})
+
+.catch(error=>{
+
+document.getElementById("compte-message").innerHTML =
+error.message;
+
+});
+
+}
+
+
+
+
+function deconnexion(){
+
+auth.signOut();
+
+document.getElementById("compte-message").innerHTML =
+"Déconnecté";
 
 }
 
