@@ -19,7 +19,7 @@
         .lock-box button { background: var(--city-sky-blue); color: white; border: none; padding: 12px 30px; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 1rem; }
         #lock-error { color: #e74c3c; margin-top: 10px; font-weight: bold; font-size: 0.9rem; }
         
-        nav { background: var(--city-sky-blue); color: white; height: 105px; position: sticky; top: 0; z-index: 1001; display: flex; align-items: center; justify-content: center; position: sticky; }
+        nav { background: var(--city-sky-blue); color: white; height: 65px; position: sticky; top: 0; z-index: 1001; display: flex; align-items: center; justify-content: center; position: sticky; }
         #btn-menu {position: absolute; left: 20px; }
         #btn-menu:hover { transform:rotate(90deg); }
         .version-tag {position: absolute; right: 20px; font-size: 0.8rem; font-weight: bold; }
@@ -153,8 +153,8 @@
         body.mode-nuit img { filter: brightness(0.85); }
         body.mode-nuit nav { background:#123b5a; }
         
-        .player-search { position: absolute; left: 50%; top: 70px; transform: translateX(-50%); width: 220px; z-index: 2000; }
-        .player-search input { width: 100%; padding: 7px 15px; border-radius: 20px; border: none; outline: none; font-weight: bold; }
+        .player-search { position: absolute; right: 140px; /* place avant la version */ top: 50%; transform: translateY(-50%); width: 190px; z-index: 2000; }
+        .player-search input { width: 100%; box-sizing: border-box; padding: 8px 15px; border-radius: 20px; border: none; outline: none; font-weight: bold; }
         .search-results { position: absolute; top: 45px; left: 0; width: 100%; background: white; color: black; border-radius: 10px; display: none; max-height: 250px; overflow-y: auto; box-shadow: 0 5px 15px rgba(0,0,0,.3); z-index: 2000; }
         .search-results div { padding: 10px; cursor: pointer; }
         .search-results div:hover { background: #6CABDD; color: white; }
