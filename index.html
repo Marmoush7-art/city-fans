@@ -775,23 +775,6 @@ Déconnexion
     </main>
 
     <script>
-        const firebaseConfig = { apiKey: "CLE", authDomain: "DOM", projectId: "ID", storageBucket: "BUCKET", messagingSenderId: "ID", appId: "APP" };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        
-        function checkPassword() {
-            const input = document.getElementById('site-password').value;
-            const error = document.getElementById('lock-error');
-            if (input === "Rider77") {
-                document.getElementById('lock-screen').style.display = 'none';
-            } else {
-                error.innerText = "Mot de passe incorrect ❌";
-            }
-        }
-
-        document.getElementById('site-password').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') checkPassword();
-        });
 
         const Classement = {
             classement: "Non commencé",
