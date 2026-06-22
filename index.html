@@ -2051,19 +2051,6 @@ draftBudgetJoueur -= prixFinal;
     );
 }
 
-        
-function afficherJoueurDraft(){
-    if(!joueurDraftActuel) return;
-
-    document.getElementById("draft-carte").innerHTML = `
-    <div>
-        <h3>${joueurDraftActuel.nom}</h3>
-        <p>💰 ${joueurDraftActuel.prix} M€</p>
-        <p>⭐ ${joueurDraftActuel.note}</p>
-    </div>
-    `;
-}        
-
 function ajouterHistorique(txt){
 
     document.getElementById(
