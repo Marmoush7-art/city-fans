@@ -137,6 +137,9 @@
         .compo-joueur-link { display: inline-block; padding: 6px 12px; margin: 3px; background: #eef6fc; color: var(--city-black); border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
         .compo-joueur-link:hover { background: var(--city-sky-blue); color: white; }
 
+        .urgent-3mois { border-left: 6px solid red; }
+        .urgent-6mois { border-left: 6px solid orange; }
+
         /* =========================MODE NUIT ========================= */
         body.mode-nuit { --city-sky-blue: #16324a; --city-black: #d0e6ff; --bg-color: #030712; --card-color: #0a0f1f; --text-color: #d6e8ff; background: var(--bg-color) !important; color: var(--text-color) !important; }*
         body.mode-nuit main,
@@ -2479,17 +2482,31 @@ function ouvrirDossierContrats() {
     }
 
     joueursFinContrat.forEach(j => {
-        container.innerHTML += `
-            <div class="centre-card" onclick="afficherJoueur('${j.id}')">
-                <img src="static/images/${j.img}">
-                <div class="centre-info">
-                    <h3>${j.nom}</h3>
-                    <p>📅 Fin de contrat : ${j.fin}</p>
-                    <p>⭐ Note : ${j.note}</p>
-                </div>
+
+    const finContrat = new Date(j.fin);
+    const maintenant = new Date();
+
+    const diffMs = finContrat - maintenant;
+    const moisRestants = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30));
+
+    let urgence = "🟢 Long terme";
+
+    if (moisRestants <= 3) urgence = "🔴 3 mois ou moins";
+    else if (moisRestants <= 6) urgence = "🟠 6 mois ou moins";
+
+    container.innerHTML += `
+        <div class="centre-card" onclick="afficherJoueur('${j.id}')">
+            <img src="static/images/${j.img}">
+            <div class="centre-info">
+                <h3>${j.nom}</h3>
+                <p>📅 Fin de contrat : ${j.fin}</p>
+                <p>⏳ Temps restant : ${moisRestants} mois</p>
+                <p>⚠️ ${urgence}</p>
+                <p>⭐ Note : ${j.note}</p>
             </div>
-        `;
-    });
+        </div>
+    `;
+});
 
     showSection("contrats-view");
 }
@@ -2684,6 +2701,11 @@ function verifierReponseQuiz() {
         }
     }
 });
+
+let classeUrgence = "";
+
+if (moisRestants <= 3) classeUrgence = "urgent-3mois";
+else if (moisRestants <= 6) classeUrgence = "urgent-6mois";
 
 </script>
 </body>
