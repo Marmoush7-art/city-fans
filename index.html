@@ -8,8 +8,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
     <style>
-        :root { --city-sky-blue: #6CABDD; --city-black: #000000; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f4f8; color: var(--city-black); padding-bottom: 50px; }
+        :root { --city-sky-blue: #6CABDD; --city-black: #000000;--bg-color: #f0f4f8;--card-color: white;--text-color: #000000; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg-color); color: var(--text-color);padding-bottom: 50px; }
         
         #lock-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--city-black); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; }
         .lock-box { background: white; padding: 40px; border-radius: 20px; color: var(--city-black); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
@@ -17,9 +17,11 @@
         .lock-box button { background: var(--city-sky-blue); color: white; border: none; padding: 12px 30px; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 1rem; }
         #lock-error { color: #e74c3c; margin-top: 10px; font-weight: bold; font-size: 0.9rem; }
         
-        nav { background: var(--city-sky-blue); color: white; height: 65px; display: flex; justify-content: space-between; align-items: center; padding: 0 25px; position: sticky; top: 0; z-index: 1001; }
-        .version-tag { color: white; font-size: 0.8rem; font-weight: bold; margin-right: 15px; }
-        .nav-right { display: flex; align-items: center; }
+        nav { background: var(--city-sky-blue); color: white; height: 65px; position: sticky; top: 0; z-index: 1001; display: flex; align-items: center; justify-content: center; position: sticky; }
+        #btn-menu {position: absolute; left: 20px; }
+        #btn-menu:hover { transform:rotate(90deg); }
+        .version-tag {position: absolute; right: 20px; font-size: 0.8rem; font-weight: bold; }
+        .nav-title { margin: 0; cursor: pointer; }
 
         .centre-card { background: white; border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.2s; }
         .centre-card:hover { transform: scale(1.02); }
@@ -28,10 +30,12 @@
         .centre-info h3 { margin-top: 0; color: var(--city-sky-blue); }
         .centre-info p { margin: 6px 0; font-size: 0.95rem; }
 
-        #menu { position: fixed; right: -280px; top: 0; width: 280px; height: 100%; background: #1a1a1a; color: white; transition: 0.4s; padding-top: 70px; z-index: 1000; overflow-y: auto; }
-        #menu.ouvert { right: 0; }
+        #menu { position: fixed; left: -280px; top: 0; width: 280px; height: 350%; background: #1a1a1a; color: white; transition: 0.4s; padding-top: 70px; z-index: 1000; overflow-y: auto; }
+        #menu.ouvert { left: 0; box-shadow: 10px 0 30px rgba(0,0,0,0.5); }
         .menu-item { padding: 18px 25px; border-bottom: 1px solid #333; cursor: pointer; font-weight: bold; display: flex; align-items: center; color: white; text-decoration: none; }
         .menu-item-icon { margin-right: 12px; font-size: 1.2rem; min-width: 25px; text-align: center; }
+        .menu-item:hover { background: #005c8f; color: white; transition: 0.25s; }
+        .joueur-link:hover { background: #005c8f; color: white; }
         
         .sous-menu { display: none; background: #111; padding-bottom: 10px; }
         .show { display: block !important; }
@@ -44,8 +48,11 @@
         table { width: 100%; border-collapse: collapse; margin-top: 15px; text-align: left; }
         th, td { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); }
         #photo { max-width: 280px; width: 100%; border-radius: 15px; border: 6px solid var(--city-sky-blue); margin-bottom: 25px; }
+        #photo:hover { transform:scale(1.08); transition:.3s; }
 
-        .logo-accueil{ width: 400px; height: auto; display: block; margin: 20px auto; }
+        .news { animation:slide 5s infinite; }
+
+        .logo-accueil{ width: 400px; height: auto; display: block; margin: 20px auto; animation:float 3s infinite; }
         
         .bio-container { background: white; padding: 25px; border-radius: 10px; margin-top: 15px; text-align: left; min-height: 300px; line-height: 1.7; font-size: 1.05rem; }
 
@@ -83,6 +90,7 @@
         .urgent-contract { border-left: 8px solid #e74c3c !important; }
 
         .compo-field { width: 100%; max-width: 600px; height: 550px; background-color: var(--city-sky-blue); border-radius: 20px; border: 6px solid var(--city-black); margin: 0 auto; padding: 10px; box-sizing: border-box; position: relative; overflow: hidden; }
+        .compo-field { background: linear-gradient( 90deg, rgba(255,255,255,.1) 1px, transparent 1px ), #3b9b5c; }
         .field-line { position: absolute; background: rgba(255,255,255,0.5); }
         .field-center-line { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
         .field-center-circle { top: 50%; left: 50%; width: 110px; height: 110px; border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; transform: translate(-50%, -50%); }
@@ -131,6 +139,18 @@
         .compo-joueur-link { display: inline-block; padding: 6px 12px; margin: 3px; background: #eef6fc; color: var(--city-black); border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
         .compo-joueur-link:hover { background: var(--city-sky-blue); color: white; }
 
+        body.mode-nuit {--city-sky-blue: #4b7fa8;--city-black: #eeeeee;--bg-color: #121212;--card-color: #1e1e1e;--text-color: #eeeeee;}
+        body.mode-nuit .centre-card,
+        body.mode-nuit .transfert-card,
+        body.mode-nuit .draft-player-card,
+        body.mode-nuit .draft-colonne,
+        body.mode-nuit #historique-enchere,
+        body.mode-nuit .player-stats-box { background: #1e1e1e; color: white; }
+        body.mode-nuit input,
+        body.mode-nuit textarea { background:#222; color:white; border-color:#555; }
+        body.mode-nuit img { filter: brightness(0.85); }
+        body.mode-nuit nav { background:#123b5a; }
+
         /* Styles Quiz */
         #quiz-view { background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         .quiz-box { margin-top: 20px; padding: 20px; border: 3px solid var(--city-sky-blue); border-radius: 15px; }
@@ -155,12 +175,18 @@
     </div>
 
     <nav>
-        <h1 onclick="showSection('accueil')">🩵 CITY FANS</h1>
-        <div class="nav-right">
-            <span class="version-tag">v 1.04.67</span>
-            <button id="btn-menu" style="font-size:35px; background:none; border:none; color:white; cursor:pointer;" onclick="toggleMenu(event)">☰</button>
-        </div>
-    </nav>
+    <button id="btn-menu"
+            style="font-size:35px;background:none;border:none;color:white;cursor:pointer;"
+            onclick="toggleMenu(event)">
+        ☰
+    </button>
+
+    <h1 class="nav-title" onclick="showSection('accueil')">
+        🩵 CITY FANS
+    </h1>
+
+    <span class="version-tag">v 1.04.67</span>
+</nav>
 
     <div id="menu">
         <ul>
@@ -578,24 +604,24 @@
 
         <div id="joueursinter-recap" class="content-section">
             <h2>Joueurs internationaux</h2>
-            <div class="transfert-card" onclick="afficherJoueur('guehi')"><img src="static/images/guehiinter.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°6</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('trafford')"><img src="static/images/traffordinter.jpg"><div class="transfert-info"><h3>James Trafford</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°23</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('oreilly')"><img src="static/images/o'reillyinter.jpg"><div class="transfert-info"><h3>Nico O'Reilly</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°3</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('marmoush')"><img src="static/images/marmoushinter.jpg"><div class="transfert-info"><h3>Omar Marmoush</h3><p>Egypte 🇪🇬</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°22</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('cherki')"><img src="static/images/cherkiinter.jpg"><div class="transfert-info"><h3>Rayan Cherki</h3><p>France 🇫🇷</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°24</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('semenyo')"><img src="static/images/semenyointer.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Ghana 🇬🇭</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°11</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('doku')"><img src="static/images/dokuinter.jpg"><div class="transfert-info"><h3>Jérémy Doku</h3><p>Belgique 🇧🇪</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°11</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('haaland')"><img src="static/images/haalandinter.jpg"><div class="transfert-info"><h3>Erling Haaland</h3><p>Norvège 🇳🇴</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°9</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('ake')"><img src="static/images/akeinter.jpg"><div class="transfert-info"><h3>Nathan Aké</h3><p>Pays-Bas 🇳🇱</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°6</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('reijnders')"><img src="static/images/reijndersinter.jpg"><div class="transfert-info"><h3>Tijjani Reijnders</h3><p>Pays-Bas 🇳🇱</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°14</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('rodri')"><img src="static/images/rodriinter.jpg"><div class="transfert-info"><h3>Rodri</h3><p>Espagne 🇪🇸</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°16</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('dias')"><img src="static/images/diasinter.jpg"><div class="transfert-info"><h3>Ruben Dias</h3><p>Portugal 🇵🇹</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°3</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('nunes')"><img src="static/images/nunesinter.jpg"><div class="transfert-info"><h3>Matheus Nunes</h3><p>Portugal 🇵🇹</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°16</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('khusanov')"><img src="static/images/khusanovinter.jpg"><div class="transfert-info"><h3>Abdukodir Khusanov</h3><p>Ouzbékistan 🇺🇿</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°3</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('ait-nouri')"><img src="static/images/ait-nouriinter.jpg"><div class="transfert-info"><h3>Rayan Ait-Nouri</h3><p>Algérie 🇩🇿</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°15</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('akanji')"><img src="static/images/akanjiinter.jpg"><div class="transfert-info"><h3>Manuel Akanji</h3><p>Suisse 🇨🇭</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°5</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('gvardiol')"><img src="static/images/gvardiolinter.jpg"><div class="transfert-info"><h3>Josko Gvardiol</h3><p>Croatie 🇭🇷</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°20</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('kovacic')"><img src="static/images/kovacicinter.jpg"><div class="transfert-info"><h3>Matéo Kovacic</h3><p>Croatie 🇭🇷</p><p>Buts :</p><p>Passes D :</p><p class="transfert-date">N°8</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('guehi')"><img src="static/images/guehiinter.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°6</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('trafford')"><img src="static/images/traffordinter.jpg"><div class="transfert-info"><h3>James Trafford</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°23</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('oreilly')"><img src="static/images/o'reillyinter.jpg"><div class="transfert-info"><h3>Nico O'Reilly</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°3</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('marmoush')"><img src="static/images/marmoushinter.jpg"><div class="transfert-info"><h3>Omar Marmoush</h3><p>Egypte 🇪🇬</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°22</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('cherki')"><img src="static/images/cherkiinter.jpg"><div class="transfert-info"><h3>Rayan Cherki</h3><p>France 🇫🇷</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°24</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('semenyo')"><img src="static/images/semenyointer.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Ghana 🇬🇭</p<p>Matchs : 1</p>><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°11</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('doku')"><img src="static/images/dokuinter.jpg"><div class="transfert-info"><h3>Jérémy Doku</h3><p>Belgique 🇧🇪</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°11</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('haaland')"><img src="static/images/haalandinter.jpg"><div class="transfert-info"><h3>Erling Haaland</h3><p>Norvège 🇳🇴</p><p>Matchs : 1</p><p>Buts : 2</p><p>Passes D : 0</p><p class="transfert-date">N°9</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('ake')"><img src="static/images/akeinter.jpg"><div class="transfert-info"><h3>Nathan Aké</h3><p>Pays-Bas 🇳🇱</p<p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°5</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('reijnders')"><img src="static/images/reijndersinter.jpg"><div class="transfert-info"><h3>Tijjani Reijnders</h3><p>Pays-Bas 🇳🇱</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°14</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('rodri')"><img src="static/images/rodriinter.jpg"><div class="transfert-info"><h3>Rodri</h3><p>Espagne 🇪🇸</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°16</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('dias')"><img src="static/images/diasinter.jpg"><div class="transfert-info"><h3>Ruben Dias</h3><p>Portugal 🇵🇹</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°3</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('nunes')"><img src="static/images/nunesinter.jpg"><div class="transfert-info"><h3>Matheus Nunes</h3><p>Portugal 🇵🇹</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°6</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('khusanov')"><img src="static/images/khusanovinter.jpg"><div class="transfert-info"><h3>Abdukodir Khusanov</h3><p>Ouzbékistan 🇺🇿</p><p>Matchs : 1/p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°2</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('ait-nouri')"><img src="static/images/ait-nouriinter.jpg"><div class="transfert-info"><h3>Rayan Ait-Nouri</h3><p>Algérie 🇩🇿</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°15</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('akanji')"><img src="static/images/akanjiinter.jpg"><div class="transfert-info"><h3>Manuel Akanji</h3><p>Suisse 🇨🇭</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°5</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('gvardiol')"><img src="static/images/gvardiolinter.jpg"><div class="transfert-info"><h3>Josko Gvardiol</h3><p>Croatie 🇭🇷</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°4</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('kovacic')"><img src="static/images/kovacicinter.jpg"><div class="transfert-info"><h3>Matéo Kovacic</h3><p>Croatie 🇭🇷</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°8</p></div></div>
             
         </div>
 
@@ -1446,6 +1472,21 @@ premierJoueur =
     premierJoueur === "joueur"
     ? "bot"
     : "joueur";
+
+let badgeElite = "";
+
+let meilleurNote = Math.max(
+    ...joueursDraft.map(j => j.note)
+);
+
+if(joueurDraftActuel.note === meilleurNote){
+    badgeElite = "👑";
+}
+if(
+    joueurDraftActuel.note === meilleurNote
+){
+    badgeElite = "👑";
+}
     
 document.getElementById(
         "historique-enchere"
@@ -1478,6 +1519,25 @@ if(joueurDraftActuel.note >= 85){
 if(joueurDraftActuel.note >= 89){
     couleur = "#ffd700"; // or
 }
+    
+// Couleur selon le poste
+let couleurPoste = "#ffffff";
+
+if(joueurDraftActuel.poste === "Attaquant"){
+    couleurPoste = "#ff3333"; // rouge
+}
+
+if(joueurDraftActuel.poste === "Milieu"){
+    couleurPoste = "#ffd700"; // jaune
+}
+
+if(joueurDraftActuel.poste === "Défenseur"){
+    couleurPoste = "#22c55e"; // vert
+}
+
+if(joueurDraftActuel.poste === "Gardien"){
+    couleurPoste = "#a855f7"; // violet
+}
 
 const nomImage =
     joueurDraftActuel.nom
@@ -1491,35 +1551,51 @@ document.getElementById(
     "draft-carte"
 ).innerHTML = `
 <div style="
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:30px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:30px;
 ">
 
-    <div
-        class="draft-player-card"
-        style="
-            border:4px solid ${couleur};
-            width:350px;
-        "
-    >
-        <h3>${joueurDraftActuel.nom}</h3>
-        <p>💰 Valeur estimée : ${joueurDraftActuel.prix} M€</p>
-        <p>⭐ Note EA : ${joueurDraftActuel.note}</p>
-    </div>
+<div
+class="draft-player-card"
+style="
+border:4px solid ${couleur};
+width:350px;
+padding:20px;
+border-radius:20px;
+">
 
-    <img
-        src="static/images/${joueurDraftActuel.img}"
-        alt="${joueurDraftActuel.nom}"
-        style="
-            width:180px;
-            height:220px;
-            object-fit:cover;
-            border-radius:15px;
-            box-shadow:0 0 15px rgba(0,0,0,0.5);
-        "
-    >
+<h3>
+${badgeElite} ${joueurDraftActuel.nom}
+${badgeElite ? " 👑" : ""}
+</h3>
+
+<p>💰 Valeur : ${joueurDraftActuel.prix} M€</p>
+<p>⭐ Note : ${joueurDraftActuel.note}</p>
+
+</div>
+
+
+<div style="
+border:5px solid ${couleurPoste};
+border-radius:20px;
+padding:8px;
+box-shadow:0 0 20px ${couleurPoste};
+">
+
+<img
+src="static/images/${joueurDraftActuel.img}"
+style="
+width:180px;
+height:220px;
+object-fit:cover;
+border-radius:15px;
+"
+>
+
+</div>
+
 </div>
 `;
     if(premierJoueur === "bot"){
@@ -1975,19 +2051,6 @@ draftBudgetJoueur -= prixFinal;
     );
 }
 
-        
-function afficherJoueurDraft(){
-    if(!joueurDraftActuel) return;
-
-    document.getElementById("draft-carte").innerHTML = `
-    <div>
-        <h3>${joueurDraftActuel.nom}</h3>
-        <p>💰 ${joueurDraftActuel.prix} M€</p>
-        <p>⭐ ${joueurDraftActuel.note}</p>
-    </div>
-    `;
-}        
-
 function ajouterHistorique(txt){
 
     document.getElementById(
@@ -2266,6 +2329,26 @@ function afficherActuSavinho() {
 
     showSection('joueur-solo');
 }
+
+        function verifierModeNuit(){
+
+    const heure = new Date().getHours();
+
+    if(heure >= 18 || heure < 7){
+
+        document.body.classList.add("mode-nuit");
+
+    }else{
+
+        document.body.classList.remove("mode-nuit");
+
+    }
+}
+
+
+verifierModeNuit();
+
+setInterval(verifierModeNuit, 60000);
 
         function resetFiche() {
 
