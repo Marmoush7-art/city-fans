@@ -7,6 +7,28 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAyJoVCVW1CDsCARI3by8OV6fYzJUx3IVc",
+  authDomain: "city-fans-app.firebaseapp.com",
+  projectId: "city-fans-app",
+  storageBucket: "city-fans-app.firebasestorage.app",
+  messagingSenderId: "407700466787",
+  appId: "1:407700466787:web:3142ac4aa638a88e245c56"
+};
+
+
+firebase.initializeApp(firebaseConfig);
+
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+
+console.log("Firebase City Fans OK 🩵");
+
+</script>
     
     <style>
         :root { --city-sky-blue: #6CABDD; --city-black: #000000;--bg-color: #f0f4f8;--card-color: white;--text-color: #000000; }
