@@ -260,7 +260,6 @@
             </div>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
             <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span>Jeu Draft</li>
-            <li class="menu-item" onclick="ouvrirCompte()"><span class="menu-item-icon">👤</span>Mon compte</li>
 
 </div>
         </ul>
@@ -289,51 +288,6 @@
         <p><strong>📳 Elliot Anderson proche de signer à City.</strong></p>
     </div>
 
-    <div id="compte" class="content-section">
-
-    <h2>👤 Mon Compte City Fans</h2>
-
-    <div class="box-info">
-
-        <h3>Créer un compte</h3>
-
-        <input 
-        id="pseudo" 
-        placeholder="Nom d'utilisateur">
-
-        <br><br>
-
-        <input 
-        id="email" 
-        placeholder="Adresse mail">
-
-        <br><br>
-
-        <input 
-        id="password" 
-        type="password"
-        placeholder="Mot de passe">
-
-        <br><br>
-
-        <button onclick="creerCompte()">
-        🩵 Créer mon compte
-        </button>
-
-        <button onclick="connexion()">
-        🔑 Connexion
-        </button>
-
-        <button onclick="deconnexion()">
-        🚪 Déconnexion
-        </button>
-
-
-        <h3 id="compte-message"></h3>
-
-    </div>
-
-</div>
 
     <div class="match-card">
         <h3>📅 Prochain Match</h3>
@@ -458,42 +412,6 @@
     <button onclick="recommencerDraft()">
         🔄 Rejouer
     </button>
-
-</div>
-
-<div id="compte" class="content-section">
-
-<h2>👤 Mon compte</h2>
-
-<div class="box-info">
-
-<input id="pseudo" placeholder="Nom d'utilisateur">
-
-<input id="email" placeholder="Adresse mail">
-
-<input id="password" type="password" placeholder="Mot de passe">
-
-<br><br>
-
-<button onclick="creerCompte()">
-Créer un compte
-</button>
-
-<button onclick="connexion()">
-Connexion
-</button>
-
-<button onclick="deconnexion()">
-Déconnexion
-</button>
-
-<p id="compte-message"></p>
-
-</div>
-
-</div>
-
-<div id="draft-resultat"></div>
 
 </div>
 
@@ -2538,101 +2456,6 @@ result.style.display="block";
 
 
 }
-
-function ouvrirCompte(){
-showSection("compte");
-}
-
-
-
-function creerCompte(){
-
-let email =
-document.getElementById("email").value;
-
-let password =
-document.getElementById("password").value;
-
-let pseudo =
-document.getElementById("pseudo").value;
-
-
-auth.createUserWithEmailAndPassword(email,password)
-
-.then((result)=>{
-
-
-return db.collection("users")
-.doc(result.user.uid)
-.set({
-
-pseudo:pseudo,
-email:email,
-date:new Date()
-
-});
-
-
-})
-
-.then(()=>{
-
-document.getElementById("compte-message").innerHTML =
-"✅ Compte créé !";
-
-})
-
-.catch(error=>{
-
-document.getElementById("compte-message").innerHTML =
-error.message;
-
-});
-
-}
-
-
-
-
-function connexion(){
-
-let email =
-document.getElementById("email").value;
-
-let password =
-document.getElementById("password").value;
-
-
-auth.signInWithEmailAndPassword(email,password)
-
-.then(()=>{
-
-document.getElementById("compte-message").innerHTML =
-"🩵 Connecté !";
-
-})
-
-.catch(error=>{
-
-document.getElementById("compte-message").innerHTML =
-error.message;
-
-});
-
-}
-
-
-
-
-function deconnexion(){
-
-auth.signOut();
-
-document.getElementById("compte-message").innerHTML =
-"Déconnecté";
-
-}
-
         function afficherRumeur(id) {
             const r = rumeurs[id]; if(!r) return;
             document.getElementById('rumor-name').innerText = r.nom;
@@ -2676,8 +2499,6 @@ document.getElementById("compte-message").innerHTML =
         function ouvrirChat(nom) { currentChatTopic = nom; document.getElementById('chat-titre').innerText = "Avis : " + nom; loadMessages(); showSection('chat-section'); } 
         function toggleEmojiPicker() { const picker = document.getElementById('emoji-picker'); picker.style.display = (picker.style.display === 'grid') ? 'none' : 'grid'; } 
         function addEmoji(e) { const i = document.getElementById('chat-input'); i.value += e; document.getElementById('emoji-picker').style.display = 'none'; } 
-        function envoyerMessage() { const i = document.getElementById('chat-input'); const val = i.value.trim(); if(!val || !currentChatTopic) return; db.collection("messages").add({ topic: currentChatTopic, text: val, date: firebase.firestore.FieldValue.serverTimestamp() }); i.value = ""; } 
-        function loadMessages() { 
             db.collection("messages").where("topic", "==", currentChatTopic).orderBy("date", "asc").onSnapshot((snapshot) => { 
                 const container = document.getElementById('chat-messages'); container.innerHTML = ""; 
                 snapshot.forEach((doc) => { const m = document.createElement('div'); m.className = "msg"; m.innerText = doc.data().text; container.appendChild(m); }); 
