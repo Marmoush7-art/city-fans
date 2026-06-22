@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🩵 City Fans</title>
@@ -1473,6 +1472,21 @@ premierJoueur =
     premierJoueur === "joueur"
     ? "bot"
     : "joueur";
+
+let badgeElite = "";
+
+let meilleurNote = Math.max(
+    ...joueursDraft.map(j => j.note)
+);
+
+if(joueurDraftActuel.note === meilleurNote){
+    badgeElite = "👑";
+}
+if(
+    joueurDraftActuel.nom === meilleurDraft.nom
+){
+    badgeElite = "👑";
+}
     
 document.getElementById(
         "historique-enchere"
@@ -1550,7 +1564,7 @@ document.getElementById(
             width:350px;
         "
     >
-        <h3>${joueurDraftActuel.nom}</h3>
+        <h3> ${badgeElite} ${joueurDraftActuel.nom} ${badgeElite ? " 👑" : ""} </h3>
         <p>💰 Valeur estimée : ${joueurDraftActuel.prix} M€</p>
         <p>⭐ Note EA : ${joueurDraftActuel.note}</p>
     </div>
@@ -1569,15 +1583,7 @@ style=" width:180px; height:220px; object-fit:cover; border-radius:15px; "
 >
 
 </div>
-        alt="${joueurDraftActuel.nom}"
-        style="
-            width:180px;
-            height:220px;
-            object-fit:cover;
-            border-radius:15px;
-            box-shadow:0 0 15px rgba(0,0,0,0.5);
-        "
-    >
+
 </div>
 `;
     if(premierJoueur === "bot"){
