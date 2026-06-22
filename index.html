@@ -137,7 +137,11 @@
         .compo-joueur-link { display: inline-block; padding: 6px 12px; margin: 3px; background: #eef6fc; color: var(--city-black); border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
         .compo-joueur-link:hover { background: var(--city-sky-blue); color: white; }
 
-        body.mode-nuit { --city-sky-blue: #2f6f9f; --city-black: #d0e6ff; --bg-color: #0b1b2a; --card-color: #102a43; --text-color: #d0e6ff; }
+        /* =========================MODE NUIT ========================= */
+        body.mode-nuit { --city-sky-blue: #2f6f9f; --city-black: #d0e6ff; --bg-color: #0b1b2a; --card-color: #102a43; --text-color: #d0e6ff; background: var(--bg-color) !important; color: var(--text-color) !important; }*
+        body.mode-nuit main,
+        body.mode-nuit .content-section,
+        body.mode-nuit .box-info { background: var(--bg-color) !important; color: var(--text-color) !important; }
         body.mode-nuit .centre-card,
         body.mode-nuit .transfert-card,
         body.mode-nuit .draft-player-card,
@@ -152,7 +156,7 @@
         body.mode-nuit #chat-messages,
         body.mode-nuit #quiz-view { background: var(--card-color) !important; color: var(--text-color) !important; }
         body.mode-nuit input,
-        body.mode-nuit textarea { background: #222; color: #eeeeee; border-color: #555; }
+        body.mode-nuit textarea { background: #0f2233; color: var(--text-color); border-color: #355a7a; }
         body.mode-nuit nav { background: #123b5a; }
         body.mode-nuit img { filter: brightness(0.85); }
         
