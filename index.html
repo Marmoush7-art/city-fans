@@ -791,233 +791,91 @@
             'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "80M €", noteea: "84", img: "semenyo.jpg", bio: "Puissance offensive brute.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
         };
 
+        const effectiffemmes = {
+            gardiennes: [ 
+                { nom: "Eve Annets", age: " ans", nat: "", poste: "Gardienne", img: "gardienne.jpg" }, 
+                { nom: "Eartha Cumings", age: " ans", nat: "", poste: "Gardienne", img: "gardienne.jpg" },
+                { nom: "Khiara Keating", age: " ans", nat: "", poste: "Gardienne", img: "gardienne.jpg" }, 
+                { nom: "Kate Startup", age: " ans", nat: "", poste: "Gardienne", img: "gardienne.jpg" },
+                { nom: "Ayaka Yamashita", age: " ans", nat: "", poste: "Gardienne", img: "gardienne.jpg" }
+            ],
+            defenseures: [
+                { nom: "", age: " ans", nat: "", poste: "Défenseur", img: "defenseurey.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Défenseur", img: "defenseure.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Défenseur", img: "defenseure.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Défenseur", img: "defenseure.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Défenseur", img: "defenseure.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Défenseur", img: "defenseure.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Défenseur", img: "defenseure.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Défenseur", img: "defenseure.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Défenseur", img: "defenseure.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Défenseur", img: "defenseure.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Défenseur", img: "defenseure.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Défenseur", img: "defenseure.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Défenseur", img: "defenseure.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Défenseur", img: "defenseure.jpg" }
+            ],
+            milieux: [
+                { nom: "", age: " ans", nat: "", poste: "Milieu", img: "milieu.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Milieu", img: "milieu.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Milieu", img: "milieu.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Milieu", img: "milieu.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Milieu", img: "milieu.jpg" }
+            ],
+            attaquantes: [
+                { nom: "", age: " ans", nat: "", poste: "Attaquante", img: "attaquante.jpg"},
+                { nom: "", age: " ans", nat: "", poste: "Attaquante", img: "attaquante.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Attaquante", img: "attaquante.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Attaquante", img: "attaquante.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Attaquante", img: "attaquante.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Attaquante", img: "attaquante.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Attaquante", img: "attaquante.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Attaquante", img: "attaquante.jpg" },
+                { nom: "", age: " ans", nat: "", poste: "Attaquante", img: "attaquante.jpg" }
+            ]
+        };
+
         const centreFormation = {
-    gardiens: [
-        {
-            nom: "Spike Brits",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Gardien",
-            img: "gardienspike.jpg"
-        },
-        {
-            nom: "Oliver Whatmuff",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Gardien",
-            img: "gardienoliver.jpg"
-        },
-        {
-            nom: "Jack Wint",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Gardien",
-            img: "gardienjack.jpg"
-        }
-    ],
-    defenseurs: [
-        {
-            nom: "Finley Burns",
-            age: "22 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurfinley.jpg"
-        },
-        {
-            nom: "Ezra Carrington",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurezra.jpg"
-        },
-        {
-            nom: "Tomas Galvez",
-            age: "21 ans",
-            nat: "Finlande 🇫🇮",
-            poste: "Défenseur",
-            img: "defenseurtomas.jpg"
-        },
-        {
-            nom: "Matty Henderson-Hall",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurmatty.jpg"
-        },
-        {
-            nom: "Luke Mbete",
-            age: "22 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurluke.jpg"
-        },
-        {
-            nom: "Christian McFarlane",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurchristian.jpg"
-        },
-        {
-            nom: "Stephen Mfuni",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurstephen.jpg"
-        },
-        {
-            nom: "Brooklyn Nfonkeu",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurbrooklyn.jpg"
-        },
-        {
-            nom: "Kian Noble",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurkian.jpg"
-        },
-        {
-            nom: "Harrison Parker",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurharrison.jpg"
-        },
-        {
-            nom: "Lakyle Samuel",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurlakyle.jpg"
-        },
-        {
-            nom: "Jahmai Simpson-Pusey",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurjahmai.jpg"
-        },
-        {
-            nom: "Isaac Smith",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurisaac.jpg"
-        },
-        {
-            nom: "Rhys Thomas",
-            age: "19 ans",
-            nat: "Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿",
-            poste: "Défenseur",
-            img: "defenseurrhys.jpg"
-        }
-    ],
-    milieux: [
-        {
-            nom: "Isaiah Dada-Mascoll",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Milieu",
-            img: "milieuisaiah.jpg"
-        },
-        {
-            nom: "Femi Fapetu",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Milieu",
-            img: "milieufemi.jpg"
-        },
-        {
-            nom: "Charlie Gray",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Milieu",
-            img: "milieucharlie.jpg"
-        },
-        {
-            nom: "Jaden Heskey",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Milieu",
-            img: "milieujaden.jpg"
-        },
-        {
-            nom: "Divine Mukasa",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Milieu",
-            img: "milieudivine.jpg"
-        }
-    ],
-    attaquants: [
-        {
-            nom: "Luka Fletcher",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantluka.jpg"
-        },
-        {
-            nom: "Reighan Heskey",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantreighan.jpg"
-        },
-        {
-            nom: "Emilio Lawrence",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantemilio.jpg"
-        },
-        {
-            nom: "Ryan McAidoo",
-            age: "17 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantryan.jpg"
-        },
-        {
-            nom: "Divin Mubama",
-            age: "21 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantdivin.jpg"
-        },
-        {
-            nom: "Ashton Muir",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantashton.jpg"
-        },
-        {
-            nom: "Joel Ndala",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantjoel.jpg"
-        },
-        {
-            nom: "Mahamadou Sangaré",
-            age: "19 ans",
-            nat: "France 🇫🇷",
-            poste: "Attaquant",
-            img: "attaquantmahamadou.jpg"
-        },
-        {
-            nom: "Matty Warhurst",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantmatty.jpg"
-        }
-    ]
-};
+            gardiens: [ 
+                { nom: "Spike Brits", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Gardien", img: "gardienspike.jpg" }, 
+                { nom: "Oliver Whatmuff", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Gardien", img: "gardienoliver.jpg" },
+                { nom: "Jack Wint", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Gardien", img: "gardienjack.jpg" }
+            ],
+            defenseurs: [
+                { nom: "Finley Burns", age: "22 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurfinley.jpg" },
+                { nom: "Ezra Carrington", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurezra.jpg" },
+                { nom: "Tomas Galvez", age: "21 ans", nat: "Finlande 🇫🇮", poste: "Défenseur", img: "defenseurtomas.jpg" },
+                { nom: "Matty Henderson-Hall", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurmatty.jpg" },
+                { nom: "Luke Mbete", age: "22 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurluke.jpg" },
+                { nom: "Christian McFarlane", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurchristian.jpg" },
+                { nom: "Stephen Mfuni", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurstephen.jpg" },
+                { nom: "Brooklyn Nfonkeu", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurbrooklyn.jpg" },
+                { nom: "Kian Noble", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurkian.jpg" },
+                { nom: "Harrison Parker", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurharrison.jpg" },
+                { nom: "Lakyle Samuel", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurlakyle.jpg" },
+                { nom: "Jahmai Simpson-Pusey", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurjahmai.jpg" },
+                { nom: "Isaac Smith", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurisaac.jpg" },
+                { nom: "Rhys Thomas", age: "19 ans", nat: "Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿", poste: "Défenseur", img: "defenseurrhys.jpg" }
+            ],
+            milieux: [
+                { nom: "Isaiah Dada-Mascoll", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieuisaiah.jpg" },
+                { nom: "Femi Fapetu", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieufemi.jpg" },
+                { nom: "Charlie Gray", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieucharlie.jpg" },
+                { nom: "Jaden Heskey", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieujaden.jpg" },
+                {nom: "Divine Mukasa", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieudivine.jpg" }
+            ],
+            attaquants: [
+                { nom: " Fletcher", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantluka.jpg"},
+                { nom: "Reighan Heskey", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantreighan.jpg" },
+                { nom: "Emilio Lawrence", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantemilio.jpg" },
+                { nom: "Ryan McAidoo", age: "17 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantryan.jpg" },
+                { nom: "Divin Mubama", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantdivin.jpg" },
+                { nom: "Ashton Muir", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantashton.jpg" },
+                { nom: "Joel Ndala", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantjoel.jpg" },
+                { nom: "Mahamadou Sangaré", age: "19 ans", nat: "France 🇫🇷", poste: "Attaquant", img: "attaquantmahamadou.jpg" },
+                { nom: "Matty Warhurst", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantmatty.jpg" }
+            ]
+        };
 
         const joueursDraft = Object.values(effectif).map(j => ({
     nom: j.nom,
