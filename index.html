@@ -19,6 +19,7 @@
         
         nav { background: var(--city-sky-blue); color: white; height: 65px; position: sticky; top: 0; z-index: 1001; display: flex; align-items: center; justify-content: center; position: sticky; }
         #btn-menu {position: absolute; left: 20px; }
+        #btn-menu:hover { transform:rotate(90deg); }
         .version-tag {position: absolute; right: 20px; font-size: 0.8rem; font-weight: bold; }
         .nav-title { margin: 0; cursor: pointer; }
 
@@ -30,7 +31,7 @@
         .centre-info p { margin: 6px 0; font-size: 0.95rem; }
 
         #menu { position: fixed; left: -280px; top: 0; width: 280px; height: 200%; background: #1a1a1a; color: white; transition: 0.4s; padding-top: 70px; z-index: 1000; overflow-y: auto; }
-        #menu.ouvert { left: 0; }
+        #menu.ouvert { left: 0; box-shadow: 10px 0 30px rgba(0,0,0,0.5); }
         .menu-item { padding: 18px 25px; border-bottom: 1px solid #333; cursor: pointer; font-weight: bold; display: flex; align-items: center; color: white; text-decoration: none; }
         .menu-item-icon { margin-right: 12px; font-size: 1.2rem; min-width: 25px; text-align: center; }
         .menu-item:hover { background: #005c8f; color: white; transition: 0.25s; }
@@ -86,6 +87,7 @@
         .urgent-contract { border-left: 8px solid #e74c3c !important; }
 
         .compo-field { width: 100%; max-width: 600px; height: 550px; background-color: var(--city-sky-blue); border-radius: 20px; border: 6px solid var(--city-black); margin: 0 auto; padding: 10px; box-sizing: border-box; position: relative; overflow: hidden; }
+        .compo-field { background: linear-gradient( 90deg, rgba(255,255,255,.1) 1px, transparent 1px ), #3b9b5c; }
         .field-line { position: absolute; background: rgba(255,255,255,0.5); }
         .field-center-line { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
         .field-center-circle { top: 50%; left: 50%; width: 110px; height: 110px; border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; transform: translate(-50%, -50%); }
@@ -144,6 +146,7 @@
         body.mode-nuit input,
         body.mode-nuit textarea { background:#222; color:white; border-color:#555; }
         body.mode-nuit img { filter: brightness(0.85); }
+        body.mode-nuit nav { background:#123b5a; }
 
         /* Styles Quiz */
         #quiz-view { background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
