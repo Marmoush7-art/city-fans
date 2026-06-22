@@ -265,6 +265,7 @@
             <li class="menu-item" onclick="afficherClassement()"><span class="menu-item-icon">📊</span>Classement</li>
             <li class="menu-item" onclick="showSection('joueursinter-recap')"><span class="menu-item-icon">🏁</span>Joueurs Inter</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
+            <li class="menu-item" onclick="ouvrirDossierContrats()"><span class="menu-item-icon">📄</span>Contrats Urgents</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
             </div>
@@ -449,6 +450,11 @@
 
     </div>
 </div>   
+
+        <div id="contrats-view" class="content-section">
+            <h2>📄 Dossiers contrats (&lt; 1 an)</h2>
+            <div id="contrats-container"></div>
+        </div>
 
         <div id="actus-mercato" class="content-section">
             <h2>Actus Mercato 📰</h2>
@@ -2440,6 +2446,53 @@ setInterval(verifierModeNuit, 60000);
 {nom:"Antoine Semenyo", id:"semenyo"}
 
 ];
+
+function ouvrirDossierContrats() {
+
+    const container = document.getElementById("contrats-container");
+    container.innerHTML = "";
+
+    const maintenant = new Date();
+
+    const joueursFinContrat = [];
+
+    for (let id in effectif) {
+
+        const j = effectif[id];
+
+        if (!j.fin) continue;
+
+        const finContrat = new Date(j.fin);
+
+        const diffTemps = finContrat - maintenant;
+        const diffAnnees = diffTemps / (1000 * 60 * 60 * 24 * 365);
+
+        if (diffAnnees <= 1 && diffAnnees > 0) {
+            joueursFinContrat.push(j);
+        }
+    }
+
+    if (joueursFinContrat.length === 0) {
+        container.innerHTML = "<p>Aucun joueur avec moins d'1 an de contrat.</p>";
+        showSection("contrats-view");
+        return;
+    }
+
+    joueursFinContrat.forEach(j => {
+        container.innerHTML += `
+            <div class="centre-card" onclick="afficherJoueur('${j.id}')">
+                <img src="static/images/${j.img}">
+                <div class="centre-info">
+                    <h3>${j.nom}</h3>
+                    <p>📅 Fin de contrat : ${j.fin}</p>
+                    <p>⭐ Note : ${j.note}</p>
+                </div>
+            </div>
+        `;
+    });
+
+    showSection("contrats-view");
+}
 
 
 function searchPlayer(){
