@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🩵 City Fans</title>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     
     <style>
         :root { --city-sky-blue: #6CABDD; --city-black: #000000;--bg-color: #f0f4f8;--card-color: white;--text-color: #000000; }
@@ -140,17 +137,25 @@
         .compo-joueur-link { display: inline-block; padding: 6px 12px; margin: 3px; background: #eef6fc; color: var(--city-black); border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
         .compo-joueur-link:hover { background: var(--city-sky-blue); color: white; }
 
-        body.mode-nuit {--city-sky-blue: #4b7fa8;--city-black: #eeeeee;--bg-color: #121212;--card-color: #1e1e1e;--text-color: #eeeeee;}
+        body.mode-nuit { --city-sky-blue: #4b7fa8; --city-black: #eeeeee; --bg-color: #121212; --card-color: #1e1e1e; --text-color: #eeeeee; }
         body.mode-nuit .centre-card,
         body.mode-nuit .transfert-card,
         body.mode-nuit .draft-player-card,
         body.mode-nuit .draft-colonne,
         body.mode-nuit #historique-enchere,
-        body.mode-nuit .player-stats-box { background: #1e1e1e; color: white; }
+        body.mode-nuit .player-stats-box,
+        body.mode-nuit .bio-container,
+        body.mode-nuit .match-card,
+        body.mode-nuit .compo-squad-list,
+        body.mode-nuit .stat-card,
+        body.mode-nuit .chat-container,
+        body.mode-nuit #chat-messages,
+        body.mode-nuit .quiz-box,
+        body.mode-nuit #quiz-view { background: #1e1e1e !important; color: #eeeeee !important; }
         body.mode-nuit input,
-        body.mode-nuit textarea { background:#222; color:white; border-color:#555; }
+        body.mode-nuit textarea { background: #222; color: #eeeeee; border-color: #555; }
+        body.mode-nuit nav { background: #123b5a; }
         body.mode-nuit img { filter: brightness(0.85); }
-        body.mode-nuit nav { background:#123b5a; }
         
         .player-search { position: absolute; right: 140px; /* place avant la version */ top: 50%; transform: translateY(-50%); width: 190px; z-index: 2000; }
         .player-search input { width: 100%; box-sizing: border-box; padding: 8px 15px; border-radius: 20px; border: none; outline: none; font-weight: bold; }
@@ -698,9 +703,6 @@
     </main>
 
     <script>
-        const firebaseConfig = { apiKey: "CLE", authDomain: "DOM", projectId: "ID", storageBucket: "BUCKET", messagingSenderId: "ID", appId: "APP" };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
         
         function checkPassword() {
             const input = document.getElementById('site-password').value;
