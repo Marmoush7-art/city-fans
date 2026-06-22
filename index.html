@@ -1505,6 +1505,25 @@ if(joueurDraftActuel.note >= 85){
 if(joueurDraftActuel.note >= 89){
     couleur = "#ffd700"; // or
 }
+    
+// Couleur selon le poste
+let couleurPoste = "#ffffff";
+
+if(joueurDraftActuel.poste === "Attaquant"){
+    couleurPoste = "#ff3333"; // rouge
+}
+
+if(joueurDraftActuel.poste === "Milieu"){
+    couleurPoste = "#ffd700"; // jaune
+}
+
+if(joueurDraftActuel.poste === "Défenseur"){
+    couleurPoste = "#22c55e"; // vert
+}
+
+if(joueurDraftActuel.poste === "Gardien"){
+    couleurPoste = "#a855f7"; // violet
+}
 
 const nomImage =
     joueurDraftActuel.nom
@@ -1536,8 +1555,20 @@ document.getElementById(
         <p>⭐ Note EA : ${joueurDraftActuel.note}</p>
     </div>
 
-    <img
-        src="static/images/${joueurDraftActuel.img}"
+    <div style="
+    border:5px solid ${couleurPoste};
+    border-radius:20px;
+    padding:8px;
+    box-shadow:0 0 20px ${couleurPoste};
+">
+
+<img
+src="static/images/${joueurDraftActuel.img}"
+alt="${joueurDraftActuel.nom}"
+style=" width:180px; height:220px; object-fit:cover; border-radius:15px; "
+>
+
+</div>
         alt="${joueurDraftActuel.nom}"
         style="
             width:180px;
