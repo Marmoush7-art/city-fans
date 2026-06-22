@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🩵 City Fans</title>
@@ -9,8 +8,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
     <style>
-        :root { --city-sky-blue: #6CABDD; --city-black: #000000; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f4f8; color: var(--city-black); padding-bottom: 50px; }
+        :root { --city-sky-blue: #6CABDD; --city-black: #000000;--bg-color: #f0f4f8;--card-color: white;--text-color: #000000; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg-color); color: var(--text-color);padding-bottom: 50px; }
         
         #lock-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--city-black); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; }
         .lock-box { background: white; padding: 40px; border-radius: 20px; color: var(--city-black); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
@@ -132,6 +131,17 @@
         .compo-cat-titre { color: var(--city-sky-blue); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin: 15px 0 8px; }
         .compo-joueur-link { display: inline-block; padding: 6px 12px; margin: 3px; background: #eef6fc; color: var(--city-black); border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
         .compo-joueur-link:hover { background: var(--city-sky-blue); color: white; }
+
+        body.mode-nuit {--city-sky-blue: #4b7fa8;--city-black: #eeeeee;--bg-color: #121212;--card-color: #1e1e1e;--text-color: #eeeeee;}
+        body.mode-nuit .centre-card,
+        body.mode-nuit .transfert-card,
+        body.mode-nuit .draft-player-card,
+        body.mode-nuit .draft-colonne,
+        body.mode-nuit #historique-enchere,
+        body.mode-nuit .player-stats-box { background: #1e1e1e; color: white; }
+        body.mode-nuit input,
+        body.mode-nuit textarea { background:#222; color:white; border-color:#555; }
+        body.mode-nuit img { filter: brightness(0.85); }
 
         /* Styles Quiz */
         #quiz-view { background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
@@ -2274,6 +2284,26 @@ function afficherActuSavinho() {
 
     showSection('joueur-solo');
 }
+
+        function verifierModeNuit(){
+
+    const heure = new Date().getHours();
+
+    if(heure >= 18 || heure < 7){
+
+        document.body.classList.add("mode-nuit");
+
+    }else{
+
+        document.body.classList.remove("mode-nuit");
+
+    }
+}
+
+
+verifierModeNuit();
+
+setInterval(verifierModeNuit, 60000);
 
         function resetFiche() {
 
