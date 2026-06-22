@@ -151,6 +151,12 @@
         body.mode-nuit img { filter: brightness(0.85); }
         body.mode-nuit nav { background:#123b5a; }
 
+        .player-search { position: absolute; left: 50%; transform: translateX(-50%); width: 230px; }
+        .player-search input { width: 100%; padding: 8px 15px; border-radius: 20px; border: none; outline: none; font-weight: bold; }
+        .search-results { position: absolute; top: 45px; left: 0; width: 100%; background: white; color: black; border-radius: 10px; display: none; max-height: 250px; overflow-y: auto; box-shadow: 0 5px 15px rgba(0,0,0,.3); z-index: 2000; }
+        .search-results div { padding: 10px; cursor: pointer; }
+        .search-results div:hover { background: #6CABDD; color: white; }
+
         /* Styles Quiz */
         #quiz-view { background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         .quiz-box { margin-top: 20px; padding: 20px; border: 3px solid var(--city-sky-blue); border-radius: 15px; }
@@ -184,6 +190,18 @@
     <h1 class="nav-title" onclick="showSection('accueil')">
         🩵 CITY FANS
     </h1>
+
+    <div class="player-search">
+
+        <input 
+        type="text" 
+        id="search-player" 
+        placeholder="🔎 Chercher un joueur..."
+        onkeyup="searchPlayer()">
+
+        <div id="search-results" class="search-results"></div>
+
+    </div>
 
     <span class="version-tag">v 1.04.67</span>
 </nav>
@@ -2365,6 +2383,81 @@ setInterval(verifierModeNuit, 60000);
     // Réaffiche le bloc statistiques
     const statsBlock = document.getElementById('s-matchs')?.parentNode?.parentNode;
     if (statsBlock) statsBlock.style.display = "";
+}
+
+        const joueursRecherche = [
+
+{nom:"Marcus Bettinelli", id:"bettinelli"},
+{nom:"Gianluigi Donnarumma", id:"donnarumma"},
+{nom:"James Trafford", id:"trafford"},
+
+{nom:"Manuel Akanji", id:"akanji"},
+{nom:"Nathan Aké", id:"ake"},
+{nom:"Ruben Dias", id:"dias"},
+{nom:"Marc Guéhi", id:"guehi"},
+{nom:"Josko Gvardiol", id:"gvardiol"},
+{nom:"Rico Lewis", id:"lewis"},
+
+{nom:"Rayan Cherki", id:"cherki"},
+{nom:"Phil Foden", id:"foden"},
+{nom:"Rodri", id:"rodri"},
+{nom:"Matéo Kovacic", id:"kovacic"},
+{nom:"Tijjani Reijnders", id:"reijnders"},
+
+{nom:"Jérémy Doku", id:"doku"},
+{nom:"Erling Haaland", id:"haaland"},
+{nom:"Omar Marmoush", id:"marmoush"},
+{nom:"Savinho", id:"savinho"},
+{nom:"Antoine Semenyo", id:"semenyo"}
+
+];
+
+
+function searchPlayer(){
+
+let input = document.getElementById("search-player");
+let result = document.getElementById("search-results");
+
+let texte = input.value.toLowerCase();
+
+result.innerHTML="";
+
+
+if(texte.length < 1){
+result.style.display="none";
+return;
+}
+
+
+let trouve = joueursRecherche.filter(j =>
+j.nom.toLowerCase().includes(texte)
+);
+
+
+trouve.forEach(joueur=>{
+
+let div=document.createElement("div");
+
+div.innerHTML="⚽ "+joueur.nom;
+
+div.onclick=function(){
+
+afficherJoueur(joueur.id);
+
+result.style.display="none";
+
+input.value="";
+
+}
+
+result.appendChild(div);
+
+});
+
+
+result.style.display="block";
+
+
 }
 
         function afficherRumeur(id) {
