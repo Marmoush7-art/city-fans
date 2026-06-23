@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🩵 City Fans</title>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     
     <style>
         :root { --city-sky-blue: #6CABDD; --city-black: #000000;--bg-color: #f0f4f8;--card-color: white;--text-color: #000000; }
@@ -140,17 +137,31 @@
         .compo-joueur-link { display: inline-block; padding: 6px 12px; margin: 3px; background: #eef6fc; color: var(--city-black); border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
         .compo-joueur-link:hover { background: var(--city-sky-blue); color: white; }
 
-        body.mode-nuit {--city-sky-blue: #4b7fa8;--city-black: #eeeeee;--bg-color: #121212;--card-color: #1e1e1e;--text-color: #eeeeee;}
+        .urgent-3mois { border-left: 6px solid red; }
+        .urgent-6mois { border-left: 6px solid orange; }
+
+        /* =========================MODE NUIT ========================= */
+        body.mode-nuit { --city-sky-blue: #16324a; --city-black: #08111f; --bg-color: #0A192F; --card-color: #0a0f1f; --text-color: #d6e8ff; background: var(--bg-color) !important; color: var(--text-color) !important; }*
+        body.mode-nuit main,
+        body.mode-nuit .content-section,
+        body.mode-nuit .box-info { background: var(--bg-color) !important; color: var(--text-color) !important; }
         body.mode-nuit .centre-card,
         body.mode-nuit .transfert-card,
         body.mode-nuit .draft-player-card,
         body.mode-nuit .draft-colonne,
         body.mode-nuit #historique-enchere,
-        body.mode-nuit .player-stats-box { background: #1e1e1e; color: white; }
+        body.mode-nuit .player-stats-box,
+        body.mode-nuit .bio-container,
+        body.mode-nuit .match-card,
+        body.mode-nuit .compo-squad-list,
+        body.mode-nuit .stat-card,
+        body.mode-nuit .chat-container,
+        body.mode-nuit #chat-messages,
+        body.mode-nuit #quiz-view { background: var(--card-color) !important; color: var(--text-color) !important; }
         body.mode-nuit input,
-        body.mode-nuit textarea { background:#222; color:white; border-color:#555; }
+        body.mode-nuit textarea { background: #0f2233; color: var(--text-color); border-color: #355a7a; }
+        body.mode-nuit nav { background: #123b5a; }
         body.mode-nuit img { filter: brightness(0.85); }
-        body.mode-nuit nav { background:#123b5a; }
         
         .player-search { position: absolute; right: 140px; /* place avant la version */ top: 50%; transform: translateY(-50%); width: 190px; z-index: 2000; }
         .player-search input { width: 100%; box-sizing: border-box; padding: 8px 15px; border-radius: 20px; border: none; outline: none; font-weight: bold; }
@@ -230,6 +241,7 @@
                 <span class="joueur-link" onclick="afficherJoueur('nunes')">Matheus Nunes</span>
                 <span class="joueur-link" onclick="afficherJoueur('oreilly')">Nico O'Reilly</span>
                 <span class="joueur-link" onclick="afficherJoueur('reis')">Vitor Reis</span>
+                <span class="joueur-link" onclick="afficherJoueur('stones')">John Stones</span>
                 <span class="joueur-link" onclick="afficherJoueur('wilson-esbrand')">Joshua Wilson-Esbrand</span>
                 <div class="cat-titre">⚡ Milieux</div>
                 <span class="joueur-link" onclick="afficherJoueur('cherki')">Rayan Cherki</span>
@@ -242,6 +254,7 @@
                 <span class="joueur-link" onclick="afficherJoueur('phillips')">Kalvin Phillips</span>
                 <span class="joueur-link" onclick="afficherJoueur('reijnders')">Tijjani Reijnders</span>
                 <span class="joueur-link" onclick="afficherJoueur('rodri')">Rodri</span>
+                <span class="joueur-link" onclick="afficherJoueur('sullivan')">Cavan Sullivan</span>
                 <div class="cat-titre">⚔️ Attaquants</div>
                 <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
                 <span class="joueur-link" onclick="afficherJoueur('haaland')">Erling Haaland</span>
@@ -255,12 +268,12 @@
             <li class="menu-item" onclick="afficherClassement()"><span class="menu-item-icon">📊</span>Classement</li>
             <li class="menu-item" onclick="showSection('joueursinter-recap')"><span class="menu-item-icon">🏁</span>Joueurs Inter</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
+            <li class="menu-item" onclick="ouvrirDossierContrats()"><span class="menu-item-icon">📄</span>Contrats Urgents</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
             <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
             </div>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
             <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span>Jeu Draft</li>
-
 </div>
         </ul>
     </div>
@@ -441,6 +454,11 @@
     </div>
 </div>   
 
+        <div id="contrats-view" class="content-section">
+            <h2>📄 Dossiers contrats (&lt; 1 an)</h2>
+            <div id="contrats-container"></div>
+        </div>
+
         <div id="actus-mercato" class="content-section">
             <h2>Actus Mercato 📰</h2>
             <div class="transfert-card" onclick="afficherActuConceicao()">
@@ -602,8 +620,62 @@
             <div id="centre-container"></div>
         </div>
 
+        <div id="effectiffemmes-recap" class="content-section">
+            <h2>Equipe Féminine</h2>
+            <h3>Gardiennes</h3>
+            <div class="transfert-card"><img src="static/images/gardienneannets.jpg"><div class="transfert-info"><h3>Eve Annets</h3><p>Age : 20 ans</p><p class="transfert-date">Note EA : </p></div></div>
+            <div class="transfert-card"><img src="static/images/gardiennecumings.jpg"><div class="transfert-info"><h3>Eartha Cumings</h3><p>Age : 27 ans</p><p class="transfert-date">Note EA : 72</p></div></div>
+            <div class="transfert-card"><img src="static/images/gardiennekeating.jpg"><div class="transfert-info"><h3>Khiara Keating</h3><p>Age : 21 ans</p><p class="transfert-date">Note EA : 80</p></div></div>
+            <div class="transfert-card"><img src="static/images/gardiennestartups.jpg"><div class="transfert-info"><h3>Kate Startup</h3><p>Age : 27 ans</p><p class="transfert-date">Note EA : 64</p></div></div>
+            <div class="transfert-card"><img src="static/images/gardienneyamashita.jpg"><div class="transfert-info"><h3>Ayaka Yamashiya</h3><p>Age : 30 ans</p><p class="transfert-date">Note EA : 79</p></div></div>
+
+            <h3>Défenseures</h3>
+            <div class="transfert-card"><img src="static/images/defenseurecasparij.jpg"><div class="transfert-info"><h3>Kerstin Casparij</h3><p>Age : 25 ans</p><p class="transfert-date">Note EA : 79</p></div></div>
+            <div class="transfert-card"><img src="static/images/defenseuredavies.jpg"><div class="transfert-info"><h3>Mayzee Davies</h3><p>Age : 19 ans</p><p class="transfert-date">Note EA : </p></div></div>
+            <div class="transfert-card"><img src="static/images/defenseuregreenwood.jpg"><div class="transfert-info"><h3>Alex Greenwood</h3><p>Age : 32 ans</p><p class="transfert-date">Note EA : 84</p></div></div>
+            <div class="transfert-card"><img src="static/images/defenseureknaak.jpg"><div class="transfert-info"><h3>Rebecca Knaak</h3><p>Age : 30 ans</p><p class="transfert-date">Note EA : 78</p></div></div>
+            <div class="transfert-card"><img src="static/images/defenseurelayzell.jpg"><div class="transfert-info"><h3>Naomi Layzell</h3><p>Age : 22 ans</p><p class="transfert-date">Note EA : 67</p></div></div>
+            <div class="transfert-card"><img src="static/images/defenseureo'hanlon.jpg"><div class="transfert-info"><h3>Tara O'Hanlon</h3><p>Age : 21 ans</p><p class="transfert-date">Note EA : </p></div></div>
+            <div class="transfert-card"><img src="static/images/defenseureouahabi.jpg"><div class="transfert-info"><h3>Leila Ouahabi</h3><p>Age : 33 ans</p><p class="transfert-date">Note EA : 82</p></div></div>
+            <div class="transfert-card"><img src="static/images/defenseureprior.jpg"><div class="transfert-info"><h3>Grace Prior</h3><p>Age : 21 ans</p><p class="transfert-date">Note EA : 72</p></div></div>
+            <div class="transfert-card"><img src="static/images/defenseurerose.jpg"><div class="transfert-info"><h3>Jade Rose</h3><p>Age : 23 ans</p><p class="transfert-date">Note EA : 73</p></div></div>
+            <div class="transfert-card"><img src="static/images/defenseureshimizu.jpg"><div class="transfert-info"><h3>Risa Shimizu</h3><p>Age : 30 ans</p><p class="transfert-date">Note EA : 79</p></div></div>
+            <div class="transfert-card"><img src="static/images/defenseurethomas.jpg"><div class="transfert-info"><h3>Codie Thomas</h3><p>Age : 19 ans</p><p class="transfert-date">Note EA : </p></div></div>
+            <div class="transfert-card"><img src="static/images/defenseurewienroither.jpg"><div class="transfert-info"><h3>Laura Wienroither</h3><p>Age : 27 ans</p><p class="transfert-date">Note EA : 72</p></div></div>
+            
+            
+            <h3>Milieux</h3>
+            <div class="transfert-card"><img src="static/images/milieublindkilde-brown.jpg"><div class="transfert-info"><h3>Laura Blindkilde Brown</h3><p>Age : 22 ans</p><p class="transfert-date">Note EA : 72</p></div></div>
+            <div class="transfert-card"><img src="static/images/milieuclinton.jpg"><div class="transfert-info"><h3>Grace Clinton</h3><p>Age : 23 ans</p><p class="transfert-date">Note EA : 78</p></div></div>
+            <div class="transfert-card"><img src="static/images/milieucoffey.jpg"><div class="transfert-info"><h3>Sam Coffey</h3><p>Age : 27 ans</p><p class="transfert-date">Note EA : 82</p></div></div>
+            <div class="transfert-card"><img src="static/images/milieucoombs.jpg"><div class="transfert-info"><h3>Laura Coombs</h3><p>Age : 35 ans</p><p class="transfert-date">Note EA : 76</p></div></div>
+            <div class="transfert-card"><img src="static/images/milieuhasegawa.jpg"><div class="transfert-info"><h3>Yui Hasegawa</h3><p>Age : 29 ans</p><p class="transfert-date">Note EA : 85</p></div></div>
+            <div class="transfert-card"><img src="static/images/milieulohmann.jpg"><div class="transfert-info"><h3>Sydney Lohmann</h3><p>Age : 26 ans</p><p class="transfert-date">Note EA : 80</p></div></div>
+            <div class="transfert-card"><img src="static/images/milieuoyama.jpg"><div class="transfert-info"><h3>Aemu Oyama</h3><p>Age : 21 ans</p><p class="transfert-date">Note EA : 70</p></div></div>
+            
+            
+            <h3>Attaquantes</h3>
+            <div class="transfert-card"><img src="static/images/milieukerolin.jpg"><div class="transfert-info"><h3>Kerolin Nicoli</h3><p>Age : 26 ans</p><p class="transfert-date">Note EA : 80</p></div></div>
+            <div class="transfert-card"><img src="static/images/milieubeny.jpg"><div class="transfert-info"><h3>Iman Beney</h3><p>Age : 19 ans</p><p class="transfert-date">Note EA : 62</p></div></div>
+            <div class="transfert-card"><img src="static/images/milieufowler.jpg"><div class="transfert-info"><h3>Mary Fowler</h3><p>Age : 23 ans</p><p class="transfert-date">Note EA : 79</p></div></div>
+            <div class="transfert-card"><img src="static/images/milieufujino.jpg"><div class="transfert-info"><h3>Aoba Fujino</h3><p>Age : 22 ans</p><p class="transfert-date">Note EA : 77</p></div></div>
+            <div class="transfert-card"><img src="static/images/milieuhemp.jpg"><div class="transfert-info"><h3>Lauren Hemp</h3><p>Age : 25 ans</p><p class="transfert-date">Note EA : 87</p></div></div>
+            <div class="transfert-card"><img src="static/images/milieumead.jpg"><div class="transfert-info"><h3>Beth Mead</h3><p>Age : 31 ans</p><p class="transfert-date">Note EA : 87</p></div></div>
+            <div class="transfert-card"><img src="static/images/milieumiedema.jpg"><div class="transfert-info"><h3>Vivienne Miedema</h3><p>Age : 29 ans</p><p class="transfert-date">Note EA : 85</p></div></div>
+            <div class="transfert-card"><img src="static/images/milieumurphy.jpg"><div class="transfert-info"><h3>Lily Murphy</h3><p>Age : 20 ans</p><p class="transfert-date">Note EA : 63</p></div></div>
+            <div class="transfert-card"><img src="static/images/milieupritchard.jpg"><div class="transfert-info"><h3>Poppy Pritchard</h3><p>Age : 20 ans</p><p class="transfert-date">Note EA : </p></div></div>
+            <div class="transfert-card"><img src="static/images/milieushaw.jpg"><div class="transfert-info"><h3>Khadija Shaw</h3><p>Age : 29 ans</p><p class="transfert-date">Note EA : 89</p></div></div>
+            
+            
+        </div>
+
         <div id="mercato-recap" class="content-section">
             <h2>Historique du Mercato (été 2026)</h2>
+            <h3>Arrivées</h3>
+
+            <h3>Départs</h3>
+            <div class="transfert-card"><img src="static/images/silva.jpg"><div class="transfert-info"><h3>Bernardo Silva</h3><p>Vers : Real Madrid</p><p>Prix : Transfert Gratuit</p><p class="transfert-date">Juin 2026</p></div></div>
+            
             <h2>Historique du Mercato (hiver 2025-2026)</h2>
             <h3>Arrivées</h3>
             <div class="transfert-card" onclick="afficherJoueur('guehi')"><img src="static/images/15.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Depuis Crystal Palace</p><p>Prix : 23M €</p><p class="transfert-date">Janvier 2026</p></div></div>
@@ -626,6 +698,7 @@
             <div class="transfert-card" onclick="afficherJoueur('guehi')"><img src="static/images/guehiinter.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°6</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('trafford')"><img src="static/images/traffordinter.jpg"><div class="transfert-info"><h3>James Trafford</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°23</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('oreilly')"><img src="static/images/o'reillyinter.jpg"><div class="transfert-info"><h3>Nico O'Reilly</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°3</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('stones')"><img src="static/images/stonesinter.jpg"><div class="transfert-info"><h3>John Stones</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°5</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('marmoush')"><img src="static/images/marmoushinter.jpg"><div class="transfert-info"><h3>Omar Marmoush</h3><p>Egypte 🇪🇬</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°22</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('cherki')"><img src="static/images/cherkiinter.jpg"><div class="transfert-info"><h3>Rayan Cherki</h3><p>France 🇫🇷</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°24</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('semenyo')"><img src="static/images/semenyointer.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Ghana 🇬🇭</p<p>Matchs : 1</p>><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°11</p></div></div>
@@ -699,9 +772,6 @@
     </main>
 
     <script>
-        const firebaseConfig = { apiKey: "CLE", authDomain: "DOM", projectId: "ID", storageBucket: "BUCKET", messagingSenderId: "ID", appId: "APP" };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
         
         function checkPassword() {
             const input = document.getElementById('site-password').value;
@@ -735,266 +805,82 @@
         });
 
         const effectif = {
-            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2028", valeur: "0.3M €", noteea: "70", img: "13.jpg", bio: "Gardien expérimenté.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'donnarumma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "89", img: "25.jpg", bio: "Gardien d'envergure internationale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", noteea: "77", img: "1.jpg", bio: "Gardien prometteur.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", age: "33 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2028", valeur: "0.3M €", noteea: "70", img: "bettinelli.jpg", bio: "Gardien expérimenté.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'donnarumma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "89", img: "donnarumma.jpg", bio: "Gardien d'envergure internationale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", noteea: "77", img: "trafford.jpg", bio: "Gardien prometteur.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'akanji': { nom: "Manuel Akanji", poste: "Défenseur", age: "30 ans", nat: "Suisse 🇨🇭", paye: "540 000", fin: "30/06/2027", valeur: "17M €", noteea: "83", img: "akanji.jpg", bio: "Défenseur impassable.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "31 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "12M €", noteea: "82", img: "6.jpg", bio: "Polyvalence tactique exemplaire.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", noteea: "68", img: "68.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "25 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", img: "21.jpg", bio: "Latéral percutant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "29 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "55M €", noteea: "87", img: "3.jpg", bio: "Pilier défensif.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "84", img: "15.jpg", bio: "Nouvelle recrue solide.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", noteea: "85", img: "24.jpg", bio: "Roc croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "80", img: "45.jpg", bio: "Révélation ouzbèke.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "28M €", noteea: "77", img: "82.jpg", bio: "Futur cadre issu de l'académie.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'nunes': { nom: "Matheus Nunes", poste: "Défenseur", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "82", img: "27.jpg", bio: "Défenseur puissant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "70M €", noteea: "81", img: "33.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'reis': { nom: "Vitor Reis", poste: "Défenseur", age: "20 ans", nat: "Brésil 🇧🇷", paye: "200 000", fin: "30/06/2029", valeur: "30M €", noteea: "75", img: "22.jpg", bio: "Jeune talent brésilien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'wilson-esbrand': { nom: "Joshua Wilson-Esbrand", poste: "Défenseur", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "67", img: "97.jpg", bio: "Pépite anglaise.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "90M €", noteea: "84", img: "10.jpg", bio: "Magicien français.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'echeverri': { nom: "Claudio Echeverri", poste: "Milieu", age: "20 ans", nat: "Argentine 🇦🇷", paye: "78 000", fin: "30/06/2028", valeur: "15M €", noteea: "74", img: "30.jpg", bio: "Jeune pépite argentine.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'foden': { nom: "Phil Foden", poste: "Milieu", age: "26 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "70M €", noteea: "85", img: "47.jpg", bio: "L'enfant chéri de Stockport.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", img: "14.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "31 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "12M €", noteea: "82", img: "ake.jpg", bio: "Polyvalence tactique exemplaire.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", noteea: "68", img: "alleyne.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "25 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", img: "ait-nouri.jpg", bio: "Latéral percutant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "29 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "55M €", noteea: "87", img: "dias.jpg", bio: "Pilier défensif.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "25 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "84", img: "guehi.jpg", bio: "Nouvelle recrue solide.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", noteea: "85", img: "gvardiol.jpg", bio: "Roc croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "80", img: "khusanov.jpg", bio: "Révélation ouzbèke.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "28M €", noteea: "77", img: "lewis.jpg", bio: "Futur cadre issu de l'académie.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'nunes': { nom: "Matheus Nunes", poste: "Défenseur", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "82", img: "nunes.jpg", bio: "Défenseur puissant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "70M €", noteea: "81", img: "o'reilly.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'reis': { nom: "Vitor Reis", poste: "Défenseur", age: "20 ans", nat: "Brésil 🇧🇷", paye: "200 000", fin: "30/06/2029", valeur: "30M €", noteea: "75", img: "reis.jpg", bio: "Jeune talent brésilien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'stones': { nom: "John Stones", poste: "Défenseur", age: "32 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000 €", fin: "30/06/2026", valeur: "12M €", noteea: "82", img: "stones.jpg", bio: "Joueur d'expérience partant cet été.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'wilson-esbrand': { nom: "Joshua Wilson-Esbrand", poste: "Défenseur", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "67", img: "wilson-esbrand.jpg", bio: "Pépite anglaise.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "90M €", noteea: "84", img: "cherki.jpg", bio: "Magicien français.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'echeverri': { nom: "Claudio Echeverri", poste: "Milieu", age: "20 ans", nat: "Argentine 🇦🇷", paye: "78 000", fin: "30/06/2028", valeur: "15M €", noteea: "74", img: "echeverri.jpg", bio: "Jeune pépite argentine.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'foden': { nom: "Phil Foden", poste: "Milieu", age: "26 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "70M €", noteea: "85", img: "foden.jpg", bio: "L'enfant chéri de Stockport.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", img: "gonzalez.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'grealish': { nom: "Jack Grealish", poste: "Milieu", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 100 000", fin: "30/06/2027", valeur: "20M €", noteea: "81", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "32 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "10M €", noteea: "82", img: "8.jpg", bio: "Expérience croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "30/06/2030", valeur: "13M €", noteea: "70", img: "41.jpg", bio: "Futur maître du milieu.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'phillips': { nom: "Kalvin Phillips", poste: "Milieu", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "600 000", fin: "30/06/2028", valeur: "2.5M €", noteea: "74", img: "44.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "50M €", noteea: "85", img: "4.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "89", img: "16.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "24 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "75M €", noteea: "84", img: "11.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "200M €", noteea: "91", img: "9.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "83", img: "7.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'savinho': { nom: "Savinho", poste: "Attaquant", age: "22 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "35M €", noteea: "81", img: "26.jpg", bio: "Dribbleur brésilien électrisant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "80M €", noteea: "84", img: "42.jpg", bio: "Puissance offensive brute.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "32 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "10M €", noteea: "82", img: "kovacic.jpg", bio: "Expérience croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "30/06/2030", valeur: "13M €", noteea: "70", img: "nypan.jpg", bio: "Futur maître du milieu.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'phillips': { nom: "Kalvin Phillips", poste: "Milieu", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "600 000", fin: "30/06/2028", valeur: "2.5M €", noteea: "74", img: "phillips.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "50M €", noteea: "85", img: "reijnders.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'rodri': { nom: "Rodri", poste: "Milieu", age: "29 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "89", img: "rodri.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'sullivan': { nom: "Cavan Sullivan", poste: "Milieu", age: "16 ans", nat: "Etats-Unis 🇺🇸", paye: "N/A", fin: "N/A", valeur: "4.5M €", noteea: "N/A", img: "sullivan.jpg", bio: "Cavan Sullivan s'est officiellement engagé avec Manchester City mais n'ayant actuellement pas l'âge requis, il ne rejoindra Man City qu'après le mercato suivant ses 18 ans, c'est à dire en hiver 2027.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "24 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "75M €", noteea: "84", img: "doku.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "200M €", noteea: "91", img: "haaland9.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "83", img: "marmoush.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'savinho': { nom: "Savinho", poste: "Attaquant", age: "22 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "35M €", noteea: "81", img: "savinho.jpg", bio: "Dribbleur brésilien électrisant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "80M €", noteea: "84", img: "semenyo.jpg", bio: "Puissance offensive brute.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
         };
 
         const centreFormation = {
-    gardiens: [
-        {
-            nom: "Spike Brits",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Gardien",
-            img: "gardienspike.jpg"
-        },
-        {
-            nom: "Oliver Whatmuff",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Gardien",
-            img: "gardienoliver.jpg"
-        },
-        {
-            nom: "Jack Wint",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Gardien",
-            img: "gardienjack.jpg"
-        }
-    ],
-    defenseurs: [
-        {
-            nom: "Finley Burns",
-            age: "22 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurfinley.jpg"
-        },
-        {
-            nom: "Ezra Carrington",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurezra.jpg"
-        },
-        {
-            nom: "Tomas Galvez",
-            age: "21 ans",
-            nat: "Finlande 🇫🇮",
-            poste: "Défenseur",
-            img: "defenseurtomas.jpg"
-        },
-        {
-            nom: "Matty Henderson-Hall",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurmatty.jpg"
-        },
-        {
-            nom: "Luke Mbete",
-            age: "22 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurluke.jpg"
-        },
-        {
-            nom: "Christian McFarlane",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurchristian.jpg"
-        },
-        {
-            nom: "Stephen Mfuni",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurstephen.jpg"
-        },
-        {
-            nom: "Brooklyn Nfonkeu",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurbrooklyn.jpg"
-        },
-        {
-            nom: "Kian Noble",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurkian.jpg"
-        },
-        {
-            nom: "Harrison Parker",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurharrison.jpg"
-        },
-        {
-            nom: "Lakyle Samuel",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurlakyle.jpg"
-        },
-        {
-            nom: "Jahmai Simpson-Pusey",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurjahmai.jpg"
-        },
-        {
-            nom: "Isaac Smith",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Défenseur",
-            img: "defenseurisaac.jpg"
-        },
-        {
-            nom: "Rhys Thomas",
-            age: "19 ans",
-            nat: "Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿",
-            poste: "Défenseur",
-            img: "defenseurrhys.jpg"
-        }
-    ],
-    milieux: [
-        {
-            nom: "Isaiah Dada-Mascoll",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Milieu",
-            img: "milieuisaiah.jpg"
-        },
-        {
-            nom: "Femi Fapetu",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Milieu",
-            img: "milieufemi.jpg"
-        },
-        {
-            nom: "Charlie Gray",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Milieu",
-            img: "milieucharlie.jpg"
-        },
-        {
-            nom: "Jaden Heskey",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Milieu",
-            img: "milieujaden.jpg"
-        },
-        {
-            nom: "Divine Mukasa",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Milieu",
-            img: "milieudivine.jpg"
-        }
-    ],
-    attaquants: [
-        {
-            nom: "Luka Fletcher",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantluka.jpg"
-        },
-        {
-            nom: "Reighan Heskey",
-            age: "18 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantreighan.jpg"
-        },
-        {
-            nom: "Emilio Lawrence",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantemilio.jpg"
-        },
-        {
-            nom: "Ryan McAidoo",
-            age: "17 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantryan.jpg"
-        },
-        {
-            nom: "Divin Mubama",
-            age: "21 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantdivin.jpg"
-        },
-        {
-            nom: "Ashton Muir",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantashton.jpg"
-        },
-        {
-            nom: "Joel Ndala",
-            age: "20 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantjoel.jpg"
-        },
-        {
-            nom: "Mahamadou Sangaré",
-            age: "19 ans",
-            nat: "France 🇫🇷",
-            poste: "Attaquant",
-            img: "attaquantmahamadou.jpg"
-        },
-        {
-            nom: "Matty Warhurst",
-            age: "19 ans",
-            nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-            poste: "Attaquant",
-            img: "attaquantmatty.jpg"
-        }
-    ]
-};
+            gardiens: [ 
+                { nom: "Spike Brits", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Gardien", img: "gardienspike.jpg" }, 
+                { nom: "Oliver Whatmuff", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Gardien", img: "gardienoliver.jpg" },
+                { nom: "Jack Wint", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Gardien", img: "gardienjack.jpg" }
+            ],
+            defenseurs: [
+                { nom: "Finley Burns", age: "22 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurfinley.jpg" },
+                { nom: "Ezra Carrington", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurezra.jpg" },
+                { nom: "Tomas Galvez", age: "21 ans", nat: "Finlande 🇫🇮", poste: "Défenseur", img: "defenseurtomas.jpg" },
+                { nom: "Matty Henderson-Hall", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurmatty.jpg" },
+                { nom: "Luke Mbete", age: "22 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurluke.jpg" },
+                { nom: "Christian McFarlane", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurchristian.jpg" },
+                { nom: "Stephen Mfuni", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurstephen.jpg" },
+                { nom: "Brooklyn Nfonkeu", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurbrooklyn.jpg" },
+                { nom: "Kian Noble", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurkian.jpg" },
+                { nom: "Harrison Parker", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurharrison.jpg" },
+                { nom: "Lakyle Samuel", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurlakyle.jpg" },
+                { nom: "Jahmai Simpson-Pusey", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurjahmai.jpg" },
+                { nom: "Isaac Smith", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurisaac.jpg" },
+                { nom: "Rhys Thomas", age: "19 ans", nat: "Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿", poste: "Défenseur", img: "defenseurrhys.jpg" }
+            ],
+            milieux: [
+                { nom: "Isaiah Dada-Mascoll", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieuisaiah.jpg" },
+                { nom: "Femi Fapetu", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieufemi.jpg" },
+                { nom: "Charlie Gray", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieucharlie.jpg" },
+                { nom: "Jaden Heskey", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieujaden.jpg" },
+                {nom: "Divine Mukasa", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieudivine.jpg" }
+            ],
+            attaquants: [
+                { nom: " Fletcher", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantluka.jpg"},
+                { nom: "Reighan Heskey", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantreighan.jpg" },
+                { nom: "Emilio Lawrence", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantemilio.jpg" },
+                { nom: "Ryan McAidoo", age: "17 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantryan.jpg" },
+                { nom: "Divin Mubama", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantdivin.jpg" },
+                { nom: "Ashton Muir", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantashton.jpg" },
+                { nom: "Joel Ndala", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantjoel.jpg" },
+                { nom: "Mahamadou Sangaré", age: "19 ans", nat: "France 🇫🇷", poste: "Attaquant", img: "attaquantmahamadou.jpg" },
+                { nom: "Matty Warhurst", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantmatty.jpg" }
+            ]
+        };
 
         const joueursDraft = Object.values(effectif).map(j => ({
     nom: j.nom,
@@ -2404,6 +2290,7 @@ setInterval(verifierModeNuit, 60000);
 {nom:"Matheus Nunes", id:"nunes"},
 {nom:"Nico O'Reilly", id:"o'reilly"},
 {nom:"Vitor Reis", id:"reis"},
+{nom:"John Stones", id:"stones"},
 {nom:"Joshua Wilson-Esbrand", id:"wilson-esbrand"},
 
 {nom:"Rayan Cherki", id:"cherki"},
@@ -2414,8 +2301,9 @@ setInterval(verifierModeNuit, 60000);
 {nom:"Matéo Kovacic", id:"kovacic"},
 {nom:"Sverre Nypan", id:"nypan"},
 {nom:"Kalvin Phillips", id:"phillips"},
-{nom:"Rodri", id:"rodri"},
 {nom:"Tijjani Reijnders", id:"reijnders"},
+{nom:"Rodri", id:"rodri"},
+{nom:"Cavan Sullivan", id:"sullivan"},
 
 {nom:"Jérémy Doku", id:"doku"},
 {nom:"Erling Haaland", id:"haaland"},
@@ -2424,6 +2312,67 @@ setInterval(verifierModeNuit, 60000);
 {nom:"Antoine Semenyo", id:"semenyo"}
 
 ];
+
+function ouvrirDossierContrats() {
+
+    const container = document.getElementById("contrats-container");
+    container.innerHTML = "";
+
+    const maintenant = new Date();
+
+    const joueursFinContrat = [];
+
+    for (let id in effectif) {
+
+        const j = effectif[id];
+
+        if (!j.fin) continue;
+
+        const finContrat = new Date(j.fin);
+
+        const diffTemps = finContrat - maintenant;
+        const diffAnnees = diffTemps / (1000 * 60 * 60 * 24 * 365);
+
+        if (diffAnnees <= 1 && diffAnnees > 0) {
+            joueursFinContrat.push(j);
+        }
+    }
+
+    if (joueursFinContrat.length === 0) {
+        container.innerHTML = "<p>Aucun joueur avec moins d'1 an de contrat.</p>";
+        showSection("contrats-view");
+        return;
+    }
+
+    joueursFinContrat.forEach(j => {
+
+    const finContrat = new Date(j.fin);
+    const maintenant = new Date();
+
+    const diffMs = finContrat - maintenant;
+    const moisRestants = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30));
+
+    let urgence = "🟢 Long terme";
+
+    if (moisRestants <= 3) urgence = "🔴 3 mois ou moins";
+    else if (moisRestants <= 6) urgence = "🟠 6 mois ou moins";
+
+    container.innerHTML += `
+        <div class="centre-card" onclick="afficherJoueur('${j.id}')">
+            <img src="static/images/${j.img}">
+            <div class="centre-info">
+                <h3>${j.nom}</h3>
+                <p>📅 Fin de contrat : ${j.fin}</p>
+                <p>⏳ Temps restant : ${moisRestants} mois</p>
+                <p>⚠️ ${urgence}</p>
+                <p>⭐ Note : ${j.note}</p>
+            </div>
+        </div>
+    `;
+});
+
+    showSection("contrats-view");
+}
 
 
 function searchPlayer(){
@@ -2615,6 +2564,11 @@ function verifierReponseQuiz() {
         }
     }
 });
+
+let classeUrgence = "";
+
+if (moisRestants <= 3) classeUrgence = "urgent-3mois";
+else if (moisRestants <= 6) classeUrgence = "urgent-6mois";
 
 </script>
 </body>
