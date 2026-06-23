@@ -2539,7 +2539,16 @@ let zone = document.getElementById("centre-container");
 zone.innerHTML="";
 
 
-centreFormation[type].forEach(j=>{
+for(let id in centreFormation){
+
+let j = centreFormation[id];
+
+
+if(j.poste.toLowerCase() == type ||
+(type=="defenseurs" && j.poste=="Défenseur") ||
+(type=="gardiens" && j.poste=="Gardien") ||
+(type=="milieux" && j.poste=="Milieu") ||
+(type=="attaquants" && j.poste=="Attaquant")){
 
 
 zone.innerHTML += `
@@ -2556,7 +2565,7 @@ zone.innerHTML += `
 
 <p>${j.age}</p>
 
-<p>Centre de formation 🧬</p>
+<p>${j.nat}</p>
 
 </div>
 
@@ -2564,9 +2573,9 @@ zone.innerHTML += `
 
 `;
 
+}
 
-});
-
+}
 
 }
 
