@@ -222,7 +222,7 @@
         <ul>
             <li class="menu-item" onclick="showSection('accueil')"><span class="menu-item-icon">🏠</span>Accueil</li>
             <li class="menu-item" onclick="showSection('matchs-view')"><span class="menu-item-icon">📅</span>Matchs</li>
-            <li class="menu-item" onclick="toggleSubMenu('sub-effectif')"><span class="menu-item-icon">⚽</span>Effectif ▾</li>
+            <li class="menu-item" onclick="ouvrirEffectif()"><span class="menu-item-icon">⚽</span>Effectif</li>
             <div id="sub-effectif" class="sous-menu">
                 <div class="cat-titre">🧤 Gardiens</div>
                 <span class="joueur-link" onclick="afficherJoueur('bettinelli')">Marcus Bettinelli</span>
@@ -329,6 +329,14 @@
     <div id="statut"></div>
 
 </div>
+
+<div id="effectif-hommes" class="content-section">
+
+        <h2>👔 EFFECTIF HOMMES</h2>
+
+        <div id="effectif-container"></div>
+
+    </div>
 
 <div id="draft-view" class="content-section" style="display:none;">
 
@@ -483,6 +491,44 @@
                 </div>
             </div>
         </div>
+
+        <div id="effectif-menu" class="content-section">
+
+<h2>⚽ EFFECTIF</h2>
+
+
+<div class="centre-card" onclick="afficherEffectifHommes()">
+
+<img src="static/images/mancityecussonclasse.jpg">
+
+<div class="centre-info">
+
+<h3>👔 Effectif</h3>
+
+<p>Equipe première masculine</p>
+
+</div>
+
+</div>
+
+
+
+<div class="centre-card" onclick="ouvrirCentreGeneral()">
+
+<img src="static/images/centreformation.jpg">
+
+<div class="centre-info">
+
+<h3>🧬 Centre Formation</h3>
+
+<p>Jeunes joueurs</p>
+
+</div>
+
+</div>
+
+
+</div>
 
         <div id="joueur-solo" class="content-section">
             <h2 id="nom-joueur"></h2>
@@ -2372,6 +2418,64 @@ function ouvrirDossierContrats() {
 });
 
     showSection("contrats-view");
+}
+
+function ouvrirEffectif(){
+
+showSection("effectif-menu");
+
+}
+
+function afficherEffectifHommes(){
+
+showSection("effectif-hommes");
+
+chargerEffectifHommes();
+
+}
+
+function ouvrirCentreGeneral(){
+
+showSection("centre-formation-view");
+
+}
+
+function chargerEffectifHommes(){
+
+let zone=document.getElementById("effectif-container");
+
+zone.innerHTML="";
+
+
+for(let id in effectif){
+
+let j=effectif[id];
+
+
+zone.innerHTML += `
+
+<div class="transfert-card" onclick="afficherJoueur('${id}')">
+
+<img src="static/images/${j.img}">
+
+<div class="transfert-info">
+
+<h3>${j.nom}</h3>
+
+<p>${j.poste}</p>
+
+<p>${j.age}</p>
+
+<p>Note EA : ${j.noteea}</p>
+
+</div>
+
+</div>
+
+`;
+
+}
+
 }
 
 
