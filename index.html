@@ -343,7 +343,7 @@
 
     <h2>👔 EFFECTIF FEMMES</h2>
 
-    <div id="effectif-femmes-container"></div>
+    <div id="effectif-container"></div>
 
 </div>
 
@@ -2478,53 +2478,6 @@ chargerEffectifHommes();
 
 }
 
-function ouvrirCentreGeneral(){
-
-showSection("centre-formation-view");
-
-}
-
-function ouvrirCentre(type){
-
-    showSection("centre-formation-view");
-
-    document.getElementById("centre-title").innerHTML =
-    "🧬 Centre de formation - " + type;
-
-
-    let zone = document.getElementById("centre-container");
-
-    zone.innerHTML="";
-
-
-    centreFormation[type].forEach(joueur=>{
-
-
-        zone.innerHTML += `
-
-        <div class="transfert-card">
-
-            <img src="static/images/${joueur.img}">
-
-            <div class="transfert-info">
-
-                <h3>${joueur.nom}</h3>
-
-                <p>Âge : ${joueur.age}</p>
-
-                <p>Centre de formation 🧬</p>
-
-            </div>
-
-        </div>
-
-        `;
-
-
-    });
-
-}
-
 function chargerEffectifHommes(){
 
 let zone=document.getElementById("effectif-container");
@@ -2563,6 +2516,58 @@ zone.innerHTML += `
 
 }
 
+function ouvrirCentreGeneral(){
+
+showSection("centre-formation-view");
+
+}
+
+function afficherCentre(type){
+
+    showSection("centre-formation-view");
+
+    ouvrirCentre(type);
+
+}
+
+function chargerJeunes(type){
+
+let zone = document.getElementById("centre-container");
+
+zone.innerHTML="";
+
+
+centreFormation[type].forEach(j=>{
+
+
+zone.innerHTML += `
+
+<div class="transfert-card">
+
+<img src="static/images/${j.img}">
+
+<div class="transfert-info">
+
+<h3>${j.nom}</h3>
+
+<p>${j.poste}</p>
+
+<p>${j.age}</p>
+
+<p>Centre de formation 🧬</p>
+
+</div>
+
+</div>
+
+`;
+
+
+});
+
+
+}
+
 function ouvrirEffectifFemmes(){
 
 showSection("effectif-femmes");
@@ -2570,9 +2575,17 @@ chargerEffectifFemmes();
 
 }
 
+function afficherEffectifFemmes(){
+
+    showSection("effectif-femmes");
+
+    chargerEffectifFemmes();
+
+}
+
 function chargerEffectifFemmes(){
 
-let zone=document.getElementById("effectif-femmes-container");
+let zone=document.getElementById("effectif-container");
 
 zone.innerHTML="";
 
