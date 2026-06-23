@@ -349,7 +349,7 @@
 
 <div id="centre-formation-view" class="content-section">
 
-    <h2>EFFECTIF JEUNES</h2></h2>
+    <h2 id="centre-title">EFFECTIF JEUNES</h2>
 
     <div id="centre-container"></div>
 
@@ -2544,13 +2544,20 @@ function ouvrirCentreGeneral(){
 
 showSection("centre-formation-view");
 
+document.getElementById("centre-title").innerHTML =
+"🧬 Centre de formation";
+
 }
 
 function afficherCentre(type){
 
     showSection("centre-formation-view");
 
-    ouvrirCentre(type);
+    document.getElementById("centre-title").innerHTML =
+    "🧬 Centre de formation - " + type;
+
+
+    chargerJeunes(type);
 
 }
 
