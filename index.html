@@ -2440,6 +2440,47 @@ showSection("centre-formation-view");
 
 }
 
+function ouvrirCentre(type){
+
+    showSection("centre-formation-view");
+
+    document.getElementById("centre-title").innerHTML =
+    "🧬 Centre de formation - " + type;
+
+
+    let zone = document.getElementById("centre-container");
+
+    zone.innerHTML="";
+
+
+    centreFormation[type].forEach(joueur=>{
+
+
+        zone.innerHTML += `
+
+        <div class="transfert-card">
+
+            <img src="static/images/${joueur.img}">
+
+            <div class="transfert-info">
+
+                <h3>${joueur.nom}</h3>
+
+                <p>Âge : ${joueur.age}</p>
+
+                <p>Centre de formation 🧬</p>
+
+            </div>
+
+        </div>
+
+        `;
+
+
+    });
+
+}
+
 function chargerEffectifHommes(){
 
 let zone=document.getElementById("effectif-container");
