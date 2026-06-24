@@ -222,7 +222,7 @@
         <ul>
             <li class="menu-item" onclick="showSection('accueil')"><span class="menu-item-icon">🏠</span>Accueil</li>
             <li class="menu-item" onclick="showSection('matchs-view')"><span class="menu-item-icon">📅</span>Matchs</li>
-            <li class="menu-item" onclick="toggleSubMenu('sub-effectif')"><span class="menu-item-icon">⚽</span>Effectif ▾</li>
+            <li class="menu-item" onclick="ouvrirEffectif()"><span class="menu-item-icon">⚽</span>Effectif</li>
             <div id="sub-effectif" class="sous-menu">
                 <div class="cat-titre">🧤 Gardiens</div>
                 <span class="joueur-link" onclick="afficherJoueur('bettinelli')">Marcus Bettinelli</span>
@@ -327,6 +327,30 @@
     <div id="minute"></div>
 
     <div id="statut"></div>
+
+</div>
+
+<div id="effectif-hommes" class="content-section">
+
+    <h2>👔 EFFECTIF HOMMES</h2>
+
+    <div id="effectif-container"></div>
+
+</div>
+
+<div id="effectif-femmes" class="content-section">
+
+    <h2>👔 EFFECTIF FEMMES</h2>
+
+    <div id="effectif-femmes-container"></div>
+
+</div>
+
+<div id="centre-formation-view" class="content-section">
+
+    <h2 id="centre-title">EFFECTIF JEUNES</h2>
+
+    <div id="centre-container"></div>
 
 </div>
 
@@ -484,6 +508,57 @@
             </div>
         </div>
 
+        <div id="effectif-menu" class="content-section">
+
+<h2>⚽ EFFECTIF</h2>
+
+<div class="centre-card" onclick="afficherEffectifHommes()">
+
+<img src="static/images/mancityecussonclasse.jpg">
+
+<div class="centre-info">
+
+<h3>👔 Effectif Hommes</h3>
+
+<p>Equipe première masculine</p>
+
+</div>
+
+</div>
+
+
+<div class="centre-card" onclick="afficherEffectifFemmes()">
+
+<img src="static/images/mancityecussonclasse.jpg">
+
+<div class="centre-info">
+
+<h3>👔 Effectif Femmes</h3>
+
+<p>Equipe première féminine</p>
+
+</div>
+
+</div>
+
+
+<div class="centre-card" onclick="ouvrirCentreGeneral()">
+
+<img src="static/images/centreformation.jpg">
+
+<div class="centre-info">
+
+<h3>🧬 Centre Formation</h3>
+
+<p>Jeunes joueurs</p>
+
+</div>
+
+</div>
+
+
+</div>
+
         <div id="joueur-solo" class="content-section">
             <h2 id="nom-joueur"></h2>
             <img id="photo" src="" style="width:200px; border-radius:15px;">
@@ -620,55 +695,6 @@
             <div id="centre-container"></div>
         </div>
 
-        <div id="effectiffemmes-recap" class="content-section">
-            <h2>Equipe Féminine</h2>
-            <h3>Gardiennes</h3>
-            <div class="transfert-card"><img src="static/images/gardienneannets.jpg"><div class="transfert-info"><h3>Eve Annets</h3><p>Age : 20 ans</p><p class="transfert-date">Note EA : </p></div></div>
-            <div class="transfert-card"><img src="static/images/gardiennecumings.jpg"><div class="transfert-info"><h3>Eartha Cumings</h3><p>Age : 27 ans</p><p class="transfert-date">Note EA : 72</p></div></div>
-            <div class="transfert-card"><img src="static/images/gardiennekeating.jpg"><div class="transfert-info"><h3>Khiara Keating</h3><p>Age : 21 ans</p><p class="transfert-date">Note EA : 80</p></div></div>
-            <div class="transfert-card"><img src="static/images/gardiennestartups.jpg"><div class="transfert-info"><h3>Kate Startup</h3><p>Age : 27 ans</p><p class="transfert-date">Note EA : 64</p></div></div>
-            <div class="transfert-card"><img src="static/images/gardienneyamashita.jpg"><div class="transfert-info"><h3>Ayaka Yamashiya</h3><p>Age : 30 ans</p><p class="transfert-date">Note EA : 79</p></div></div>
-
-            <h3>Défenseures</h3>
-            <div class="transfert-card"><img src="static/images/defenseurecasparij.jpg"><div class="transfert-info"><h3>Kerstin Casparij</h3><p>Age : 25 ans</p><p class="transfert-date">Note EA : 79</p></div></div>
-            <div class="transfert-card"><img src="static/images/defenseuredavies.jpg"><div class="transfert-info"><h3>Mayzee Davies</h3><p>Age : 19 ans</p><p class="transfert-date">Note EA : </p></div></div>
-            <div class="transfert-card"><img src="static/images/defenseuregreenwood.jpg"><div class="transfert-info"><h3>Alex Greenwood</h3><p>Age : 32 ans</p><p class="transfert-date">Note EA : 84</p></div></div>
-            <div class="transfert-card"><img src="static/images/defenseureknaak.jpg"><div class="transfert-info"><h3>Rebecca Knaak</h3><p>Age : 30 ans</p><p class="transfert-date">Note EA : 78</p></div></div>
-            <div class="transfert-card"><img src="static/images/defenseurelayzell.jpg"><div class="transfert-info"><h3>Naomi Layzell</h3><p>Age : 22 ans</p><p class="transfert-date">Note EA : 67</p></div></div>
-            <div class="transfert-card"><img src="static/images/defenseureo'hanlon.jpg"><div class="transfert-info"><h3>Tara O'Hanlon</h3><p>Age : 21 ans</p><p class="transfert-date">Note EA : </p></div></div>
-            <div class="transfert-card"><img src="static/images/defenseureouahabi.jpg"><div class="transfert-info"><h3>Leila Ouahabi</h3><p>Age : 33 ans</p><p class="transfert-date">Note EA : 82</p></div></div>
-            <div class="transfert-card"><img src="static/images/defenseureprior.jpg"><div class="transfert-info"><h3>Grace Prior</h3><p>Age : 21 ans</p><p class="transfert-date">Note EA : 72</p></div></div>
-            <div class="transfert-card"><img src="static/images/defenseurerose.jpg"><div class="transfert-info"><h3>Jade Rose</h3><p>Age : 23 ans</p><p class="transfert-date">Note EA : 73</p></div></div>
-            <div class="transfert-card"><img src="static/images/defenseureshimizu.jpg"><div class="transfert-info"><h3>Risa Shimizu</h3><p>Age : 30 ans</p><p class="transfert-date">Note EA : 79</p></div></div>
-            <div class="transfert-card"><img src="static/images/defenseurethomas.jpg"><div class="transfert-info"><h3>Codie Thomas</h3><p>Age : 19 ans</p><p class="transfert-date">Note EA : </p></div></div>
-            <div class="transfert-card"><img src="static/images/defenseurewienroither.jpg"><div class="transfert-info"><h3>Laura Wienroither</h3><p>Age : 27 ans</p><p class="transfert-date">Note EA : 72</p></div></div>
-            
-            
-            <h3>Milieux</h3>
-            <div class="transfert-card"><img src="static/images/milieublindkilde-brown.jpg"><div class="transfert-info"><h3>Laura Blindkilde Brown</h3><p>Age : 22 ans</p><p class="transfert-date">Note EA : 72</p></div></div>
-            <div class="transfert-card"><img src="static/images/milieuclinton.jpg"><div class="transfert-info"><h3>Grace Clinton</h3><p>Age : 23 ans</p><p class="transfert-date">Note EA : 78</p></div></div>
-            <div class="transfert-card"><img src="static/images/milieucoffey.jpg"><div class="transfert-info"><h3>Sam Coffey</h3><p>Age : 27 ans</p><p class="transfert-date">Note EA : 82</p></div></div>
-            <div class="transfert-card"><img src="static/images/milieucoombs.jpg"><div class="transfert-info"><h3>Laura Coombs</h3><p>Age : 35 ans</p><p class="transfert-date">Note EA : 76</p></div></div>
-            <div class="transfert-card"><img src="static/images/milieuhasegawa.jpg"><div class="transfert-info"><h3>Yui Hasegawa</h3><p>Age : 29 ans</p><p class="transfert-date">Note EA : 85</p></div></div>
-            <div class="transfert-card"><img src="static/images/milieulohmann.jpg"><div class="transfert-info"><h3>Sydney Lohmann</h3><p>Age : 26 ans</p><p class="transfert-date">Note EA : 80</p></div></div>
-            <div class="transfert-card"><img src="static/images/milieuoyama.jpg"><div class="transfert-info"><h3>Aemu Oyama</h3><p>Age : 21 ans</p><p class="transfert-date">Note EA : 70</p></div></div>
-            
-            
-            <h3>Attaquantes</h3>
-            <div class="transfert-card"><img src="static/images/milieukerolin.jpg"><div class="transfert-info"><h3>Kerolin Nicoli</h3><p>Age : 26 ans</p><p class="transfert-date">Note EA : 80</p></div></div>
-            <div class="transfert-card"><img src="static/images/milieubeny.jpg"><div class="transfert-info"><h3>Iman Beney</h3><p>Age : 19 ans</p><p class="transfert-date">Note EA : 62</p></div></div>
-            <div class="transfert-card"><img src="static/images/milieufowler.jpg"><div class="transfert-info"><h3>Mary Fowler</h3><p>Age : 23 ans</p><p class="transfert-date">Note EA : 79</p></div></div>
-            <div class="transfert-card"><img src="static/images/milieufujino.jpg"><div class="transfert-info"><h3>Aoba Fujino</h3><p>Age : 22 ans</p><p class="transfert-date">Note EA : 77</p></div></div>
-            <div class="transfert-card"><img src="static/images/milieuhemp.jpg"><div class="transfert-info"><h3>Lauren Hemp</h3><p>Age : 25 ans</p><p class="transfert-date">Note EA : 87</p></div></div>
-            <div class="transfert-card"><img src="static/images/milieumead.jpg"><div class="transfert-info"><h3>Beth Mead</h3><p>Age : 31 ans</p><p class="transfert-date">Note EA : 87</p></div></div>
-            <div class="transfert-card"><img src="static/images/milieumiedema.jpg"><div class="transfert-info"><h3>Vivienne Miedema</h3><p>Age : 29 ans</p><p class="transfert-date">Note EA : 85</p></div></div>
-            <div class="transfert-card"><img src="static/images/milieumurphy.jpg"><div class="transfert-info"><h3>Lily Murphy</h3><p>Age : 20 ans</p><p class="transfert-date">Note EA : 63</p></div></div>
-            <div class="transfert-card"><img src="static/images/milieupritchard.jpg"><div class="transfert-info"><h3>Poppy Pritchard</h3><p>Age : 20 ans</p><p class="transfert-date">Note EA : </p></div></div>
-            <div class="transfert-card"><img src="static/images/milieushaw.jpg"><div class="transfert-info"><h3>Khadija Shaw</h3><p>Age : 29 ans</p><p class="transfert-date">Note EA : 89</p></div></div>
-            
-            
-        </div>
-
         <div id="mercato-recap" class="content-section">
             <h2>Historique du Mercato (été 2026)</h2>
             <h3>Arrivées</h3>
@@ -695,25 +721,25 @@
 
         <div id="joueursinter-recap" class="content-section">
             <h2>Joueurs internationaux</h2>
-            <div class="transfert-card" onclick="afficherJoueur('guehi')"><img src="static/images/guehiinter.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°6</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('guehi')"><img src="static/images/guehiinter.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°6</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('trafford')"><img src="static/images/traffordinter.jpg"><div class="transfert-info"><h3>James Trafford</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°23</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('oreilly')"><img src="static/images/o'reillyinter.jpg"><div class="transfert-info"><h3>Nico O'Reilly</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°3</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('oreilly')"><img src="static/images/o'reillyinter.jpg"><div class="transfert-info"><h3>Nico O'Reilly</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°3</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('stones')"><img src="static/images/stonesinter.jpg"><div class="transfert-info"><h3>John Stones</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°5</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('marmoush')"><img src="static/images/marmoushinter.jpg"><div class="transfert-info"><h3>Omar Marmoush</h3><p>Egypte 🇪🇬</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°22</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('cherki')"><img src="static/images/cherkiinter.jpg"><div class="transfert-info"><h3>Rayan Cherki</h3><p>France 🇫🇷</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°24</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('semenyo')"><img src="static/images/semenyointer.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Ghana 🇬🇭</p<p>Matchs : 1</p>><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°11</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('cherki')"><img src="static/images/cherkiinter.jpg"><div class="transfert-info"><h3>Rayan Cherki</h3><p>France 🇫🇷</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°24</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('semenyo')"><img src="static/images/semenyointer.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Ghana 🇬🇭</p<p>Matchs : 2</p>><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°11</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('doku')"><img src="static/images/dokuinter.jpg"><div class="transfert-info"><h3>Jérémy Doku</h3><p>Belgique 🇧🇪</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°11</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('haaland')"><img src="static/images/haalandinter.jpg"><div class="transfert-info"><h3>Erling Haaland</h3><p>Norvège 🇳🇴</p><p>Matchs : 1</p><p>Buts : 2</p><p>Passes D : 0</p><p class="transfert-date">N°9</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('haaland')"><img src="static/images/haalandinter.jpg"><div class="transfert-info"><h3>Erling Haaland</h3><p>Norvège 🇳🇴</p><p>Matchs : 2</p><p>Buts : 4</p><p>Passes D : 0</p><p class="transfert-date">N°9</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('ake')"><img src="static/images/akeinter.jpg"><div class="transfert-info"><h3>Nathan Aké</h3><p>Pays-Bas 🇳🇱</p<p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°5</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('reijnders')"><img src="static/images/reijndersinter.jpg"><div class="transfert-info"><h3>Tijjani Reijnders</h3><p>Pays-Bas 🇳🇱</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°14</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('rodri')"><img src="static/images/rodriinter.jpg"><div class="transfert-info"><h3>Rodri</h3><p>Espagne 🇪🇸</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°16</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('dias')"><img src="static/images/diasinter.jpg"><div class="transfert-info"><h3>Ruben Dias</h3><p>Portugal 🇵🇹</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°3</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('dias')"><img src="static/images/diasinter.jpg"><div class="transfert-info"><h3>Ruben Dias</h3><p>Portugal 🇵🇹</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°3</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('nunes')"><img src="static/images/nunesinter.jpg"><div class="transfert-info"><h3>Matheus Nunes</h3><p>Portugal 🇵🇹</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°6</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('khusanov')"><img src="static/images/khusanovinter.jpg"><div class="transfert-info"><h3>Abdukodir Khusanov</h3><p>Ouzbékistan 🇺🇿</p><p>Matchs : 1/p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°2</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('ait-nouri')"><img src="static/images/ait-nouriinter.jpg"><div class="transfert-info"><h3>Rayan Ait-Nouri</h3><p>Algérie 🇩🇿</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°15</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('khusanov')"><img src="static/images/khusanovinter.jpg"><div class="transfert-info"><h3>Abdukodir Khusanov</h3><p>Ouzbékistan 🇺🇿</p><p>Matchs : 2/p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°2</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('ait-nouri')"><img src="static/images/ait-nouriinter.jpg"><div class="transfert-info"><h3>Rayan Ait-Nouri</h3><p>Algérie 🇩🇿</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°15</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('akanji')"><img src="static/images/akanjiinter.jpg"><div class="transfert-info"><h3>Manuel Akanji</h3><p>Suisse 🇨🇭</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°5</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('gvardiol')"><img src="static/images/gvardiolinter.jpg"><div class="transfert-info"><h3>Josko Gvardiol</h3><p>Croatie 🇭🇷</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°4</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('kovacic')"><img src="static/images/kovacicinter.jpg"><div class="transfert-info"><h3>Matéo Kovacic</h3><p>Croatie 🇭🇷</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°8</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('gvardiol')"><img src="static/images/gvardiolinter.jpg"><div class="transfert-info"><h3>Josko Gvardiol</h3><p>Croatie 🇭🇷</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°4</p></div></div>
+            <div class="transfert-card" onclick="afficherJoueur('kovacic')"><img src="static/images/kovacicinter.jpg"><div class="transfert-info"><h3>Matéo Kovacic</h3><p>Croatie 🇭🇷</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°8</p></div></div>
             
         </div>
 
@@ -841,46 +867,104 @@
         };
 
         const centreFormation = {
-            gardiens: [ 
-                { nom: "Spike Brits", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Gardien", img: "gardienspike.jpg" }, 
-                { nom: "Oliver Whatmuff", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Gardien", img: "gardienoliver.jpg" },
-                { nom: "Jack Wint", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Gardien", img: "gardienjack.jpg" }
-            ],
-            defenseurs: [
-                { nom: "Finley Burns", age: "22 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurfinley.jpg" },
-                { nom: "Ezra Carrington", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurezra.jpg" },
-                { nom: "Tomas Galvez", age: "21 ans", nat: "Finlande 🇫🇮", poste: "Défenseur", img: "defenseurtomas.jpg" },
-                { nom: "Matty Henderson-Hall", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurmatty.jpg" },
-                { nom: "Luke Mbete", age: "22 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurluke.jpg" },
-                { nom: "Christian McFarlane", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurchristian.jpg" },
-                { nom: "Stephen Mfuni", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurstephen.jpg" },
-                { nom: "Brooklyn Nfonkeu", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurbrooklyn.jpg" },
-                { nom: "Kian Noble", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurkian.jpg" },
-                { nom: "Harrison Parker", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurharrison.jpg" },
-                { nom: "Lakyle Samuel", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurlakyle.jpg" },
-                { nom: "Jahmai Simpson-Pusey", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurjahmai.jpg" },
-                { nom: "Isaac Smith", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Défenseur", img: "defenseurisaac.jpg" },
-                { nom: "Rhys Thomas", age: "19 ans", nat: "Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿", poste: "Défenseur", img: "defenseurrhys.jpg" }
-            ],
-            milieux: [
-                { nom: "Isaiah Dada-Mascoll", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieuisaiah.jpg" },
-                { nom: "Femi Fapetu", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieufemi.jpg" },
-                { nom: "Charlie Gray", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieucharlie.jpg" },
-                { nom: "Jaden Heskey", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieujaden.jpg" },
-                {nom: "Divine Mukasa", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Milieu", img: "milieudivine.jpg" }
-            ],
-            attaquants: [
-                { nom: " Fletcher", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantluka.jpg"},
-                { nom: "Reighan Heskey", age: "18 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantreighan.jpg" },
-                { nom: "Emilio Lawrence", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantemilio.jpg" },
-                { nom: "Ryan McAidoo", age: "17 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantryan.jpg" },
-                { nom: "Divin Mubama", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantdivin.jpg" },
-                { nom: "Ashton Muir", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantashton.jpg" },
-                { nom: "Joel Ndala", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantjoel.jpg" },
-                { nom: "Mahamadou Sangaré", age: "19 ans", nat: "France 🇫🇷", poste: "Attaquant", img: "attaquantmahamadou.jpg" },
-                { nom: "Matty Warhurst", age: "19 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", poste: "Attaquant", img: "attaquantmatty.jpg" }
-            ]
-        };
+
+'spike-brits': { nom:"Spike Brits", poste:"Gardien", age:"18 ans", nat:"Angleterre 🏴", img:"gardienspike.jpg" },
+'oliver-whatmuff': { nom:"Oliver Whatmuff", poste:"Gardien", age:"18 ans", nat:"Angleterre 🏴", img:"gardienoliver.jpg" },
+'jack-wint': { nom:"Jack Wint", poste:"Gardien", age:"19 ans", nat:"Angleterre 🏴", img:"gardienjack.jpg" },
+
+'finley-burns': { nom:"Finley Burns", poste:"Défenseur", age:"22 ans", nat:"Angleterre 🏴", img:"defenseurfinley.jpg" },
+'ezra-carrington': { nom:"Ezra Carrington", poste:"Défenseur", age:"20 ans", nat:"Angleterre 🏴", img:"defenseurezra.jpg" },
+'tomas-galvez': { nom:"Tomas Galvez", poste:"Défenseur", age:"21 ans", nat:"Finlande 🇫🇮", img:"defenseurtomas.jpg" },
+'matty-henderson-hall': { nom:"Matty Henderson-Hall", poste:"Défenseur", age:"19 ans", nat:"Angleterre 🏴", img:"defenseurmatty.jpg" },
+'luke-mbete': { nom:"Luke Mbete", poste:"Défenseur", age:"22 ans", nat:"Angleterre 🏴", img:"defenseurluke.jpg" },
+'christian-mcfarlane': { nom:"Christian McFarlane", poste:"Défenseur", age:"19 ans", nat:"Angleterre 🏴", img:"defenseurchristian.jpg" },
+'stephen-mfuni': { nom:"Stephen Mfuni", poste:"Défenseur", age:"18 ans", nat:"Angleterre 🏴", img:"defenseurstephen.jpg" },
+'brooklyn-nfonkeu': { nom:"Brooklyn Nfonkeu", poste:"Défenseur", age:"18 ans", nat:"Angleterre 🏴", img:"defenseurbrooklyn.jpg" },
+'kian-noble': { nom:"Kian Noble", poste:"Défenseur", age:"19 ans", nat:"Angleterre 🏴", img:"defenseurkian.jpg" },
+'harrison-parker': { nom:"Harrison Parker", poste:"Défenseur", age:"19 ans", nat:"Angleterre 🏴", img:"defenseurharrison.jpg" },
+'lakyle-samuel': { nom:"Lakyle Samuel", poste:"Défenseur", age:"20 ans", nat:"Angleterre 🏴", img:"defenseurlakyle.jpg" },
+'jahmai-simpson-pusey': { nom:"Jahmai Simpson-Pusey", poste:"Défenseur", age:"20 ans", nat:"Angleterre 🏴", img:"defenseurjahmai.jpg" },
+'isaac-smith': { nom:"Isaac Smith", poste:"Défenseur", age:"20 ans", nat:"Angleterre 🏴", img:"defenseurisaac.jpg" },
+'rhys-thomas': { nom:"Rhys Thomas", poste:"Défenseur", age:"19 ans", nat:"Pays de Galles 🏴", img:"defenseurrhys.jpg" },
+
+'isaiah-dada-mascoll': { nom:"Isaiah Dada-Mascoll", poste:"Milieu", age:"20 ans", nat:"Angleterre 🏴", img:"milieuisaiah.jpg" },
+'femi-fapetu': { nom:"Femi Fapetu", poste:"Milieu", age:"18 ans", nat:"Angleterre 🏴", img:"milieufemi.jpg" },
+'charlie-gray': { nom:"Charlie Gray", poste:"Milieu", age:"20 ans", nat:"Angleterre 🏴", img:"milieucharlie.jpg" },
+'jaden-heskey': { nom:"Jaden Heskey", poste:"Milieu", age:"20 ans", nat:"Angleterre 🏴", img:"milieujaden.jpg" },
+'divine-mukasa': { nom:"Divine Mukasa", poste:"Milieu", age:"18 ans", nat:"Angleterre 🏴", img:"milieudivine.jpg" },
+
+'luka-fletcher': { nom:"Luka Fletcher", poste:"Attaquant", age:"19 ans", nat:"Angleterre 🏴", img:"attaquantluka.jpg" },
+'reighan-heskey': { nom:"Reighan Heskey", poste:"Attaquant", age:"18 ans", nat:"Angleterre 🏴", img:"attaquantreighan.jpg" },
+'emilio-lawrence': { nom:"Emilio Lawrence", poste:"Attaquant", age:"20 ans", nat:"Angleterre 🏴", img:"attaquantemilio.jpg" },
+'ryan-mcaidoo': { nom:"Ryan McAidoo", poste:"Attaquant", age:"17 ans", nat:"Angleterre 🏴", img:"attaquantryan.jpg" },
+'divin-mubama': { nom:"Divin Mubama", poste:"Attaquant", age:"21 ans", nat:"Angleterre 🏴", img:"attaquantdivin.jpg" },
+'ashton-muir': { nom:"Ashton Muir", poste:"Attaquant", age:"20 ans", nat:"Angleterre 🏴", img:"attaquantashton.jpg" },
+'joel-ndala': { nom:"Joel Ndala", poste:"Attaquant", age:"20 ans", nat:"Angleterre 🏴", img:"attaquantjoel.jpg" },
+'mahamadou-sangare': { nom:"Mahamadou Sangaré", poste:"Attaquant", age:"19 ans", nat:"France 🇫🇷", img:"attaquantmahamadou.jpg" },
+'matty-warhurst': { nom:"Matty Warhurst", poste:"Attaquant", age:"19 ans", nat:"Angleterre 🏴", img:"attaquantmatty.jpg" }
+
+};
+
+        const effectifFemmes = {
+
+gardiennes: [
+
+{nom:"Eve Annets", age:"20 ans", note:"N/A", img:"gardienneannets.jpg"},
+{nom:"Eartha Cumings", age:"27 ans", note:"72", img:"gardiennecumings.jpg"},
+{nom:"Khiara Keating", age:"21 ans", note:"80", img:"gardiennekeating.jpg"},
+{nom:"Kate Startup", age:"27 ans", note:"64", img:"gardiennestartups.jpg"},
+{nom:"Ayaka Yamashita", age:"30 ans", note:"79", img:"gardienneyamashita.jpg"}
+
+],
+
+
+defenseures:[
+
+{nom:"Kerstin Casparij", age:"25 ans", note:"79", img:"defenseurecasparij.jpg"},
+{nom:"Mayzee Davies", age:"19 ans", note:"N/A", img:"defenseuredavies.jpg"},
+{nom:"Alex Greenwood", age:"32 ans", note:"84", img:"defenseuregreenwood.jpg"},
+{nom:"Rebecca Knaak", age:"30 ans", note:"78", img:"defenseureknaak.jpg"},
+{nom:"Naomi Layzell", age:"22 ans", note:"67", img:"defenseurelayzell.jpg"},
+{nom:"Tara O'Hanlon", age:"21 ans", note:"N/A", img:"defenseureo'hanlon.jpg"},
+{nom:"Leila Ouahabi", age:"33 ans", note:"82", img:"defenseureouahabi.jpg"},
+{nom:"Grace Prior", age:"21 ans", note:"72", img:"defenseureprior.jpg"},
+{nom:"Jade Rose", age:"23 ans", note:"73", img:"defenseurerose.jpg"},
+{nom:"Risa Shimizu", age:"30 ans", note:"79", img:"defenseureshimizu.jpg"},
+{nom:"Codie Thomas", age:"19 ans", note:"N/A", img:"defenseurethomas.jpg"},
+{nom:"Laura Wienroither", age:"27 ans", note:"72", img:"defenseurewienroither.jpg"}
+
+],
+
+
+milieux:[
+
+{nom:"Laura Blindkilde Brown", age:"22 ans", note:"72", img:"milieublindkilde-brown.jpg"},
+{nom:"Grace Clinton", age:"23 ans", note:"78", img:"milieuclinton.jpg"},
+{nom:"Sam Coffey", age:"27 ans", note:"82", img:"milieucoffey.jpg"},
+{nom:"Laura Coombs", age:"35 ans", note:"76", img:"milieucoombs.jpg"},
+{nom:"Yui Hasegawa", age:"29 ans", note:"85", img:"milieuhasegawa.jpg"},
+{nom:"Sydney Lohmann", age:"26 ans", note:"80", img:"milieulohmann.jpg"},
+{nom:"Aemu Oyama", age:"21 ans", note:"70", img:"milieuoyama.jpg"}
+
+],
+
+
+attaquantes:[
+
+{nom:"Kerolin Nicoli", age:"26 ans", note:"80", img:"milieukerolin.jpg"},
+{nom:"Iman Beney", age:"19 ans", note:"62", img:"milieubeny.jpg"},
+{nom:"Mary Fowler", age:"23 ans", note:"79", img:"milieufowler.jpg"},
+{nom:"Aoba Fujino", age:"22 ans", note:"77", img:"milieufujino.jpg"},
+{nom:"Lauren Hemp", age:"25 ans", note:"87", img:"milieuhemp.jpg"},
+{nom:"Beth Mead", age:"31 ans", note:"87", img:"milieumead.jpg"},
+{nom:"Vivienne Miedema", age:"29 ans", note:"85", img:"milieumiedema.jpg"},
+{nom:"Lily Murphy", age:"20 ans", note:"63", img:"milieumurphy.jpg"},
+{nom:"Poppy Pritchard", age:"20 ans", note:"N/A", img:"milieupritchard.jpg"},
+{nom:"Khadija Shaw", age:"29 ans", note:"89", img:"milieushaw.jpg"}
+
+]
+
+};
 
         const joueursDraft = Object.values(effectif).map(j => ({
     nom: j.nom,
@@ -2374,6 +2458,180 @@ function ouvrirDossierContrats() {
     showSection("contrats-view");
 }
 
+function ouvrirEffectif(){
+
+showSection("effectif-menu");
+
+}
+
+function afficherEffectifHommes(){
+
+showSection("effectif-hommes");
+
+chargerEffectifHommes();
+
+}
+
+function chargerEffectifHommes(){
+
+let zone=document.getElementById("effectif-container");
+
+zone.innerHTML="";
+
+
+for(let id in effectif){
+
+let j=effectif[id];
+
+
+zone.innerHTML += `
+
+<div class="transfert-card" onclick="afficherJoueur('${id}')">
+
+<img src="static/images/${j.img}">
+
+<div class="transfert-info">
+
+<h3>${j.nom}</h3>
+
+<p>${j.poste}</p>
+
+<p>${j.age}</p>
+
+<p>Note EA : ${j.noteea}</p>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+}
+
+function ouvrirCentreGeneral(){
+
+showSection("centre-formation-view");
+
+document.getElementById("centre-title").innerHTML =
+"🧬 Centre de formation";
+
+}
+
+function afficherCentre(type){
+
+    showSection("centre-formation-view");
+
+    document.getElementById("centre-title").innerHTML =
+    "🧬 Centre de formation - " + type;
+
+
+    chargerJeunes(type);
+
+}
+
+function chargerJeunes(type){
+
+let zone = document.getElementById("centre-container");
+
+zone.innerHTML="";
+
+
+for(let id in centreFormation){
+
+let j = centreFormation[id];
+
+
+if(j.poste.toLowerCase() == type ||
+(type=="defenseurs" && j.poste=="Défenseur") ||
+(type=="gardiens" && j.poste=="Gardien") ||
+(type=="milieux" && j.poste=="Milieu") ||
+(type=="attaquants" && j.poste=="Attaquant")){
+
+
+zone.innerHTML += `
+
+<div class="transfert-card">
+
+<img src="static/images/${j.img}">
+
+<div class="transfert-info">
+
+<h3>${j.nom}</h3>
+
+<p>${j.poste}</p>
+
+<p>${j.age}</p>
+
+<p>${j.nat}</p>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+}
+
+}
+
+function ouvrirEffectifFemmes(){
+
+showSection("effectif-femmes");
+chargerEffectifFemmes();
+
+}
+
+function afficherEffectifFemmes(){
+
+    showSection("effectif-femmes");
+
+    chargerEffectifFemmes();
+
+}
+
+function chargerEffectifFemmes(){
+
+let zone=document.getElementById("effectif-femmes-container");
+
+zone.innerHTML="";
+
+
+for(let categorie in effectifFemmes){
+
+zone.innerHTML += `<h3>${categorie}</h3>`;
+
+
+effectifFemmes[categorie].forEach(j=>{
+
+zone.innerHTML += `
+
+<div class="transfert-card">
+
+<img src="static/images/${j.img}">
+
+<div class="transfert-info">
+
+<h3>${j.nom}</h3>
+
+<p>Age : ${j.age}</p>
+
+<p>Note EA : ${j.note}</p>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+}
 
 function searchPlayer(){
 
