@@ -2600,12 +2600,11 @@ zone.innerHTML += `
 }
 
 function ouvrirCentreGeneral(){
+    showSection("centre-formation-view");
+    document.getElementById("centre-title").innerHTML =
+    "🧬 Centre de formation";
 
-showSection("centre-formation-view");
-
-document.getElementById("centre-title").innerHTML =
-"🧬 Centre de formation";
-
+    chargerJeunes("defenseurs"); // affichage par défaut
 }
 
 function afficherCentre(type){
@@ -2623,7 +2622,7 @@ function afficherCentre(type){
 function chargerJeunes(type){
 
 let zone = document.getElementById("centre-container");
-zone.innerHTML="";
+zone.innerHTML = "";
 
 for(let id in centreFormation){
 
@@ -2631,14 +2630,12 @@ let j = centreFormation[id];
 
 let poste = j.poste.toLowerCase();
 
-let match =
-    type === "tous" ||
+if(
+    (type === "gardiens" && poste === "gardien") ||
     (type === "defenseurs" && poste === "défenseur") ||
     (type === "milieux" && poste === "milieu") ||
-    (type === "attaquants" && poste === "attaquant") ||
-    (type === "gardiens" && poste === "gardien");
-
-if(match){
+    (type === "attaquants" && poste === "attaquant")
+){
 
 zone.innerHTML += `
 <div class="transfert-card">
@@ -2652,6 +2649,7 @@ zone.innerHTML += `
 </div>
 `;
 }
+
 }
 }
 
