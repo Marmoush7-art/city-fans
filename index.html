@@ -276,7 +276,7 @@
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
             <li class="menu-item" onclick="ouvrirDossierContrats()"><span class="menu-item-icon">📄</span>Contrats Urgents</li>
             <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
-            <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
+            <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="afficherCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="afficherCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="afficherCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="afficherCentre('attaquants')">⚔️ Attaquants</span>
             </div>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
             <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span>Jeu Draft</li>
@@ -884,40 +884,40 @@
 
         const centreFormation = {
 
-'spike-brits': { nom:"Spike Brits", poste:"Gardien", age:"18 ans", nat:"Angleterre 🏴", img:"gardienspike.jpg" },
-'oliver-whatmuff': { nom:"Oliver Whatmuff", poste:"Gardien", age:"18 ans", nat:"Angleterre 🏴", img:"gardienoliver.jpg" },
-'jack-wint': { nom:"Jack Wint", poste:"Gardien", age:"19 ans", nat:"Angleterre 🏴", img:"gardienjack.jpg" },
+'spike-brits': { nom:"Spike Brits", poste:"Gardien", age:"18 ans", nat:"Angleterre 🏴", naissance:"24/06/2007", img:"gardienspike.jpg" },
+'oliver-whatmuff': { nom:"Oliver Whatmuff", poste:"Gardien", age:"18 ans", nat:"Angleterre 🏴", naissance:"06/09/2007", img:"gardienoliver.jpg" },
+'jack-wint': { nom:"Jack Wint", poste:"Gardien", age:"19 ans", nat:"Angleterre 🏴", naissance:"08/10/2008", img:"gardienjack.jpg" },
 
-'finley-burns': { nom:"Finley Burns", poste:"Défenseur", age:"22 ans", nat:"Angleterre 🏴", img:"defenseurfinley.jpg" },
-'ezra-carrington': { nom:"Ezra Carrington", poste:"Défenseur", age:"20 ans", nat:"Angleterre 🏴", img:"defenseurezra.jpg" },
-'tomas-galvez': { nom:"Tomas Galvez", poste:"Défenseur", age:"21 ans", nat:"Finlande 🇫🇮", img:"defenseurtomas.jpg" },
-'matty-henderson-hall': { nom:"Matty Henderson-Hall", poste:"Défenseur", age:"19 ans", nat:"Angleterre 🏴", img:"defenseurmatty.jpg" },
-'luke-mbete': { nom:"Luke Mbete", poste:"Défenseur", age:"22 ans", nat:"Angleterre 🏴", img:"defenseurluke.jpg" },
-'christian-mcfarlane': { nom:"Christian McFarlane", poste:"Défenseur", age:"19 ans", nat:"Angleterre 🏴", img:"defenseurchristian.jpg" },
-'stephen-mfuni': { nom:"Stephen Mfuni", poste:"Défenseur", age:"18 ans", nat:"Angleterre 🏴", img:"defenseurstephen.jpg" },
-'brooklyn-nfonkeu': { nom:"Brooklyn Nfonkeu", poste:"Défenseur", age:"18 ans", nat:"Angleterre 🏴", img:"defenseurbrooklyn.jpg" },
-'kian-noble': { nom:"Kian Noble", poste:"Défenseur", age:"19 ans", nat:"Angleterre 🏴", img:"defenseurkian.jpg" },
-'harrison-parker': { nom:"Harrison Parker", poste:"Défenseur", age:"19 ans", nat:"Angleterre 🏴", img:"defenseurharrison.jpg" },
-'lakyle-samuel': { nom:"Lakyle Samuel", poste:"Défenseur", age:"20 ans", nat:"Angleterre 🏴", img:"defenseurlakyle.jpg" },
-'jahmai-simpson-pusey': { nom:"Jahmai Simpson-Pusey", poste:"Défenseur", age:"20 ans", nat:"Angleterre 🏴", img:"defenseurjahmai.jpg" },
-'isaac-smith': { nom:"Isaac Smith", poste:"Défenseur", age:"20 ans", nat:"Angleterre 🏴", img:"defenseurisaac.jpg" },
-'rhys-thomas': { nom:"Rhys Thomas", poste:"Défenseur", age:"19 ans", nat:"Pays de Galles 🏴", img:"defenseurrhys.jpg" },
+'finley-burns': { nom:"Finley Burns", poste:"Défenseur", age:"22 ans", nat:"Angleterre 🏴", naissance:"17/06/2003", img:"defenseurfinley.jpg" },
+'ezra-carrington': { nom:"Ezra Carrington", poste:"Défenseur", age:"20 ans", nat:"Angleterre 🏴", naissance:"16/12/2005", img:"defenseurezra.jpg" },
+'tomas-galvez': { nom:"Tomas Galvez", poste:"Défenseur", age:"21 ans", nat:"Finlande 🇫🇮", naissance:"28/01/2005", img:"defenseurtomas.jpg" },
+'matty-henderson-hall': { nom:"Matty Henderson-Hall", poste:"Défenseur", age:"19 ans", nat:"Angleterre 🏴", naissance:"08/12/2006", img:"defenseurmatty.jpg" },
+'luke-mbete': { nom:"Luke Mbete", poste:"Défenseur", age:"22 ans", nat:"Angleterre 🏴", naissance:"18/09/2003", img:"defenseurluke.jpg" },
+'christian-mcfarlane': { nom:"Christian McFarlane", poste:"Défenseur", age:"19 ans", nat:"Angleterre 🏴", naissance:"25/01/2007", img:"defenseurchristian.jpg" },
+'stephen-mfuni': { nom:"Stephen Mfuni", poste:"Défenseur", age:"18 ans", nat:"Angleterre 🏴", naissance:"12/02/2008", img:"defenseurstephen.jpg" },
+'brooklyn-nfonkeu': { nom:"Brooklyn Nfonkeu", poste:"Défenseur", age:"18 ans", nat:"Angleterre 🏴", naissance:"01/07/2007", img:"defenseurbrooklyn.jpg" },
+'kian-noble': { nom:"Kian Noble", poste:"Défenseur", age:"19 ans", nat:"Angleterre 🏴", naissance:"26/02/2007", img:"defenseurkian.jpg" },
+'harrison-parker': { nom:"Harrison Parker", poste:"Défenseur", age:"19 ans", nat:"Angleterre 🏴", naissance:"22/09/2006", img:"defenseurharrison.jpg" },
+'lakyle-samuel': { nom:"Lakyle Samuel", poste:"Défenseur", age:"20 ans", nat:"Angleterre 🏴", naissance:"06/05/2006", img:"defenseurlakyle.jpg" },
+'jahmai-simpson-pusey': { nom:"Jahmai Simpson-Pusey", poste:"Défenseur", age:"20 ans", nat:"Angleterre 🏴", naissance:"04/09/2005", img:"defenseurjahmai.jpg" },
+'isaac-smith': { nom:"Isaac Smith", poste:"Défenseur", age:"20 ans", nat:"Angleterre 🏴", naissance:"26/07/2005", img:"defenseurisaac.jpg" },
+'rhys-thomas': { nom:"Rhys Thomas", poste:"Défenseur", age:"19 ans", nat:"Pays de Galles 🏴", naissance:"05/09/2006", img:"defenseurrhys.jpg" },
 
-'isaiah-dada-mascoll': { nom:"Isaiah Dada-Mascoll", poste:"Milieu", age:"20 ans", nat:"Angleterre 🏴",naissance:"12/06/2004", img:"milieuisaiah.jpg" },
-'femi-fapetu': { nom:"Femi Fapetu", poste:"Milieu", age:"18 ans", nat:"Angleterre 🏴", img:"milieufemi.jpg" },
-'charlie-gray': { nom:"Charlie Gray", poste:"Milieu", age:"20 ans", nat:"Angleterre 🏴", img:"milieucharlie.jpg" },
-'jaden-heskey': { nom:"Jaden Heskey", poste:"Milieu", age:"20 ans", nat:"Angleterre 🏴", img:"milieujaden.jpg" },
-'divine-mukasa': { nom:"Divine Mukasa", poste:"Milieu", age:"18 ans", nat:"Angleterre 🏴", img:"milieudivine.jpg" },
+'isaiah-dada-mascoll': { nom:"Isaiah Dada-Mascoll", poste:"Milieu", age:"20 ans", nat:"Angleterre 🏴", naissance:"24/05/2006", img:"milieuisaiah.jpg" },
+'femi-fapetu': { nom:"Femi Fapetu", poste:"Milieu", age:"18 ans", nat:"Angleterre 🏴", naissance:"04/08/2007", img:"milieufemi.jpg" },
+'charlie-gray': { nom:"Charlie Gray", poste:"Milieu", age:"20 ans", nat:"Angleterre 🏴", naissance:"22/02/2006", img:"milieucharlie.jpg" },
+'jaden-heskey': { nom:"Jaden Heskey", poste:"Milieu", age:"20 ans", nat:"Angleterre 🏴", naissance:"17/12/2005", img:"milieujaden.jpg" },
+'divine-mukasa': { nom:"Divine Mukasa", poste:"Milieu", age:"18 ans", nat:"Angleterre 🏴", naissance:"22/08/2007", img:"milieudivine.jpg" },
 
-'luka-fletcher': { nom:"Luka Fletcher", poste:"Attaquant", age:"19 ans", nat:"Angleterre 🏴", img:"attaquantluka.jpg" },
-'reighan-heskey': { nom:"Reighan Heskey", poste:"Attaquant", age:"18 ans", nat:"Angleterre 🏴", img:"attaquantreighan.jpg" },
-'emilio-lawrence': { nom:"Emilio Lawrence", poste:"Attaquant", age:"20 ans", nat:"Angleterre 🏴", img:"attaquantemilio.jpg" },
-'ryan-mcaidoo': { nom:"Ryan McAidoo", poste:"Attaquant", age:"17 ans", nat:"Angleterre 🏴", img:"attaquantryan.jpg" },
-'divin-mubama': { nom:"Divin Mubama", poste:"Attaquant", age:"21 ans", nat:"Angleterre 🏴", img:"attaquantdivin.jpg" },
-'ashton-muir': { nom:"Ashton Muir", poste:"Attaquant", age:"20 ans", nat:"Angleterre 🏴", img:"attaquantashton.jpg" },
-'joel-ndala': { nom:"Joel Ndala", poste:"Attaquant", age:"20 ans", nat:"Angleterre 🏴", img:"attaquantjoel.jpg" },
-'mahamadou-sangare': { nom:"Mahamadou Sangaré", poste:"Attaquant", age:"19 ans", nat:"France 🇫🇷", img:"attaquantmahamadou.jpg" },
-'matty-warhurst': { nom:"Matty Warhurst", poste:"Attaquant", age:"19 ans", nat:"Angleterre 🏴", img:"attaquantmatty.jpg" }
+'luka-fletcher': { nom:"Luka Fletcher", poste:"Attaquant", age:"19 ans", nat:"Angleterre 🏴", naissance:"18/04/2007", img:"attaquantluka.jpg" },
+'reighan-heskey': { nom:"Reighan Heskey", poste:"Attaquant", age:"18 ans", nat:"Angleterre 🏴", naissance:"19/01/2008", img:"attaquantreighan.jpg" },
+'emilio-lawrence': { nom:"Emilio Lawrence", poste:"Attaquant", age:"20 ans", nat:"Angleterre 🏴", naissance:"20/09/2005", img:"attaquantemilio.jpg" },
+'ryan-mcaidoo': { nom:"Ryan McAidoo", poste:"Attaquant", age:"17 ans", nat:"Angleterre 🏴", naissance:"24/06/2008", img:"attaquantryan.jpg" },
+'divin-mubama': { nom:"Divin Mubama", poste:"Attaquant", age:"21 ans", nat:"Angleterre 🏴", naissance:"25/10/2004", img:"attaquantdivin.jpg" },
+'ashton-muir': { nom:"Ashton Muir", poste:"Attaquant", age:"20 ans", nat:"Angleterre 🏴", naissance:"08/12/2005", img:"attaquantashton.jpg" },
+'joel-ndala': { nom:"Joel Ndala", poste:"Attaquant", age:"20 ans", nat:"Angleterre 🏴", naissance:"31/05/2006", img:"attaquantjoel.jpg" },
+'mahamadou-sangare': { nom:"Mahamadou Sangaré", poste:"Attaquant", age:"19 ans", nat:"France 🇫🇷", naissance:"06/03/2007", img:"attaquantmahamadou.jpg" },
+'matty-warhurst': { nom:"Matty Warhurst", poste:"Attaquant", age:"19 ans", nat:"Angleterre 🏴", naissance:"25/09/2006", img:"attaquantmatty.jpg" }
 
 };
 
@@ -925,58 +925,58 @@
 
 gardiennes: [
 
-{nom:"Eve Annets", age:"20 ans", note:"N/A", naissance:"12/06/2004", img:"gardienneannets.jpg"},
-{nom:"Eartha Cumings", age:"27 ans", note:"72", img:"gardiennecumings.jpg"},
-{nom:"Khiara Keating", age:"21 ans", note:"80", img:"gardiennekeating.jpg"},
-{nom:"Kate Startup", age:"27 ans", note:"64", img:"gardiennestartups.jpg"},
-{nom:"Ayaka Yamashita", age:"30 ans", note:"79", img:"gardienneyamashita.jpg"}
+{nom:"Eve Annets", age:"20 ans", note:"N/A", naissance:"19/03/2006", img:"gardienneannets.jpg"},
+{nom:"Eartha Cumings", age:"27 ans", note:"72", naissance:"11/06/1999", img:"gardiennecumings.jpg"},
+{nom:"Khiara Keating", age:"21 ans", note:"80", naissance:"27/06/2004", img:"gardiennekeating.jpg"},
+{nom:"Kate Startup", age:"27 ans", note:"64", naissance:"28/01/1999", img:"gardiennestartups.jpg"},
+{nom:"Ayaka Yamashita", age:"30 ans", note:"79", naissance:"29/09/1995", img:"gardienneyamashita.jpg"}
 
 ],
 
 
 defenseures:[
 
-{nom:"Kerstin Casparij", age:"25 ans", note:"79", img:"defenseurecasparij.jpg"},
-{nom:"Mayzee Davies", age:"19 ans", note:"N/A", img:"defenseuredavies.jpg"},
-{nom:"Alex Greenwood", age:"32 ans", note:"84", img:"defenseuregreenwood.jpg"},
-{nom:"Rebecca Knaak", age:"30 ans", note:"78", img:"defenseureknaak.jpg"},
-{nom:"Naomi Layzell", age:"22 ans", note:"67", img:"defenseurelayzell.jpg"},
-{nom:"Tara O'Hanlon", age:"21 ans", note:"N/A", img:"defenseureo'hanlon.jpg"},
-{nom:"Leila Ouahabi", age:"33 ans", note:"82", img:"defenseureouahabi.jpg"},
-{nom:"Grace Prior", age:"21 ans", note:"72", img:"defenseureprior.jpg"},
-{nom:"Jade Rose", age:"23 ans", note:"73", img:"defenseurerose.jpg"},
-{nom:"Risa Shimizu", age:"30 ans", note:"79", img:"defenseureshimizu.jpg"},
-{nom:"Codie Thomas", age:"19 ans", note:"N/A", img:"defenseurethomas.jpg"},
-{nom:"Laura Wienroither", age:"27 ans", note:"72", img:"defenseurewienroither.jpg"}
+{nom:"Kerstin Casparij", age:"25 ans", note:"79", naissance:"19/08/2000", img:"defenseurecasparij.jpg"},
+{nom:"Mayzee Davies", age:"19 ans", note:"N/A", naissance:"25/08/2005", img:"defenseuredavies.jpg"},
+{nom:"Alex Greenwood", age:"32 ans", note:"84", naissance:"07/09/1993", img:"defenseuregreenwood.jpg"},
+{nom:"Rebecca Knaak", age:"30 ans", note:"78", naissance:"23/06/1996", img:"defenseureknaak.jpg"},
+{nom:"Naomi Layzell", age:"22 ans", note:"67", naissance:"29/02/2004", img:"defenseurelayzell.jpg"},
+{nom:"Tara O'Hanlon", age:"21 ans", note:"N/A", naissance:"14/03/2005", img:"defenseureo'hanlon.jpg"},
+{nom:"Leila Ouahabi", age:"33 ans", note:"82", naissance:"22/03/1993", img:"defenseureouahabi.jpg"},
+{nom:"Grace Prior", age:"21 ans", note:"72", naissance:"02/12/2004", img:"defenseureprior.jpg"},
+{nom:"Jade Rose", age:"23 ans", note:"73", naissance:"12/02/2003", img:"defenseurerose.jpg"},
+{nom:"Risa Shimizu", age:"30 ans", note:"79", naissance:"15/06/1996", img:"defenseureshimizu.jpg"},
+{nom:"Codie Thomas", age:"19 ans", note:"N/A", naissance:"30/08/2006", img:"defenseurethomas.jpg"},
+{nom:"Laura Wienroither", age:"27 ans", note:"72", naissance:"13/01/1999", img:"defenseurewienroither.jpg"}
 
 ],
 
 
 milieux:[
 
-{nom:"Laura Blindkilde Brown", age:"22 ans", note:"72", img:"milieublindkilde-brown.jpg"},
-{nom:"Grace Clinton", age:"23 ans", note:"78", img:"milieuclinton.jpg"},
-{nom:"Sam Coffey", age:"27 ans", note:"82", img:"milieucoffey.jpg"},
-{nom:"Laura Coombs", age:"35 ans", note:"76", img:"milieucoombs.jpg"},
-{nom:"Yui Hasegawa", age:"29 ans", note:"85", img:"milieuhasegawa.jpg"},
-{nom:"Sydney Lohmann", age:"26 ans", note:"80", img:"milieulohmann.jpg"},
-{nom:"Aemu Oyama", age:"21 ans", note:"70", img:"milieuoyama.jpg"}
+{nom:"Laura Blindkilde Brown", age:"22 ans", note:"72", naissance:"19/03/2006", img:"milieublindkilde-brown.jpg"},
+{nom:"Grace Clinton", age:"23 ans", note:"78", naissance:"19/03/2006", img:"milieuclinton.jpg"},
+{nom:"Sam Coffey", age:"27 ans", note:"82", naissance:"19/03/2006", img:"milieucoffey.jpg"},
+{nom:"Laura Coombs", age:"35 ans", note:"76", naissance:"19/03/2006", img:"milieucoombs.jpg"},
+{nom:"Yui Hasegawa", age:"29 ans", note:"85", naissance:"19/03/2006", img:"milieuhasegawa.jpg"},
+{nom:"Sydney Lohmann", age:"26 ans", note:"80", naissance:"19/03/2006", img:"milieulohmann.jpg"},
+{nom:"Aemu Oyama", age:"21 ans", note:"70", naissance:"19/03/2006", img:"milieuoyama.jpg"}
 
 ],
 
 
 attaquantes:[
 
-{nom:"Kerolin Nicoli", age:"26 ans", note:"80", img:"milieukerolin.jpg"},
-{nom:"Iman Beney", age:"19 ans", note:"62", img:"milieubeny.jpg"},
-{nom:"Mary Fowler", age:"23 ans", note:"79", img:"milieufowler.jpg"},
-{nom:"Aoba Fujino", age:"22 ans", note:"77", img:"milieufujino.jpg"},
-{nom:"Lauren Hemp", age:"25 ans", note:"87", img:"milieuhemp.jpg"},
-{nom:"Beth Mead", age:"31 ans", note:"87", img:"milieumead.jpg"},
-{nom:"Vivienne Miedema", age:"29 ans", note:"85", img:"milieumiedema.jpg"},
-{nom:"Lily Murphy", age:"20 ans", note:"63", img:"milieumurphy.jpg"},
-{nom:"Poppy Pritchard", age:"20 ans", note:"N/A", img:"milieupritchard.jpg"},
-{nom:"Khadija Shaw", age:"29 ans", note:"89", img:"milieushaw.jpg"}
+{nom:"Kerolin Nicoli", age:"26 ans", note:"80", img:"attaquantekerolin.jpg"},
+{nom:"Iman Beney", age:"19 ans", note:"62", img:"attaquantebeny.jpg"},
+{nom:"Mary Fowler", age:"23 ans", note:"79", img:"attaquantefowler.jpg"},
+{nom:"Aoba Fujino", age:"22 ans", note:"77", img:"attaquantefujino.jpg"},
+{nom:"Lauren Hemp", age:"25 ans", note:"87", img:"attaquantehemp.jpg"},
+{nom:"Beth Mead", age:"31 ans", note:"87", img:"attaquantemead.jpg"},
+{nom:"Vivienne Miedema", age:"29 ans", note:"85", img:"attaquantemiedema.jpg"},
+{nom:"Lily Murphy", age:"20 ans", note:"63", img:"attaquantemurphy.jpg"},
+{nom:"Poppy Pritchard", age:"20 ans", note:"N/A", img:"attaquantepritchard.jpg"},
+{nom:"Khadija Shaw", age:"29 ans", note:"89", img:"attaquanteshaw.jpg"}
 
 ]
 
@@ -2455,11 +2455,11 @@ function chargerAnniversaires() {
     }
 
     // Femmes
-    for (let id in effectifFemmes) {
+    for (let categorie in effectifFemmes) {
 
-        const j = effectifFemmes[id];
+    effectifFemmes[categorie].forEach(j => {
 
-        if (!j.naissance) continue;
+        if (!j.naissance) return;
 
         const mois = parseInt(j.naissance.split("/")[1]);
 
@@ -2470,8 +2470,10 @@ function chargerAnniversaires() {
                 date: j.naissance,
                 couleur: "vert"
             });
+
         }
-    }
+    });
+}
 
     // Jeunes
     for (let id in centreFormation) {
