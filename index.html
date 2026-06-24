@@ -229,45 +229,12 @@
             <li class="menu-item" onclick="showSection('accueil')"><span class="menu-item-icon">🏠</span>Accueil</li>
             <li class="menu-item" onclick="showSection('matchs-view')"><span class="menu-item-icon">📅</span>Matchs</li>
             <li class="menu-item" onclick="ouvrirEffectif()"><span class="menu-item-icon">⚽</span>Effectif</li>
-            <div id="sub-effectif" class="sous-menu">
-                <div class="cat-titre">🧤 Gardiens</div>
-                <span class="joueur-link" onclick="afficherJoueur('bettinelli')">Marcus Bettinelli</span>
-                <span class="joueur-link" onclick="afficherJoueur('donnarumma')">Gianluigi Donnarumma</span>
-                <span class="joueur-link" onclick="afficherJoueur('trafford')">James Trafford</span>
-                <div class="cat-titre">🛡️ Défenseurs</div>
-                <span class="joueur-link" onclick="afficherJoueur('akanji')">Manuel Akanji</span>
-                <span class="joueur-link" onclick="afficherJoueur('ake')">Nathan Aké</span>
-                <span class="joueur-link" onclick="afficherJoueur('alleyne')">Max Alleyne</span>
-                <span class="joueur-link" onclick="afficherJoueur('aitnouri')">Rayan Ait-Nouri</span>
-                <span class="joueur-link" onclick="afficherJoueur('dias')">Ruben Dias</span>
-                <span class="joueur-link" onclick="afficherJoueur('guehi')">Marc Guéhi</span>
-                <span class="joueur-link" onclick="afficherJoueur('gvardiol')">Josko Gvardiol</span>
-                <span class="joueur-link" onclick="afficherJoueur('khusanov')">Abdukodir Khusanov</span>
-                <span class="joueur-link" onclick="afficherJoueur('lewis')">Rico Lewis</span>
-                <span class="joueur-link" onclick="afficherJoueur('nunes')">Matheus Nunes</span>
-                <span class="joueur-link" onclick="afficherJoueur('oreilly')">Nico O'Reilly</span>
-                <span class="joueur-link" onclick="afficherJoueur('reis')">Vitor Reis</span>
-                <span class="joueur-link" onclick="afficherJoueur('stones')">John Stones</span>
-                <span class="joueur-link" onclick="afficherJoueur('wilson-esbrand')">Joshua Wilson-Esbrand</span>
-                <div class="cat-titre">⚡ Milieux</div>
-                <span class="joueur-link" onclick="afficherJoueur('cherki')">Rayan Cherki</span>
-                <span class="joueur-link" onclick="afficherJoueur('echeverri')">Claudio Echeverri</span>
-                <span class="joueur-link" onclick="afficherJoueur('foden')">Phil Foden</span>
-                <span class="joueur-link" onclick="afficherJoueur('gonzalez')">Nico Gonzalez</span>
-                <span class="joueur-link" onclick="afficherJoueur('grealish')">Jack Grealish</span>
-                <span class="joueur-link" onclick="afficherJoueur('kovacic')">Matéo Kovacic</span>
-                <span class="joueur-link" onclick="afficherJoueur('nypan')">Sverre Nypan</span>
-                <span class="joueur-link" onclick="afficherJoueur('phillips')">Kalvin Phillips</span>
-                <span class="joueur-link" onclick="afficherJoueur('reijnders')">Tijjani Reijnders</span>
-                <span class="joueur-link" onclick="afficherJoueur('rodri')">Rodri</span>
-                <span class="joueur-link" onclick="afficherJoueur('sullivan')">Cavan Sullivan</span>
-                <div class="cat-titre">⚔️ Attaquants</div>
-                <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
-                <span class="joueur-link" onclick="afficherJoueur('haaland')">Erling Haaland</span>
-                <span class="joueur-link" onclick="afficherJoueur('marmoush')">Omar Marmoush</span>
-                <span class="joueur-link" onclick="afficherJoueur('savinho')">Savinho</span>
-                <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
-            </div>
+                <ul id="sub-effectif" class="sous-menu">
+                    <li onclick="afficherCentre('defenseurs')">🛡️ Jeunes défenseurs</li>
+                    <li onclick="afficherCentre('milieux')">⚡ Jeunes milieux</li>
+                    <li onclick="afficherCentre('attaquants')">⚔️ Jeunes attaquants</li>
+                    <li onclick="afficherCentre('gardiens')">🧤 Jeunes gardiens</li>
+                </ul>
             <li class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</li>
             <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('actus-mercato')">📃 Rumeurs arrivées</span><span class="joueur-link" onclick="showSection('actus-mercato-b')">📃 Rumeurs départs</span>
             </div>
