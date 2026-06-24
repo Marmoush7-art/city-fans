@@ -2656,48 +2656,36 @@ function afficherCentre(type){
 function chargerJeunes(type){
 
 let zone = document.getElementById("centre-container");
-
 zone.innerHTML="";
-
 
 for(let id in centreFormation){
 
 let j = centreFormation[id];
 
+let poste = j.poste.toLowerCase();
 
-if(j.poste.toLowerCase() == type ||
-(type=="defenseurs" && j.poste=="Défenseur") ||
-(type=="gardiens" && j.poste=="Gardien") ||
-(type=="milieux" && j.poste=="Milieu") ||
-(type=="attaquants" && j.poste=="Attaquant")){
+let match =
+    type === "tous" ||
+    (type === "defenseurs" && poste === "défenseur") ||
+    (type === "milieux" && poste === "milieu") ||
+    (type === "attaquants" && poste === "attaquant") ||
+    (type === "gardiens" && poste === "gardien");
 
+if(match){
 
 zone.innerHTML += `
-
 <div class="transfert-card">
-
 <img src="static/images/${j.img}">
-
 <div class="transfert-info">
-
 <h3>${j.nom}</h3>
-
 <p>${j.poste}</p>
-
 <p>${j.age}</p>
-
 <p>${j.nat}</p>
-
 </div>
-
 </div>
-
 `;
-
 }
-
 }
-
 }
 
 function ouvrirEffectifFemmes(){
