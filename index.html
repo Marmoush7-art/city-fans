@@ -72,6 +72,12 @@
         .emoji-picker span { font-size: 1.6rem; cursor: pointer; text-align: center; padding: 2px; transition: transform 0.1s; }
         .emoji-picker span:hover { transform: scale(1.2); background-color: #f0f0f0; border-radius: 5px; }
 
+        .point{ display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:8px; }
+        .rouge{ background:#e53935; }
+        .vert{ background:#43a047; }
+        .noir{ background:#222; }
+        .anniversaire{ margin:6px 0; }
+
         .match-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 8px solid var(--city-sky-blue); }
         .match-header { font-size: 0.8rem; color: #888; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; }
         .match-main { display: flex; justify-content: space-between; align-items: center; }
@@ -311,8 +317,15 @@
         <h3>⚽ Meilleur Buteur</h3>
         <p></p>
     </div>
-            
+
+    <div class="match-card">
+        <h3>🎂 Anniversaires - <span id="mois-anniversaire"></span></h3>
+        <div id="liste-anniversaires">
+            Aucun anniversaire ce mois-ci.
         </div>
+    </div>    
+            
+</div>
 
         <div class="live-match">
 
@@ -2396,6 +2409,103 @@ setInterval(verifierModeNuit, 60000);
 {nom:"Antoine Semenyo", id:"semenyo"}
 
 ];
+
+function chargerAnniversaires() {
+
+    const moisNoms = [
+        "Janvier","Février","Mars","Avril",
+        "Mai","Juin","Juillet","Août",
+        "Septembre","Octobre","Novembre","Décembre"
+    ];
+
+    const moisActuel = new Date().getMonth() + 1;
+
+    document.getElementById("mois-anniversaire").innerText =
+        moisNoms[moisActuel - 1];
+
+    let anniversaires = [];
+
+    // Hommes
+    for (let id in effectif) {
+
+        const j = effectif[id];
+
+        if (!j.naissance) continue;
+
+        const mois = parseInt(j.naissance.split("/")[1]);
+
+        if (mois === moisActuel) {
+
+            anniversaires.push({
+                nom: j.nom,
+                date: j.naissance,
+                couleur: "rouge"
+            });
+        }
+    }
+
+    // Femmes
+    for (let id in effectifFemmes) {
+
+        const j = effectifFemmes[id];
+
+        if (!j.naissance) continue;
+
+        const mois = parseInt(j.naissance.split("/")[1]);
+
+        if (mois === moisActuel) {
+
+            anniversaires.push({
+                nom: j.nom,
+                date: j.naissance,
+                couleur: "vert"
+            });
+        }
+    }
+
+    // Jeunes
+    for (let id in centreFormation) {
+
+        const j = centreFormation[id];
+
+        if (!j.naissance) continue;
+
+        const mois = parseInt(j.naissance.split("/")[1]);
+
+        if (mois === moisActuel) {
+
+            anniversaires.push({
+                nom: j.nom,
+                date: j.naissance,
+                couleur: "noir"
+            });
+        }
+    }
+
+    anniversaires.sort((a,b) => {
+        const jourA = parseInt(a.date.split("/")[0]);
+        const jourB = parseInt(b.date.split("/")[0]);
+        return jourA - jourB;
+    });
+
+    const zone =
+        document.getElementById("liste-anniversaires");
+
+    if (anniversaires.length === 0) {
+        zone.innerHTML =
+            "Aucun anniversaire ce mois-ci.";
+        return;
+    }
+
+    zone.innerHTML = anniversaires.map(j => `
+        <div class="anniversaire">
+            <span class="point ${j.couleur}"></span>
+            ${j.nom} - ${j.date}
+        </div>
+    `).join("");
+}
+
+chargerAnniversaires();
 
 function ouvrirDossierContrats() {
 
