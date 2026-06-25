@@ -2584,16 +2584,13 @@ for (let id in effectif) {
 
     joueursFinContrat.sort((a, b) => {
 
-    // 1) tri principal : mois restants
+    // 1) priorité : contrat le plus court
     if (a.moisRestants !== b.moisRestants) {
         return a.moisRestants - b.moisRestants;
     }
 
-    // 2) tri secondaire : prénom
-    const prenomA = a.nom.split(" ")[0];
-    const prenomB = b.nom.split(" ")[0];
-
-    return prenomA.localeCompare(prenomB);
+    // 2) si égalité : ordre alphabétique des noms
+    return a.nom.localeCompare(b.nom);
 });
 
     joueursFinContrat.forEach(j => {
