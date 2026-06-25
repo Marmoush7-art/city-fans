@@ -2603,7 +2603,7 @@ function ouvrirCentreGeneral(){
     showSection("centre-formation-view");
     document.getElementById("centre-title").innerHTML =
     "🧬 Centre de formation";
-    chargerJeunes("defenseurs"); // affichage par défaut
+    chargerJeunes("all");
 }
 
 function afficherCentre(type){
@@ -2626,27 +2626,27 @@ zone.innerHTML = "";
 for(let id in centreFormation){
 
 let j = centreFormation[id];
-
 let poste = j.poste.toLowerCase();
 
 if(
+    type === "all" ||
     (type === "gardiens" && poste === "gardien") ||
     (type === "defenseurs" && poste === "défenseur") ||
     (type === "milieux" && poste === "milieu") ||
     (type === "attaquants" && poste === "attaquant")
 ){
 
-zone.innerHTML += `
-<div class="transfert-card">
-<img src="static/images/${j.img}">
-<div class="transfert-info">
-<h3>${j.nom}</h3>
-<p>${j.poste}</p>
-<p>${j.age}</p>
-<p>${j.nat}</p>
-</div>
-</div>
-`;
+    zone.innerHTML += `
+    <div class="transfert-card">
+        <img src="static/images/${j.img}">
+        <div class="transfert-info">
+            <h3>${j.nom}</h3>
+            <p>${j.poste}</p>
+            <p>${j.age}</p>
+            <p>${j.nat}</p>
+        </div>
+    </div>
+    `;
 }
 
 }
