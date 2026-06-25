@@ -146,6 +146,10 @@
 
         .urgent-3mois { border-left: 6px solid red; }
         .urgent-6mois { border-left: 6px solid orange; }
+        .contract-red { border: 2px solid red; box-shadow: 0 0 10px rgba(255, 0, 0, 0.4); }
+        .contract-orange { border-left: 6px solid orange; }
+        .contract-yellow { border-left: 6px solid gold; }
+        .contract-green { border-left: 6px solid green; }
 
         .cat-titre{ font-size:22px; font-weight:bold; margin-top:20px; margin-bottom:10px; }
 
@@ -2557,22 +2561,20 @@ function ouvrirDossierContrats() {
 
     const joueursFinContrat = [];
 
-    for (let id in effectif) {
+for (let id in effectif) {
+    const j = effectif[id];
+    if (!j.fin) continue;
 
-        const j = effectif[id];
+    const finContrat = parseDateFR(j.fin);
+    if (!finContrat) continue;
 
-        if (!j.fin) continue;
+    const diffMs = finContrat - new Date();
+    const moisRestants = Math.ceil(diffMs / (1000 * 60 * 60 * 24 * 30));
 
-        const [jour, mois, annee] = j.fin.split("/");
-        const finContrat = new Date(annee, mois - 1, jour);
-
-        const diffTemps = finContrat - maintenant;
-        const diffAnnees = diffTemps / (1000 * 60 * 60 * 24 * 365);
-
-        if (diffAnnees <= 1 && diffAnnees > 0) {
-            joueursFinContrat.push(j);
-        }
+    if (moisRestants <= 36 && moisRestants > 0) {
+        joueursFinContrat.push({ ...j, moisRestants });
     }
+}
 
     if (joueursFinContrat.length === 0) {
         container.innerHTML = "<p>Aucun joueur avec moins d'1 an de contrat.</p>";
@@ -2589,13 +2591,24 @@ function ouvrirDossierContrats() {
     const diffMs = finContrat - maintenant;
     const moisRestants = Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24 * 30)));
 
-    let urgence = "🟢 Long terme";
+    let urgence = "🟢 +3 ans";
+    let classe = "contract-green";
 
-    if (moisRestants <= 3) urgence = "🔴 3 mois ou moins";
-    else if (moisRestants <= 6) urgence = "🟠 6 mois ou moins";
+    if (j.moisRestants <= 12) {
+        urgence = "🔴 -1 an";
+        classe = "contract-red";
+    }
+    else if (j.moisRestants <= 24) {
+        urgence = "🟠 -2 ans";
+        classe = "contract-orange";
+    }
+    else if (j.moisRestants <= 36) {
+        urgence = "🟡 -3 ans";
+        classe = "contract-yellow";
+    }
 
     container.innerHTML += `
-        <div class="centre-card" onclick="afficherJoueur('${j.id}')">
+        <div class="centre-card ${classe}" onclick="afficherJoueur('${j.id}')">
             <img src="static/images/${j.img}">
             <div class="centre-info">
                 <h3>${j.nom}</h3>
