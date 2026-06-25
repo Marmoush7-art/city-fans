@@ -146,6 +146,8 @@
         .urgent-3mois { border-left: 6px solid red; }
         .urgent-6mois { border-left: 6px solid orange; }
 
+        .cat-titre{ font-size:22px; font-weight:bold; margin-top:20px; margin-bottom:10px; }
+
         /* =========================MODE NUIT ========================= */
         body.mode-nuit { --city-sky-blue: #16324a; --city-black: #08111f; --bg-color: #0A192F; --card-color: #0a0f1f; --text-color: #d6e8ff; background: var(--bg-color) !important; color: var(--text-color) !important; }*
         body.mode-nuit main,
@@ -2501,7 +2503,8 @@ function ouvrirDossierContrats() {
 
         if (!j.fin) continue;
 
-        const finContrat = new Date(j.fin);
+        const [jour, mois, annee] = j.fin.split("/");
+        const finContrat = new Date(annee, mois - 1, jour);
 
         const diffTemps = finContrat - maintenant;
         const diffAnnees = diffTemps / (1000 * 60 * 60 * 24 * 365);
