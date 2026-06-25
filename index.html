@@ -2488,6 +2488,12 @@ function chargerAnniversaires() {
 
 chargerAnniversaires();
 
+function parseDateFR(dateStr) {
+    if (!dateStr) return null;
+    const [day, month, year] = dateStr.split("/");
+    return new Date(`${year}-${month}-${day}`);
+}
+
 function ouvrirDossierContrats() {
 
     const container = document.getElementById("contrats-container");
@@ -2522,11 +2528,12 @@ function ouvrirDossierContrats() {
 
     joueursFinContrat.forEach(j => {
 
-    const finContrat = new Date(j.fin);
+    const finContrat = parseDateFR(j.fin);
+    if (!finContrat) return;
     const maintenant = new Date();
 
     const diffMs = finContrat - maintenant;
-    const moisRestants = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30));
+    const moisRestants = Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24 * 30)));
 
     let urgence = "🟢 Long terme";
 
