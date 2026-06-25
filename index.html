@@ -2404,46 +2404,42 @@ setInterval(verifierModeNuit, 60000);
 }
 
         const joueursRecherche = [
+    // joueurs principaux
+    ...Object.keys(effectif).map(id => ({
+        nom: effectif[id].nom,
+        id: id
+    })),
 
-{nom:"Marcus Bettinelli", id:"bettinelli"},
-{nom:"Gianluigi Donnarumma", id:"donnarumma"},
-{nom:"James Trafford", id:"trafford"},
+    // centre de formation
+    ...Object.keys(centreFormation).map(id => ({
+        nom: centreFormation[id].nom,
+        id: id
+    })),
 
-{nom:"Manuel Akanji", id:"akanji"},
-{nom:"Nathan Aké", id:"ake"},
-{nom:"Max Alleyne", id:"alleyne"},
-{nom:"Rayan Ait-Nouri", id:"ait-nouri"},
-{nom:"Ruben Dias", id:"dias"},
-{nom:"Marc Guéhi", id:"guehi"},
-{nom:"Josko Gvardiol", id:"gvardiol"},
-{nom:"Abdukodir Khusanov", id:"khusanov"},
-{nom:"Rico Lewis", id:"lewis"},
-{nom:"Matheus Nunes", id:"nunes"},
-{nom:"Nico O'Reilly", id:"o'reilly"},
-{nom:"Vitor Reis", id:"reis"},
-{nom:"John Stones", id:"stones"},
-{nom:"Joshua Wilson-Esbrand", id:"wilson-esbrand"},
+    // femmes (gardiennes)
+    ...effectifFemmes.gardiennes.map(j => ({
+        nom: j.nom,
+        id: j.nom.toLowerCase().replaceAll(" ", "-")
+    })),
 
-{nom:"Rayan Cherki", id:"cherki"},
-{nom:"Claudio Echeverri", id:"echeverri"},
-{nom:"Phil Foden", id:"foden"},
-{nom:"Nico Gonzalez", id:"gonzalez"},
-{nom:"Jack Grealish", id:"grealish"},
-{nom:"Matéo Kovacic", id:"kovacic"},
-{nom:"Sverre Nypan", id:"nypan"},
-{nom:"Kalvin Phillips", id:"phillips"},
-{nom:"Tijjani Reijnders", id:"reijnders"},
-{nom:"Rodri", id:"rodri"},
-{nom:"Cavan Sullivan", id:"sullivan"},
+    // femmes (défenseures)
+    ...effectifFemmes.defenseures.map(j => ({
+        nom: j.nom,
+        id: j.nom.toLowerCase().replaceAll(" ", "-")
+    })),
 
-{nom:"Jérémy Doku", id:"doku"},
-{nom:"Erling Haaland", id:"haaland"},
-{nom:"Omar Marmoush", id:"marmoush"},
-{nom:"Savinho", id:"savinho"},
-{nom:"Antoine Semenyo", id:"semenyo"}
+    // femmes (milieux)
+    ...effectifFemmes.milieux.map(j => ({
+        nom: j.nom,
+        id: j.nom.toLowerCase().replaceAll(" ", "-")
+    })),
 
+    // femmes (attaquantes)
+    ...effectifFemmes.attaquantes.map(j => ({
+        nom: j.nom,
+        id: j.nom.toLowerCase().replaceAll(" ", "-")
+    }))
 ];
-
 function chargerAnniversaires() {
 
     const moisNoms = [
