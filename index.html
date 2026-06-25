@@ -2622,6 +2622,8 @@ function chargerJeunes(type){
 
 let zone = document.getElementById("centre-container");
 zone.innerHTML = "";
+    
+let dernierPoste = "";
 
 for(let id in centreFormation){
 
@@ -2635,6 +2637,20 @@ if(
     (type === "milieux" && poste === "milieu") ||
     (type === "attaquants" && poste === "attaquant")
 ){
+
+if(type === "all" && j.poste !== dernierPoste){
+
+    dernierPoste = j.poste;
+
+    let titre = "";
+
+    if(j.poste === "Gardien") titre = "🧤 Gardiens";
+    if(j.poste === "Défenseur") titre = "🛡️ Défenseurs";
+    if(j.poste === "Milieu") titre = "⚡ Milieux";
+    if(j.poste === "Attaquant") titre = "⚔️ Attaquants";
+
+    zone.innerHTML += `<h3 class="cat-titre">${titre}</h3>`;
+}
 
     zone.innerHTML += `
     <div class="transfert-card">
