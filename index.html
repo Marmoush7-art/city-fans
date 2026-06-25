@@ -2582,6 +2582,20 @@ for (let id in effectif) {
         return;
     }
 
+    joueursFinContrat.sort((a, b) => {
+
+    // 1) tri principal : mois restants
+    if (a.moisRestants !== b.moisRestants) {
+        return a.moisRestants - b.moisRestants;
+    }
+
+    // 2) tri secondaire : prénom
+    const prenomA = a.nom.split(" ")[0];
+    const prenomB = b.nom.split(" ")[0];
+
+    return prenomA.localeCompare(prenomB);
+});
+
     joueursFinContrat.forEach(j => {
 
     const finContrat = parseDateFR(j.fin);
