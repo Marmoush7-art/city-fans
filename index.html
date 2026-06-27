@@ -2746,7 +2746,8 @@ zone.innerHTML += `<h3 class="cat-titre">${titre}</h3>`;
 
 }
 
-<div class="transfert-card">
+zone.innerHTML += `
+<div class="transfert-card ${estPret ? 'pret-card' : ''}">
     ${estPret ? '<div class="badge-pret">PRÊT</div>' : ''}
     <img src="static/images/${j.img}">
     <div class="transfert-info">
@@ -2757,7 +2758,6 @@ zone.innerHTML += `<h3 class="cat-titre">${titre}</h3>`;
     </div>
 </div>
 `;
-
 }
 
 }
