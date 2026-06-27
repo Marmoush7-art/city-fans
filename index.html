@@ -2736,9 +2736,7 @@ if(type === "all" && j.poste !== dernierPoste){
     zone.innerHTML += `<h3 class="cat-titre">${titre}</h3>`;
 }
 
-    zone.innerHTML += `
-    const estPret = joueursPret.includes(id);
-    <div class="transfert-card ${estPret ? 'pret-card' : ''}">
+    <div class="transfert-card">
         ${estPret ? '<div class="badge-pret">PRÊT</div>' : ''}
         <img src="static/images/${j.img}">
         <div class="transfert-info">
