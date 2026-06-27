@@ -1060,15 +1060,15 @@ attaquantes:[
 "mubama",
 "ndala",
 "fletcher",
-"mukasa",
-"jheskey",
-"smith",
+"divine-mukasa",
+"jaden-heskey",
+"isaac-smith",
 "simpson-pusey",
 "samuel",
 "mfuni",
 "burns",
-"galvez",
-"whatmuff"
+"tomas-galvez",
+"oliver-whatmuff"
 ];
 
         function chargerPositionsActuelles() {
@@ -2710,7 +2710,7 @@ zone.innerHTML = "";
 let dernierPoste = "";
 
 for(let id in centreFormation){
-
+const estPret = joueursPret.includes(id);
 let j = centreFormation[id];
 let poste = j.poste.toLowerCase();
 
