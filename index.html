@@ -136,6 +136,7 @@
 
         .pret-card{ border:3px solid #FFD700; position:relative; }
         .badge-pret{ position:absolute; top:8px; right:8px; background:#FFD700; color:black; font-weight:bold; padding:4px 10px; border-radius:8px; font-size:12px; z-index:10; }
+        
 
         .spot-label { font-size: 0.8rem; color: white; font-weight: bold; text-transform: uppercase; }
         .spot-player-name { font-size: 0.7rem; color: var(--city-black); font-weight: bold; background: rgba(255,255,255,0.8); padding: 2px 4px; border-radius: 4px; width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; }
@@ -1045,6 +1046,30 @@ attaquantes:[
                 bio: "La plus vieille compétition nationale."
             }
         ];
+
+        const joueursPret = [
+"akanji",
+"grealish",
+"echeverri",
+"phillips",
+"reis",
+"wilson-esbrand",
+"annets",
+"ohanlon",
+"pritchard",
+"mubama",
+"ndala",
+"fletcher",
+"mukasa",
+"jheskey",
+"smith",
+"simpson-pusey",
+"samuel",
+"mfuni",
+"burns",
+"galvez",
+"whatmuff"
+];
 
         function chargerPositionsActuelles() {
             const container = document.getElementById('positions-container');
@@ -2623,30 +2648,6 @@ let zone=document.getElementById("effectif-container");
 
 zone.innerHTML="";
 
-const joueursPret = [
-"akanji",
-"grealish",
-"echeverri",
-"phillips",
-"reis",
-"wilson-esbrand",
-"annets",
-"o'hanlon",
-"pritchard",
-"mubama",
-"ndala",
-"fletcher",
-"mukasa",
-"jheskey",
-"smith",
-"simpson-pusey",
-"samuel",
-"mfuni",
-"burns",
-"galvez",
-"whatmuff"
-];
-
 for(let id in effectif){
 
 let j=effectif[id];
@@ -2736,7 +2737,9 @@ if(type === "all" && j.poste !== dernierPoste){
 }
 
     zone.innerHTML += `
-    <div class="transfert-card">
+    const estPret = joueursPret.includes(id);
+    <div class="transfert-card ${estPret ? 'pret-card' : ''}">
+        ${estPret ? '<div class="badge-pret">PRÊT</div>' : ''}
         <img src="static/images/${j.img}">
         <div class="transfert-info">
             <h3>${j.nom}</h3>
