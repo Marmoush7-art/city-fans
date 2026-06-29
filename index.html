@@ -2789,26 +2789,6 @@ result.style.display="block";
             showSection('quiz-view');
         }
 
-        function ouvrirCentre(categorie) {
-            const container = document.getElementById('centre-container');
-            container.innerHTML = "";
-            const joueurs = centreFormation[categorie];
-            joueurs.forEach(j => {
-                container.innerHTML += `
-                <div class="centre-card">
-                    <img src="static/images/${j.img}">
-                    <div class="centre-info">
-                        <h3>${j.nom}</h3>
-                        <p><strong>🎂 Âge :</strong> ${j.age}</p>
-                        <p><strong>🌍 Nationalité :</strong> ${j.nat}</p>
-                        <p><strong>⚽ Poste :</strong> ${j.poste}</p>
-                    </div>
-                </div>
-                `;
-            });
-            showSection('centre-formation-view');
-        }
-
         let deckJoueur = [];
         let deckBot = [];
         let carteJoueur = null;
