@@ -284,45 +284,6 @@ body.mode-nuit .stat-card:hover {
             <li class="menu-item" onclick="showSection('accueil')"><span class="menu-item-icon">🏠</span>Accueil</li>
             <li class="menu-item" onclick="showSection('matchs-view')"><span class="menu-item-icon">📅</span>Matchs</li>
             <li class="menu-item" onclick="ouvrirEffectif()"><span class="menu-item-icon">⚽</span>Effectif</li>
-            <div id="sub-effectif" class="sous-menu">
-                <div class="cat-titre">🧤 Gardiens</div>
-                <span class="joueur-link" onclick="afficherJoueur('bettinelli')">Marcus Bettinelli</span>
-                <span class="joueur-link" onclick="afficherJoueur('donnarumma')">Gianluigi Donnarumma</span>
-                <span class="joueur-link" onclick="afficherJoueur('trafford')">James Trafford</span>
-                <div class="cat-titre">🛡️ Défenseurs</div>
-                <span class="joueur-link" onclick="afficherJoueur('akanji')">Manuel Akanji</span>
-                <span class="joueur-link" onclick="afficherJoueur('ake')">Nathan Aké</span>
-                <span class="joueur-link" onclick="afficherJoueur('alleyne')">Max Alleyne</span>
-                <span class="joueur-link" onclick="afficherJoueur('aitnouri')">Rayan Ait-Nouri</span>
-                <span class="joueur-link" onclick="afficherJoueur('dias')">Ruben Dias</span>
-                <span class="joueur-link" onclick="afficherJoueur('guehi')">Marc Guéhi</span>
-                <span class="joueur-link" onclick="afficherJoueur('gvardiol')">Josko Gvardiol</span>
-                <span class="joueur-link" onclick="afficherJoueur('khusanov')">Abdukodir Khusanov</span>
-                <span class="joueur-link" onclick="afficherJoueur('lewis')">Rico Lewis</span>
-                <span class="joueur-link" onclick="afficherJoueur('nunes')">Matheus Nunes</span>
-                <span class="joueur-link" onclick="afficherJoueur('oreilly')">Nico O'Reilly</span>
-                <span class="joueur-link" onclick="afficherJoueur('reis')">Vitor Reis</span>
-                <span class="joueur-link" onclick="afficherJoueur('stones')">John Stones</span>
-                <span class="joueur-link" onclick="afficherJoueur('wilson-esbrand')">Joshua Wilson-Esbrand</span>
-                <div class="cat-titre">⚡ Milieux</div>
-                <span class="joueur-link" onclick="afficherJoueur('cherki')">Rayan Cherki</span>
-                <span class="joueur-link" onclick="afficherJoueur('echeverri')">Claudio Echeverri</span>
-                <span class="joueur-link" onclick="afficherJoueur('foden')">Phil Foden</span>
-                <span class="joueur-link" onclick="afficherJoueur('gonzalez')">Nico Gonzalez</span>
-                <span class="joueur-link" onclick="afficherJoueur('grealish')">Jack Grealish</span>
-                <span class="joueur-link" onclick="afficherJoueur('kovacic')">Matéo Kovacic</span>
-                <span class="joueur-link" onclick="afficherJoueur('nypan')">Sverre Nypan</span>
-                <span class="joueur-link" onclick="afficherJoueur('phillips')">Kalvin Phillips</span>
-                <span class="joueur-link" onclick="afficherJoueur('reijnders')">Tijjani Reijnders</span>
-                <span class="joueur-link" onclick="afficherJoueur('rodri')">Rodri</span>
-                <span class="joueur-link" onclick="afficherJoueur('sullivan')">Cavan Sullivan</span>
-                <div class="cat-titre">⚔️ Attaquants</div>
-                <span class="joueur-link" onclick="afficherJoueur('doku')">Jérémy Doku</span>
-                <span class="joueur-link" onclick="afficherJoueur('haaland')">Erling Haaland</span>
-                <span class="joueur-link" onclick="afficherJoueur('marmoush')">Omar Marmoush</span>
-                <span class="joueur-link" onclick="afficherJoueur('savinho')">Savinho</span>
-                <span class="joueur-link" onclick="afficherJoueur('semenyo')">Antoine Semenyo</span>
-            </div>
             <li class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</li>
             <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('actus-mercato')">📃 Rumeurs arrivées</span><span class="joueur-link" onclick="showSection('actus-mercato-b')">📃 Rumeurs départs</span>
             </div>
@@ -330,12 +291,9 @@ body.mode-nuit .stat-card:hover {
             <li class="menu-item" onclick="showSection('joueursinter-recap')"><span class="menu-item-icon">🏁</span>Joueurs Inter</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
             <li class="menu-item" onclick="ouvrirDossierContrats()"><span class="menu-item-icon">📄</span>Contrats Urgents</li>
-            <li class="menu-item" onclick="toggleSubMenu('sub-centre-formation')"><span class="menu-item-icon">🧬</span>Centre de form ▾</li>
-            <div id="sub-centre-formation" class="sous-menu"><span class="joueur-link" onclick="ouvrirCentre('gardiens')">🧤 Gardiens</span><span class="joueur-link" onclick="ouvrirCentre('defenseurs')">🛡️ Défenseurs</span><span class="joueur-link" onclick="ouvrirCentre('milieux')">⚡ Milieux</span><span class="joueur-link" onclick="ouvrirCentre('attaquants')">⚔️ Attaquants</span>
-            </div>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
             <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span>Jeu Draft</li>
-</div>
+        </div>
         </ul>
     </div>
     <div id="quiz-view" class="content-section">
@@ -839,7 +797,6 @@ body.mode-nuit .stat-card:hover {
             <div class="transfert-card" onclick="afficherJoueur('guehi')"><img src="static/images/guehiinter.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 3</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°6</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('trafford')"><img src="static/images/traffordinter.jpg"><div class="transfert-info"><h3>James Trafford</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°23</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('oreilly')"><img src="static/images/o'reillyinter.jpg"><div class="transfert-info"><h3>Nico O'Reilly</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 3</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°3</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('stones')"><img src="static/images/stonesinter.jpg"><div class="transfert-info"><h3>John Stones</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°5</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('marmoush')"><img src="static/images/marmoushinter.jpg"><div class="transfert-info"><h3>Omar Marmoush</h3><p>Egypte 🇪🇬</p><p>Matchs : 3</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°22</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('cherki')"><img src="static/images/cherkiinter.jpg"><div class="transfert-info"><h3>Rayan Cherki</h3><p>France 🇫🇷</p><p>Matchs : 2</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°24</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('semenyo')"><img src="static/images/semenyointer.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Ghana 🇬🇭</p><p>Matchs : 3</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°11</p></div></div>
@@ -852,7 +809,6 @@ body.mode-nuit .stat-card:hover {
             <div class="transfert-card" onclick="afficherJoueur('nunes')"><img src="static/images/nunesinter.jpg"><div class="transfert-info"><h3>Matheus Nunes</h3><p>Portugal 🇵🇹</p><p>Matchs : 1</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°6</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('khusanov')"><img src="static/images/khusanovinter.jpg"><div class="transfert-info"><h3>Abdukodir Khusanov</h3><p>Ouzbékistan 🇺🇿</p><p>Matchs : 3</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°2</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('ait-nouri')"><img src="static/images/ait-nouriinter.jpg"><div class="transfert-info"><h3>Rayan Ait-Nouri</h3><p>Algérie 🇩🇿</p><p>Matchs : 3</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°15</p></div></div>
-            <div class="transfert-card" onclick="afficherJoueur('akanji')"><img src="static/images/akanjiinter.jpg"><div class="transfert-info"><h3>Manuel Akanji</h3><p>Suisse 🇨🇭</p><p>Matchs : 3</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°5</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('gvardiol')"><img src="static/images/gvardiolinter.jpg"><div class="transfert-info"><h3>Josko Gvardiol</h3><p>Croatie 🇭🇷</p><p>Matchs : 3</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°4</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('kovacic')"><img src="static/images/kovacicinter.jpg"><div class="transfert-info"><h3>Matéo Kovacic</h3><p>Croatie 🇭🇷</p><p>Matchs : 3</p><p>Buts : 0</p><p>Passes D : 1</p><p class="transfert-date">N°8</p></div></div>
             
@@ -949,7 +905,6 @@ body.mode-nuit .stat-card:hover {
             'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", age: "34 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2028", valeur: "0.3M €", noteea: "70", img: "bettinelli.jpg", bio: "Gardien expérimenté.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'donnarumma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "89", img: "donnarumma.jpg", bio: "Gardien d'envergure internationale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2029", valeur: "25M €", noteea: "77", img: "trafford.jpg", bio: "Gardien prometteur.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'akanji': { nom: "Manuel Akanji", poste: "Défenseur", age: "30 ans", nat: "Suisse 🇨🇭", paye: "540 000", fin: "30/06/2027", valeur: "17M €", noteea: "83", img: "akanji.jpg", bio: "Défenseur impassable.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'ake': { nom: "Nathan Aké", poste: "Défenseur", age: "31 ans", nat: "Pays-Bas 🇳🇱", paye: "810 000 €", fin: "30/06/2027", valeur: "12M €", noteea: "82", img: "ake.jpg", bio: "Polyvalence tactique exemplaire.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "N/A", valeur: "8M €", noteea: "68", img: "alleyne.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "25 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", img: "ait-nouri.jpg", bio: "Latéral percutant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
@@ -961,7 +916,6 @@ body.mode-nuit .stat-card:hover {
             'nunes': { nom: "Matheus Nunes", poste: "Défenseur", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "82", img: "nunes.jpg", bio: "Défenseur puissant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "70M €", noteea: "81", img: "o'reilly.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'reis': { nom: "Vitor Reis", poste: "Défenseur", age: "20 ans", nat: "Brésil 🇧🇷", paye: "200 000", fin: "30/06/2029", valeur: "30M €", noteea: "75", img: "reis.jpg", bio: "Jeune talent brésilien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'stones': { nom: "John Stones", poste: "Défenseur", age: "32 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 270 000 €", fin: "30/06/2026", valeur: "12M €", noteea: "82", img: "stones.jpg", bio: "Joueur d'expérience partant cet été.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'wilson-esbrand': { nom: "Joshua Wilson-Esbrand", poste: "Défenseur", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "67", img: "wilson-esbrand.jpg", bio: "Pépite anglaise.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'cherki': { nom: "Rayan Cherki", poste: "Milieu", age: "22 ans", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "90M €", noteea: "84", img: "cherki.jpg", bio: "Magicien français.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'echeverri': { nom: "Claudio Echeverri", poste: "Milieu", age: "20 ans", nat: "Argentine 🇦🇷", paye: "78 000", fin: "30/06/2028", valeur: "15M €", noteea: "74", img: "echeverri.jpg", bio: "Jeune pépite argentine.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
@@ -979,6 +933,7 @@ body.mode-nuit .stat-card:hover {
             'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "83", img: "marmoush.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'savinho': { nom: "Savinho", poste: "Attaquant", age: "22 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "35M €", noteea: "81", img: "savinho.jpg", bio: "Dribbleur brésilien électrisant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "80M €", noteea: "84", img: "semenyo.jpg", bio: "Puissance offensive brute.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'maresca': { nom: "Enzo Maresca", poste: "Coach", age: "46 ans", nat: "Italie 🇮🇹", paye: "INCONNU", fin: "INCONNU", img: "maresca.jpg", bio: "Coach depuis la fin de l'ère Guardiola.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
         };
 
         const centreFormation = {
@@ -2477,7 +2432,6 @@ setInterval(verifierModeNuit, 60000);
 {nom:"Gianluigi Donnarumma", id:"donnarumma"},
 {nom:"James Trafford", id:"trafford"},
 
-{nom:"Manuel Akanji", id:"akanji"},
 {nom:"Nathan Aké", id:"ake"},
 {nom:"Max Alleyne", id:"alleyne"},
 {nom:"Rayan Ait-Nouri", id:"ait-nouri"},
@@ -2489,7 +2443,6 @@ setInterval(verifierModeNuit, 60000);
 {nom:"Matheus Nunes", id:"nunes"},
 {nom:"Nico O'Reilly", id:"o'reilly"},
 {nom:"Vitor Reis", id:"reis"},
-{nom:"John Stones", id:"stones"},
 {nom:"Joshua Wilson-Esbrand", id:"wilson-esbrand"},
 
 {nom:"Rayan Cherki", id:"cherki"},
@@ -2508,7 +2461,9 @@ setInterval(verifierModeNuit, 60000);
 {nom:"Erling Haaland", id:"haaland"},
 {nom:"Omar Marmoush", id:"marmoush"},
 {nom:"Savinho", id:"savinho"},
-{nom:"Antoine Semenyo", id:"semenyo"}
+{nom:"Antoine Semenyo", id:"semenyo"},
+
+{nom:"Enzo Maresca", id:"maresca"}
 
 ];
 
