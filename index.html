@@ -2558,11 +2558,29 @@ zone.innerHTML += `
 
 function ouvrirCentreGeneral(){
 
-showSection("centre-formation-view");
+    showSection("centre-formation-view");
 
-document.getElementById("centre-title").innerHTML =
-"🧬 Centre de formation";
+    document.getElementById("centre-title").innerHTML =
+    "🧬 Centre de formation";
 
+    let zone = document.getElementById("centre-container");
+    zone.innerHTML = "";
+
+    for(let id in centreFormation){
+
+        let j = centreFormation[id];
+
+        zone.innerHTML += `
+        <div class="transfert-card">
+            <img src="static/images/${j.img}">
+            <div class="transfert-info">
+                <h3>${j.nom}</h3>
+                <p>${j.poste}</p>
+                <p>${j.age}</p>
+                <p>${j.nat}</p>
+            </div>
+        </div>`;
+    }
 }
 
 function afficherCentre(type){
