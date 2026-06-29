@@ -251,7 +251,7 @@
             <li class="menu-item" onclick="afficherClassement()"><span class="menu-item-icon">📊</span>Classement</li>
             <li class="menu-item" onclick="showSection('joueursinter-recap')"><span class="menu-item-icon">🏁</span>Joueurs Inter</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
-            <li class="menu-item" onclick="ouvrirDossierContrats()"><span class="menu-item-icon">📄</span>Contrats Urgents</li>
+            <li class="menu-item" onclick="ouvrirDossierContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
             <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span>Jeu Draft</li>
         </div>
@@ -513,7 +513,7 @@
 </div>   
 
         <div id="contrats-view" class="content-section">
-            <h2>📄 Dossiers contrats (&lt; 1 an)</h2>
+            <h2>📄 Dossiers contrats</h2>
             <div id="contrats-container"></div>
         </div>
 
@@ -2455,15 +2455,35 @@ function ouvrirDossierContrats() {
         const [jour, mois, annee] = j.fin.split('/');
         const dateFin = new Date(annee, mois - 1, jour);
 
-        const diffAnnees = Math.max(
-            1,
-            Math.ceil((dateFin - aujourdHui) / (1000 * 60 * 60 * 24 * 365))
-        );
+        // --- calcul en mois restants ---
+        const anneeA = aujourdHui.getFullYear();
+        const moisA = aujourdHui.getMonth();
+        const jourA = aujourdHui.getDate();
+
+        const anneeB = dateFin.getFullYear();
+        const moisB = dateFin.getMonth();
+        const jourB = dateFin.getDate();
+
+        let diffMois = (anneeB - anneeA) * 12 + (moisB - moisA);
+
+        if (jourB < jourA) {
+            diffMois -= 1;
+        }
+
+        diffMois = Math.max(0, diffMois);
 
         let cadre = '';
 
-        if (diffAnnees <= 1) {
+        if (diffMois <= 12) {
             cadre = 'border:3px solid red;';
+        }
+
+        let texteDuree = '';
+
+        if (diffMois <= 1) {
+            texteDuree = "Moins d'1 mois restant";
+        } else {
+            texteDuree = `${diffMois} mois restants`;
         }
 
         container.innerHTML += `
@@ -2476,7 +2496,7 @@ function ouvrirDossierContrats() {
                 <div class="centre-info">
                     <h3>${j.nom}</h3>
                     <p>📅 Fin de contrat : ${j.fin}</p>
-                    <p>⏳ +${diffAnnees} an${diffAnnees > 1 ? 's' : ''}</p>
+                    <p>⏳ ${texteDuree}</p>
                 </div>
 
             </div>
