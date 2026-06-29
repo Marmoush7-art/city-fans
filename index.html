@@ -141,88 +141,49 @@
         .urgent-6mois { border-left: 6px solid orange; }
 
         /* =========================MODE NUIT ========================= */
-        body.mode-nuit {
-    --city-sky-blue: #4aa3d8;
-    --city-black: #0b0f1a;
-    --bg-color: #0a1220;
-    --card-color: #121c2e;
-    --text-color: #e6f1ff;
-
-    background: var(--bg-color) !important;
-    color: var(--text-color) !important;
-}
-
-/* Fond global */
-body.mode-nuit main,
-body.mode-nuit .content-section {
-    background: var(--bg-color) !important;
-    color: var(--text-color) !important;
-}
-
-/* CARTES (IMPORTANT : écrase tous les blancs) */
-body.mode-nuit .centre-card,
-body.mode-nuit .transfert-card,
-body.mode-nuit .draft-player-card,
-body.mode-nuit .draft-colonne,
-body.mode-nuit #historique-enchere,
-body.mode-nuit .player-stats-box,
-body.mode-nuit .bio-container,
-body.mode-nuit .match-card,
-body.mode-nuit .compo-squad-list,
-body.mode-nuit .stat-card,
-body.mode-nuit .chat-container,
-body.mode-nuit #chat-messages,
-body.mode-nuit #quiz-view {
-    background: var(--card-color) !important;
-    color: var(--text-color) !important;
-}
-
-/* FORCER suppression des blancs internes */
-body.mode-nuit div,
-body.mode-nuit section,
-body.mode-nuit article {
-    background-color: transparent;
-}
-
-/* INPUTS */
-body.mode-nuit input,
-body.mode-nuit textarea {
-    background: #0f1b2d !important;
-    color: var(--text-color) !important;
-    border: 1px solid #2b4a6a !important;
-}
-
-/* NAV */
-body.mode-nuit nav {
-    background: #10243a !important;
-}
-
-/* TABLES */
-body.mode-nuit table,
-body.mode-nuit th,
-body.mode-nuit td {
-    background: transparent !important;
-    color: var(--text-color) !important;
-    border-color: #223a52 !important;
-}
-
-/* MENU */
-body.mode-nuit #menu {
-    background: #0b0f1a !important;
-}
-
-/* TEXTES secondaires */
-body.mode-nuit .cat-titre,
-body.mode-nuit .match-header,
-body.mode-nuit .transfert-date {
-    color: #9bb4cc !important;
-}
-
-/* Hover cartes (meilleur contraste) */
-body.mode-nuit .centre-card:hover,
-body.mode-nuit .stat-card:hover {
-    background: #1a2a44 !important;
-}
+        body.mode-nuit {--city-sky-blue: #4aa3d8;--city-black: #0b0f1a;--bg-color: #0a1220;--card-color: #121c2e;--text-color: #e6f1ff;background: var(--bg-color) !important;color: var(--text-color) !important;}
+        /* Fond global */
+        body.mode-nuit main,
+        body.mode-nuit .content-section {background: var(--bg-color) !important;color: var(--text-color) !important;}
+        /* CARTES (IMPORTANT : écrase tous les blancs) */
+        body.mode-nuit .centre-card,
+        body.mode-nuit .transfert-card,
+        body.mode-nuit .draft-player-card,
+        body.mode-nuit .draft-colonne,
+        body.mode-nuit #historique-enchere,
+        body.mode-nuit .player-stats-box,
+        body.mode-nuit .bio-container,
+        body.mode-nuit .match-card,
+        body.mode-nuit .compo-squad-list,
+        body.mode-nuit .stat-card,
+        body.mode-nuit .chat-container,
+        body.mode-nuit #chat-messages,
+        body.mode-nuit #quiz-view {background: var(--card-color) !important;color: var(--text-color) !important;}
+        /* FORCER suppression des blancs internes */
+        body.mode-nuit div,
+        body.mode-nuit section,
+        body.mode-nuit article {background-color: transparent;}
+        /* INPUTS */
+        body.mode-nuit input,
+        body.mode-nuit textarea {background: #0f1b2d !important;color: var(--text-color) !important;border: 1px solid #2b4a6a !important;}
+        /* NAV */
+        body.mode-nuit nav {background: #10243a !important;}
+        /* TABLES */
+        body.mode-nuit table,
+        body.mode-nuit th,
+        body.mode-nuit td {background: transparent !important;color: var(--text-color) !important;border-color: #223a52 !important;}
+        /* MENU */
+        body.mode-nuit #menu {background: #0b0f1a !important;}
+        /* TEXTES secondaires */
+        body.mode-nuit .cat-titre,
+        body.mode-nuit .match-header,
+        body.mode-nuit .transfert-date {color: #9bb4cc !important;}
+        /* Hover cartes (meilleur contraste) */
+        body.mode-nuit .centre-card:hover,
+        body.mode-nuit .stat-card:hover {background: #1a2a44 !important;}
+        .draft-colonne li {background: #eef6fc;padding: 8px;margin-bottom: 8px;border-radius: 8px;color: #0b1b2b;opacity: 1; /* IMPORTANT: pas de fade */}
+        /* joueur "désactivé" */
+        .draft-colonne li.disabled {color: #7f8fa6;background: #e6edf5;opacity: 0.75; /* léger, mais lisible */}
         
         .player-search { position: absolute; right: 140px; /* place avant la version */ top: 50%; transform: translateY(-50%); width: 190px; z-index: 2000; }
         .player-search input { width: 100%; box-sizing: border-box; padding: 8px 15px; border-radius: 20px; border: none; outline: none; font-weight: bold; }
