@@ -251,7 +251,7 @@
             <li class="menu-item" onclick="afficherClassement()"><span class="menu-item-icon">📊</span>Classement</li>
             <li class="menu-item" onclick="showSection('joueursinter-recap')"><span class="menu-item-icon">🏁</span>Joueurs Inter</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
-            <li class="menu-item" onclick="ouvrirDossierContrats()"><span class="menu-item-icon">📄</span>Contrats Urgents</li>
+            <li class="menu-item" onclick="ouvrirDossierContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
             <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span>Jeu Draft</li>
         </div>
@@ -513,7 +513,7 @@
 </div>   
 
         <div id="contrats-view" class="content-section">
-            <h2>📄 Dossiers contrats (&lt; 1 an)</h2>
+            <h2>📄 Dossiers contrats</h2>
             <div id="contrats-container"></div>
         </div>
 
@@ -754,7 +754,7 @@
         </div>
 
         <div id="joueursinter-recap" class="content-section">
-            <h2>Joueurs internationaux</h2>
+            <h2>Coupe du Monde</h2>
             <div class="transfert-card" onclick="afficherJoueur('guehi')"><img src="static/images/guehiinter.jpg"><div class="transfert-info"><h3>Marc Guéhi</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 3</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°6</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('trafford')"><img src="static/images/traffordinter.jpg"><div class="transfert-info"><h3>James Trafford</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 0</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°23</p></div></div>
             <div class="transfert-card" onclick="afficherJoueur('oreilly')"><img src="static/images/o'reillyinter.jpg"><div class="transfert-info"><h3>Nico O'Reilly</h3><p>Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿</p><p>Matchs : 3</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°3</p></div></div>
@@ -2455,15 +2455,35 @@ function ouvrirDossierContrats() {
         const [jour, mois, annee] = j.fin.split('/');
         const dateFin = new Date(annee, mois - 1, jour);
 
-        const diffAnnees = Math.max(
-            1,
-            Math.ceil((dateFin - aujourdHui) / (1000 * 60 * 60 * 24 * 365))
-        );
+        // --- calcul en mois restants ---
+        const anneeA = aujourdHui.getFullYear();
+        const moisA = aujourdHui.getMonth();
+        const jourA = aujourdHui.getDate();
+
+        const anneeB = dateFin.getFullYear();
+        const moisB = dateFin.getMonth();
+        const jourB = dateFin.getDate();
+
+        let diffMois = (anneeB - anneeA) * 12 + (moisB - moisA);
+
+        if (jourB < jourA) {
+            diffMois -= 1;
+        }
+
+        diffMois = Math.max(0, diffMois);
 
         let cadre = '';
 
-        if (diffAnnees <= 1) {
+        if (diffMois <= 12) {
             cadre = 'border:3px solid red;';
+        }
+
+        let texteDuree = '';
+
+        if (diffMois <= 1) {
+            texteDuree = "Moins d'1 mois restant";
+        } else {
+            texteDuree = `${diffMois} mois restants`;
         }
 
         container.innerHTML += `
@@ -2476,7 +2496,7 @@ function ouvrirDossierContrats() {
                 <div class="centre-info">
                     <h3>${j.nom}</h3>
                     <p>📅 Fin de contrat : ${j.fin}</p>
-                    <p>⏳ +${diffAnnees} an${diffAnnees > 1 ? 's' : ''}</p>
+                    <p>⏳ ${texteDuree}</p>
                 </div>
 
             </div>
@@ -2538,11 +2558,29 @@ zone.innerHTML += `
 
 function ouvrirCentreGeneral(){
 
-showSection("centre-formation-view");
+    showSection("centre-formation-view");
 
-document.getElementById("centre-title").innerHTML =
-"🧬 Centre de formation";
+    document.getElementById("centre-title").innerHTML =
+    "🧬 Centre de formation";
 
+    let zone = document.getElementById("centre-container");
+    zone.innerHTML = "";
+
+    for(let id in centreFormation){
+
+        let j = centreFormation[id];
+
+        zone.innerHTML += `
+        <div class="transfert-card">
+            <img src="static/images/${j.img}">
+            <div class="transfert-info">
+                <h3>${j.nom}</h3>
+                <p>${j.poste}</p>
+                <p>${j.age}</p>
+                <p>${j.nat}</p>
+            </div>
+        </div>`;
+    }
 }
 
 function afficherCentre(type){
@@ -2767,26 +2805,6 @@ result.style.display="block";
             document.getElementById('quiz-feedback').innerText = "";
             document.getElementById('quiz-img-result').style.display = "none";
             showSection('quiz-view');
-        }
-
-        function ouvrirCentre(categorie) {
-            const container = document.getElementById('centre-container');
-            container.innerHTML = "";
-            const joueurs = centreFormation[categorie];
-            joueurs.forEach(j => {
-                container.innerHTML += `
-                <div class="centre-card">
-                    <img src="static/images/${j.img}">
-                    <div class="centre-info">
-                        <h3>${j.nom}</h3>
-                        <p><strong>🎂 Âge :</strong> ${j.age}</p>
-                        <p><strong>🌍 Nationalité :</strong> ${j.nat}</p>
-                        <p><strong>⚽ Poste :</strong> ${j.poste}</p>
-                    </div>
-                </div>
-                `;
-            });
-            showSection('centre-formation-view');
         }
 
         let deckJoueur = [];
