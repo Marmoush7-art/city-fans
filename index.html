@@ -2457,57 +2457,67 @@ function ouvrirDossierContrats() {
     container.innerHTML = "";
 
     const maintenant = new Date();
-
-    const joueursFinContrat = [];
+    const joueursContrats = [];
 
     for (let id in effectif) {
 
         const j = effectif[id];
 
-        if (!j.fin) continue;
+        if (!j.fin || j.fin === "N/A") continue;
 
         const finContrat = new Date(j.fin);
+        const diffMs = finContrat - maintenant;
 
-        const diffTemps = finContrat - maintenant;
-        const diffAnnees = diffTemps / (1000 * 60 * 60 * 24 * 365);
+        if (diffMs <= 0) continue;
 
-        if (diffAnnees <= 1 && diffAnnees > 0) {
-            joueursFinContrat.push(j);
+        const moisRestants = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30));
+
+        joueursContrats.push({
+            id,
+            ...j,
+            moisRestants
+        });
+    }
+
+    // Tri du plus urgent au moins urgent
+    joueursContrats.sort((a, b) => a.moisRestants - b.moisRestants);
+
+    joueursContrats.forEach(j => {
+
+        let urgence = "";
+        let cadre = "";
+
+        if (j.nom === "John Stones") {
+            urgence = "🔴 CONTRAT À GÉRER";
+            cadre = "border:3px solid red;";
         }
-    }
+        else if (j.moisRestants <= 12) {
+            urgence = "+1 an";
+        }
+        else if (j.moisRestants <= 24) {
+            urgence = "+2 ans";
+        }
+        else {
+            urgence = "Long terme";
+        }
 
-    if (joueursFinContrat.length === 0) {
-        container.innerHTML = "<p>Aucun joueur avec moins d'1 an de contrat.</p>";
-        showSection("contrats-view");
-        return;
-    }
+        container.innerHTML += `
+            <div class="centre-card"
+                 style="${cadre}"
+                 onclick="afficherJoueur('${j.id}')">
 
-    joueursFinContrat.forEach(j => {
+                <img src="static/images/${j.img}">
 
-    const finContrat = new Date(j.fin);
-    const maintenant = new Date();
+                <div class="centre-info">
+                    <h3>${j.nom}</h3>
+                    <p>📅 Fin : ${j.fin}</p>
+                    <p>⏳ ${j.moisRestants} mois restants</p>
+                    <p>⚠️ ${urgence}</p>
+                </div>
 
-    const diffMs = finContrat - maintenant;
-    const moisRestants = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30));
-
-    let urgence = "🟢 Long terme";
-
-    if (moisRestants <= 3) urgence = "🔴 3 mois ou moins";
-    else if (moisRestants <= 6) urgence = "🟠 6 mois ou moins";
-
-    container.innerHTML += `
-        <div class="centre-card" onclick="afficherJoueur('${j.id}')">
-            <img src="static/images/${j.img}">
-            <div class="centre-info">
-                <h3>${j.nom}</h3>
-                <p>📅 Fin de contrat : ${j.fin}</p>
-                <p>⏳ Temps restant : ${moisRestants} mois</p>
-                <p>⚠️ ${urgence}</p>
-                <p>⭐ Note : ${j.note}</p>
             </div>
-        </div>
-    `;
-});
+        `;
+    });
 
     showSection("contrats-view");
 }
