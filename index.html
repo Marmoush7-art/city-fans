@@ -2453,73 +2453,58 @@ setInterval(verifierModeNuit, 60000);
 
 function ouvrirDossierContrats() {
 
-    const container = document.getElementById("contrats-container");
-    container.innerHTML = "";
+    showSection('contrats-view');
 
-    const maintenant = new Date();
-    const joueursContrats = [];
+    const container = document.getElementById('contrats-container');
+    container.innerHTML = '';
 
-    for (let id in effectif) {
+    const aujourdHui = new Date();
 
-        const j = effectif[id];
+    const joueurs = Object.entries(effectif)
+        .filter(([id, j]) => j.fin && j.fin !== "N/A")
+        .sort((a, b) => {
 
-        if (!j.fin || j.fin === "N/A") continue;
+            const [jA, mA, aA] = a[1].fin.split('/');
+            const [jB, mB, aB] = b[1].fin.split('/');
 
-        const finContrat = new Date(j.fin);
-        const diffMs = finContrat - maintenant;
+            const dateA = new Date(aA, mA - 1, jA);
+            const dateB = new Date(aB, mB - 1, jB);
 
-        if (diffMs <= 0) continue;
-
-        const moisRestants = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30));
-
-        joueursContrats.push({
-            id,
-            ...j,
-            moisRestants
+            return dateA - dateB;
         });
-    }
 
-    // Tri du plus urgent au moins urgent
-    joueursContrats.sort((a, b) => a.moisRestants - b.moisRestants);
+    joueurs.forEach(([id, j]) => {
 
-    joueursContrats.forEach(j => {
+        const [jour, mois, annee] = j.fin.split('/');
+        const dateFin = new Date(annee, mois - 1, jour);
 
-        let urgence = "";
-        let cadre = "";
+        const diffAnnees = Math.max(
+            1,
+            Math.ceil((dateFin - aujourdHui) / (1000 * 60 * 60 * 24 * 365))
+        );
 
-        if (j.nom === "John Stones") {
-            urgence = "🔴 CONTRAT À GÉRER";
-            cadre = "border:3px solid red;";
-        }
-        else if (j.moisRestants <= 12) {
-            urgence = "+1 an";
-        }
-        else if (j.moisRestants <= 24) {
-            urgence = "+2 ans";
-        }
-        else {
-            urgence = "Long terme";
+        let cadre = '';
+
+        if (diffAnnees <= 1) {
+            cadre = 'border:3px solid red;';
         }
 
         container.innerHTML += `
             <div class="centre-card"
                  style="${cadre}"
-                 onclick="afficherJoueur('${j.id}')">
+                 onclick="afficherJoueur('${id}')">
 
                 <img src="static/images/${j.img}">
 
                 <div class="centre-info">
                     <h3>${j.nom}</h3>
-                    <p>📅 Fin : ${j.fin}</p>
-                    <p>⏳ ${j.moisRestants} mois restants</p>
-                    <p>⚠️ ${urgence}</p>
+                    <p>📅 Fin de contrat : ${j.fin}</p>
+                    <p>⏳ +${diffAnnees} an${diffAnnees > 1 ? 's' : ''}</p>
                 </div>
 
             </div>
         `;
     });
-
-    showSection("contrats-view");
 }
 
 function ouvrirEffectif(){
