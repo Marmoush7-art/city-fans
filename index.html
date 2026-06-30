@@ -248,7 +248,7 @@
             <li class="menu-item" onclick="toggleSubMenu('sub-mercato')"><span class="menu-item-icon">🔄</span>Mercato ▾</li>
             <div id="sub-mercato" class="sous-menu"><span class="joueur-link" onclick="showSection('mercato-recap')">📦 Dernier Mercato</span><span class="joueur-link" onclick="showSection('actus-mercato')">📃 Rumeurs arrivées</span><span class="joueur-link" onclick="showSection('actus-mercato-b')">📃 Rumeurs départs</span>
             </div>
-            <li class="menu-item" onclick="affichercompetitionsActuelles()"><span class="menu-item-icon">📊</span>Classement</li>
+            <li class="menu-item" onclick="showSection('classement')"><span class="menu-item-icon">📊</span>Classement</li>
             <li class="menu-item" onclick="showSection('joueursinter-recap')"><span class="menu-item-icon">🏁</span>Joueurs Inter</li>
             <li class="menu-item" onclick="preparerCompoInteractive()"><span class="menu-item-icon">📋</span>Ma Compo</li>
             <li class="menu-item" onclick="ouvrirDossierContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
@@ -776,6 +776,18 @@
             
         </div>
 
+        <div id="classement" class="content-section">
+            <h2>Classement</h2>
+            <div class="transfert-card"><img src="static/images/premierleague.jpg"><div class="transfert-info"><h3>Premier League</h3><p>Position : Non débuté</p><p>Points : 0</p><p>Matchs : 0</p><p>Victoires : 0</p><p>Nuls : 0</p><p>Défaites : 0</p><p class="transfert-date">IMPORTANT</p></div></div>
+            <div class="transfert-card"><img src="static/images/facup.jpg"><div class="transfert-info"><h3>FA Cup</h3><p>Position : </p><p>Points : 0</p><p>Matchs : 0</p><p>Victoires : 0</p><p>Nuls : 0</p><p>Défaites : 0</p><p class="transfert-date">IMPORTANT</p></div></div>
+            <div class="transfert-card"><img src="static/images/carabaocup.jpg"><div class="transfert-info"><h3>Carabao Cup</h3><p>Position : </p><p>Points : 0</p><p>Matchs : 0</p><p>Victoires : 0</p><p>Nuls : 0</p><p>Défaites : 0</p><p class="transfert-date">IMPORTANT</p></div></div>
+            <div class="transfert-card"><img src="static/images/championsleague.jpg"><div class="transfert-info"><h3>Champions League</h3><p>Position : Poules</p><p>Points : 0</p><p>Matchs : 0</p><p>Victoires : 0</p><p>Nuls : 0</p><p>Défaites : 0</p><p class="transfert-date">IMPORTANT</p></div></div>
+            <div class="transfert-card"><img src="static/images/communityshield.jpg"><div class="transfert-info"><h3>Community Shield</h3><p>Position : Finale</p><p>Points : 0</p><p>Matchs : 0</p><p>Victoires : 0</p><p>Nuls : 0</p><p>Défaites : 0</p><p class="transfert-date">IMPORTANT</p></div></div>
+            <div class="transfert-card"><img src="static/images/asiatour.jpg"><div class="transfert-info"><h3>Asia Tour</h3><p>Position : Non débuté</p><p>Points : 0</p><p>Matchs : 0</p><p>Victoires : 0</p><p>Nuls : 0</p><p>Défaites : 0</p><p class="transfert-date">IMPORTANT</p></div></div>
+
+
+        </div>
+
         <div id="joueur-solo" class="content-section">
             <h2 id="nom-joueur"></h2>
             <img id="photo" src="">
@@ -844,23 +856,6 @@
 
         document.getElementById('site-password').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') checkPassword();
-        });
-
-        const Classement = {
-            classement: "Non commencé",
-            matchNumero: 0,
-            competitionImg: "premierleague.jpg", // Nom de l'image de la compétition
-            nomCompetition: "Premier League"
-        };
-
-        // --- AJOUT v1.00.42 : Touche Entrée pour le Quiz ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const quizInput = document.getElementById('quiz-answer');
-            if(quizInput) {
-                quizInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') verifierReponseQuiz();
-                });
-            }
         });
 
         const effectif = {
@@ -1010,49 +1005,6 @@ attaquantes:[
     img: j.img
 }));
 
-        const competitionsActuelles = [
-            {
-                nom: "Premier League",
-                classement: "1er",
-                matchNumero: 28,
-                img: "premier_league.jpg", // Nom de ton image dans static/images/
-                bio: "Course au titre en championnat anglais."
-            },
-            {
-                nom: "UEFA Champions League",
-                classement: "3ème (Phase de ligue)",
-                matchNumero: 6,
-                img: "champions_league.jpg",
-                bio: "L'objectif européen suprême."
-            },
-            {
-                nom: "FA Cup",
-                classement: "Quarts de finale",
-                matchNumero: 3,
-                img: "fa_cup.jpg",
-                bio: "La plus vieille compétition nationale."
-            }
-        ];
-
-        function chargerPositionsActuelles() {
-            const container = document.getElementById('positions-container');
-            container.innerHTML = ""; // On vide le container
-            
-            competitionsActuelles.forEach(c => {
-                container.innerHTML += `
-                <div class="centre-card">
-                    <img src="static/images/${c.img}" alt="${c.nom}">
-                    <div class="centre-info">
-                        <h3>${c.nom}</h3>
-                        <p><strong>🏆 Position :</strong> ${c.classement}</p>
-                        <p><strong>📅 Avancement :</strong> Match n°${c.matchNumero}</p>
-                        <p><strong>📝 Statut :</strong> ${c.bio}</p>
-                    </div>
-                </div>
-                `;
-            });
-            showSection('position-actuelle-view');
-        }
 
         function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
         function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
