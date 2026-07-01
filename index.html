@@ -690,7 +690,7 @@
     </div>
 
     <!-- 3 offensifs -->
-    <div class="player-spot" id="spot-att-ag" style="top: 40%; left: 20%;" onclick="selectSpot(this)">
+    <div class="player-spot" id="spot-att-ag"style="top: 28%; left: 20%;"onclick="selectSpot(this)">
         <div class="spot-img-holder"><img><span class="spot-label">AG</span></div>
         <div class="spot-player-name"></div>
     </div>
@@ -700,7 +700,7 @@
         <div class="spot-player-name"></div>
     </div>
 
-    <div class="player-spot" id="spot-att-ad" style="top: 40%; left: 80%;" onclick="selectSpot(this)">
+    <div class="player-spot" id="spot-att-ad"style="top: 28%; left: 80%;"onclick="selectSpot(this)">
         <div class="spot-img-holder"><img><span class="spot-label">AD</span></div>
         <div class="spot-player-name"></div>
     </div>
@@ -2432,11 +2432,29 @@ function ouvrirDossierContrats() {
 
         let texteDuree = '';
 
-        if (diffMois <= 1) {
-            texteDuree = "Moins d'1 mois restant";
-        } else {
-            texteDuree = `${diffMois} mois restants`;
-        }
+if (diffMois <= 1) {
+
+    texteDuree = "Moins d'1 mois restant";
+
+} else {
+
+    const annees = Math.floor(diffMois / 12);
+    const moisRestants = diffMois % 12;
+
+    if (annees > 0 && moisRestants > 0) {
+
+        texteDuree = `${annees} an${annees > 1 ? 's' : ''} et ${moisRestants} mois restants`;
+
+    } else if (annees > 0) {
+
+        texteDuree = `${annees} an${annees > 1 ? 's' : ''} restant${annees > 1 ? 's' : ''}`;
+
+    } else {
+
+        texteDuree = `${moisRestants} mois restants`;
+
+    }
+}
 
         container.innerHTML += `
             <div class="centre-card"
