@@ -991,17 +991,18 @@ attaquantes:[
 
 };
 
-        const joueursDraft = Object.values(effectif).map(j => ({
-    nom: j.nom,
-    note: parseInt(j.noteea) || 60,
-    prix: parseFloat(
-        String(j.valeur)
-            .replace("M €","")
-            .replace(",",".")
-    ) || 1,
-    img: j.img
-}));
-
+        const joueursDraft = Object.values(effectif)
+    .filter(j => j.poste !== "Coach")
+    .map(j => ({
+        nom: j.nom,
+        note: parseInt(j.noteea) || 60,
+        prix: parseFloat(
+            String(j.valeur)
+                .replace("M €", "")
+                .replace(",", ".")
+        ) || 1,
+        img: j.img
+    }));
 
         function toggleMenu(event) { event.stopPropagation(); document.getElementById('menu').classList.toggle('ouvert'); }
         function toggleSubMenu(id) { document.getElementById(id).classList.toggle('show'); }
@@ -2767,7 +2768,7 @@ result.style.display="block";
         }
         let joueurMystere = null;
         function demarrerQuiz() {
-            const cles = Object.keys(effectif);
+            const cles = Object.keys(effectif).filter(id => effectif[id].poste !== "Coach");
             joueurMystere = effectif[cles[Math.floor(Math.random() * cles.length)]];
             const icons = { "Gardien": "🧤", "Défenseur": "🛡️", "Milieu": "⚡", "Attaquant": "⚔️" };
             document.getElementById('quiz-clues').innerHTML = `Poste : ${icons[joueurMystere.poste]}<br>Âge : ${joueurMystere.age}<br>Nation : ${joueurMystere.nat}<br>Salaire : ${joueurMystere.paye}`;
