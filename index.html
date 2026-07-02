@@ -2678,64 +2678,56 @@ zone.innerHTML += `
 
 }
 
-function afficherAnniversaires() {
+function afficherAnniversairesMois() {
     const container = document.getElementById("anniversaires");
-    if (!container) return;
+    container.innerHTML = "";
 
-    try {
-        container.innerHTML = "";
+    const aujourd_hui = new Date();
+    const moisActuel = aujourd_hui.getMonth() + 1;
 
-        const today = new Date();
-        const jour = today.getDate();
-        const mois = today.getMonth() + 1;
+    const joueurs = [];
 
-        const joueurs = [];
+    // Hommes
+    Object.values(effectif).forEach(j => {
+        joueurs.push({ ...j, type: "hommes" });
+    });
 
-        // HOMMES
-        Object.values(effectif || {}).forEach(j => {
-            joueurs.push({ ...j, type: "hommes" });
+    // Centre formation
+    Object.values(centreFormation).forEach(j => {
+        joueurs.push({ ...j, type: "centre" });
+    });
+
+    // Femmes
+    Object.values(effectifFemmes).forEach(cat => {
+        cat.forEach(j => {
+            joueurs.push({ ...j, type: "femmes" });
         });
+    });
 
-        // CENTRE
-        Object.values(centreFormation || {}).forEach(j => {
-            joueurs.push({ ...j, type: "centre" });
-        });
+    // Filtre MOIS (pas jour)
+    const anniversaires = joueurs.filter(j => {
+        if (!j.naissance) return false;
 
-        // FEMMES
-        Object.values(effectifFemmes || {}).forEach(cat => {
-            if (!Array.isArray(cat)) return;
-            cat.forEach(j => {
-                joueurs.push({ ...j, type: "femmes" });
-            });
-        });
+        const parts = j.naissance.split("/");
+        if (parts.length < 2) return false;
 
-        const anniversaires = joueurs.filter(j => {
-            if (typeof j.naissance !== "string") return false;
+        const mois = parseInt(parts[1]);
 
-            const parts = j.naissance.split("/");
-            if (parts.length < 2) return false;
+        return mois === moisActuel;
+    });
 
-            const d = parseInt(parts[0]);
-            const m = parseInt(parts[1]);
-
-            return d === jour && m === mois;
-        });
-
-        if (anniversaires.length === 0) {
-            container.innerHTML = "<p>Aucun anniversaire aujourd'hui.</p>";
-            return;
-        }
-
-        container.innerHTML = anniversaires.map(j => `
-            <div class="anniversaire">
-                <span class="point ${j.type}"></span>
-                <span>${j.nom || "Inconnu"} (${j.age || "?"})</span>
-            </div>
-        `).join("");
-
-    } catch (e) {
-        console.error("Erreur anniversaires:", e);
+    if (anniversaires.length === 0) {
+        container.innerHTML = "<p>Aucun anniversaire ce mois-ci.</p>";
+        return;
     }
+
+    anniversaires.forEach(j => {
+        container.innerHTML += `
+            <div class="anniversaire ${j.type}">
+                <span>🎂 ${j.nom} - ${j.naissance}</span>
+            </div>
+        `;
+    });
 }
 
 afficherAnniversaires();
