@@ -2685,55 +2685,60 @@ function afficherAnniversairesMois() {
     const container = document.getElementById("anniversaires");
     container.innerHTML = "";
 
-    const aujourd_hui = new Date();
-    const moisActuel = aujourd_hui.getMonth() + 1;
-
     const joueurs = [];
 
-    // Hommes
-    Object.values(effectif).forEach(j => {
-        joueurs.push({ ...j, type: "hommes" });
-    });
+    const ajout = (collection, type) => {
+        Object.values(collection).forEach(j => {
+            joueurs.push({ ...j, type });
+        });
+    };
 
-    // Centre formation
-    Object.values(centreFormation).forEach(j => {
-        joueurs.push({ ...j, type: "centre" });
-    });
+    ajout(effectif, "hommes");
+    ajout(centreFormation, "centre");
 
-    // Femmes
     Object.values(effectifFemmes).forEach(cat => {
         cat.forEach(j => {
             joueurs.push({ ...j, type: "femmes" });
         });
     });
 
-    // Filtre MOIS (pas jour)
-    const anniversaires = joueurs.filter(j => {
-        if (!j.naissance) return false;
+    const enrichis = joueurs
+        .filter(j => j.naissance)
+        .map(j => {
+            const [jour, mois] = j.naissance.split("/").map(Number);
+            return { ...j, jour, mois };
+        });
 
-        const parts = j.naissance.split("/");
-        if (parts.length < 2) return false;
+    const moisActuel = new Date().getMonth() + 1;
 
-        const mois = parseInt(parts[1]);
+    const filtres = enrichis.filter(j => j.mois === moisActuel);
 
-        return mois === moisActuel;
+    filtres.sort((a, b) => {
+        // 1. jour
+        if (a.jour !== b.jour) return a.jour - b.jour;
+
+        // 2. type (ordre custom)
+        const ordreType = { hommes: 1, centre: 2, femmes: 3 };
+        if (a.type !== b.type) return ordreType[a.type] - ordreType[b.type];
+
+        // 3. nom
+        return a.nom.localeCompare(b.nom);
     });
 
-    if (anniversaires.length === 0) {
+    if (filtres.length === 0) {
         container.innerHTML = "<p>Aucun anniversaire ce mois-ci.</p>";
         return;
     }
 
-    anniversaires.forEach(j => {
+    filtres.forEach(j => {
         container.innerHTML += `
             <div class="anniversaire">
                 <span class="point ${j.type}"></span>
-                <span>${j.nom} - ${j.naissance}</span>
+                <span>${j.jour.toString().padStart(2,"0")}/${j.mois.toString().padStart(2,"0")} - ${j.nom}</span>
             </div>
         `;
     });
 }
-
 afficherAnniversairesMois();
         
 function searchPlayer(){
