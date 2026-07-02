@@ -2678,56 +2678,7 @@ zone.innerHTML += `
 
 }
 
-function afficherAnniversaires() {
-    const container = document.getElementById("anniversaires");
-    container.innerHTML = "";
 
-    const aujourd'hui = new Date();
-    const jour = aujourd'hui.getDate();
-    const mois = aujourd'hui.getMonth() + 1;
-
-    const joueurs = [];
-
-    // Effectif masculin
-    Object.values(effectif).forEach(j => {
-        joueurs.push({ ...j, type: "hommes" });
-    });
-
-    // Centre de formation
-    Object.values(centreFormation).forEach(j => {
-        joueurs.push({ ...j, type: "centre" });
-    });
-
-    // Effectif féminin
-    Object.values(effectifFemmes).forEach(categorie => {
-        categorie.forEach(j => {
-            joueurs.push({ ...j, type: "femmes" });
-        });
-    });
-
-    const anniversaires = joueurs.filter(joueur => {
-        if (!joueur.naissance) return false;
-
-        const [d, m] = joueur.naissance.split("/").map(Number);
-        return d === jour && m === mois;
-    });
-
-    if (anniversaires.length === 0) {
-        container.innerHTML = "<p>Aucun anniversaire aujourd'hui.</p>";
-        return;
-    }
-
-    anniversaires.forEach(joueur => {
-        container.innerHTML += `
-            <div class="anniversaire">
-                <span class="point ${joueur.type}"></span>
-                <span>${joueur.nom} (${joueur.age})</span>
-            </div>
-        `;
-    });
-}
-
-afficherAnniversaires();
 
 function searchPlayer(){
 
