@@ -193,6 +193,9 @@
         .point.hommes {background: #e53935;}
         .point.centre {background: #000;}
         .point.femmes {background: #2ecc71;}
+        .anniversaire.hommes { color: red; }
+        .anniversaire.femmes { color: green; }
+        .anniversaire.centre { color: black; }
         
         .player-search { position: absolute; right: 140px; /* place avant la version */ top: 50%; transform: translateY(-50%); width: 190px; z-index: 2000; }
         .player-search input { width: 100%; box-sizing: border-box; padding: 8px 15px; border-radius: 20px; border: none; outline: none; font-weight: bold; }
@@ -2723,8 +2726,9 @@ function afficherAnniversairesMois() {
 
     anniversaires.forEach(j => {
         container.innerHTML += `
-            <div class="anniversaire ${j.type}">
-                <span>🎂 ${j.nom} - ${j.naissance}</span>
+            <div class="anniversaire">
+                <span class="point ${j.type}"></span>
+                <span>${j.nom} - ${j.naissance}</span>
             </div>
         `;
     });
