@@ -288,7 +288,7 @@
             <img src="static/images/mancityecussonclasse.jpg" class="logo-accueil">
             <div class="match-card">
         <h3>📰 Dernière Actualité</h3>
-        <p><strong>📳 Elliot Anderson, Mathys Detourbet et Enzo Maresca signent au club. 🤩</strong></p>
+        <p><strong>📳 Elliot Anderson, Mathys Detourbet, Charles Pierce, Jérémy Monga et Enzo Maresca signent au club. 🤩</strong></p>
     </div>
 
     <div class="match-card">
@@ -741,15 +741,22 @@
              <div class="transfert-card" onclick="afficher('maresca')"><img src="static/images/maresca.jpg"><div class="transfert-info"><h3>Enzo Maresca</h3><p>De : Chelsea</p><p>Prix : 20M €</p><p class="transfert-date">Juin 2026</p></div></div>
              <div class="transfert-card" onclick="afficher('detourbet')"><img src="static/images/detourbet.jpg"><div class="transfert-info"><h3>Mathys Detourbet</h3><p>De : ESTAC Troyes</p><p>Prix : 25M €</p><p class="transfert-date">Juin 2026</p></div></div>
              <div class="transfert-card" onclick="afficher('anderson')"><img src="static/images/anderson.jpg"><div class="transfert-info"><h3>Elliot Anderson</h3><p>De : Nottingham Forest</p><p>Prix : 135M €</p><p class="transfert-date">Juillet 2026</p></div></div>
-             <div class="transfert-card" onclick="afficher('charles')"><img src="static/images/charles.jpg"><div class="transfert-info"><h3>Pierce Charles</h3><p>De : Sheffield Wednesday</p><p>Prix : INCONNU</p><p class="transfert-date">Juillet 2026</p></div></div>
+             <div class="transfert-card" onclick="afficher('charles')"><img src="static/images/charles.jpg"><div class="transfert-info"><h3>Pierce Charles</h3><p>De : Sheffield Wednesday</p><p>Prix : 3.5M €</p><p class="transfert-date">Juillet 2026</p></div></div>
+             <div class="transfert-card" onclick="afficher('monga')"><img src="static/images/monga.jpg"><div class="transfert-info"><h3>Jérémy Monga</h3><p>De : Leicester</p><p>Prix : 11.7M €</p><p class="transfert-date">Juillet 2026</p></div></div>
             
             
 
             <h3>Départs</h3>
+            <h3>Transferts</h3>
+            <div class="transfert-card"><img src="static/images/guardiola.jpg"><div class="transfert-info"><h3>Pep Guardiola</h3><p>Vers : Agents Libres</p><p>Prix : Transfert Gratuit</p><p class="transfert-date">Juin 2026</p></div></div>
             <div class="transfert-card"><img src="static/images/akanji.jpg"><div class="transfert-info"><h3>Manuel Akanji</h3><p>Vers : Inter de Milan</p><p>Prix : 15M €</p><p class="transfert-date">Juin 2026</p></div></div>
             <div class="transfert-card"><img src="static/images/stones.jpg"><div class="transfert-info"><h3>John Stones</h3><p>Vers : Agents Libres</p><p>Prix : Transfert Gratuit</p><p class="transfert-date">Juin 2026</p></div></div>
             <div class="transfert-card"><img src="static/images/silva.jpg"><div class="transfert-info"><h3>Bernardo Silva</h3><p>Vers : Real Madrid</p><p>Prix : Transfert Gratuit</p><p class="transfert-date">Juin 2026</p></div></div>
             <div class="transfert-card"><img src="static/images/ake.jpg"><div class="transfert-info"><h3>Nathan Aké</h3><p>Vers : Fenerbahce</p><p>Prix : 8.17M €</p><p class="transfert-date">Juillet 2026</p></div></div>
+            <h3>Prêts</h3>
+            <div class="transfert-card" onclick="afficher('nypan')"><img src="static/images/nypan.jpg"><div class="transfert-info"><h3>Sverre Nypan</h3><p>Vers : Lommel SK</p><p>Prix : Prêt Gratuit</p><p class="transfert-date">Juillet 2026</p></div></div>
+            <div class="transfert-card" onclick="afficher('detourbet')"><img src="static/images/detourbet.jpg"><div class="transfert-info"><h3>Mathys Detourbet</h3><p>Vers : AS Monaco</p><p>Prix : Prêt Gratuit</p><p class="transfert-date">Juillet 2026</p></div></div>
+            <div class="transfert-card" onclick="afficher('charles')"><img src="static/images/charles.jpg"><div class="transfert-info"><h3>Pierce Charles</h3><p>Vers : QPR</p><p>Prix : Prêt Gratuit</p><p class="transfert-date">Juillet 2026</p></div></div>
             
             <h2>Plus gros Achats</h2>
             <div class="transfert-card" onclick="afficher('anderson')"><img src="static/images/anderson.jpg"><div class="transfert-info"><h3>Elliot Anderson</h3><p>Man City</p><p>Prix : 135M €</p><p class="transfert-date">Juillet 2026</p></div></div>
@@ -893,6 +900,7 @@
             'grealish': { nom: "Jack Grealish", poste: "Attaquant", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 100 000", fin: "30/06/2027", valeur: "20M €", noteea: "81", naissance: "10/09/1995", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "200M €", noteea: "91", naissance: "21/07/2000", img: "haaland.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "83", naissance: "07/02/1999", img: "marmoush.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'monga': { nom: "Jérémy Monga", poste: "Attaquant", age: "17 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "INCONNU", fin: "30/06/2031", valeur: "15M €", noteea: "INCONNUE", naissance: "10/07/2009", img: "monga.jpg", bio: "Attaquant anglais plus jeune buteur de l'histoire de la Championship.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'savinho': { nom: "Savinho", poste: "Attaquant", age: "22 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "35M €", noteea: "81", naissance: "10/04/2004", img: "savinho.jpg", bio: "Dribbleur brésilien électrisant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "80M €", noteea: "84", naissance: "07/01/2000", img: "semenyo.jpg", bio: "Puissance offensive brute.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'maresca': { nom: "Enzo Maresca", poste: "Coach", age: "46 ans", nat: "Italie 🇮🇹", paye: "INCONNU", fin: "INCONNU", naissance: "10/02/1980", img: "maresca.jpg", bio: "Coach depuis la fin de l'ère Guardiola.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
@@ -2352,6 +2360,7 @@ setInterval(verifierModeNuit, 60000);
 {nom:"Jack Grealish", id:"grealish"},
 {nom:"Erling Haaland", id:"haaland"},
 {nom:"Omar Marmoush", id:"marmoush"},
+{nom:"Jérémy Monga", id:"monga"},
 {nom:"Savinho", id:"savinho"},
 {nom:"Antoine Semenyo", id:"semenyo"},
 
