@@ -2494,8 +2494,6 @@ zone.innerHTML += `
 
 <div class="transfert-card" onclick="afficherJoueur('${id}')">
 
-${j.pret ? '<div class="badge-pret">PRÊT</div>' : ''}
-
 <img src="static/images/${j.img}">
 
 <div class="transfert-info">
@@ -2534,7 +2532,7 @@ function ouvrirCentreGeneral(){
 
         zone.innerHTML += `
         <div class="transfert-card">
-        ${j.pret ? '<div class="badge-pret">PRÊT</div>' : ''}
+    
             <img src="static/images/${j.img}">
             <div class="transfert-info">
                 <h3>${j.nom}</h3>
