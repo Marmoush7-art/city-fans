@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🩵 City Fans</title>
@@ -123,6 +123,25 @@
         .draft-colonne ul{ list-style:none; padding:0; }
         .draft-colonne li{ background:#eef6fc; padding:8px; margin-bottom:8px; border-radius:8px; }
         #draft-resultat{ text-align:center; margin-top:20px; }
+
+        .mercato-card{background:#1f1f1f;color:#fff;border-radius:18px;padding:15px;margin-bottom:15px;box-shadow:0 4px 15px rgba(0,0,0,.3)}
+        .mercato-top{display:flex;justify-content:space-between;align-items:flex-start}
+        .mercato-joueur{display:flex;gap:12px}
+        .mercato-photo{width:55px;height:55px;border-radius:50%;object-fit:cover}
+        .mercato-nom{font-size:17px;font-weight:700}
+        .mercato-poste{display:inline-block;background:#333;padding:2px 8px;border-radius:8px;font-size:11px;margin-top:2px}
+        .mercato-prix{font-size:13px;color:#bdbdbd;margin-top:3px}
+        .mercato-date{font-size:12px;color:#999}
+        .mercato-clubs{margin-top:12px;background:#2b2b2b;border-radius:30px;padding:10px 15px;display:flex;justify-content:space-between;align-items:center}
+        .club{display:flex;align-items:center;gap:8px;font-size:14px}
+        .club img{width:26px;height:26px;border-radius:50%;object-fit:cover}
+        .arrow{font-size:18px;font-weight:bold}
+        .mercato-clubs{background:linear-gradient(90deg,#2e3640,#242424)}
+        .club img{border:2px solid rgba(255,255,255,.15)}
+        .mercato-card{cursor:pointer;}
+        .mercato-card:hover{transform:scale(1.02);transition:.2s;}
+        
+        .mercato-card:hover{transform:translateY(-2px);transition:.2s}
 
         .historique-card{ cursor:pointer; }
         .historique-card:hover{ transform:scale(1.03); }
@@ -736,36 +755,71 @@
         </div>
 
         <div id="mercato-recap" class="content-section">
-            <h2>Historique du Mercato (été 2026)</h2>
-            <h3>Arrivées</h3>
-             <div class="transfert-card" onclick="afficher('maresca')"><img src="static/images/maresca.jpg"><div class="transfert-info"><h3>Enzo Maresca</h3><p>De : Chelsea</p><p>Prix : 20M €</p><p class="transfert-date">Juin 2026</p></div></div>
-             <div class="transfert-card" onclick="afficher('detourbet')"><img src="static/images/detourbet.jpg"><div class="transfert-info"><h3>Mathys Detourbet</h3><p>De : ESTAC Troyes</p><p>Prix : 25M €</p><p class="transfert-date">Juin 2026</p></div></div>
-             <div class="transfert-card" onclick="afficher('anderson')"><img src="static/images/anderson.jpg"><div class="transfert-info"><h3>Elliot Anderson</h3><p>De : Nottingham Forest</p><p>Prix : 135M €</p><p class="transfert-date">Juillet 2026</p></div></div>
-             <div class="transfert-card" onclick="afficher('charles')"><img src="static/images/charles.jpg"><div class="transfert-info"><h3>Pierce Charles</h3><p>De : Sheffield Wednesday</p><p>Prix : 3.5M €</p><p class="transfert-date">Juillet 2026</p></div></div>
-            <div class="transfert-card" onclick="afficher('monga')"><img src="static/images/monga.jpg"><div class="transfert-info"><h3>Jérémy Monga</h3><p>De : Leicester</p><p>Prix : 11.7M €/p><p class="transfert-date">Juillet 2026</p></div></div>
-            
-            
+            <h2>Historique du Mercato (Été 2026)</h2>
 
-            <h3>Départs</h3>
-            <div class="transfert-card"><img src="static/images/guardiola.jpg"><div class="transfert-info"><h3>Pep Guardiola</h3><p>Vers : Agents Libres</p><p>Prix : Transfert Gratuit</p><p class="transfert-date">Juin 2026</p></div></div>
-            <div class="transfert-card"><img src="static/images/akanji.jpg"><div class="transfert-info"><h3>Manuel Akanji</h3><p>Vers : Inter de Milan</p><p>Prix : 15M €</p><p class="transfert-date">Juin 2026</p></div></div>
-            <div class="transfert-card"><img src="static/images/stones.jpg"><div class="transfert-info"><h3>John Stones</h3><p>Vers : Agents Libres</p><p>Prix : Transfert Gratuit</p><p class="transfert-date">Juin 2026</p></div></div>
-            <div class="transfert-card"><img src="static/images/silva.jpg"><div class="transfert-info"><h3>Bernardo Silva</h3><p>Vers : Real Madrid</p><p>Prix : Transfert Gratuit</p><p class="transfert-date">Juin 2026</p></div></div>
-            <div class="transfert-card"><img src="static/images/ake.jpg"><div class="transfert-info"><h3>Nathan Aké</h3><p>Vers : Fenerbahce</p><p>Prix : 8.17M €</p><p class="transfert-date">Juillet 2026</p></div></div>
-            <div class="transfert-card"><img src="static/images/defenseurjahmai.jpg"><div class="transfert-info"><h3>Jahmain Simpson-Pusey</h3><p>Vers : FC Cologne</p><p>Prix : 6M €</p><p class="transfert-date">Juillet 2026</p></div></div>
-            <div class="transfert-card"><img src="static/images/attaquantreighan.jpg"><div class="transfert-info"><h3>Reighan Heskey</h3><p>Vers : FC Cologne</p><p>Prix : 2M €</p><p class="transfert-date">Juillet 2026</p></div></div>
+            <h3>🟢 Arrivées</h3>
 
-            <h2>Plus gros Achats</h2>
-            <div class="transfert-card" onclick="afficher('anderson')"><img src="static/images/anderson.jpg"><div class="transfert-info"><h3>Elliot Anderson</h3><p>Man City</p><p>Prix : 135M €</p><p class="transfert-date">Juillet 2026</p></div></div>
-            <div class="transfert-card" onclick="afficher('grealish')"><img src="static/images/grealish.jpg"><div class="transfert-info"><h3>Jack Grealish</h3><p>Man City</p><p>Prix : 117.5M €</p><p class="transfert-date">Août 2021</p></div></div>
-            <div class="transfert-card" onclick="afficher('gvardiol')"><img src="static/images/gvardiol.jpg"><div class="transfert-info"><h3>Josko Gvardiol</h3><p>Man City</p><p>Prix : 90M €</p><p class="transfert-date">Août 2023</p></div></div>
-            <div class="transfert-card" onclick="afficher('marmoush')"><img src="static/images/marmoush.jpg"><div class="transfert-info"><h3>Omar Marmoush</h3><p>Man City</p><p>Prix : 75M €</p><p class="transfert-date">Janvier 2025</p></div></div>
-            <div class="transfert-card" onclick="afficher('haaland')"><img src="static/images/haaland.jpg"><div class="transfert-info"><h3>Erling Haaland</h3><p>Man City</p><p>Prix : 75M €</p><p class="transfert-date">Juillet 2022</p></div></div>
-            <div class="transfert-card"><img src="static/images/debruyne.jpg"><div class="transfert-info"><h3>Kevin De Bruyne</h3><p>Naples</p><p>Prix : 74M €</p><p class="transfert-date">Août 2015</p></div></div>
-            <div class="transfert-card" onclick="afficher('semenyo')"><img src="static/images/semenyo.jpg"><div class="transfert-info"><h3>Antoine Semenyo</h3><p>Man City</p><p>Prix : 72M €</p><p class="transfert-date">Janvier 2026</p></div></div>
-            <div class="transfert-card" onclick="afficher('rodri')"><img src="static/images/rodri.jpg"><div class="transfert-info"><h3>Rodri</h3><p>Man City</p><p>Prix : 70M €</p><p class="transfert-date">Juillet 2019</p></div></div>
-            <div class="transfert-card" onclick="afficher('dias')"><img src="static/images/dias.jpg"><div class="transfert-info"><h3>Ruben Dias</h3><p>Man City</p><p>Prix : 68M €</p><p class="transfert-date">Novembre 2020</p></div></div>
-            <div class="transfert-card"><img src="static/images/mahrez.jpg"><div class="transfert-info"><h3>Riyad Mahrez</h3><p>Al Ahli</p><p>Prix : 67.8M €</p><p class="transfert-date">Juillet 2018</p></div></div>
+            <div class="mercato-card" onclick="afficher('maresca')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/maresca.jpg" class="mercato-photo"><div><div class="mercato-nom">Enzo Maresca</div><div class="mercato-poste">ENT</div><div class="mercato-prix">Montant : 20 M€</div></div></div><div class="mercato-date">Juin 2026</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/chelsea.jpg">Chelsea</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('detourbet')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/detourbet.jpg" class="mercato-photo"><div><div class="mercato-nom">Mathys Detourbet</div><div class="mercato-poste">BU</div><div class="mercato-prix">Montant : 25 M€</div></div></div><div class="mercato-date">Juin 2026</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/troyes.jpg">ESTAC Troyes</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('anderson')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/anderson.jpg" class="mercato-photo"><div><div class="mercato-nom">Elliot Anderson</div><div class="mercato-poste">MC</div><div class="mercato-prix">Montant : 135 M€</div></div></div><div class="mercato-date">Juil. 2026</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/nottforest.jpg">Nottingham</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('charles')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/charles.jpg" class="mercato-photo"><div><div class="mercato-nom">Pierce Charles</div><div class="mercato-poste">G</div><div class="mercato-prix">Montant : 3.5 M€</div></div></div><div class="mercato-date">Juil. 2026</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/sheffieldwednesday.jpg">Sheffield</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('monga')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/monga.jpg" class="mercato-photo"><div><div class="mercato-nom">Jérémy Monga</div><div class="mercato-poste">AG</div><div class="mercato-prix">Montant : 11.7 M€</div></div></div><div class="mercato-date">Juil. 2026</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/leicester.jpg">Leicester</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <h3>🔴 Départs</h3>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/guardiola.jpg" class="mercato-photo"><div><div class="mercato-nom">Pep Guardiola</div><div class="mercato-poste">ENT</div><div class="mercato-prix">Transfert Gratuit</div></div></div><div class="mercato-date">Juin 2026</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club">Agents Libres</div></div>
+            </div>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/akanji.jpg" class="mercato-photo"><div><div class="mercato-nom">Manuel Akanji</div><div class="mercato-poste">DC</div><div class="mercato-prix">15 M€</div></div></div><div class="mercato-date">Juin 2026</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/intermilan.jpg">Inter</div></div>
+            </div>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/stones.jpg" class="mercato-photo"><div><div class="mercato-nom">John Stones</div><div class="mercato-poste">DC</div><div class="mercato-prix">Transfert Gratuit</div></div></div><div class="mercato-date">Juin 2026</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club">Agents Libres</div></div>
+            </div>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/silva.jpg" class="mercato-photo"><div><div class="mercato-nom">Bernardo Silva</div><div class="mercato-poste">MOC</div><div class="mercato-prix">Transfert Gratuit</div></div></div><div class="mercato-date">Juin 2026</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/realmadrid.jpg">Real Madrid</div></div>
+            </div>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ake.jpg" class="mercato-photo"><div><div class="mercato-nom">Nathan Aké</div><div class="mercato-poste">DG</div><div class="mercato-prix">8.17 M€</div></div></div><div class="mercato-date">Juil. 2026</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/fenerbahce.jpg">Fenerbahçe</div></div>
+            </div>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/defenseurjahmai.jpg" class="mercato-photo"><div><div class="mercato-nom">Jahmain Simpson-Pusey</div><div class="mercato-poste">DC</div><div class="mercato-prix">6 M€</div></div></div><div class="mercato-date">Juil. 2026</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/koln.jpg">Köln</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('heskey')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/attaquantreighan.jpg" class="mercato-photo"><div><div class="mercato-nom">Reighan Heskey</div><div class="mercato-poste">AG</div><div class="mercato-prix">2 M€</div></div></div><div class="mercato-date">Juil. 2026</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/koln.jpg">Köln</div></div>
+            </div>
         </div>
 
         <div id="joueursinter-recap" class="content-section">
