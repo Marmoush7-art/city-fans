@@ -261,7 +261,6 @@
         id="search-player"
         placeholder="🔎 Hommes seulement"
         onkeyup="searchPlayer()"
-        onkeydown="if(event.key === 'Enter') ouvrirPremierResultat()">
 
         <div id="search-results" class="search-results"></div>
 
@@ -2720,7 +2719,7 @@ let result = document.getElementById("search-results");
 let texte = input.value.toLowerCase();
 
 result.innerHTML="";
-
+selectedIndex = -1;
 
 if(texte.length < 1){
 result.style.display="none";
@@ -2759,12 +2758,42 @@ result.style.display="block";
 
 }
 
-function ouvrirPremierResultat() {
-    const results = document.getElementById("search-results");
+let selectedIndex = -1;
 
-    if (results.children.length > 0) {
-        results.children[0].click();
+document.getElementById("search-player").addEventListener("keydown", function(e) {
+    const results = document.querySelectorAll("#search-results div");
+
+    if (!results.length) return;
+
+    if (e.key === "ArrowDown") {
+        e.preventDefault();
+        selectedIndex = (selectedIndex + 1) % results.length;
+        updateSelection(results);
     }
+
+    if (e.key === "ArrowUp") {
+        e.preventDefault();
+        selectedIndex = (selectedIndex - 1 + results.length) % results.length;
+        updateSelection(results);
+    }
+
+    if (e.key === "Enter") {
+        e.preventDefault();
+        if (selectedIndex >= 0) {
+            results[selectedIndex].click();
+        }
+    }
+});
+
+function updateSelection(results) {
+    results.forEach((r, i) => {
+        r.style.background = "";
+        r.style.color = "";
+        if (i === selectedIndex) {
+            r.style.background = "#6CABDD";
+            r.style.color = "white";
+        }
+    });
 }
 
         function afficherRumeur(id) {
