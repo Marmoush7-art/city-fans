@@ -256,11 +256,12 @@
 
     <div class="player-search">
 
-        <input 
-        type="text" 
-        id="search-player" 
+        <input
+        type="text"
+        id="search-player"
         placeholder="🔎 Hommes seulement"
-        onkeyup="searchPlayer()">
+        onkeyup="searchPlayer()"
+        onkeydown="if(event.key === 'Enter') ouvrirPremierResultat()">
 
         <div id="search-results" class="search-results"></div>
 
@@ -2756,6 +2757,14 @@ result.appendChild(div);
 result.style.display="block";
 
 
+}
+
+function ouvrirPremierResultat() {
+    const results = document.getElementById("search-results");
+
+    if (results.children.length > 0) {
+        results.children[0].click();
+    }
 }
 
         function afficherRumeur(id) {
