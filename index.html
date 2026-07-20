@@ -306,9 +306,9 @@
             <h2>🩵 BIENVENUE CITYZEN 🩵</h2>
             <img src="static/images/mancityecussonclasse.jpg" class="logo-accueil">
             <div class="match-card">
-        <h3>📰 Dernière Actualité</h3>
-        <p><strong>📳 Ayyoub Bouaddi évoqué à de nombreuses reprises comme un achat du mercato des Skyblues.</strong></p>
-    </div>
+                <h3>📰 Dernière Actualité</h3>
+                <p><strong>👑 Rodri remporte la coupe du monde avec l'Espagne.</strong></p>
+            </div>
 
     <div class="match-card">
         <h3>📅 Prochain Match</h3>
@@ -318,6 +318,11 @@
 
     <div class="match-card">
         <h3>⚽ Meilleur Buteur</h3>
+        <p></p>
+    </div>
+
+    <div class="match-card">
+        <h3>👟 Meilleur Passeur</h3>
         <p></p>
     </div>
 
@@ -550,72 +555,50 @@
         </div>
 
         <div id="actus-mercato" class="content-section">
-            <h2>Actus Mercato 📰</h2>
-            <div class="transfert-card" onclick="afficherActuConceicao()">
-                <img src="static/images/conceicaotransfermarkt.jpg">
-                <div class="transfert-info">
-                    <h3>Eduardo Conceição</h3>
-                    <p>Statut : Très convoité</p>
-                </div>
-            </div>
-            <div class="transfert-card" onclick="afficherActuGusto()">
-                <img src="static/images/gustotransfermarkt.jpg">
-                <div class="transfert-info">
-                    <h3>Malo Gusto</h3>
-                    <p>Statut : A donné son accord.</p>
-                </div>
-            </div>
+        <h2>Actus Mercato 📰</h2>
+        <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/malo-gusto.jpg" class="mercato-photo"><div><div class="mercato-nom">Malo Gusto</div><div class="mercato-poste">DD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/chelsea.jpg">Chelsea</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
+        <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ayyoub-bouaddi.jpg" class="mercato-photo"><div><div class="mercato-nom">Ayyoub Bouaddi</div><div class="mercato-poste">MDC</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/lille.jpg">LOSC Lille</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
+        <div class="mercato-card" onclick="afficher('doku')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/jeremy-doku.jpg" class="mercato-photo"><div><div class="mercato-nom">Jérémy Doku</div><div class="mercato-poste">AG</div><div class="mercato-prix">Rumeur de renouvellement de contrat</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
+        <div class="mercato-card" onclick="afficher('gvardiol')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/josko-gvardiol.jpg" class="mercato-photo"><div><div class="mercato-nom">Josko Gvardiol</div><div class="mercato-poste">DC</div><div class="mercato-prix">Rumeur de renouvellement de contrat</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
+        <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ryan-mcaidoo.jpg" class="mercato-photo"><div><div class="mercato-nom">Ryan McAidoo</div><div class="mercato-poste">AD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City U21</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
+        <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ibrahim-mbaye.jpg" class="mercato-photo"><div><div class="mercato-nom">Ibrahim Mbaye</div><div class="mercato-poste">AD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/psg.jpg">PSG</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
         </div>
 
-        <div id="effectif-menu" class="content-section">
+        <div id="actus-mercato-b" class="content-section">
+            <h2>Actus Mercato 📰</h2>
+            <div class="mercato-card" onclick="afficher('savinho')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/savinho2.jpg" class="mercato-photo"><div><div class="mercato-nom">Savinho</div><div class="mercato-poste">AG</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/tottenham2.jpg">Tottenham</div></div></div>
+            <div class="mercato-card" onclick="afficher('foden')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/phil-foden.jpg" class="mercato-photo"><div><div class="mercato-nom">Phil Foden</div><div class="mercato-poste">MOC</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/acmilan.jpg">AC Milan</div></div></div>
+            <div class="mercato-card" onclick="afficher('foden')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/phil-foden.jpg" class="mercato-photo"><div><div class="mercato-nom">Phil Foden</div><div class="mercato-poste">MOC</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/galatasaray.jpg">Galatasaray</div></div></div>
+            <div class="mercato-card" onclick="afficher('reijnders')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/tijjani-reijnders.jpg" class="mercato-photo"><div><div class="mercato-nom">Tijjani Reijnders</div><div class="mercato-poste">MC</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/galatasaray.jpg">Galatasaray</div></div></div>
+        </div>
+
+
+<div id="effectif-menu" class="content-section">
 
 <h2>⚽ EFFECTIF</h2>
-
 <div class="centre-card" onclick="afficherEffectifHommes()">
-
 <img src="static/images/mancityecussonclasse.jpg">
-
 <div class="centre-info">
-
 <h3>👔 Effectif Hommes</h3>
-
 <p>Equipe première masculine</p>
-
 </div>
-
 </div>
-
 
 <div class="centre-card" onclick="afficherEffectifFemmes()">
-
 <img src="static/images/mancityecussonclasse.jpg">
-
 <div class="centre-info">
-
 <h3>👔 Effectif Femmes</h3>
-
 <p>Equipe première féminine</p>
-
 </div>
-
 </div>
-
 
 <div class="centre-card" onclick="ouvrirCentreGeneral()">
-
 <img src="static/images/centreform.jpg">
-
 <div class="centre-info">
-
 <h3>🧬 Centre Formation</h3>
-
 <p>Jeunes joueurs</p>
-
 </div>
-
 </div>
-
-
 </div>
 
         <div id="joueur-solo" class="content-section">
@@ -637,17 +620,6 @@
                     <div class="stat-card"><span class="stat-number" id="s-passes">0</span><span class="stat-label">👟 Passes D.</span></div>
                     <div class="stat-card"><span class="stat-number" id="s-matchs">0</span><span class="stat-label">🎮 Matchs</span></div>
                     <div class="stat-card"><span class="stat-number" id="s-note">0.0</span><span class="stat-label">⭐ Note</span></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="actus-mercato-b" class="content-section">
-            <h2>Actus Mercato 📰</h2>
-            <div class="transfert-card" onclick="afficherActuSavinho()">
-                <img src="static/images/savinhotransfermarkt.jpg">
-                <div class="transfert-info">
-                    <h3>Savinho</h3>
-                    <p>Statut : Tottenham ne le lache pas</p>
                 </div>
             </div>
         </div>
@@ -759,73 +731,142 @@
 
             <h3>🟢 Arrivées</h3>
 
-            <div class="mercato-card" onclick="afficher('maresca')">
-            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/enzo-maresca.jpg" class="mercato-photo"><div><div class="mercato-nom">Enzo Maresca</div><div class="mercato-poste">ENT</div><div class="mercato-prix">Montant : 20 M€</div></div></div><div class="mercato-date">Juin 2026</div></div>
-            <div class="mercato-clubs"><div class="club"><img src="static/images/chelsea.jpg">Chelsea</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
-            </div>
-
-            <div class="mercato-card" onclick="afficher('detourbet')">
-            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/mathys-detourbet.jpg" class="mercato-photo"><div><div class="mercato-nom">Mathys Detourbet</div><div class="mercato-poste">BU</div><div class="mercato-prix">Montant : 25 M€</div></div></div><div class="mercato-date">27 juin</div></div>
-            <div class="mercato-clubs"><div class="club"><img src="static/images/troyes.jpg">ESTAC Troyes</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
-            </div>
-
-            <div class="mercato-card" onclick="afficher('anderson')">
-            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/elliot-anderson.jpg" class="mercato-photo"><div><div class="mercato-nom">Elliot Anderson</div><div class="mercato-poste">MC</div><div class="mercato-prix">Montant : 135 M€</div></div></div><div class="mercato-date">2 juillet</div></div>
-            <div class="mercato-clubs"><div class="club"><img src="static/images/nottingham.jpg">Nottingham</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
-            </div>
-
-            <div class="mercato-card" onclick="afficher('charles')">
-            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/pierce-charles.jpg" class="mercato-photo"><div><div class="mercato-nom">Pierce Charles</div><div class="mercato-poste">G</div><div class="mercato-prix">Montant : 3.5 M€</div></div></div><div class="mercato-date">10 juillet</div></div>
-            <div class="mercato-clubs"><div class="club"><img src="static/images/sheffieldwednesday.jpg">Sheffield</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
-            </div>
-
             <div class="mercato-card" onclick="afficher('monga')">
-            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/jeremy-monga.jpg" class="mercato-photo"><div><div class="mercato-nom">Jérémy Monga</div><div class="mercato-poste">AG</div><div class="mercato-prix">Montant : 11.7 M€</div></div></div><div class="mercato-date">11 juillet</div></div>
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/jeremy-monga.jpg" class="mercato-photo"><div><div class="mercato-nom">Jérémy Monga</div><div class="mercato-poste">AG</div><div class="mercato-prix">11.7 M€</div></div></div><div class="mercato-date">11 juillet</div></div>
             <div class="mercato-clubs"><div class="club"><img src="static/images/leicester.jpg">Leicester</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
             </div>
 
+            <div class="mercato-card" onclick="afficher('charles')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/pierce-charles.jpg" class="mercato-photo"><div><div class="mercato-nom">Pierce Charles</div><div class="mercato-poste">G</div><div class="mercato-prix">3.5 M€</div></div></div><div class="mercato-date">10 juillet</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/sheffieldwednesday.jpg">Sheffield</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('anderson')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/elliot-anderson.jpg" class="mercato-photo"><div><div class="mercato-nom">Elliot Anderson</div><div class="mercato-poste">MC</div><div class="mercato-prix">135 M€</div></div></div><div class="mercato-date">2 juillet</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/nottingham.jpg">Nottingham</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('detourbet')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/mathys-detourbet.jpg" class="mercato-photo"><div><div class="mercato-nom">Mathys Detourbet</div><div class="mercato-poste">AG</div><div class="mercato-prix">25 M€</div></div></div><div class="mercato-date">27 juin</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/troyes.jpg">ESTAC Troyes</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('maresca')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/enzo-maresca.jpg" class="mercato-photo"><div><div class="mercato-nom">Enzo Maresca</div><div class="mercato-poste">ENT</div><div class="mercato-prix">20 M€</div></div></div><div class="mercato-date">29 Juin</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/chelsea.jpg">Chelsea</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('reis')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/vitor-reis.jpg" class="mercato-photo"><div><div class="mercato-nom">Vitor Reis</div><div class="mercato-poste">DC</div><div class="mercato-prix">Retour de prêt</div></div></div><div class="mercato-date">30 Juin</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/girona.jpg">Girona</div><div class="arrow">🔄</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('grealish')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/jack-grealish.jpg" class="mercato-photo"><div><div class="mercato-nom">Jack Grealish</div><div class="mercato-poste">AG</div><div class="mercato-prix">Retour de prêt</div></div></div><div class="mercato-date">30 Juin</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/everton.jpg">Everton</div><div class="arrow">🔄</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('echeverri')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/claudio-echeverri.jpg" class="mercato-photo"><div><div class="mercato-nom">Claudio Echeverri</div><div class="mercato-poste">MOC</div><div class="mercato-prix">Retour de prêt</div></div></div><div class="mercato-date">30 Juin</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/girona.jpg">Girona</div><div class="arrow">🔄</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('wilson-esbrand')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/joshua-wilson-esbrand.jpg" class="mercato-photo"><div><div class="mercato-nom">Joshua Wilson-Esbrand</div><div class="mercato-poste">DG</div><div class="mercato-prix">Retour de prêt</div></div></div><div class="mercato-date">30 Juin</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/radiomak.jpg">Radiomak</div><div class="arrow">🔄</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('phillips')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/kalvin-phillips.jpg" class="mercato-photo"><div><div class="mercato-nom">Kalvin Phillips</div><div class="mercato-poste">MDC</div><div class="mercato-prix">Retour de prêt</div></div></div><div class="mercato-date">30 Juin</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/sheffieldutd.jpg">Sheffield Utd</div><div class="arrow">🔄</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('bah')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/abdulai-juma-bah.jpg" class="mercato-photo"><div><div class="mercato-nom">Abdulai Juma Bah</div><div class="mercato-poste">DC</div><div class="mercato-prix">Retour de prêt</div></div></div><div class="mercato-date">30 Juin</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/nice.jpg">OGC Nice</div><div class="arrow">🔄</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('kabore')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/issa-kabore.jpg" class="mercato-photo"><div><div class="mercato-nom">Issa Kaboré</div><div class="mercato-poste">DD</div><div class="mercato-prix">Retour de prêt</div></div></div><div class="mercato-date">30 Juin</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/wrexham.jpg">Wrexham</div><div class="arrow">🔄</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('bettinelli')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/marcus-bettinelli.jpg" class="mercato-photo"><div><div class="mercato-nom">Marcus Bettinelli</div><div class="mercato-poste">G</div><div class="mercato-prix">Renouvellement de contrat</div></div></div><div class="mercato-date">10 Avril</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">📝</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+
             <h3>🔴 Départs</h3>
 
-            <div class="mercato-card">
-            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/pep-guardiola.jpg" class="mercato-photo"><div><div class="mercato-nom">Pep Guardiola</div><div class="mercato-poste">ENT</div><div class="mercato-prix">Transfert Gratuit</div></div></div><div class="mercato-date">Juin 2026</div></div>
-            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club">Agents Libres</div></div>
+            <div class="mercato-card" onclick="afficher('heskey')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/reighan-heskey.jpg" class="mercato-photo"><div><div class="mercato-nom">Reighan Heskey</div><div class="mercato-poste">AG</div><div class="mercato-prix">2 M€</div></div></div><div class="mercato-date">18 Juillet</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/koln.jpg">FC Köln</div></div>
             </div>
 
             <div class="mercato-card">
-            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/manuel-akanji.jpg" class="mercato-photo"><div><div class="mercato-nom">Manuel Akanji</div><div class="mercato-poste">DC</div><div class="mercato-prix">15 M€</div></div></div><div class="mercato-date">Juin 2026</div></div>
-            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/intermilan.jpg">Inter</div></div>
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/sverre-nypan.jpg" class="mercato-photo"><div><div class="mercato-nom">Sverre Nypan</div><div class="mercato-poste">MOC</div><div class="mercato-prix">6 M€</div></div></div><div class="mercato-date">11 Juillet</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">🔄</div><div class="club"><img src="static/images/lommel.jpg">Lommel</div></div>
             </div>
 
             <div class="mercato-card">
-            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/john-stones.jpg" class="mercato-photo"><div><div class="mercato-nom">John Stones</div><div class="mercato-poste">DC</div><div class="mercato-prix">Transfert Gratuit</div></div></div><div class="mercato-date">Juin 2026</div></div>
-            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club">Agents Libres</div></div>
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/pierce-charles.jpg" class="mercato-photo"><div><div class="mercato-nom">Pierce Charles</div><div class="mercato-poste">G</div><div class="mercato-prix">Prêt</div></div></div><div class="mercato-date">10 Juillet</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">🔄</div><div class="club"><img src="static/images/qpr.jpg">QPR</div></div>
             </div>
 
             <div class="mercato-card">
-            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/bernardo-silva.jpg" class="mercato-photo"><div><div class="mercato-nom">Bernardo Silva</div><div class="mercato-poste">MOC</div><div class="mercato-prix">Transfert Gratuit</div></div></div><div class="mercato-date">Juin 2026</div></div>
-            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/realmadrid.jpg">Real Madrid</div></div>
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/tomas-galvez.jpg" class="mercato-photo"><div><div class="mercato-nom">Tomas Galvez</div><div class="mercato-poste">DG</div><div class="mercato-prix">500K €</div></div></div><div class="mercato-date">8 Juillet</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/eagles.jpg">Go Ahead Eagles</div></div>
             </div>
 
             <div class="mercato-card">
-            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/nathan-ake.jpg" class="mercato-photo"><div><div class="mercato-nom">Nathan Aké</div><div class="mercato-poste">DG</div><div class="mercato-prix">8.17 M€</div></div></div><div class="mercato-date">Juil. 2026</div></div>
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/nathan-ake.jpg" class="mercato-photo"><div><div class="mercato-nom">Nathan Aké</div><div class="mercato-poste">DC</div><div class="mercato-prix">8.17 M€</div></div></div><div class="mercato-date">3 Juillet</div></div>
             <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/fenerbahce.jpg">Fenerbahçe</div></div>
             </div>
 
             <div class="mercato-card">
-            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/jahmai-simpson-pusey.jpg" class="mercato-photo"><div><div class="mercato-nom">Jahmain Simpson-Pusey</div><div class="mercato-poste">DC</div><div class="mercato-prix">6 M€</div></div></div><div class="mercato-date">Juil. 2026</div></div>
-            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/koln.jpg">Köln</div></div>
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/mathys-detourbet.jpg" class="mercato-photo"><div><div class="mercato-nom">Mathys Detourbet</div><div class="mercato-poste">AG</div><div class="mercato-prix">Prêt</div></div></div><div class="mercato-date">2 Juillet</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">🔄</div><div class="club"><img src="static/images/monaco.jpg">AS Monaco</div></div>
             </div>
 
-            <div class="mercato-card" onclick="afficher('heskey')">
-            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/reighan-heskey.jpg" class="mercato-photo"><div><div class="mercato-nom">Reighan Heskey</div><div class="mercato-poste">AG</div><div class="mercato-prix">2 M€</div></div></div><div class="mercato-date">Juil. 2026</div></div>
-            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/koln.jpg">Köln</div></div>
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/oliver-whatmuff.jpg" class="mercato-photo"><div><div class="mercato-nom">Oliver Whatmuff</div><div class="mercato-poste">G</div><div class="mercato-prix">Prêt</div></div></div><div class="mercato-date">1er Juillet</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">🔄</div><div class="club"><img src="static/images/stockport.jpg">Stockport County</div></div>
+            </div>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/jahmai-simpson-pusey.jpg" class="mercato-photo"><div><div class="mercato-nom">Jahmai Simpson-Pusey</div><div class="mercato-poste">DC</div><div class="mercato-prix">6 M€</div></div></div><div class="mercato-date">12 Juin</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/koln.jpg">FC Köln</div></div>
+            </div>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/bernardo-silva.jpg" class="mercato-photo"><div><div class="mercato-nom">Bernardo Silva</div><div class="mercato-poste">MC</div><div class="mercato-prix">Transfert Gratuit</div></div></div><div class="mercato-date">11 Juin</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/realmadrid.jpg">Real Madrid</div></div>
+            </div>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/john-stones.jpg" class="mercato-photo"><div><div class="mercato-nom">John Stones</div><div class="mercato-poste">DC</div><div class="mercato-prix">Transfert Gratuit</div></div></div><div class="mercato-date">11 Juin</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club">Agents Libres</div></div>
+            </div>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/pep-guardiola.jpg" class="mercato-photo"><div><div class="mercato-nom">Pep Guardiola</div><div class="mercato-poste">ENT</div><div class="mercato-prix">Transfert Gratuit</div></div></div><div class="mercato-date">11 Juin</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club">Agents Libres</div></div>
+            </div>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/will-dickson.jpg" class="mercato-photo"><div><div class="mercato-nom">Will Dickson</div><div class="mercato-poste">ATT</div><div class="mercato-prix">100K €</div></div></div><div class="mercato-date">5 Mai</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/chesterfield.jpg">Chesterfield</div></div>
+            </div>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/manuel-akanji.jpg" class="mercato-photo"><div><div class="mercato-nom">Manuel Akanji</div><div class="mercato-poste">DC</div><div class="mercato-prix">15 M€</div></div></div><div class="mercato-date">4 Mai</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/intermilan.jpg">Inter</div></div>
             </div>
         </div>
 
         <div id="joueursinter-recap" class="content-section">
-            <h2>Coupe du Monde</h2>
-            <div class="transfert-card" onclick="afficherJoueur('rodri')"><img src="static/images/rodriinter.jpg"><div class="transfert-info"><h3>Rodri</h3><p>Espagne 🇪🇸</p><p>Matchs : 7</p><p>Buts : 0</p><p>Passes D : 0</p><p class="transfert-date">N°16</p></div></div>
-            
+            <h2>Pas de matchs à l'international actuellement.</h2>
         </div>
 
         <div id="classement" class="content-section">
@@ -911,8 +952,7 @@
         });
 
         const effectif = {
-            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", age: "34 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2027", valeur: "0.3M €", noteea: "70", naissance: "24/05/1992", img: "bettinelli.jpg", bio: "Gardien expérimenté.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'charles': { nom: "Pierce Charles", poste: "Gardien", age: "20 ans", nat: "Irlande du Nord 🇬🇧", paye: "N/A", fin: "30/06/2031", valeur: "0.9M €", noteea: "65", naissance: "21/08/2005", img: "charles.jpg", bio: "Espoir prometteur.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", age: "34 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", paye: "177 000 €", fin: "30/06/2027", valeur: "0.3M €", noteea: "70", naissance: "24/05/1992", img: "bettinelli.jpg", bio: "Gardien expérimenté.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'donnarumma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "89", naissance: "25/02/1999", img: "donnarumma.jpg", bio: "Gardien d'envergure internationale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2030", valeur: "25M €", noteea: "77", naissance: "10/10/2002", img: "trafford.jpg", bio: "Gardien prometteur.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'aitnouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "25 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", naissance: "06/06/2001", img: "ait-nouri.jpg", bio: "Latéral percutant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
@@ -925,7 +965,7 @@
             'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", age: "22 ans", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "80", naissance: "29/02/2004", img: "khusanov.jpg", bio: "Révélation ouzbèke.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'lewis': { nom: "Rico Lewis", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "28M €", noteea: "77", naissance: "21/11/2004", img: "lewis.jpg", bio: "Futur cadre issu de l'académie.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'nunes': { nom: "Matheus Nunes", poste: "Défenseur", age: "27 ans", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "82", naissance: "27/08/1998", img: "nunes.jpg", bio: "Défenseur puissant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "70M €", noteea: "81", naissance: "21/03/2005", img: "o'reilly.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "150 000 €", fin: "30/06/2030", valeur: "70M €", noteea: "81", naissance: "21/03/2005", img: "o'reilly.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'reis': { nom: "Vitor Reis", poste: "Défenseur", age: "20 ans", nat: "Brésil 🇧🇷", paye: "200 000", fin: "30/06/2029", valeur: "30M €", noteea: "75", naissance: "12/01/2006", img: "reis.jpg", bio: "Jeune talent brésilien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'wilson-esbrand': { nom: "Joshua Wilson-Esbrand", poste: "Défenseur", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "67", naissance: "26/12/2002", img: "wilson-esbrand.jpg", bio: "Pépite anglaise.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'anderson': { nom: "Elliot Anderson", poste: "Milieu", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "350 000", fin: "30/06/2031", valeur: "75M €", noteea: "83", naissance: "06/11/2002", img: "anderson.jpg", bio: "Incroyable talent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
@@ -934,16 +974,14 @@
             'foden': { nom: "Phil Foden", poste: "Milieu", age: "26 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2027", valeur: "70M €", noteea: "85", naissance: "28/05/2000", img: "foden.jpg", bio: "L'enfant chéri de Stockport.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", age: "24 ans", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2029", valeur: "40M €", noteea: "81", naissance: "03/01/2002", img: "gonzalez.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", age: "32 ans", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "10M €", noteea: "82", naissance: "06/05/1994", img: "kovacic.jpg", bio: "Expérience croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'nypan': { nom: "Sverre Nypan", poste: "Milieu", age: "19 ans", nat: "Norvège 🇳🇴", paye: "N/A", fin: "30/06/2030", valeur: "13M €", noteea: "70", naissance: "19/12/2006", img: "nypan.jpg", bio: "Futur maître du milieu.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'phillips': { nom: "Kalvin Phillips", poste: "Milieu", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "600 000", fin: "30/06/2028", valeur: "2.5M €", noteea: "74", naissance: "02/12/1995", img: "phillips.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "50M €", noteea: "85", naissance: "29/07/1998", img: "reijnders.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'rodri': { nom: "Rodri", poste: "Milieu", age: "30 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2027", valeur: "50M €", noteea: "89", naissance: "22/06/1996", img: "rodri.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'detourbet': { nom: "Mathys Detourbet", poste: "Attaquant", age: "19 ans", nat: "France 🇫🇷", paye: "N/A", fin: "30/06/2031", valeur: "15M €", noteea: "68", naissance: "29/04/2007", img: "detourbet.jpg", bio: "Pépite nationale prometteuse.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "24 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "75M €", noteea: "84", naissance: "27/05/2002", img: "doku.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'grealish': { nom: "Jack Grealish", poste: "Attaquant", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 100 000", fin: "30/06/2027", valeur: "20M €", noteea: "81", naissance: "10/09/1995", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "200M €", noteea: "91", naissance: "21/07/2000", img: "haaland.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "83", naissance: "07/02/1999", img: "marmoush.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'monga': { nom: "Jérémy Monga", poste: "Attaquant", age: "17 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2031", valeur: "15M €", noteea: "N/A", naissance: "10/07/2009", img: "monga.jpg", bio: "Promesse anglaise", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'monga': { nom: "Jérémy Monga", poste: "Attaquant", age: "17 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2031", valeur: "15M €", noteea: "INCONNUE", naissance: "10/07/2009", img: "monga.jpg", bio: "Promesse anglaise", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'savinho': { nom: "Savinho", poste: "Attaquant", age: "22 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "35M €", noteea: "81", naissance: "10/04/2004", img: "savinho.jpg", bio: "Dribbleur brésilien électrisant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", age: "26 ans", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "80M €", noteea: "84", naissance: "07/01/2000", img: "semenyo.jpg", bio: "Puissance offensive brute.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'maresca': { nom: "Enzo Maresca", poste: "Coach", age: "46 ans", nat: "Italie 🇮🇹", paye: "INCONNU", fin: "INCONNU", naissance: "10/02/1980", img: "maresca.jpg", bio: "Coach depuis la fin de l'ère Guardiola.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
@@ -985,7 +1023,7 @@
 
 gardiennes: [
 
-{nom:"Eve Annets", age:"20 ans", naissance:"19/03/2006", note:"N/A", img:"gardienneannets.jpg"},
+{nom:"Eve Annets", age:"20 ans", naissance:"19/03/2006", note:"INCONNUE", img:"gardienneannets.jpg"},
 {nom:"Eartha Cumings", age:"27 ans", naissance:"11/06/1999", note:"72", img:"gardiennecumings.jpg"},
 {nom:"Ayaka Yamashita", age:"30 ans", naissance:"29/09/1995", note:"79", img:"gardienneyamashita.jpg"}
 
@@ -996,15 +1034,15 @@ defenseures:[
 
 {nom:"Kerstin Casparij", age:"25 ans", naissance:"19/08/2000", note:"79", img:"defenseurecasparij.jpg"},
 {nom:"Niamh Charles", age:"27 ans", naissance:"21/06/1999", note:"83", img:"defenseurecharles.jpg"},
-{nom:"Mayzee Davies", age:"19 ans", naissance:"25/08/2006", note:"N/A", img:"defenseuredavies.jpg"},
+{nom:"Mayzee Davies", age:"19 ans", naissance:"25/08/2006", note:"INCONNUE", img:"defenseuredavies.jpg"},
 {nom:"Alex Greenwood", age:"32 ans", naissance:"07/09/1993", note:"84", img:"defenseuregreenwood.jpg"},
 {nom:"Rebecca Knaak", age:"30 ans", naissance:"23/06/1996", note:"78", img:"defenseureknaak.jpg"},
 {nom:"Naomi Layzell", age:"22 ans", naissance:"29/02/2004", note:"67", img:"defenseurelayzell.jpg"},
-{nom:"Tara O'Hanlon", age:"21 ans", naissance:"14/03/2005", note:"N/A", img:"defenseureo'hanlon.jpg"},
+{nom:"Tara O'Hanlon", age:"21 ans", naissance:"14/03/2005", note:"INCONNUE", img:"defenseureo'hanlon.jpg"},
 {nom:"Grace Prior", age:"21 ans", naissance:"02/12/2004", note:"72", img:"defenseureprior.jpg"},
 {nom:"Jade Rose", age:"23 ans", naissance:"12/02/2003", note:"73", img:"defenseurerose.jpg"},
 {nom:"Risa Shimizu", age:"30 ans", naissance:"15/06/1996", note:"79", img:"defenseureshimizu.jpg"},
-{nom:"Codie Thomas", age:"19 ans", naissance:"30/08/2006", note:"N/A", img:"defenseurethomas.jpg"},
+{nom:"Codie Thomas", age:"19 ans", naissance:"30/08/2006", note:"INCONNUE", img:"defenseurethomas.jpg"},
 {nom:"Laura Wienroither", age:"27 ans", naissance:"13/01/1999", note:"72", img:"defenseurewienroither.jpg"}
 
 ],
@@ -1032,7 +1070,7 @@ attaquantes:[
 {nom:"Beth Mead", age:"31 ans", naissance:"09/05/1995", note:"87", img:"attaquantemead.jpg"},
 {nom:"Vivienne Miedema", age:"30 ans", naissance:"15/07/1996", note:"85", img:"attaquantemiedema.jpg"},
 {nom:"Lily Murphy", age:"20 ans", naissance:"13/02/2006", note:"63", img:"attaquantemurphy.jpg"},
-{nom:"Poppy Pritchard", age:"20 ans", naissance:"03/12/2005", note:"N/A", img:"attaquantepritchard.jpg"},
+{nom:"Poppy Pritchard", age:"20 ans", naissance:"03/12/2005", note:"INCONNUE", img:"attaquantepritchard.jpg"},
 {nom:"Khadija Shaw", age:"29 ans", naissance:"31/01/1997", note:"89", img:"attaquanteshaw.jpg"}
 
 ]
@@ -2246,85 +2284,9 @@ function genererBonusSpecial(){
 }
 
         function afficherActuJoueur(id) {
-            afficherJoueur(id); // Réutilise la logique d'affichage existante
+            afficherJoueur(id);
         }
-
-        function afficherActuConceicao() {
-
-    resetFiche();
-
-    document.getElementById('nom-joueur').innerText = "Eduardo Conceição";
-    document.getElementById('photo').src = "static/images/conceicaotransfermarkt.jpg";
-
-    document.getElementById('s-age').innerText = "16 ans";
-    document.getElementById('s-nat').innerText = "Brésil 🇧🇷";
-    document.getElementById('s-paye').innerText = "INCONNU";
-    document.getElementById('s-fin').innerText = "30/01/2029";
-    document.getElementById('s-valeur').innerText = "INCONNUE";
-    document.getElementById('s-noteea').innerText = "INCONNUE";
-
-    document.getElementById('s-bio').innerText =
-        "Pépite de Palmeiras, future recrue phare de l'attaque mancunienne.";
-
-    document.getElementById('s-buts').innerText = "0";
-    document.getElementById('s-passes').innerText = "0";
-    document.getElementById('s-matchs').innerText = "0";
-    document.getElementById('s-note').innerText = "0.0";
-
-    showSection('joueur-solo');
-}
-
-function afficherActuSavinho() {
-
-    resetFiche();
-
-    document.getElementById('nom-joueur').innerText = "Savinho";
-    document.getElementById('photo').src = "static/images/savinho.jpg";
-
-    document.getElementById('s-age').innerText = "22 ans";
-    document.getElementById('s-nat').innerText = "Brésil 🇧🇷";
-    document.getElementById('s-paye').innerText = "390 000";
-    document.getElementById('s-fin').innerText = "30/06/2031";
-    document.getElementById('s-valeur').innerText = "35M €";
-    document.getElementById('s-noteea').innerText = "81";
-
-    document.getElementById('s-bio').innerText =
-        "Pépite de Man City, réclame plus de temps de jeu et Tottenham est prêt à le lui offrir...";
-
-    document.getElementById('s-buts').innerText = "0";
-    document.getElementById('s-passes').innerText = "0";
-    document.getElementById('s-matchs').innerText = "0";
-    document.getElementById('s-note').innerText = "0.0";
-
-    showSection('joueur-solo');
-}
-
-        
-        function afficherActuGusto() {
-
-    resetFiche();
-
-    document.getElementById('nom-joueur').innerText = "Malo Gusto";
-    document.getElementById('photo').src = "static/images/gustotransfermarkt.jpg";
-
-    document.getElementById('s-age').innerText = "23 ans";
-    document.getElementById('s-nat').innerText = "France ";
-    document.getElementById('s-paye').innerText = "228 000 €";
-    document.getElementById('s-fin').innerText = "30/06/2030";
-    document.getElementById('s-valeur').innerText = "35M €";
-    document.getElementById('s-noteea').innerText = "79";
-
-    document.getElementById('s-bio').innerText =
-        "Très talentueux, évoqué comme solution à Nunes";
-
-    document.getElementById('s-buts').innerText = "0";
-    document.getElementById('s-passes').innerText = "0";
-    document.getElementById('s-matchs').innerText = "0";
-    document.getElementById('s-note').innerText = "0.0";
-
-    showSection('joueur-solo');
-}
-        
+ 
         function verifierModeNuit(){
 
     const heure = new Date().getHours();
@@ -2363,12 +2325,11 @@ setInterval(verifierModeNuit, 60000);
 }
 
         const joueursRecherche = [
-
+//Gardiens//
 {nom:"Marcus Bettinelli", id:"bettinelli"},
-{nom:"Pierce Charles", id:"charles"},
 {nom:"Gianluigi Donnarumma", id:"donnarumma"},
 {nom:"James Trafford", id:"trafford"},
-
+//Défenseurs//
 {nom:"Max Alleyne", id:"alleyne"},
 {nom:"Rayan Ait-Nouri", id:"ait-nouri"},
 {nom:"Abdulai Juma Bah", id:"juma-bah"},
@@ -2382,28 +2343,25 @@ setInterval(verifierModeNuit, 60000);
 {nom:"Nico O'Reilly", id:"o'reilly"},
 {nom:"Vitor Reis", id:"reis"},
 {nom:"Joshua Wilson-Esbrand", id:"wilson-esbrand"},
-
+//Milieux//
 {nom:"Elliot Anderson", id:"anderson"},
 {nom:"Rayan Cherki", id:"cherki"},
 {nom:"Claudio Echeverri", id:"echeverri"},
 {nom:"Phil Foden", id:"foden"},
 {nom:"Nico Gonzalez", id:"gonzalez"},
 {nom:"Matéo Kovacic", id:"kovacic"},
-{nom:"Sverre Nypan", id:"nypan"},
 {nom:"Kalvin Phillips", id:"phillips"},
 {nom:"Tijjani Reijnders", id:"reijnders"},
 {nom:"Rodri", id:"rodri"},
-
-{nom:"Mathys Detourbet", id:"detourbet"},            
+//Attaquants//
 {nom:"Jérémy Doku", id:"doku"},
 {nom:"Jack Grealish", id:"grealish"},
 {nom:"Erling Haaland", id:"haaland"},
 {nom:"Omar Marmoush", id:"marmoush"},
 {nom:"Savinho", id:"savinho"},
 {nom:"Antoine Semenyo", id:"semenyo"},
-
+//Entraîneur//
 {nom:"Enzo Maresca", id:"maresca"}
-
 ];
 
 function ouvrirDossierContrats() {
