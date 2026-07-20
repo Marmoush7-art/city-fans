@@ -213,6 +213,12 @@
         .anniversaire.hommes { color: red; }
         .anniversaire.femmes { color: green; }
         .anniversaire.centre { color: black; }
+
+        #credits-view{padding:20px;}
+        .credit-box{max-width:700px;margin:auto;background:#1d1d1d;border-radius:15px;padding:20px;box-shadow:0 0 15px rgba(0,0,0,.3);}
+        .credit-box h2{color:#6CABDD;margin-top:20px;}
+        .credit-box p,
+        .credit-box li{color:white;line-height:1.6;}
         
         .player-search { position: absolute; right: 140px; /* place avant la version */ top: 50%; transform: translateY(-50%); width: 190px; z-index: 2000; }
         .player-search input { width: 100%; box-sizing: border-box; padding: 8px 15px; border-radius: 20px; border: none; outline: none; font-weight: bold; }
@@ -283,7 +289,7 @@
             <li class="menu-item" onclick="ouvrirDossierContrats()"><span class="menu-item-icon">📄</span>Contrats</li>
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
             <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span>Jeu Draft</li>
-        </div>
+            <li class="menu-item" onclick="ouvrirCredits()"><span class="menu-item-icon">📜</span>Crédits</li>
         </ul>
     </div>
     <div id="quiz-view" class="content-section">
@@ -370,6 +376,37 @@
     <h2 id="centre-title">EFFECTIF JEUNES</h2>
 
     <div id="centre-container"></div>
+
+</div>
+
+<div id="credits-view" class="content-section">
+
+    <h2>📜 Crédits</h2>
+
+    <div class="match-card">
+        <h3>👨‍💻 Développeur</h3>
+        <p>Marmoush7-art</p>
+    </div>
+
+    <div class="match-card">
+        <h3>⚽ À propos</h3>
+        <p>
+            Site non officiel consacré à Manchester City.
+            Créé par passion avec HTML, CSS et JavaScript.
+        </p>
+    </div>
+
+    <div class="match-card">
+        <h3>❤️ Remerciements</h3>
+        <p>
+            Merci à tous les visiteurs du site pour leur soutien.
+        </p>
+    </div>
+
+    <div class="match-card">
+        <h3>🚀 Version</h3>
+        <p>Version 1.0</p>
+    </div>
 
 </div>
 
@@ -2359,6 +2396,12 @@ setInterval(verifierModeNuit, 60000);
 //Entraîneur//
 {nom:"Enzo Maresca", id:"maresca"}
 ];
+
+function ouvrirCredits() {
+
+    showSection("credits-view");
+
+}
 
 function ouvrirDossierContrats() {
 
