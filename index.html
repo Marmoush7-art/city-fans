@@ -2651,6 +2651,15 @@ zone.innerHTML += `
 
 }
 
+function afficher(id) {
+    if (effectif[id]) {
+        afficherJoueur(id);
+        return;
+    }
+
+    console.error("Joueur introuvable :", id);
+}
+
 function afficherAnniversairesMois() {
     const container = document.getElementById("anniversaires");
     container.innerHTML = "";
