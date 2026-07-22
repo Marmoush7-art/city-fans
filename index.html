@@ -1154,7 +1154,7 @@ attaquantes:[
 
             // Remplissage des données du joueur
             document.getElementById('nom-joueur').innerText = j.nom;
-            document.getElementById('s-age').innerText = j.age;
+            document.getElementById('s-age').innerText = calculerAge(j.naissance);
             document.getElementById('s-nat').innerText = j.nat;
             document.getElementById('s-paye').innerText = j.paye;
             document.getElementById('s-fin').innerText = j.fin;
@@ -2392,6 +2392,23 @@ setInterval(verifierModeNuit, 60000);
 //Entraîneur//
 {nom:"Enzo Maresca", id:"maresca"}
 ];
+
+function calculerAge(dateNaissance) {
+    const naissance = new Date(dateNaissance);
+    const aujourdHui = new Date();
+
+    let age = aujourdHui.getFullYear() - naissance.getFullYear();
+
+    if (
+        aujourdHui.getMonth() < naissance.getMonth() ||
+        (aujourdHui.getMonth() === naissance.getMonth() &&
+         aujourdHui.getDate() < naissance.getDate())
+    ) {
+        age--;
+    }
+
+    return age;
+}
 
 function ouvrirCredits() {
 
