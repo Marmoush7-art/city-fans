@@ -751,6 +751,16 @@
         <div id="mercato-recap" class="content-section">
             <h2>Historique du Mercato (Été 2026)</h2>
 
+            <div class="mercato-card" onclick="afficher('warhurst')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/matty-warhurst.jpg" class="mercato-photo"><div><div class="mercato-nom">Matty Warhurst</div><div class="mercato-poste">ATT</div><div class="mercato-prix">Inconnu</div></div></div><div class="mercato-date">21 Juillet</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/koln.jpg">Northampton</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('brits')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/spike-brits.jpg" class="mercato-photo"><div><div class="mercato-nom">Spike Brits</div><div class="mercato-poste">G</div><div class="mercato-prix">Prêt</div></div></div><div class="mercato-date">21 Juillet</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">🔄</div><div class="club"><img src="static/images/koln.jpg">Sutton Utd</div></div>
+            </div>
+
             <div class="mercato-card" onclick="afficher('heskey')">
             <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/reighan-heskey.jpg" class="mercato-photo"><div><div class="mercato-nom">Reighan Heskey</div><div class="mercato-poste">AG</div><div class="mercato-prix">2 M€</div></div></div><div class="mercato-date">18 Juillet</div></div>
             <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/koln.jpg">FC Köln</div></div>
@@ -974,7 +984,7 @@
             'donnarumma': { nom: "Gianluigi Donnarumma", poste: "Gardien", age: "27 ans", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "89", naissance: "25/02/1999", img: "donnarumma.jpg", bio: "Gardien d'envergure internationale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'trafford': { nom: "James Trafford", poste: "Gardien", age: "23 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2030", valeur: "25M €", noteea: "77", naissance: "10/10/2002", img: "trafford.jpg", bio: "Gardien prometteur.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'ait-nouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", age: "25 ans", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", naissance: "06/06/2001", img: "ait-nouri.jpg", bio: "Latéral percutant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "20 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "8M €", noteea: "68", naissance:"21/07/2005", img: "alleyne.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", age: "21 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "8M €", noteea: "68", naissance:"21/07/2005", img: "alleyne.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'dias': { nom: "Ruben Dias", poste: "Défenseur", age: "29 ans", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "55M €", noteea: "87", naissance: "14/05/1997", img: "dias.jpg", bio: "Pilier défensif.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'guehi': { nom: "Marc Guéhi", poste: "Défenseur", age: "26 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "84", naissance: "13/07/2000", img: "guehi.jpg", bio: "Nouvelle recrue solide.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", age: "24 ans", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", noteea: "85", naissance: "23/01/2002", img: "gvardiol.jpg", bio: "Roc croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
@@ -997,7 +1007,7 @@
             'rodri': { nom: "Rodri", poste: "Milieu", age: "30 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2027", valeur: "50M €", noteea: "89", naissance: "22/06/1996", img: "rodri.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "24 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "75M €", noteea: "84", naissance: "27/05/2002", img: "doku.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'grealish': { nom: "Jack Grealish", poste: "Attaquant", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 100 000", fin: "30/06/2027", valeur: "20M €", noteea: "81", naissance: "10/09/1995", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "25 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "200M €", noteea: "91", naissance: "21/07/2000", img: "haaland.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "26 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "200M €", noteea: "91", naissance: "21/07/2000", img: "haaland.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "83", naissance: "07/02/1999", img: "marmoush.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'monga': { nom: "Jérémy Monga", poste: "Attaquant", age: "17 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2031", valeur: "15M €", noteea: "INCONNUE", naissance: "10/07/2009", img: "monga.jpg", bio: "Promesse anglaise", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'savinho': { nom: "Savinho", poste: "Attaquant", age: "22 ans", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "35M €", noteea: "81", naissance: "10/04/2004", img: "savinho.jpg", bio: "Dribbleur brésilien électrisant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
@@ -1081,7 +1091,7 @@ milieux:[
 attaquantes:[
 
 {nom:"Kerolin Nicoli", age:"26 ans", naissance:"17/11/1999", note:"80", img:"attaquantekerolin.jpg"},
-{nom:"Iman Beney", age:"19 ans", naissance:"23/07/2006", note:"62", img:"attaquantebeney.jpg"},
+{nom:"Iman Beney", age:"20 ans", naissance:"23/07/2006", note:"62", img:"attaquantebeney.jpg"},
 {nom:"Mary Fowler", age:"23 ans", naissance:"14/02/2003", note:"79", img:"attaquantefowler.jpg"},
 {nom:"Aoba Fujino", age:"22 ans", naissance:"27/01/2004", note:"77", img:"attaquantefujino.jpg"},
 {nom:"Lauren Hemp", age:"25 ans", naissance:"07/08/2000", note:"87", img:"attaquantehemp.jpg"},
