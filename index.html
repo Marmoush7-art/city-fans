@@ -2398,7 +2398,8 @@ setInterval(verifierModeNuit, 60000);
 ];
 
 function calculerAge(dateNaissance) {
-    const naissance = new Date(dateNaissance);
+    const [jour, mois, annee] = dateNaissance.split("/").map(Number);
+    const naissance = new Date(annee, mois - 1, jour);
     const aujourdHui = new Date();
 
     let age = aujourdHui.getFullYear() - naissance.getFullYear();
@@ -2411,7 +2412,7 @@ function calculerAge(dateNaissance) {
         age--;
     }
 
-    return age;
+    return age + " ans";
 }
 
 function ouvrirCredits() {
@@ -2740,7 +2741,7 @@ function afficherAnniversairesMois() {
     const enrichis = joueurs
         .filter(j => j.naissance)
         .map(j => {
-            const [jour, mois] = j.naissance.split("/").map(Number);
+            const date = j.naissance.split("/"); const jour = Number(date[0]); const mois = Number(date[1]);
             return { ...j, jour, mois };
         });
 
