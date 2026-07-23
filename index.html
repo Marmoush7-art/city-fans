@@ -2553,7 +2553,7 @@ zone.innerHTML += `
 
 <p>${j.poste}</p>
 
-<p>${j.age}</p>
+<p>${calculerAge(j.naissance)}</p>
 
 <p>Note EA : ${j.noteea}</p>
 
@@ -2587,7 +2587,7 @@ function ouvrirCentreGeneral(){
             <div class="transfert-info">
                 <h3>${j.nom}</h3>
                 <p>${j.poste}</p>
-                <p>${j.age}</p>
+                <p>${calculerAge(j.naissance)}</p>
                 <p>${j.nat}</p>
             </div>
         </div>`;
@@ -2637,7 +2637,7 @@ zone.innerHTML += `
 
 <p>${j.poste}</p>
 
-<p>${j.age}</p>
+<p>${calculerAge(j.naissance)}</p>
 
 <p>${j.nat}</p>
 
@@ -2692,7 +2692,7 @@ zone.innerHTML += `
 
 <h3>${j.nom}</h3>
 
-<p>Age : ${j.age}</p>
+<p>Age : ${calculerAge(j.naissance)}</p>
 
 <p>Note EA : ${j.note}</p>
 
@@ -2918,7 +2918,7 @@ function updateSelection(results) {
             const cles = Object.keys(effectif).filter(id => effectif[id].poste !== "Coach");
             joueurMystere = effectif[cles[Math.floor(Math.random() * cles.length)]];
             const icons = { "Gardien": "🧤", "Défenseur": "🛡️", "Milieu": "⚡", "Attaquant": "⚔️" };
-            document.getElementById('quiz-clues').innerHTML = `Poste : ${icons[joueurMystere.poste]}<br>Âge : ${joueurMystere.age}<br>Nation : ${joueurMystere.nat}<br>Salaire : ${joueurMystere.paye}`;
+            document.getElementById('quiz-clues').innerHTML = `Poste : ${icons[joueurMystere.poste]}<br>Âge : ${calculerAge(joueurMystere.naissance)}<br>Nation : ${joueurMystere.nat}<br>Salaire : ${joueurMystere.paye}`;
             document.getElementById('quiz-answer').value = "";
             document.getElementById('quiz-feedback').innerText = "";
             document.getElementById('quiz-img-result').style.display = "none";
