@@ -1012,7 +1012,7 @@
             'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", age: "27 ans", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "50M €", noteea: "85", naissance: "29/07/1998", img: "reijnders.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'rodri': { nom: "Rodri", poste: "Milieu", age: "30 ans", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2027", valeur: "55M €", noteea: "89", naissance: "22/06/1996", img: "rodri.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'doku': { nom: "Jérémy Doku", poste: "Attaquant", age: "24 ans", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "75M €", noteea: "84", naissance: "27/05/2002", img: "doku.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'grealish': { nom: "Jack Grealish", poste: "Attaquant", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 100 000", fin: "30/06/2027", valeur: "20M €", noteea: "81", naissance: "10/09/1995", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'grealish': { nom: "Jack Grealish", poste: "Attaquant", age: "30 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 100 000", pret: true, fin: "30/06/2027", valeur: "20M €", noteea: "81", naissance: "10/09/1995", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'haaland': { nom: "Erling Haaland", poste: "Attaquant", age: "26 ans", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "220M €", noteea: "91", naissance: "21/07/2000", img: "haaland.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", age: "27 ans", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "83", naissance: "07/02/1999", img: "marmoush.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'monga': { nom: "Jérémy Monga", poste: "Attaquant", age: "17 ans", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2031", valeur: "15M €", noteea: "INCONNUE", naissance: "10/07/2009", img: "monga.jpg", bio: "Promesse anglaise", matchs: 0, buts: 0, passes: 0, note: 0.0 },
@@ -1164,7 +1164,7 @@ attaquantes:[
             document.getElementById('s-fin').innerText = j.fin;
             document.getElementById('s-valeur').innerText = j.valeur;
             document.getElementById('s-noteea').innerText = j.noteea;
-            document.getElementById('s-bio').innerText = j.bio;
+            let texteBio = j.bio;  if (j.pret && pretActif(j.finPret)) {texteBio += `📌 Actuellement prêté à ${j.clubPret} jusqu'au ${j.finPret}.`; }  document.getElementById('s-bio').innerText = texteBio;
             document.getElementById('photo').src = "static/images/" + j.img;
             document.getElementById('s-buts').innerText = j.buts || 0;
             document.getElementById('s-passes').innerText = j.passes || 0;
@@ -2413,6 +2413,12 @@ function calculerAge(dateNaissance) {
     }
 
     return age + " ans";
+}
+
+function pretActif(finPret) {
+    const [jour, mois, annee] = finPret.split("/").map(Number);
+    const fin = new Date(annee, mois - 1, jour);
+    return new Date() <= fin;
 }
 
 function ouvrirCredits() {
