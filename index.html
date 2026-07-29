@@ -290,6 +290,7 @@
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
             <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span>Jeu Draft</li>
             <li class="menu-item" onclick="ouvrirCredits()"><span class="menu-item-icon">📜</span>Crédits</li>
+            
         </ul>
     </div>
     <div id="quiz-view" class="content-section">
@@ -313,7 +314,7 @@
             <img src="static/images/mancity.jpg" class="logo-accueil">
             <div class="match-card">
                 <h3>📰 Dernière Actualité</h3>
-                <p><strong>📑 Foden Khusanov et Gvardiol prolongent avec les Skyblues.</strong></p>
+                <p><strong>📑 Foden, Khusanov et Gvardiol prolongent avec les Skyblues.</strong></p>
             </div>
 
     <div class="match-card">
@@ -391,102 +392,72 @@
 <div id="draft-view" class="content-section" style="display:none;">
 
     <h2>🎯 Draft Challenge</h2>
-
     <div class="draft-budget-box">
-
         <div>
             <h3>👤 Toi</h3>
             <span id="budget-joueur">250</span> M€
         </div>
-
         <div>
             <h3>🤖 Bot</h3>
             <span id="budget-bot">250</span> M€
         </div>
-
     </div>
-
     <div id="draft-carte"></div>
-
     <div class="draft-actions">
-
         <input
             type="number"
             id="montant-enchere"
             placeholder="Votre enchère">
-
         <button
             id="btn-encherir"
             onclick="faireEnchere()">
             💰 Miser
         </button>
-
         <button
             id="btn-abandonner"
             onclick="abandonnerEnchere()">
             ❌ Abandonner
         </button>
-
         <button
             id="btn-sauter"
             onclick="utiliserBonusSaut()">
             🗑️ Sauter
         </button>
-
         <button
             id="btn-budget"
             onclick="utiliserBonusBudget()">
             💸 +20 M€
         </button>
-
         <button
             id="btn-reduction"
             onclick="activerReduction()">
             🎯 -50%
         </button>
-
         <button id="btn-bonus-special" onclick="utiliserBonusSpecial()" style="display:none;">
             🎁 Bonus spécial
         </button>
-
     </div>
-
     <div id="historique-enchere"></div>
-
     <div class="draft-equipes">
-
         <div class="draft-colonne">
-
             <h3>Ton Trio</h3>
-
             <ul id="liste-joueur-draft">
             </ul>
-
         </div>
-
         <div class="draft-colonne">
-
             <h3>Trio du Bot</h3>
-
             <ul id="liste-bot-draft">
             </ul>
-
         </div>
-
     </div>
-
     <div
     id="zone-restart"
     style="display:none;text-align:center;margin-top:20px;">
-
     <button onclick="recommencerDraft()">
         🔄 Rejouer
     </button>
-
 </div>
-
 <div id="draft-resultat"></div>
-
 </div>
 
         <div id="matchs-view" class="content-section">
@@ -508,7 +479,6 @@
             </div>
         </div>
     </div>
-
 
             <div class="match-card" style="border-left-color: #FFA500;">
                 <div class="match-header">Match Amical<br>📅 5 août 2026</div>
@@ -645,7 +615,6 @@
             </div>
         </div>
     </div>
-
         
     </div>
 </div>   
@@ -835,11 +804,6 @@
 
         <div id="mercato-recap" class="content-section">
             <h2>Historique du Mercato (Été 2026)</h2>
-
-            <div class="mercato-card" onclick="afficher('chabot')">
-            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/max-edgar-chabot.jpg" class="mercato-photo"><div><div class="mercato-nom">Max Edgar Chabot</div><div class="mercato-poste">G</div><div class="mercato-prix">Transfert gratuit</div></div></div><div class="mercato-date">28 Juillet</div></div>
-            <div class="mercato-clubs"><div class="club"><img src="static/images/angers.jpg">Angers SCO</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
-            </div>
             
             <div class="mercato-card" onclick="afficher('gvardiol')">
             <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/josko-gvardiol.jpg" class="mercato-photo"><div><div class="mercato-nom">Josko Gvardiol</div><div class="mercato-poste">DC</div><div class="mercato-prix">Renouvellement de contrat</div></div></div><div class="mercato-date">28 Juillet</div></div>
