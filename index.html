@@ -356,35 +356,20 @@
 </div>
 
 <div id="effectif-hommes" class="content-section">
-
     <h2>👔 EFFECTIF HOMMES</h2>
-
     <div id="effectif-container"></div>
-
 </div>
-
 <div id="effectif-femmes" class="content-section">
-
     <h2>👔 EFFECTIF FEMMES</h2>
-
     <div id="effectif-femmes-container"></div>
-
 </div>
-
 <div id="centre-formation-view" class="content-section">
-
     <h2 id="centre-title">EFFECTIF JEUNES</h2>
-
     <div id="centre-container"></div>
-
 </div>
-
 <div id="effectif-pret" class="content-section">
-
-    <h2>JOUEURS EN PRET</h2>
-
-    <div id="effectif-container"></div>
-
+    <h2>🔄 EFFECTIF PRÊT</h2>
+    <div id="effectif-pret-container"></div>
 </div>
 
 <div id="credits-view" class="content-section">
@@ -715,9 +700,10 @@
 </div>
 
 <div class="centre-card" onclick="afficherEffectifPret()">
-<img src="static/images/mancity.jpg">
+<img src="static/images/mancityecussonclasse.jpg">
 <div class="centre-info">
-<h3>Joueurs en prêt</h3>
+<h3>🔄 Effectif Prêt</h3>
+<p>Joueurs prêtés cette saison</p>
 </div>
 </div>
 </div>
@@ -1153,19 +1139,30 @@
 
 };
 
+const joueursPret = [
+    {
+        nom: "Spike Brits",
+        poste: "Gardien",
+        club: "Sutton United",
+        photo: "static/images/spike-brits.jpg"
+    },
+    {
+        nom: "Matty Warhurst",
+        poste: "Attaquant",
+        club: "Northampton",
+        photo: "static/images/matty-warhurst.jpg"
+    }
+];
+
         const effectifFemmes = {
 
 gardiennes: [
-
 {nom:"Eve Annets", naissance:"19/03/2006", note:"INCONNUE", img:"gardienneannets.jpg"},
 {nom:"Eartha Cumings", naissance:"11/06/1999", note:"72", img:"gardiennecumings.jpg"},
 {nom:"Ayaka Yamashita", naissance:"29/09/1995", note:"79", img:"gardienneyamashita.jpg"}
-
 ],
 
-
 defenseures:[
-
 {nom:"Kerstin Casparij", naissance:"19/08/2000", note:"79", img:"defenseurecasparij.jpg"},
 {nom:"Niamh Charles", naissance:"21/06/1999", note:"83", img:"defenseurecharles.jpg"},
 {nom:"Mayzee Davies", naissance:"25/08/2006", note:"INCONNUE", img:"defenseuredavies.jpg"},
@@ -1178,24 +1175,18 @@ defenseures:[
 {nom:"Risa Shimizu", naissance:"15/06/1996", note:"79", img:"defenseureshimizu.jpg"},
 {nom:"Codie Thomas", naissance:"30/08/2006", note:"INCONNUE", img:"defenseurethomas.jpg"},
 {nom:"Laura Wienroither", naissance:"13/01/1999", note:"72", img:"defenseurewienroither.jpg"}
-
 ],
 
-
 milieux:[
-
 {nom:"Laura Blindkilde Brown", naissance:"09/12/2003", note:"72", img:"milieublindkilde-brown.jpg"},
 {nom:"Grace Clinton", naissance:"31/03/2003", note:"78", img:"milieuclinton.jpg"},
 {nom:"Sam Coffey", naissance:"31/12/1998", note:"82", img:"milieucoffey.jpg"},
 {nom:"Yui Hasegawa", naissance:"29/01/1997", note:"85", img:"milieuhasegawa.jpg"},
 {nom:"Sydney Lohmann", naissance:"19/06/2000", note:"80", img:"milieulohmann.jpg"},
 {nom:"Aemu Oyama", naissance:"14/09/2004", note:"70", img:"milieuoyama.jpg"}
-
 ],
 
-
 attaquantes:[
-
 {nom:"Kerolin Nicoli", naissance:"17/11/1999", note:"80", img:"attaquantekerolin.jpg"},
 {nom:"Iman Beney", naissance:"23/07/2006", note:"62", img:"attaquantebeney.jpg"},
 {nom:"Mary Fowler", naissance:"14/02/2003", note:"79", img:"attaquantefowler.jpg"},
@@ -1206,7 +1197,6 @@ attaquantes:[
 {nom:"Lily Murphy", naissance:"13/02/2006", note:"63", img:"attaquantemurphy.jpg"},
 {nom:"Poppy Pritchard", naissance:"03/12/2005", note:"INCONNUE", img:"attaquantepritchard.jpg"},
 {nom:"Khadija Shaw", naissance:"31/01/1997", note:"89", img:"attaquanteshaw.jpg"}
-
 ]
 
 };
@@ -2754,56 +2744,24 @@ zone.innerHTML += `
 
 }
 
-function ouvrirEffectifPret(){
-
-showSection("effectif-menu");
-
-}
-
 function afficherEffectifPret(){
-
-showSection("effectif-hommes");
-
-chargerEffectifHommes();
-
+    showSection("effectif-pret");
+    renderEffectifPret();
 }
 
-function chargerEffectifPret(){
+function renderEffectifPret(){
+    const container = document.getElementById("effectif-pret-container");
 
-let zone=document.getElementById("effectif-container");
-
-zone.innerHTML="";
-
-
-for(let id in effectif){
-
-let j=effectif[id];
-
-
-zone.innerHTML += `
-
-<div class="transfert-card" onclick="afficherJoueur('${id}')">
-
-<img src="static/images/${j.img}">
-
-<div class="transfert-info">
-
-<h3>${j.nom}</h3>
-
-<p>${j.poste}</p>
-
-<p>${calculerAge(j.naissance)}</p>
-
-<p>Note EA : ${j.noteea}</p>
-
-</div>
-
-</div>
-
-`;
-
-}
-
+    container.innerHTML = joueursPret.map(j => `
+        <div class="centre-card">
+            <img src="${j.photo}" alt="${j.nom}">
+            <div class="centre-info">
+                <h3>${j.nom}</h3>
+                <p>📌 ${j.poste}</p>
+                <p>🏟️ Prêté à : <strong>${j.club}</strong></p>
+            </div>
+        </div>
+    `).join("");
 }
 
 function ouvrirEffectifFemmes(){
