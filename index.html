@@ -379,6 +379,14 @@
 
 </div>
 
+<div id="effectif-pret" class="content-section">
+
+    <h2>JOUEURS EN PRET</h2>
+
+    <div id="effectif-container"></div>
+
+</div>
+
 <div id="credits-view" class="content-section">
 
     <h2>📜 Crédits</h2>
@@ -703,6 +711,13 @@
 <div class="centre-info">
 <h3>🧬 Centre Formation</h3>
 <p>Jeunes joueurs</p>
+</div>
+</div>
+
+<div class="centre-card" onclick="afficherEffectifPret()">
+<img src="static/images/mancity.jpg">
+<div class="centre-info">
+<h3>Joueurs en prêt</h3>
 </div>
 </div>
 </div>
@@ -2734,6 +2749,58 @@ zone.innerHTML += `
 `;
 
 }
+
+}
+
+}
+
+function ouvrirEffectifPret(){
+
+showSection("effectif-menu");
+
+}
+
+function afficherEffectifPret(){
+
+showSection("effectif-hommes");
+
+chargerEffectifHommes();
+
+}
+
+function chargerEffectifPret(){
+
+let zone=document.getElementById("effectif-container");
+
+zone.innerHTML="";
+
+
+for(let id in effectif){
+
+let j=effectif[id];
+
+
+zone.innerHTML += `
+
+<div class="transfert-card" onclick="afficherJoueur('${id}')">
+
+<img src="static/images/${j.img}">
+
+<div class="transfert-info">
+
+<h3>${j.nom}</h3>
+
+<p>${j.poste}</p>
+
+<p>${calculerAge(j.naissance)}</p>
+
+<p>Note EA : ${j.noteea}</p>
+
+</div>
+
+</div>
+
+`;
 
 }
 
