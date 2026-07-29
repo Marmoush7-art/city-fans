@@ -290,6 +290,7 @@
             <li class="menu-item" onclick="demarrerQuiz()"><span class="menu-item-icon">🔍</span>Quiz</li>
             <li class="menu-item" onclick="ouvrirDraft()"><span class="menu-item-icon">🎯</span>Jeu Draft</li>
             <li class="menu-item" onclick="ouvrirCredits()"><span class="menu-item-icon">📜</span>Crédits</li>
+            
         </ul>
     </div>
     <div id="quiz-view" class="content-section">
@@ -310,11 +311,10 @@
     <main>
         <div id="accueil" class="content-section active">
             <h2>🩵 BIENVENUE CITYZEN 🩵</h2>
-            <img src="static/images/mancityecussonclasse.jpg" class="logo-accueil">
+            <img src="static/images/mancity.jpg" class="logo-accueil">
             <div class="match-card">
                 <h3>📰 Dernière Actualité</h3>
-                <p><strong>👑 Rodri remporte la coupe du monde avec l'Espagne.
-                    Phil Foden prolonge avec les Cityzens.</strong></p>
+                <p><strong>📑 Foden, Khusanov et Gvardiol prolongent avec les Skyblues.</strong></p>
             </div>
 
     <div class="match-card">
@@ -357,27 +357,20 @@
 </div>
 
 <div id="effectif-hommes" class="content-section">
-
     <h2>👔 EFFECTIF HOMMES</h2>
-
     <div id="effectif-container"></div>
-
 </div>
-
 <div id="effectif-femmes" class="content-section">
-
     <h2>👔 EFFECTIF FEMMES</h2>
-
     <div id="effectif-femmes-container"></div>
-
 </div>
-
 <div id="centre-formation-view" class="content-section">
-
     <h2 id="centre-title">EFFECTIF JEUNES</h2>
-
     <div id="centre-container"></div>
-
+</div>
+<div id="effectif-pret" class="content-section">
+    <h2>🔄 EFFECTIF PRÊT</h2>
+    <div id="effectif-pret-container"></div>
 </div>
 
 <div id="credits-view" class="content-section">
@@ -399,109 +392,79 @@
 <div id="draft-view" class="content-section" style="display:none;">
 
     <h2>🎯 Draft Challenge</h2>
-
     <div class="draft-budget-box">
-
         <div>
             <h3>👤 Toi</h3>
             <span id="budget-joueur">250</span> M€
         </div>
-
         <div>
             <h3>🤖 Bot</h3>
             <span id="budget-bot">250</span> M€
         </div>
-
     </div>
-
     <div id="draft-carte"></div>
-
     <div class="draft-actions">
-
         <input
             type="number"
             id="montant-enchere"
             placeholder="Votre enchère">
-
         <button
             id="btn-encherir"
             onclick="faireEnchere()">
             💰 Miser
         </button>
-
         <button
             id="btn-abandonner"
             onclick="abandonnerEnchere()">
             ❌ Abandonner
         </button>
-
         <button
             id="btn-sauter"
             onclick="utiliserBonusSaut()">
             🗑️ Sauter
         </button>
-
         <button
             id="btn-budget"
             onclick="utiliserBonusBudget()">
             💸 +20 M€
         </button>
-
         <button
             id="btn-reduction"
             onclick="activerReduction()">
             🎯 -50%
         </button>
-
         <button id="btn-bonus-special" onclick="utiliserBonusSpecial()" style="display:none;">
             🎁 Bonus spécial
         </button>
-
     </div>
-
     <div id="historique-enchere"></div>
-
     <div class="draft-equipes">
-
         <div class="draft-colonne">
-
             <h3>Ton Trio</h3>
-
             <ul id="liste-joueur-draft">
             </ul>
-
         </div>
-
         <div class="draft-colonne">
-
             <h3>Trio du Bot</h3>
-
             <ul id="liste-bot-draft">
             </ul>
-
         </div>
-
     </div>
-
     <div
     id="zone-restart"
     style="display:none;text-align:center;margin-top:20px;">
-
     <button onclick="recommencerDraft()">
         🔄 Rejouer
     </button>
-
 </div>
-
 <div id="draft-resultat"></div>
-
 </div>
 
         <div id="matchs-view" class="content-section">
             <h2>RESULTATS</h2>
 
             <div class="match-card" style="border-left-color: #FFA500;">
-                <div class="match-header">Match Amical</div>
+                <div class="match-header">Match Amical<br>📅 1er août 2026</div>
                 <div class="match-main">
                     <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
                     <div class="score-center">_ - _</div>
@@ -517,9 +480,8 @@
         </div>
     </div>
 
-
             <div class="match-card" style="border-left-color: #FFA500;">
-                <div class="match-header">Match Amical</div>
+                <div class="match-header">Match Amical<br>📅 5 août 2026</div>
                 <div class="match-main">
                     <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
                     <div class="score-center">_ - _</div>
@@ -536,7 +498,7 @@
     </div>
 
             <div class="match-card" style="border-left-color: #FFA500;">
-                <div class="match-header">Match Amical</div>
+                <div class="match-header">Match Amical<br>📅 9 août 2026</div>
                 <div class="match-main">
                     <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
                     <div class="score-center">_ - _</div>
@@ -552,8 +514,8 @@
         </div>
     </div>
 
-            <div class="match-card" style="border-left-color: #6CABDD;">
-                <div class="match-header">Community Shield : Finale 🏆</div>
+            <div class="match-card" style="border-left-color: #008000;">
+                <div class="match-header">Community Shield : Finale 🏆<br>📅 16 août 2026</div>
                 <div class="match-main">
                     <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
                     <div class="score-center">_ - _</div>
@@ -568,6 +530,91 @@
             </div>
         </div>
     </div>
+
+    <div class="match-card" style="border-left-color: #4aa3d8;">
+                <div class="match-header">Premier League<br>📅 23 août 2026</div>
+                <div class="match-main">
+                    <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
+                    <div class="score-center">_ - _</div>
+                    <div class="team"><img src="static/images/bournemouth.jpg"><p>AFC Bournemouth</p></div>
+                </div>
+        <div class="match-details">
+            <div class="side-details">
+                <h4>Manchester City</h4>
+            </div>
+            <div class="side-details">
+                <h4>AFC Bournemouth</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="match-card" style="border-left-color: #4aa3d8;">
+                <div class="match-header">Premier League<br>📅 28 août 2026</div>
+                <div class="match-main">
+                    <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
+                    <div class="score-center">_ - _</div>
+                    <div class="team"><img src="static/images/crystalpalace.jpg"><p>Crystal Palace</p></div>
+                </div>
+        <div class="match-details">
+            <div class="side-details">
+                <h4>Manchester City</h4>
+            </div>
+            <div class="side-details">
+                <h4>Crystal Palace</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="match-card" style="border-left-color: #4aa3d8;">
+                <div class="match-header">Premier League<br>📅 5 septembre 2026</div>
+                <div class="match-main">
+                    <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
+                    <div class="score-center">_ - _</div>
+                    <div class="team"><img src="static/images/coventry.jpg"><p>Coventry City</p></div>
+                </div>
+        <div class="match-details">
+            <div class="side-details">
+                <h4>Manchester City</h4>
+            </div>
+            <div class="side-details">
+                <h4>Coventry City</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="match-card" style="border-left-color: #4aa3d8;">
+                <div class="match-header">Premier League<br>📅 13 septembre 2026</div>
+                <div class="match-main">
+                    <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
+                    <div class="score-center">_ - _</div>
+                    <div class="team"><img src="static/images/manutd.jpg"><p>Man Utd</p></div>
+                </div>
+        <div class="match-details">
+            <div class="side-details">
+                <h4>Manchester City</h4>
+            </div>
+            <div class="side-details">
+                <h4>Manchester United</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="match-card" style="border-left-color: #4aa3d8;">
+                <div class="match-header">Premier League<br>📅 19 septembre 2026</div>
+                <div class="match-main">
+                    <div class="team"><img src="static/images/mancity.jpg"><p>Man City</p></div>
+                    <div class="score-center">_ - _</div>
+                    <div class="team"><img src="static/images/sunderland.jpg"><p>Sunderland</p></div>
+                </div>
+        <div class="match-details">
+            <div class="side-details">
+                <h4>Manchester City</h4>
+            </div>
+            <div class="side-details">
+                <h4>Sunderland</h4>
+            </div>
+        </div>
+    </div>
         
     </div>
 </div>   
@@ -578,13 +625,12 @@
         </div>
 
         <div id="actus-mercato" class="content-section">
-        <h2>Actus Mercato 📰</h2>
-        <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/malo-gusto.jpg" class="mercato-photo"><div><div class="mercato-nom">Malo Gusto</div><div class="mercato-poste">DD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/chelsea.jpg">Chelsea</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
-        <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ayyoub-bouaddi.jpg" class="mercato-photo"><div><div class="mercato-nom">Ayyoub Bouaddi</div><div class="mercato-poste">MDC</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/lille.jpg">LOSC Lille</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
-        <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ibrahim-mbaye.jpg" class="mercato-photo"><div><div class="mercato-nom">Ibrahim Mbaye</div><div class="mercato-poste">AD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/psg.jpg">PSG</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
-        <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ryan-mcaidoo.jpg" class="mercato-photo"><div><div class="mercato-nom">Ryan McAidoo</div><div class="mercato-poste">AD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City U21</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
-        <div class="mercato-card" onclick="afficher('doku')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/jeremy-doku.jpg" class="mercato-photo"><div><div class="mercato-nom">Jérémy Doku</div><div class="mercato-poste">AG</div><div class="mercato-prix">Rumeur de renouvellement de contrat</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
-        <div class="mercato-card" onclick="afficher('gvardiol')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/josko-gvardiol.jpg" class="mercato-photo"><div><div class="mercato-nom">Josko Gvardiol</div><div class="mercato-poste">DC</div><div class="mercato-prix">Rumeur de renouvellement de contrat</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
+            <h2>Actus Mercato 📰</h2>
+            <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/malo-gusto.jpg" class="mercato-photo"><div><div class="mercato-nom">Malo Gusto</div><div class="mercato-poste">DD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/chelsea.jpg">Chelsea</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
+            <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ayyoub-bouaddi.jpg" class="mercato-photo"><div><div class="mercato-nom">Ayyoub Bouaddi</div><div class="mercato-poste">MDC</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/lille.jpg">LOSC Lille</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
+            <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ibrahim-mbaye.jpg" class="mercato-photo"><div><div class="mercato-nom">Ibrahim Mbaye</div><div class="mercato-poste">AD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/psg.jpg">PSG</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
+            <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ryan-mcaidoo.jpg" class="mercato-photo"><div><div class="mercato-nom">Ryan McAidoo</div><div class="mercato-poste">AD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City U21</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
+            <div class="mercato-card" onclick="afficher('doku')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/jeremy-doku.jpg" class="mercato-photo"><div><div class="mercato-nom">Jérémy Doku</div><div class="mercato-poste">AG</div><div class="mercato-prix">Rumeur de renouvellement de contrat</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
         </div>
 
         <div id="actus-mercato-b" class="content-section">
@@ -599,7 +645,7 @@
 
 <h2>⚽ EFFECTIF</h2>
 <div class="centre-card" onclick="afficherEffectifHommes()">
-<img src="static/images/mancityecussonclasse.jpg">
+<img src="static/images/mancity.jpg">
 <div class="centre-info">
 <h3>👔 Effectif Hommes</h3>
 <p>Equipe première masculine</p>
@@ -607,7 +653,7 @@
 </div>
 
 <div class="centre-card" onclick="afficherEffectifFemmes()">
-<img src="static/images/mancityecussonclasse.jpg">
+<img src="static/images/mancity.jpg">
 <div class="centre-info">
 <h3>👔 Effectif Femmes</h3>
 <p>Equipe première féminine</p>
@@ -619,6 +665,14 @@
 <div class="centre-info">
 <h3>🧬 Centre Formation</h3>
 <p>Jeunes joueurs</p>
+</div>
+</div>
+
+<div class="centre-card" onclick="afficherEffectifPret()">
+<img src="static/images/mancity.jpg">
+<div class="centre-info">
+<h3>🔄 Effectif Prêt</h3>
+<p>Joueurs prêtés cette saison</p>
 </div>
 </div>
 </div>
@@ -750,6 +804,16 @@
 
         <div id="mercato-recap" class="content-section">
             <h2>Historique du Mercato (Été 2026)</h2>
+            
+            <div class="mercato-card" onclick="afficher('gvardiol')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/josko-gvardiol.jpg" class="mercato-photo"><div><div class="mercato-nom">Josko Gvardiol</div><div class="mercato-poste">DC</div><div class="mercato-prix">Renouvellement de contrat</div></div></div><div class="mercato-date">28 Juillet</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('khusanov')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/abdukodir-khusanov.jpg" class="mercato-photo"><div><div class="mercato-nom">Abdukodir Khusanov</div><div class="mercato-poste">DC</div><div class="mercato-prix">Renouvellement de contrat</div></div></div><div class="mercato-date">25 Juillet</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
 
             <div class="mercato-card" onclick="afficher('foden')">
             <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/phil-foden.jpg" class="mercato-photo"><div><div class="mercato-nom">Phil Foden</div><div class="mercato-poste">MOC</div><div class="mercato-prix">Renouvellement de contrat</div></div></div><div class="mercato-date">22 Juillet</div></div>
@@ -777,7 +841,7 @@
             </div>
 
             <div class="mercato-card">
-            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/sverre-nypan.jpg" class="mercato-photo"><div><div class="mercato-nom">Sverre Nypan</div><div class="mercato-poste">MOC</div><div class="mercato-prix">6 M€</div></div></div><div class="mercato-date">11 Juillet</div></div>
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/sverre-nypan.jpg" class="mercato-photo"><div><div class="mercato-nom">Sverre Nypan</div><div class="mercato-poste">MOC</div><div class="mercato-prix">Prêt</div></div></div><div class="mercato-date">11 Juillet</div></div>
             <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">🔄</div><div class="club"><img src="static/images/lommel.jpg">Lommel</div></div>
             </div>
 
@@ -987,10 +1051,10 @@
             'alleyne': { nom: "Max Alleyne", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "8M €", noteea: "68", naissance:"21/07/2005", img: "alleyne.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'dias': { nom: "Ruben Dias", poste: "Défenseur", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "55M €", noteea: "87", naissance: "14/05/1997", img: "dias.jpg", bio: "Pilier défensif.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'guehi': { nom: "Marc Guéhi", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "84", naissance: "13/07/2000", img: "guehi.jpg", bio: "Nouvelle recrue solide.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2028", valeur: "70M €", noteea: "85", naissance: "23/01/2002", img: "gvardiol.jpg", bio: "Roc croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "85", naissance: "23/01/2002", img: "gvardiol.jpg", bio: "Roc croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'juma-bah': { nom: "Abdulai Juma Bah", poste: "Défenseur", nat: "Sierra Leone 🇸🇱", paye: "60 000 €", fin: "30/06/2031", valeur: "10M €", noteea: "72", naissance: "11/04/2006", img: "bah.jpg", bio: "Jeune talent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'kabore': { nom: "Issa Kaboré", poste: "Défenseur", nat: "Burkina Faso 🇧🇫", paye: "100 000 €", fin: "30/06/2027", valeur: "4M €", noteea: "73", naissance: "12/05/2001", img: "kabore.jpg", bio: "Joueur africain.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "80", naissance: "29/02/2004", img: "khusanov.jpg", bio: "Révélation ouzbèke.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2031", valeur: "50M €", noteea: "80", naissance: "29/02/2004", img: "khusanov.jpg", bio: "Révélation ouzbèke.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'lewis': { nom: "Rico Lewis", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "28M €", noteea: "77", naissance: "21/11/2004", img: "lewis.jpg", bio: "Futur cadre issu de l'académie.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'nunes': { nom: "Matheus Nunes", poste: "Défenseur", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "82", naissance: "27/08/1998", img: "nunes.jpg", bio: "Défenseur puissant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
             'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "150 000 €", fin: "30/06/2030", valeur: "70M €", noteea: "81", naissance: "21/03/2005", img: "o'reilly.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
@@ -1044,49 +1108,49 @@
 
 };
 
+const joueursPret = [
+    { nom: "Sverre Nypan", poste: "Milieu", club: "Lommel SK", photo: "static/images/nypan.jpg" },
+    { nom: "Pierce Charles", poste: "Gardien", club: "QPR", photo: "static/images/charles.jpg" },
+    { nom: "Mathys Detourbet", poste: "Attaquant", club: "Monaco", photo: "static/images/detourbet.jpg" },
+    
+    { nom: "Spike Brits", poste: "Gardien", club: "Sutton United", photo: "static/images/gardienspike.jpg" },
+    { nom: "Oliver Whatmuff", poste: "Gardien", club: "Stockport", photo: "static/images/gardienoliver.jpg" },
+
+    { nom: "Naomi Layzell", poste: "Défenseuse", club: "Inconnu", photo: "static/images/defenseurelayzell.jpg" },
+    { nom: "Codie Thomas", poste: "Défenseuse", club: "Nottingham Forest", photo: "static/images/defenseurethomas.jpg" }
+];
+
         const effectifFemmes = {
 
 gardiennes: [
-
 {nom:"Eve Annets", naissance:"19/03/2006", note:"INCONNUE", img:"gardienneannets.jpg"},
 {nom:"Eartha Cumings", naissance:"11/06/1999", note:"72", img:"gardiennecumings.jpg"},
 {nom:"Ayaka Yamashita", naissance:"29/09/1995", note:"79", img:"gardienneyamashita.jpg"}
-
 ],
 
-
 defenseures:[
-
 {nom:"Kerstin Casparij", naissance:"19/08/2000", note:"79", img:"defenseurecasparij.jpg"},
 {nom:"Niamh Charles", naissance:"21/06/1999", note:"83", img:"defenseurecharles.jpg"},
 {nom:"Mayzee Davies", naissance:"25/08/2006", note:"INCONNUE", img:"defenseuredavies.jpg"},
 {nom:"Alex Greenwood", naissance:"07/09/1993", note:"84", img:"defenseuregreenwood.jpg"},
 {nom:"Rebecca Knaak", naissance:"23/06/1996", note:"78", img:"defenseureknaak.jpg"},
-{nom:"Naomi Layzell", naissance:"29/02/2004", note:"67", img:"defenseurelayzell.jpg"},
 {nom:"Tara O'Hanlon", naissance:"14/03/2005", note:"INCONNUE", img:"defenseureo'hanlon.jpg"},
 {nom:"Grace Prior", naissance:"02/12/2004", note:"72", img:"defenseureprior.jpg"},
 {nom:"Jade Rose", naissance:"12/02/2003", note:"73", img:"defenseurerose.jpg"},
 {nom:"Risa Shimizu", naissance:"15/06/1996", note:"79", img:"defenseureshimizu.jpg"},
-{nom:"Codie Thomas", naissance:"30/08/2006", note:"INCONNUE", img:"defenseurethomas.jpg"},
 {nom:"Laura Wienroither", naissance:"13/01/1999", note:"72", img:"defenseurewienroither.jpg"}
-
 ],
 
-
 milieux:[
-
 {nom:"Laura Blindkilde Brown", naissance:"09/12/2003", note:"72", img:"milieublindkilde-brown.jpg"},
 {nom:"Grace Clinton", naissance:"31/03/2003", note:"78", img:"milieuclinton.jpg"},
 {nom:"Sam Coffey", naissance:"31/12/1998", note:"82", img:"milieucoffey.jpg"},
 {nom:"Yui Hasegawa", naissance:"29/01/1997", note:"85", img:"milieuhasegawa.jpg"},
 {nom:"Sydney Lohmann", naissance:"19/06/2000", note:"80", img:"milieulohmann.jpg"},
 {nom:"Aemu Oyama", naissance:"14/09/2004", note:"70", img:"milieuoyama.jpg"}
-
 ],
 
-
 attaquantes:[
-
 {nom:"Kerolin Nicoli", naissance:"17/11/1999", note:"80", img:"attaquantekerolin.jpg"},
 {nom:"Iman Beney", naissance:"23/07/2006", note:"62", img:"attaquantebeney.jpg"},
 {nom:"Mary Fowler", naissance:"14/02/2003", note:"79", img:"attaquantefowler.jpg"},
@@ -1097,7 +1161,6 @@ attaquantes:[
 {nom:"Lily Murphy", naissance:"13/02/2006", note:"63", img:"attaquantemurphy.jpg"},
 {nom:"Poppy Pritchard", naissance:"03/12/2005", note:"INCONNUE", img:"attaquantepritchard.jpg"},
 {nom:"Khadija Shaw", naissance:"31/01/1997", note:"89", img:"attaquanteshaw.jpg"}
-
 ]
 
 };
@@ -2643,6 +2706,26 @@ zone.innerHTML += `
 
 }
 
+}
+
+function afficherEffectifPret(){
+    showSection("effectif-pret");
+    renderEffectifPret();
+}
+
+function renderEffectifPret(){
+    const container = document.getElementById("effectif-pret-container");
+
+    container.innerHTML = joueursPret.map(j => `
+        <div class="centre-card">
+            <img src="${j.photo}" alt="${j.nom}">
+            <div class="centre-info">
+                <h3>${j.nom}</h3>
+                <p>📌 ${j.poste}</p>
+                <p>🏟️ Prêté à : <strong>${j.club}</strong></p>
+            </div>
+        </div>
+    `).join("");
 }
 
 function ouvrirEffectifFemmes(){
