@@ -310,7 +310,7 @@
     <main>
         <div id="accueil" class="content-section active">
             <h2>🩵 BIENVENUE CITYZEN 🩵</h2>
-            <img src="static/images/mancityecussonclasse.jpg" class="logo-accueil">
+            <img src="static/images/mancity.jpg" class="logo-accueil">
             <div class="match-card">
                 <h3>📰 Dernière Actualité</h3>
                 <p><strong>📑 Foden Khusanov et Gvardiol prolongent avec les Skyblues.</strong></p>
@@ -676,7 +676,7 @@
 
 <h2>⚽ EFFECTIF</h2>
 <div class="centre-card" onclick="afficherEffectifHommes()">
-<img src="static/images/mancityecussonclasse.jpg">
+<img src="static/images/mancity.jpg">
 <div class="centre-info">
 <h3>👔 Effectif Hommes</h3>
 <p>Equipe première masculine</p>
@@ -684,7 +684,7 @@
 </div>
 
 <div class="centre-card" onclick="afficherEffectifFemmes()">
-<img src="static/images/mancityecussonclasse.jpg">
+<img src="static/images/mancity.jpg">
 <div class="centre-info">
 <h3>👔 Effectif Femmes</h3>
 <p>Equipe première féminine</p>
@@ -700,7 +700,7 @@
 </div>
 
 <div class="centre-card" onclick="afficherEffectifPret()">
-<img src="static/images/mancityecussonclasse.jpg">
+<img src="static/images/mancity.jpg">
 <div class="centre-info">
 <h3>🔄 Effectif Prêt</h3>
 <p>Joueurs prêtés cette saison</p>
@@ -1140,18 +1140,15 @@
 };
 
 const joueursPret = [
-    {
-        nom: "Spike Brits",
-        poste: "Gardien",
-        club: "Sutton United",
-        photo: "static/images/spike-brits.jpg"
-    },
-    {
-        nom: "Matty Warhurst",
-        poste: "Attaquant",
-        club: "Northampton",
-        photo: "static/images/matty-warhurst.jpg"
-    }
+    { nom: "Sverre Nypan", poste: "Milieu", club: "Lommel SK", photo: "static/images/nypan.jpg" },
+    { nom: "Pierce Charles", poste: "Gardien", club: "QPR", photo: "static/images/charles.jpg" },
+    { nom: "Mathys Detourbet", poste: "Attaquant", club: "Monaco", photo: "static/images/detourbet.jpg" },
+    
+    { nom: "Spike Brits", poste: "Gardien", club: "Sutton United", photo: "static/images/brits.jpg" },
+    { nom: "Oliver Whatmuff", poste: "Gardien", club: "Stockport", photo: "static/images/whatmuff.jpg" },
+
+    { nom: "Naomi Layzell", poste: "Défenseuse", club: "Inconnu", photo: "static/images/defenseurelayzell.jpg" },
+    { nom: "Codie Thomas", poste: "Défenseuse", club: "Incoonu", photo: "static/images/defenseurethomas.jpg" }
 ];
 
         const effectifFemmes = {
@@ -1168,12 +1165,10 @@ defenseures:[
 {nom:"Mayzee Davies", naissance:"25/08/2006", note:"INCONNUE", img:"defenseuredavies.jpg"},
 {nom:"Alex Greenwood", naissance:"07/09/1993", note:"84", img:"defenseuregreenwood.jpg"},
 {nom:"Rebecca Knaak", naissance:"23/06/1996", note:"78", img:"defenseureknaak.jpg"},
-{nom:"Naomi Layzell", naissance:"29/02/2004", note:"67", img:"defenseurelayzell.jpg"},
 {nom:"Tara O'Hanlon", naissance:"14/03/2005", note:"INCONNUE", img:"defenseureo'hanlon.jpg"},
 {nom:"Grace Prior", naissance:"02/12/2004", note:"72", img:"defenseureprior.jpg"},
 {nom:"Jade Rose", naissance:"12/02/2003", note:"73", img:"defenseurerose.jpg"},
 {nom:"Risa Shimizu", naissance:"15/06/1996", note:"79", img:"defenseureshimizu.jpg"},
-{nom:"Codie Thomas", naissance:"30/08/2006", note:"INCONNUE", img:"defenseurethomas.jpg"},
 {nom:"Laura Wienroither", naissance:"13/01/1999", note:"72", img:"defenseurewienroither.jpg"}
 ],
 
