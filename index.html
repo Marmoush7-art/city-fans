@@ -684,29 +684,7 @@
                 <table>
                     <tr><th>Âge</th><td id="s-age"></td></tr>
                     <tr><th>Nationalité</th><td id="s-nat"></td></tr>
-                    <tr><th>Salaire / mois</th><td id="s-paye"></td></tr>
-                    <tr><th>Fin de contrat</th><td id="s-fin"></td></tr>
-                    <tr><th>Valeur</th><td id="s-valeur"></td></tr>
-                    <tr><th>Note EA Sports</th><td id="s-noteea"></td></tr>
-                </table>
-                <div class="bio-container">
-                    <strong>Biographie :</strong><br><br>
-                    <span id="s-bio"></span>
-                    <div class="stat-card"><span class="stat-number" id="s-buts">0</span><span class="stat-label">⚽ Buts</span></div>
-                    <div class="stat-card"><span class="stat-number" id="s-passes">0</span><span class="stat-label">👟 Passes D.</span></div>
-                    <div class="stat-card"><span class="stat-number" id="s-matchs">0</span><span class="stat-label">🎮 Matchs</span></div>
-                    <div class="stat-card"><span class="stat-number" id="s-note">0.0</span><span class="stat-label">⭐ Note</span></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="joueur-solo" class="content-section">
-            <h2 id="nom-joueur"></h2>
-            <img id="photo" src="" style="width:200px; border-radius:15px;">
-            <div class="box-info">
-                <table>
-                    <tr><th>Âge</th><td id="s-age"></td></tr>
-                    <tr><th>Nationalité</th><td id="s-nat"></td></tr>
+                    <tr><th>Numéro</th><td id="s-numero"></td></tr>
                     <tr><th>Salaire / mois</th><td id="s-paye"></td></tr>
                     <tr><th>Fin de contrat</th><td id="s-fin"></td></tr>
                     <tr><th>Valeur</th><td id="s-valeur"></td></tr>
@@ -804,6 +782,16 @@
 
         <div id="mercato-recap" class="content-section">
             <h2>Historique du Mercato (Été 2026)</h2>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/christian-mcfarlane.jpg" class="mercato-photo"><div><div class="mercato-nom">Christian McFarlane</div><div class="mercato-poste">DC</div><div class="mercato-prix">Prêt</div></div></div><div class="mercato-date">29 Juillet</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">🔄</div><div class="club"><img src="static/images/leicester.jpg">Leicester</div></div>
+            </div>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/joel-ndala.jpg" class="mercato-photo"><div><div class="mercato-nom">Joel Ndala</div><div class="mercato-poste">AG</div><div class="mercato-prix">900K €</div></div></div><div class="mercato-date">29 Juillet</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/cerclebrugges.jpg">Cercle Brugges</div></div>
+            </div>
             
             <div class="mercato-card" onclick="afficher('gvardiol')">
             <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/josko-gvardiol.jpg" class="mercato-photo"><div><div class="mercato-nom">Josko Gvardiol</div><div class="mercato-poste">DC</div><div class="mercato-prix">Renouvellement de contrat</div></div></div><div class="mercato-date">28 Juillet</div></div>
@@ -980,6 +968,7 @@
                 <table>
                     <tr><th>Âge</th><td id="s-age"></td></tr>
                     <tr><th>Nationalité</th><td id="s-nat"></td></tr>
+                    <tr><th>Numéro</th><td id="s-numero"></td></tr>
                     <tr><th>Salaire / mois</th><td id="s-paye"></td></tr>
                     <tr><th>Fin de contrat</th><td id="s-fin"></td></tr>
                     <tr><th>Valeur</th><td id="s-valeur"></td></tr>
@@ -1021,7 +1010,7 @@
             <h2 id="nom-joueur"></h2>
             <img id="photo" src="" style="width:200px; border-radius:15px;">
             <div class="box-info">
-                <p id="s-age"></p><p id="s-nat"></p><p id="s-paye"></p><p id="s-valeur"></p><p id="s-fin"></p><p id="s-noteea"></p>
+                <p id="s-age"></p><p id="s-nat"></p><p id="s-numero"></p><p id="s-paye"></p><p id="s-valeur"></p><p id="s-fin"></p><p id="s-noteea"></p>
                 <div class="bio-container" id="s-bio"></div>
             </div>
         </div>
@@ -1044,39 +1033,39 @@
         });
 
         const effectif = {
-            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", paye: "177 000 €", fin: "30/06/2027", valeur: "0.3M €", noteea: "70", naissance: "24/05/1992", img: "bettinelli.jpg", bio: "Gardien expérimenté.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'donnarumma': { nom: "Gianluigi Donnarumma", poste: "Gardien", nat: "Italie 🇮🇹", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "89", naissance: "25/02/1999", img: "donnarumma.jpg", bio: "Gardien d'envergure internationale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'trafford': { nom: "James Trafford", poste: "Gardien", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", paye: "250 000 €", fin: "30/06/2030", valeur: "25M €", noteea: "77", naissance: "10/10/2002", img: "trafford.jpg", bio: "Gardien prometteur.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'ait-nouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", nat: "Algérie 🇩🇿", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", naissance: "06/06/2001", img: "ait-nouri.jpg", bio: "Latéral percutant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2030", valeur: "8M €", noteea: "68", naissance:"21/07/2005", img: "alleyne.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'dias': { nom: "Ruben Dias", poste: "Défenseur", nat: "Portugal 🇵🇹", paye: "1 200 000 €", fin: "30/06/2029", valeur: "55M €", noteea: "87", naissance: "14/05/1997", img: "dias.jpg", bio: "Pilier défensif.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", paye: "253 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "84", naissance: "13/07/2000", img: "guehi.jpg", bio: "Nouvelle recrue solide.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", nat: "Croatie 🇭🇷", paye: "833 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "85", naissance: "23/01/2002", img: "gvardiol.jpg", bio: "Roc croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'juma-bah': { nom: "Abdulai Juma Bah", poste: "Défenseur", nat: "Sierra Leone 🇸🇱", paye: "60 000 €", fin: "30/06/2031", valeur: "10M €", noteea: "72", naissance: "11/04/2006", img: "bah.jpg", bio: "Jeune talent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'kabore': { nom: "Issa Kaboré", poste: "Défenseur", nat: "Burkina Faso 🇧🇫", paye: "100 000 €", fin: "30/06/2027", valeur: "4M €", noteea: "73", naissance: "12/05/2001", img: "kabore.jpg", bio: "Joueur africain.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", nat: "Ouzbékistan 🇺🇿", paye: "96 000 €", fin: "30/06/2031", valeur: "50M €", noteea: "80", naissance: "29/02/2004", img: "khusanov.jpg", bio: "Révélation ouzbèke.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'lewis': { nom: "Rico Lewis", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "123 000 €", fin: "30/06/2030", valeur: "28M €", noteea: "77", naissance: "21/11/2004", img: "lewis.jpg", bio: "Futur cadre issu de l'académie.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'nunes': { nom: "Matheus Nunes", poste: "Défenseur", nat: "Portugal 🇵🇹", paye: "658 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "82", naissance: "27/08/1998", img: "nunes.jpg", bio: "Défenseur puissant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "150 000 €", fin: "30/06/2030", valeur: "70M €", noteea: "81", naissance: "21/03/2005", img: "o'reilly.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'reis': { nom: "Vitor Reis", poste: "Défenseur", nat: "Brésil 🇧🇷", paye: "200 000", fin: "30/06/2029", valeur: "30M €", noteea: "75", naissance: "12/01/2006", img: "reis.jpg", bio: "Jeune talent brésilien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'wilson-esbrand': { nom: "Joshua Wilson-Esbrand", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "67", naissance: "26/12/2002", img: "wilson-esbrand.jpg", bio: "Pépite anglaise.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'anderson': { nom: "Elliot Anderson", poste: "Milieu", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "350 000", fin: "30/06/2031", valeur: "110M €", noteea: "83", naissance: "06/11/2002", img: "anderson.jpg", bio: "Incroyable talent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'cherki': { nom: "Rayan Cherki", poste: "Milieu", nat: "France 🇫🇷", paye: "333 000 €", fin: "30/06/2030", valeur: "90M €", noteea: "84", naissance: "17/08/2003", img: "cherki.jpg", bio: "Magicien français.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'echeverri': { nom: "Claudio Echeverri", poste: "Milieu", nat: "Argentine 🇦🇷", paye: "78 000", fin: "30/06/2028", valeur: "15M €", noteea: "74", naissance: "02/01/2006", img: "echeverri.jpg", bio: "Jeune pépite argentine.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'foden': { nom: "Phil Foden", poste: "Milieu", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 170 000 €", fin: "30/06/2030", valeur: "70M €", noteea: "85", naissance: "28/05/2000", img: "foden.jpg", bio: "L'enfant chéri de Stockport.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", nat: "Espagne 🇪🇸", paye: "314 000 €", fin: "30/06/2029", valeur: "40M €", noteea: "81", naissance: "03/01/2002", img: "gonzalez.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", nat: "Croatie 🇭🇷", paye: "760 000 €", fin: "30/06/2027", valeur: "10M €", noteea: "82", naissance: "06/05/1994", img: "kovacic.jpg", bio: "Expérience croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'phillips': { nom: "Kalvin Phillips", poste: "Milieu", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "600 000", fin: "30/06/2028", valeur: "2.5M €", noteea: "74", naissance: "02/12/1995", img: "phillips.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", nat: "Pays-Bas 🇳🇱", paye: "374 000 €", fin: "30/06/2030", valeur: "50M €", noteea: "85", naissance: "29/07/1998", img: "reijnders.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'rodri': { nom: "Rodri", poste: "Milieu", nat: "Espagne 🇪🇸", paye: "1 110 000 €", fin: "30/06/2027", valeur: "55M €", noteea: "89", naissance: "22/06/1996", img: "rodri.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'doku': { nom: "Jérémy Doku", poste: "Attaquant", nat: "Belgique 🇧🇪", paye: "253 000 €", fin: "30/06/2028", valeur: "75M €", noteea: "84", naissance: "27/05/2002", img: "doku.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'grealish': { nom: "Jack Grealish", poste: "Attaquant", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "1 100 000", fin: "30/06/2027", valeur: "20M €", noteea: "81", naissance: "10/09/1995", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'haaland': { nom: "Erling Haaland", poste: "Attaquant", nat: "Norvège 🇳🇴", paye: "2 570 000 €", fin: "30/06/2034", valeur: "220M €", noteea: "91", naissance: "21/07/2000", img: "haaland.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", nat: "Egypte 🇪🇬", paye: "1 330 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "83", naissance: "07/02/1999", img: "marmoush.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'monga': { nom: "Jérémy Monga", poste: "Attaquant", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", paye: "N/A", fin: "30/06/2031", valeur: "15M €", noteea: "INCONNUE", naissance: "10/07/2009", img: "monga.jpg", bio: "Promesse anglaise", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'savinho': { nom: "Savinho", poste: "Attaquant", nat: "Brésil 🇧🇷", paye: "390 000 €", fin: "30/06/2031", valeur: "35M €", noteea: "81", naissance: "10/04/2004", img: "savinho.jpg", bio: "Dribbleur brésilien électrisant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", nat: "Ghana 🇬🇭", paye: "760 000 €", fin: "30/06/2031", valeur: "80M €", noteea: "84", naissance: "07/01/2000", img: "semenyo.jpg", bio: "Puissance offensive brute.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
-            'maresca': { nom: "Enzo Maresca", poste: "Coach", nat: "Italie 🇮🇹", paye: "INCONNU", fin: "INCONNU", naissance: "10/02/1980", img: "maresca.jpg", bio: "Coach depuis la fin de l'ère Guardiola.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "13", paye: "177 000 €", fin: "30/06/2027", valeur: "0.3M €", noteea: "70", naissance: "24/05/1992", img: "bettinelli.jpg", bio: "Gardien expérimenté.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'donnarumma': { nom: "Gianluigi Donnarumma", poste: "Gardien", nat: "Italie 🇮🇹", numero: "25", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "89", naissance: "25/02/1999", img: "donnarumma.jpg", bio: "Gardien d'envergure internationale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'trafford': { nom: "James Trafford", poste: "Gardien", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "1", paye: "250 000 €", fin: "30/06/2030", valeur: "25M €", noteea: "77", naissance: "10/10/2002", img: "trafford.jpg", bio: "Gardien prometteur.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'ait-nouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", nat: "Algérie 🇩🇿", numero: "21", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", naissance: "06/06/2001", img: "ait-nouri.jpg", bio: "Latéral percutant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'alleyne': { nom: "Max Alleyne", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "68", paye: "N/A", fin: "30/06/2030", valeur: "8M €", noteea: "68", naissance:"21/07/2005", img: "alleyne.jpg", bio: "Espoir en défense centrale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'dias': { nom: "Ruben Dias", poste: "Défenseur", nat: "Portugal 🇵🇹", numero: "3", paye: "1 200 000 €", fin: "30/06/2029", valeur: "55M €", noteea: "87", naissance: "14/05/1997", img: "dias.jpg", bio: "Pilier défensif.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "15", paye: "253 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "84", naissance: "13/07/2000", img: "guehi.jpg", bio: "Nouvelle recrue solide.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", nat: "Croatie 🇭🇷", numero: "24", paye: "833 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "85", naissance: "23/01/2002", img: "gvardiol.jpg", bio: "Roc croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'juma-bah': { nom: "Abdulai Juma Bah", poste: "Défenseur", nat: "Sierra Leone 🇸🇱", numero: "INCONNU", paye: "60 000 €", fin: "30/06/2031", valeur: "10M €", noteea: "72", naissance: "11/04/2006", img: "bah.jpg", bio: "Jeune talent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'kabore': { nom: "Issa Kaboré", poste: "Défenseur", nat: "Burkina Faso 🇧🇫", numero: "INCONNU", paye: "100 000 €", fin: "30/06/2027", valeur: "4M €", noteea: "73", naissance: "12/05/2001", img: "kabore.jpg", bio: "Joueur africain.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", nat: "Ouzbékistan 🇺🇿", numero: "45", paye: "96 000 €", fin: "30/06/2031", valeur: "50M €", noteea: "80", naissance: "29/02/2004", img: "khusanov.jpg", bio: "Révélation ouzbèke.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'lewis': { nom: "Rico Lewis", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "82", paye: "123 000 €", fin: "30/06/2030", valeur: "28M €", noteea: "77", naissance: "21/11/2004", img: "lewis.jpg", bio: "Futur cadre issu de l'académie.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'nunes': { nom: "Matheus Nunes", poste: "Défenseur", nat: "Portugal 🇵🇹", numero: "27", paye: "658 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "82", naissance: "27/08/1998", img: "nunes.jpg", bio: "Défenseur puissant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "33", paye: "150 000 €", fin: "30/06/2030", valeur: "70M €", noteea: "81", naissance: "21/03/2005", img: "o'reilly.jpg", bio: "Pépite locale.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'reis': { nom: "Vitor Reis", poste: "Défenseur", nat: "Brésil 🇧🇷", numero: "INCONNU", paye: "200 000", fin: "30/06/2029", valeur: "30M €", noteea: "75", naissance: "12/01/2006", img: "reis.jpg", bio: "Jeune talent brésilien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'wilson-esbrand': { nom: "Joshua Wilson-Esbrand", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "INCONNU", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "67", naissance: "26/12/2002", img: "wilson-esbrand.jpg", bio: "Pépite anglaise.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'anderson': { nom: "Elliot Anderson", poste: "Milieu", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "INCONNU", paye: "350 000", fin: "30/06/2031", valeur: "110M €", noteea: "83", naissance: "06/11/2002", img: "anderson.jpg", bio: "Incroyable talent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'cherki': { nom: "Rayan Cherki", poste: "Milieu", nat: "France 🇫🇷", numero: "10", paye: "333 000 €", fin: "30/06/2030", valeur: "90M €", noteea: "84", naissance: "17/08/2003", img: "cherki.jpg", bio: "Magicien français.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'echeverri': { nom: "Claudio Echeverri", poste: "Milieu", nat: "Argentine 🇦🇷", numero: "INCONNU", paye: "78 000", fin: "30/06/2028", valeur: "15M €", noteea: "74", naissance: "02/01/2006", img: "echeverri.jpg", bio: "Jeune pépite argentine.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'foden': { nom: "Phil Foden", poste: "Milieu", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "47", paye: "1 170 000 €", fin: "30/06/2030", valeur: "70M €", noteea: "85", naissance: "28/05/2000", img: "foden.jpg", bio: "L'enfant chéri de Stockport.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", nat: "Espagne 🇪🇸", numero: "14", paye: "314 000 €", fin: "30/06/2029", valeur: "40M €", noteea: "81", naissance: "03/01/2002", img: "gonzalez.jpg", bio: "Technique espagnole.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", nat: "Croatie 🇭🇷", numero: "8", paye: "760 000 €", fin: "30/06/2027", valeur: "10M €", noteea: "82", naissance: "06/05/1994", img: "kovacic.jpg", bio: "Expérience croate.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'phillips': { nom: "Kalvin Phillips", poste: "Milieu", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "INCONNU", paye: "600 000", fin: "30/06/2028", valeur: "2.5M €", noteea: "74", naissance: "02/12/1995", img: "phillips.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", nat: "Pays-Bas 🇳🇱", numero: "4", paye: "374 000 €", fin: "30/06/2030", valeur: "50M €", noteea: "85", naissance: "29/07/1998", img: "reijnders.jpg", bio: "Milieu élégant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'rodri': { nom: "Rodri", poste: "Milieu", nat: "Espagne 🇪🇸", numero: "16", paye: "1 110 000 €", fin: "30/06/2027", valeur: "55M €", noteea: "89", naissance: "22/06/1996", img: "rodri.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'doku': { nom: "Jérémy Doku", poste: "Attaquant", nat: "Belgique 🇧🇪", numero: "11", paye: "253 000 €", fin: "30/06/2028", valeur: "75M €", noteea: "84", naissance: "27/05/2002", img: "doku.jpg", bio: "Vitesse pure.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'grealish': { nom: "Jack Grealish", poste: "Attaquant", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "INCONNU", paye: "1 100 000", fin: "30/06/2027", valeur: "20M €", noteea: "81", naissance: "10/09/1995", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'haaland': { nom: "Erling Haaland", poste: "Attaquant", nat: "Norvège 🇳🇴", numero: "9", paye: "2 570 000 €", fin: "30/06/2034", valeur: "220M €", noteea: "91", naissance: "21/07/2000", img: "haaland.jpg", bio: "Phénomène offensif norvégien.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'marmoush': { nom: "Omar Marmoush", poste: "Attaquant", nat: "Egypte 🇪🇬", numero: "7", paye: "1 330 000 €", fin: "30/06/2029", valeur: "50M €", noteea: "83", naissance: "07/02/1999", img: "marmoush.jpg", bio: "Attaquant égyptien polyvalent.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'monga': { nom: "Jérémy Monga", poste: "Attaquant", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "INCONNU", paye: "N/A", fin: "30/06/2031", valeur: "15M €", noteea: "INCONNUE", naissance: "10/07/2009", img: "monga.jpg", bio: "Promesse anglaise", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'savinho': { nom: "Savinho", poste: "Attaquant", nat: "Brésil 🇧🇷", numero: "26", paye: "390 000 €", fin: "30/06/2031", valeur: "35M €", noteea: "81", naissance: "10/04/2004", img: "savinho.jpg", bio: "Dribbleur brésilien électrisant.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", nat: "Ghana 🇬🇭", numero: "42", paye: "760 000 €", fin: "30/06/2031", valeur: "80M €", noteea: "84", naissance: "07/01/2000", img: "semenyo.jpg", bio: "Puissance offensive brute.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
+            'maresca': { nom: "Enzo Maresca", poste: "Coach", nat: "Italie 🇮🇹", numero: "Aucun", paye: "INCONNU", fin: "INCONNU", naissance: "10/02/1980", img: "maresca.jpg", bio: "Coach depuis la fin de l'ère Guardiola.", matchs: 0, buts: 0, passes: 0, note: 0.0 },
         };
 
         const centreFormation = {
@@ -1141,7 +1130,7 @@ defenseuses:[
 {nom:"Laura Wienroither", naissance:"13/01/1999", note:"72", img:"defenseurewienroither.jpg"}
 ],
 
-milieux:[
+milieuses:[
 {nom:"Laura Blindkilde Brown", naissance:"09/12/2003", note:"72", img:"milieublindkilde-brown.jpg"},
 {nom:"Grace Clinton", naissance:"31/03/2003", note:"78", img:"milieuclinton.jpg"},
 {nom:"Sam Coffey", naissance:"31/12/1998", note:"82", img:"milieucoffey.jpg"},
@@ -1204,6 +1193,7 @@ attaquantes:[
             // RESTAURATION DES LABELS ET AFFICHAGES ORIGINAUX
             document.getElementById('s-age').previousElementSibling.innerText = "Âge";
             document.getElementById('s-nat').previousElementSibling.innerText = "Nationalité";
+            document.getElementById('s-numero').previousElementSibling.innerText = "Numéro";
             document.getElementById('s-paye').parentNode.style.display = "";
             document.getElementById('s-fin').parentNode.style.display = "";
             document.getElementById('s-valeur').parentNode.style.display = "";
@@ -1215,6 +1205,7 @@ attaquantes:[
             document.getElementById('nom-joueur').innerText = j.nom;
             document.getElementById('s-age').innerText = calculerAge(j.naissance);
             document.getElementById('s-nat').innerText = j.nat;
+            document.getElementById('s-numero').innerText = j.numero;
             document.getElementById('s-paye').innerText = j.paye;
             document.getElementById('s-fin').innerText = j.fin;
             document.getElementById('s-valeur').innerText = j.valeur;
@@ -2400,6 +2391,7 @@ setInterval(verifierModeNuit, 60000);
     // Remet les labels d'origine
     document.getElementById('s-age').previousElementSibling.innerText = "Âge";
     document.getElementById('s-nat').previousElementSibling.innerText = "Nationalité";
+    document.getElementById('s-numero').previousElementSibling.innerText = "Numéro";
 
     // Réaffiche les lignes cachées
     document.getElementById('s-paye').parentNode.style.display = "";
