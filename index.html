@@ -1222,10 +1222,9 @@ attaquantes:[
             document.getElementById('s-noteea').innerText = j.noteea;
             document.getElementById('s-bio').innerText = j.bio;
             document.getElementById('photo').src = "static/images/" + j.img;
+            document.getElementById('s-matchs').innerText = j.matchs || 0;
             document.getElementById('s-buts').innerText = j.buts || 0;
             document.getElementById('s-passes').innerText = j.passes || 0;
-            document.getElementById('s-matchs').innerText = j.matchs || 0;
-            document.getElementById('s-note').innerText = j.note || "0.0";
             showSection('joueur-solo');
         }
         
