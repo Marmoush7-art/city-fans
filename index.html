@@ -696,9 +696,9 @@
                 <div class="bio-container">
                     <strong>Biographie :</strong><br><br>
                     <span id="s-bio"></span>
+                    <div class="stat-card"><span class="stat-number" id="s-matchs">0</span><span class="stat-label">🎮 Matchs</span></div>
                     <div class="stat-card"><span class="stat-number" id="s-buts">0</span><span class="stat-label">⚽ Buts</span></div>
                     <div class="stat-card"><span class="stat-number" id="s-passes">0</span><span class="stat-label">👟 Passes D.</span></div>
-                    <div class="stat-card"><span class="stat-number" id="s-matchs">0</span><span class="stat-label">🎮 Matchs</span></div>
                 </div>
             </div>
         </div>
@@ -1076,12 +1076,6 @@
             'semenyo': { nom: "Antoine Semenyo", poste: "Attaquant", nat: "Ghana 🇬🇭", numero: "42", paye: "760 000 €", fin: "30/06/2031", valeur: "80M €", noteea: "84", naissance: "07/01/2000", img: "semenyo.jpg", bio: "Puissance offensive brute.", matchs: 1, buts: 0, passes: 1},
             'maresca': { nom: "Enzo Maresca", poste: "Coach", nat: "Italie 🇮🇹", numero: "Aucun", paye: "INCONNU", fin: "INCONNU", naissance: "10/02/1980", img: "maresca.jpg", bio: "Coach depuis la fin de l'ère Guardiola."},
 
-            'mfuni': { nom: "Stephen Mfuni", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "91", paye: "N/A", fin: "N/A", valeur: "1.5M €", noteea: "INCONNUE", naissance: "12/02/2008", img: "defenseurstephen.jpg", bio: "Pépite du centre de formation.", matchs: 1, buts: 0, passes: 0},
-            'braithwaite': { nom: "Kaden Braithwaite", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "61", paye: "N/A", fin: "N/A", valeur: "N/A", noteea: "INCONNUE", naissance: "08/02/2008", img: "defenseurkaden.jpg", bio: "Pépite du centre de formation.", matchs: 1, buts: 0, passes: 0},
-            'mcaidoo': { nom: "Ryan McAidoo", poste: "Attaquant", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "56", paye: "N/A", fin: "N/A", valeur: "N/A", noteea: "INCONNUE", naissance: "24/06/2008", img: "attaquantryan.jpg", bio: "Pépite du centre de formation.", matchs: 1, buts: 0, passes: 0},
-            'mubama': { nom: "Divin Mubama", poste: "Attaquant", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "67", paye: "N/A", fin: "N/A", valeur: "N/A", noteea: "INCONNUE", naissance: "25/10/2004", img: "attaquantdivin.jpg", bio: "Pépite du centre de formation.", matchs: 1, buts: 1, passes: 0},
-            'sangare': { nom: "Mahamadou Sangaré", poste: "Attaquant", nat: "France 🇫🇷", numero: "71", paye: "N/A", fin: "N/A", valeur: "N/A", noteea: "INCONNUE", naissance: "06/03/2007", img: "attaquantmahamadou.jpg", bio: "Pépite du centre de formation.", matchs: 1, buts: 0, passes: 0},
-            
         };
 
         const centreFormation = {
@@ -1228,10 +1222,9 @@ attaquantes:[
             document.getElementById('s-noteea').innerText = j.noteea;
             document.getElementById('s-bio').innerText = j.bio;
             document.getElementById('photo').src = "static/images/" + j.img;
+            document.getElementById('s-matchs').innerText = j.matchs || 0;
             document.getElementById('s-buts').innerText = j.buts || 0;
             document.getElementById('s-passes').innerText = j.passes || 0;
-            document.getElementById('s-matchs').innerText = j.matchs || 0;
-            document.getElementById('s-note').innerText = j.note || "0.0";
             showSection('joueur-solo');
         }
         
