@@ -786,6 +786,16 @@
             <h2>Historique du Mercato (Été 2026)</h2>
 
             <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/isaiah-dada-mascoll.jpg" class="mercato-photo"><div><div class="mercato-nom">Isaiah Dada-Mascoll</div><div class="mercato-poste">MC</div><div class="mercato-prix">Prêt</div></div></div><div class="mercato-date">1er Août</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">🔄</div><div class="club"><img src="static/images/lommel.jpg">Lommel</div></div>
+            </div>
+
+            <div class="mercato-card">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/jack-wint.jpg" class="mercato-photo"><div><div class="mercato-nom">Jack Wint</div><div class="mercato-poste">G</div><div class="mercato-prix">Prêt</div></div></div><div class="mercato-date">1er Août</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">🔄</div><div class="club"><img src="static/images/kidderminster.jpg">Kiderminster</div></div>
+            </div>
+
+            <div class="mercato-card">
             <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/christian-mcfarlane.jpg" class="mercato-photo"><div><div class="mercato-nom">Christian McFarlane</div><div class="mercato-poste">DC</div><div class="mercato-prix">Prêt</div></div></div><div class="mercato-date">29 Juillet</div></div>
             <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">🔄</div><div class="club"><img src="static/images/leicester.jpg">Leicester</div></div>
             </div>
@@ -1076,12 +1086,10 @@
 
         const centreFormation = {
 
-'jack-wint': { nom:"Jack Wint", poste:"Gardien", naissance:"08/10/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"gardienjack.jpg" },
 
 'finley-burns': { nom:"Finley Burns", poste:"Défenseur", naissance:"17/06/2003", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurfinley.jpg" },
 'matty-henderson-hall': { nom:"Matty Henderson-Hall", poste:"Défenseur", naissance:"08/12/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurmatty.jpg" },
 'luke-mbete': { nom:"Luke Mbete", poste:"Défenseur", naissance:"18/09/2003", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurluke.jpg" },
-'christian-mcfarlane': { nom:"Christian McFarlane", poste:"Défenseur", naissance:"25/01/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurchristian.jpg" },
 'stephen-mfuni': { nom:"Stephen Mfuni", poste:"Défenseur", naissance:"12/02/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurstephen.jpg" },
 'brooklyn-nfonkeu': { nom:"Brooklyn Nfonkeu", poste:"Défenseur", naissance:"01/07/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurbrooklyn.jpg" },
 'kian-noble': { nom:"Kian Noble", poste:"Défenseur", naissance:"26/02/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurkian.jpg" },
@@ -1089,7 +1097,6 @@
 'lakyle-samuel': { nom:"Lakyle Samuel", poste:"Défenseur", naissance:"06/05/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurlakyle.jpg" },
 'rhys-thomas': { nom:"Rhys Thomas", poste:"Défenseur", naissance:"05/11/2006", nat:"Pays de Galles 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurrhys.jpg" },
 
-'isaiah-dada-mascoll': { nom:"Isaiah Dada-Mascoll", poste:"Milieu", naissance:"24/05/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieuisaiah.jpg" },
 'femi-fapetu': { nom:"Femi Fapetu", poste:"Milieu", naissance:"04/08/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieufemi.jpg" },
 'charlie-gray': { nom:"Charlie Gray", poste:"Milieu", naissance:"22/02/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieucharlie.jpg" },
 'jaden-heskey': { nom:"Jaden Heskey", poste:"Milieu", naissance:"17/12/2005", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieujaden.jpg" },
@@ -1110,6 +1117,9 @@ const joueursPret = [
     
     { nom: "Spike Brits", poste: "Gardien", club: "Sutton United", photo: "static/images/gardienspike.jpg" },
     { nom: "Oliver Whatmuff", poste: "Gardien", club: "Stockport", photo: "static/images/gardienoliver.jpg" },
+    { nom: "Jack Wint", poste: "Gardien", club: "Kidderminster", photo: "static/images/gardienjack.jpg" },
+    { nom: "Christian McFarlane", poste: "Défenseur", club: "Leicester", photo: "static/images/defenseurchristian.jpg" },
+    { nom: "Isaiah Dada-Mascoll", poste: "Milieu", club: "Lommel SK", photo: "static/images/milieuisaiah.jpg" },
 
     { nom: "Naomi Layzell", poste: "Défenseuse", club: "Inconnu", photo: "static/images/defenseurelayzell.jpg" },
     { nom: "Codie Thomas", poste: "Défenseuse", club: "Nottingham Forest", photo: "static/images/defenseurethomas.jpg" }
