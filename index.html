@@ -712,36 +712,6 @@
             </div>
         </div>
 
-<div id="jeune-solo" class="content-section">
-
-    <h2 id="jeune-nom"></h2>
-
-    <img id="jeune-photo" src="">
-
-    <div class="box-info">
-
-        <table>
-            <tr><th>Date de naissance</th><td id="jeune-age"></td></tr>
-            <tr><th>Nationalité</th><td id="jeune-nat"></td></tr>
-            <tr><th>Poste</th><td id="jeune-poste"></td></tr>
-        </table>
-
-        <div class="bio-container">
-
-            <h3>Statistiques</h3>
-
-            <table>
-                <tr><th>Matchs</th><td id="jeune-matchs">0</td></tr>
-                <tr><th>Buts</th><td id="jeune-buts">0</td></tr>
-                <tr><th>Passes</th><td id="jeune-passes">0</td></tr>
-                <tr><th>Minutes</th><td id="jeune-minutes">0</td></tr>
-            </table>
-
-        </div>
-
-    </div>
-
-</div>
   
         <div id="ma-compo-view" class="content-section">
             <h2>Ma Compo 📋</h2>
@@ -1119,29 +1089,29 @@
         };
 
         const centreFormation = {
-'max-hudson': { nom:"Max Hudson", poste:"Gardien", naissance:"20/09/2007", nat:"Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿", img:"gardienmax.jpg" },
+'max-hudson': { nom:"Max Hudson", poste:"Gardien", naissance:"20/09/2007", nat:"Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿", img:"gardienmax.jpg", matchs:"0", buts:"0", passes:"0" },
             
-'kaden-braithwaite': { nom:"Kaden Braithwaite", poste:"Défenseur", naissance:"08/02/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurkaden.jpg" },
-'finley-burns': { nom:"Finley Burns", poste:"Défenseur", naissance:"17/06/2003", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurfinley.jpg" },
-'matty-henderson-hall': { nom:"Matty Henderson-Hall", poste:"Défenseur", naissance:"08/12/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurmatty.jpg" },
-'luke-mbete': { nom:"Luke Mbete", poste:"Défenseur", naissance:"18/09/2003", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurluke.jpg" },
-'stephen-mfuni': { nom:"Stephen Mfuni", poste:"Défenseur", naissance:"12/02/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurstephen.jpg" },
-'brooklyn-nfonkeu': { nom:"Brooklyn Nfonkeu", poste:"Défenseur", naissance:"01/07/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurbrooklyn.jpg" },
-'kian-noble': { nom:"Kian Noble", poste:"Défenseur", naissance:"26/02/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurkian.jpg" },
-'harrison-parker': { nom:"Harrison Parker", poste:"Défenseur", naissance:"22/09/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurharrison.jpg" },
-'lakyle-samuel': { nom:"Lakyle Samuel", poste:"Défenseur", naissance:"06/05/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurlakyle.jpg" },
-'rhys-thomas': { nom:"Rhys Thomas", poste:"Défenseur", naissance:"05/11/2006", nat:"Pays de Galles 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurrhys.jpg" },
+'kaden-braithwaite': { nom:"Kaden Braithwaite", poste:"Défenseur", naissance:"08/02/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurkaden.jpg", matchs:"0", buts:"0", passes:"0" },
+'finley-burns': { nom:"Finley Burns", poste:"Défenseur", naissance:"17/06/2003", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurfinley.jpg", matchs:"0", buts:"0", passes:"0" },
+'matty-henderson-hall': { nom:"Matty Henderson-Hall", poste:"Défenseur", naissance:"08/12/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurmatty.jpg", matchs:"0", buts:"0", passes:"0" },
+'luke-mbete': { nom:"Luke Mbete", poste:"Défenseur", naissance:"18/09/2003", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurluke.jpg", matchs:"0", buts:"0", passes:"0" },
+'stephen-mfuni': { nom:"Stephen Mfuni", poste:"Défenseur", naissance:"12/02/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurstephen.jpg", matchs:"2", buts:"0", passes:"0" },
+'brooklyn-nfonkeu': { nom:"Brooklyn Nfonkeu", poste:"Défenseur", naissance:"01/07/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurbrooklyn.jpg", matchs:"0", buts:"0", passes:"0" },
+'kian-noble': { nom:"Kian Noble", poste:"Défenseur", naissance:"26/02/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurkian.jpg", matchs:"0", buts:"0", passes:"0" },
+'harrison-parker': { nom:"Harrison Parker", poste:"Défenseur", naissance:"22/09/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurharrison.jpg", matchs:"0", buts:"0", passes:"0" },
+'lakyle-samuel': { nom:"Lakyle Samuel", poste:"Défenseur", naissance:"06/05/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurlakyle.jpg", matchs:"0", buts:"0", passes:"0" },
+'rhys-thomas': { nom:"Rhys Thomas", poste:"Défenseur", naissance:"05/11/2006", nat:"Pays de Galles 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurrhys.jpg", matchs:"0", buts:"0", passes:"0" },
 
-'femi-fapetu': { nom:"Femi Fapetu", poste:"Milieu", naissance:"04/08/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieufemi.jpg" },
-'charlie-gray': { nom:"Charlie Gray", poste:"Milieu", naissance:"22/02/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieucharlie.jpg" },
-'jaden-heskey': { nom:"Jaden Heskey", poste:"Milieu", naissance:"17/12/2005", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieujaden.jpg" },
-'divine-mukasa': { nom:"Divine Mukasa", poste:"Milieu", naissance:"22/08/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieudivine.jpg" },
-'floyd-samba': { nom:"Floyd Samba", poste:"Milieu", naissance:"15/01/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieufloyd.jpg" },
+'femi-fapetu': { nom:"Femi Fapetu", poste:"Milieu", naissance:"04/08/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieufemi.jpg", matchs:"0", buts:"0", passes:"0" },
+'charlie-gray': { nom:"Charlie Gray", poste:"Milieu", naissance:"22/02/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieucharlie.jpg", matchs:"0", buts:"0", passes:"0" },
+'jaden-heskey': { nom:"Jaden Heskey", poste:"Milieu", naissance:"17/12/2005", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieujaden.jpg", matchs:"1", buts:"0", passes:"0" },
+'divine-mukasa': { nom:"Divine Mukasa", poste:"Milieu", naissance:"22/08/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieudivine.jpg", matchs:"0", buts:"0", passes:"0" },
+'floyd-samba': { nom:"Floyd Samba", poste:"Milieu", naissance:"15/01/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieufloyd.jpg", matchs:"0", buts:"0", passes:"0" },
             
-'emilio-lawrence': { nom:"Emilio Lawrence", poste:"Attaquant", naissance:"20/09/2005", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquantemilio.jpg" },
-'ryan-mcaidoo': { nom:"Ryan McAidoo", poste:"Attaquant", naissance:"24/06/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquantryan.jpg" },
-'divin-mubama': { nom:"Divin Mubama", poste:"Attaquant", naissance:"25/10/2004", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquantdivin.jpg" },
-'mahamadou-sangare': { nom:"Mahamadou Sangaré", poste:"Attaquant", naissance:"06/03/2007", nat:"France 🇫🇷", img:"attaquantmahamadou.jpg" }
+'emilio-lawrence': { nom:"Emilio Lawrence", poste:"Attaquant", naissance:"20/09/2005", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquantemilio.jpg", matchs:"0", buts:"0", passes:"0" },
+'ryan-mcaidoo': { nom:"Ryan McAidoo", poste:"Attaquant", naissance:"24/06/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquantryan.jpg", matchs:"1", buts:"0", passes:"0" },
+'divin-mubama': { nom:"Divin Mubama", poste:"Attaquant", naissance:"25/10/2004", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquantdivin.jpg", matchs:"2", buts:"2", passes:"0" },
+'mahamadou-sangare': { nom:"Mahamadou Sangaré", poste:"Attaquant", naissance:"06/03/2007", nat:"France 🇫🇷", img:"attaquantmahamadou.jpg", matchs:"1", buts:"0", passes:"0" }
 
 };
 
@@ -2833,39 +2803,9 @@ function afficher(id){
         return;
     }
 
-    if (centreFormation[id]) {
-        afficherJeune(id);
-        return;
-    }
-
     console.error("Joueur introuvable :", id);
 }
 
-function afficherJeune(id){
-
-    const joueur = centreFormation[id];
-
-    if (!joueur) {
-        console.error("Jeune introuvable :", id);
-        return;
-    }
-
-    document.querySelectorAll(".content-section")
-        .forEach(e => e.classList.remove("active"));
-
-    document.getElementById("jeune-solo").classList.add("active");
-
-    document.getElementById("jeune-nom").textContent = joueur.nom;
-    document.getElementById("jeune-age").textContent = joueur.naissance;
-    document.getElementById("jeune-nat").textContent = joueur.nat;
-    document.getElementById("jeune-poste").textContent = joueur.poste;
-    document.getElementById("jeune-photo").src = "static/images/" + joueur.img;
-
-    document.getElementById("jeune-matchs").textContent = joueur.matchs || 0;
-    document.getElementById("jeune-buts").textContent = joueur.buts || 0;
-    document.getElementById("jeune-passes").textContent = joueur.passes || 0;
-    document.getElementById("jeune-minutes").textContent = joueur.minutes || 0;
-}
         
 function afficherAnniversairesMois() {
     const container = document.getElementById("anniversaires");
