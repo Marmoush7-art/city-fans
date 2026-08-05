@@ -47,6 +47,8 @@
         #photo { max-width: 280px; width: 100%; border-radius: 15px; border: 6px solid var(--city-sky-blue); margin-bottom: 25px; }
         #photo:hover { transform:scale(1.08); transition:.3s; }
 
+        #jeune-photo{width:180px;height:180px;object-fit:cover;border-radius:50%;display:block;margin:20px auto;}
+
         .news { animation:slide 5s infinite; }
 
         .logo-accueil{ width: 400px; height: auto; display: block; margin: 20px auto; animation:float 3s infinite; }
@@ -319,18 +321,18 @@
 
     <div class="match-card">
         <h3>📅 Prochain Match</h3>
-        <p>Manchester City vs Inter Milan</p>
+        <p>Manchester City vs Atlético</p>
         <p>Match Amical</p>
     </div>
 
     <div class="match-card">
         <h3>⚽ Meilleur Buteur</h3>
-        <p></p>
+        <p>Divin Mubama (2)</p>
     </div>
 
     <div class="match-card">
         <h3>👟 Meilleur Passeur</h3>
-        <p></p>
+        <p>Antoine Semenyo (1)</p>
     </div>
 
     <div class="match-card">
@@ -493,9 +495,16 @@
         <div class="match-details">
             <div class="side-details">
                 <h4>Manchester City</h4>
+                <div class="stat-line">⚽ <strong>Rayan Ait-Nouri (9')</strong></div>
+                <div class="stat-line">⚽ <strong>Tijjani Reijnders (20')</strong></div>
+                <div class="stat-line">👟 <strong>Savinho</strong></div>
+                <div class="stat-line">⚽ <strong>Divin Mubama (23')</strong></div>
+                <div class="stat-line">👟 <strong>Antoine Semenyo</strong></div>
             </div>
             <div class="side-details">
                 <h4>K-League All Stars</h4>
+                <div class="stat-line">⚽ <strong>Kim Dae Won (14')</strong></div>
+                
             </div>
         </div>
     </div>
@@ -632,7 +641,7 @@
             <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/malo-gusto.jpg" class="mercato-photo"><div><div class="mercato-nom">Malo Gusto</div><div class="mercato-poste">DD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/chelsea.jpg">Chelsea</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
             <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ayyoub-bouaddi.jpg" class="mercato-photo"><div><div class="mercato-nom">Ayyoub Bouaddi</div><div class="mercato-poste">MDC</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/lille.jpg">LOSC Lille</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
             <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ibrahim-mbaye.jpg" class="mercato-photo"><div><div class="mercato-nom">Ibrahim Mbaye</div><div class="mercato-poste">AD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/psg.jpg">PSG</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
-            <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ryan-mcaidoo.jpg" class="mercato-photo"><div><div class="mercato-nom">Ryan McAidoo</div><div class="mercato-poste">AD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City U21</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
+            <div class="mercato-card" onclick="afficherJeune('ryan-mcaidoo')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ryan-mcaidoo.jpg" class="mercato-photo"><div><div class="mercato-nom">Ryan McAidoo</div><div class="mercato-poste">AD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City U21</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
             <div class="mercato-card" onclick="afficher('doku')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/jeremy-doku.jpg" class="mercato-photo"><div><div class="mercato-nom">Jérémy Doku</div><div class="mercato-poste">AG</div><div class="mercato-prix">Rumeur de renouvellement de contrat</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
         </div>
 
@@ -702,6 +711,37 @@
                 </div>
             </div>
         </div>
+
+<div id="jeune-solo" class="content-section">
+
+    <h2 id="jeune-nom"></h2>
+
+    <img id="jeune-photo" src="">
+
+    <div class="box-info">
+
+        <table>
+            <tr><th>Date de naissance</th><td id="jeune-age"></td></tr>
+            <tr><th>Nationalité</th><td id="jeune-nat"></td></tr>
+            <tr><th>Poste</th><td id="jeune-poste"></td></tr>
+        </table>
+
+        <div class="bio-container">
+
+            <h3>Statistiques</h3>
+
+            <table>
+                <tr><th>Matchs</th><td id="jeune-matchs">0</td></tr>
+                <tr><th>Buts</th><td id="jeune-buts">0</td></tr>
+                <tr><th>Passes</th><td id="jeune-passes">0</td></tr>
+                <tr><th>Minutes</th><td id="jeune-minutes">0</td></tr>
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
   
         <div id="ma-compo-view" class="content-section">
             <h2>Ma Compo 📋</h2>
@@ -2652,7 +2692,7 @@ function ouvrirCentreGeneral(){
     }
 }
 
-function afficherCentre(type){
+    function afficherCentre(type){
 
     showSection("centre-formation-view");
 
@@ -2786,15 +2826,47 @@ zone.innerHTML += `
 
 }
 
-function afficher(id) {
+function afficher(id){
+
     if (effectif[id]) {
         afficherJoueur(id);
+        return;
+    }
+
+    if (centreFormation[id]) {
+        afficherJeune(id);
         return;
     }
 
     console.error("Joueur introuvable :", id);
 }
 
+function afficherJeune(id){
+
+    const joueur = centreFormation[id];
+
+    if (!joueur) {
+        console.error("Jeune introuvable :", id);
+        return;
+    }
+
+    document.querySelectorAll(".content-section")
+        .forEach(e => e.classList.remove("active"));
+
+    document.getElementById("jeune-solo").classList.add("active");
+
+    document.getElementById("jeune-nom").textContent = joueur.nom;
+    document.getElementById("jeune-age").textContent = joueur.naissance;
+    document.getElementById("jeune-nat").textContent = joueur.nat;
+    document.getElementById("jeune-poste").textContent = joueur.poste;
+    document.getElementById("jeune-photo").src = "static/images/" + joueur.img;
+
+    document.getElementById("jeune-matchs").textContent = joueur.matchs || 0;
+    document.getElementById("jeune-buts").textContent = joueur.buts || 0;
+    document.getElementById("jeune-passes").textContent = joueur.passes || 0;
+    document.getElementById("jeune-minutes").textContent = joueur.minutes || 0;
+}
+        
 function afficherAnniversairesMois() {
     const container = document.getElementById("anniversaires");
     container.innerHTML = "";
