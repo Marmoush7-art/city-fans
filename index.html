@@ -639,7 +639,7 @@
             <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/malo-gusto.jpg" class="mercato-photo"><div><div class="mercato-nom">Malo Gusto</div><div class="mercato-poste">DD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/chelsea.jpg">Chelsea</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
             <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ayyoub-bouaddi.jpg" class="mercato-photo"><div><div class="mercato-nom">Ayyoub Bouaddi</div><div class="mercato-poste">MDC</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/lille.jpg">LOSC Lille</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
             <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ibrahim-mbaye.jpg" class="mercato-photo"><div><div class="mercato-nom">Ibrahim Mbaye</div><div class="mercato-poste">AD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/psg.jpg">PSG</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
-            <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ryan-mcaidoo.jpg" class="mercato-photo"><div><div class="mercato-nom">Ryan McAidoo</div><div class="mercato-poste">AD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City U21</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
+            <div class="mercato-card" onclick="afficherJeune('mcaidoo')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ryan-mcaidoo.jpg" class="mercato-photo"><div><div class="mercato-nom">Ryan McAidoo</div><div class="mercato-poste">AD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City U21</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
             <div class="mercato-card" onclick="afficher('doku')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/jeremy-doku.jpg" class="mercato-photo"><div><div class="mercato-nom">Jérémy Doku</div><div class="mercato-poste">AG</div><div class="mercato-prix">Rumeur de renouvellement de contrat</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
         </div>
 
@@ -709,6 +709,33 @@
                 </div>
             </div>
         </div>
+
+        <<div id="jeune-solo" class="content-section">
+
+<h2 id="jeune-nom"></h2>
+
+<img id="jeune-photo" src="" id="photo">
+
+<div class="box-info">
+
+<table>
+
+<tr><th>Âge</th><td id="jeune-age"></td></tr>
+<tr><th>Nationalité</th><td id="jeune-nat"></td></tr>
+<tr><th>Poste</th><td id="jeune-poste"></td></tr>
+
+</table>
+
+<div class="bio-container">
+<b>Biographie</b><br><br>
+
+<span id="jeune-bio"></span>
+
+</div>
+
+</div>
+
+</div>
   
         <div id="ma-compo-view" class="content-section">
             <h2>Ma Compo 📋</h2>
@@ -2793,13 +2820,36 @@ zone.innerHTML += `
 
 }
 
+function afficherJeune(joueur){
+
+    document.querySelectorAll(".content-section")
+    .forEach(e=>e.classList.remove("active"));
+
+    document.getElementById("jeune-solo").classList.add("active");
+
+    document.getElementById("jeune-nom").textContent=joueur.nom;
+    document.getElementById("jeune-photo").src=joueur.photo;
+    document.getElementById("jeune-age").textContent=joueur.age;
+    document.getElementById("jeune-nat").textContent=joueur.nat;
+    document.getElementById("jeune-poste").textContent=joueur.poste;
+    document.getElementById("jeune-bio").innerHTML=joueur.bio;
+
+}
+
 function afficher(id) {
+
     if (effectif[id]) {
         afficherJoueur(id);
         return;
     }
 
+    if (centreFormation[id]) {
+        afficherJeune(id);
+        return;
+    }
+
     console.error("Joueur introuvable :", id);
+
 }
 
 function afficherAnniversairesMois() {
