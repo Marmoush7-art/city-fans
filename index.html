@@ -47,6 +47,8 @@
         #photo { max-width: 280px; width: 100%; border-radius: 15px; border: 6px solid var(--city-sky-blue); margin-bottom: 25px; }
         #photo:hover { transform:scale(1.08); transition:.3s; }
 
+        #jeune-photo{width:180px;height:180px;object-fit:cover;border-radius:50%;display:block;margin:20px auto;}
+
         .news { animation:slide 5s infinite; }
 
         .logo-accueil{ width: 400px; height: auto; display: block; margin: 20px auto; animation:float 3s infinite; }
@@ -710,11 +712,11 @@
             </div>
         </div>
 
-        <div id="jeune-solo" class="content-section">
+<div id="jeune-solo" class="content-section">
 
 <h2 id="jeune-nom"></h2>
 
-<img id="jeune-photo" src="" id="photo">
+<img id="jeune-photo" src="">
 
 <div class="box-info">
 
@@ -727,12 +729,14 @@
 </table>
 
 <div class="bio-container">
-<b>Biographie</b><br><br>
-
-<span id="jeune-bio"></span>
-
+<h3>Statistiques</h3>
+<table>
+<tr><th>Matchs</th><td id="jeune-matchs">0</td></tr>
+<tr><th>Buts</th><td id="jeune-buts">0</td></tr>
+<tr><th>Passes</th><td id="jeune-passes">0</td></tr>
+<tr><th>Minutes</th><td id="jeune-minutes">0</td></tr>
+</table>
 </div>
-
 </div>
 
 </div>
