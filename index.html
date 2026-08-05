@@ -714,30 +714,32 @@
 
 <div id="jeune-solo" class="content-section">
 
-<h2 id="jeune-nom"></h2>
+    <h2 id="jeune-nom"></h2>
 
-<img id="jeune-photo" src="">
+    <img id="jeune-photo" src="">
 
-<div class="box-info">
+    <div class="box-info">
 
-<table>
+        <table>
+            <tr><th>Date de naissance</th><td id="jeune-age"></td></tr>
+            <tr><th>Nationalité</th><td id="jeune-nat"></td></tr>
+            <tr><th>Poste</th><td id="jeune-poste"></td></tr>
+        </table>
 
-<tr><th>Âge</th><td id="jeune-age"></td></tr>
-<tr><th>Nationalité</th><td id="jeune-nat"></td></tr>
-<tr><th>Poste</th><td id="jeune-poste"></td></tr>
+        <div class="bio-container">
 
-</table>
+            <h3>Statistiques</h3>
 
-<div class="bio-container">
-<h3>Statistiques</h3>
-<table>
-<tr><th>Matchs</th><td id="jeune-matchs">0</td></tr>
-<tr><th>Buts</th><td id="jeune-buts">0</td></tr>
-<tr><th>Passes</th><td id="jeune-passes">0</td></tr>
-<tr><th>Minutes</th><td id="jeune-minutes">0</td></tr>
-</table>
-</div>
-</div>
+            <table>
+                <tr><th>Matchs</th><td id="jeune-matchs">0</td></tr>
+                <tr><th>Buts</th><td id="jeune-buts">0</td></tr>
+                <tr><th>Passes</th><td id="jeune-passes">0</td></tr>
+                <tr><th>Minutes</th><td id="jeune-minutes">0</td></tr>
+            </table>
+
+        </div>
+
+    </div>
 
 </div>
   
@@ -2690,7 +2692,7 @@ function ouvrirCentreGeneral(){
     }
 }
 
-function afficherCentre(type){
+    function afficherCentre(type){
 
     showSection("centre-formation-view");
 
@@ -2824,23 +2826,7 @@ zone.innerHTML += `
 
 }
 
-function afficherJeune(joueur){
-
-    document.querySelectorAll(".content-section")
-    .forEach(e=>e.classList.remove("active"));
-
-    document.getElementById("jeune-solo").classList.add("active");
-
-    document.getElementById("jeune-nom").textContent=joueur.nom;
-    document.getElementById("jeune-photo").src=joueur.photo;
-    document.getElementById("jeune-age").textContent=joueur.age;
-    document.getElementById("jeune-nat").textContent=joueur.nat;
-    document.getElementById("jeune-poste").textContent=joueur.poste;
-    document.getElementById("jeune-bio").innerHTML=joueur.bio;
-
-}
-
-function afficher(id) {
+function afficher(id){
 
     if (effectif[id]) {
         afficherJoueur(id);
@@ -2853,14 +2839,21 @@ function afficher(id) {
     }
 
     console.error("Joueur introuvable :", id);
-
 }
 
 function afficherJeune(id){
 
     const joueur = centreFormation[id];
 
-    if(!joueur) return;
+    if (!joueur) {
+        console.error("Jeune introuvable :", id);
+        return;
+    }
+
+    document.querySelectorAll(".content-section")
+        .forEach(e => e.classList.remove("active"));
+
+    document.getElementById("jeune-solo").classList.add("active");
 
     document.getElementById("jeune-nom").textContent = joueur.nom;
     document.getElementById("jeune-age").textContent = joueur.naissance;
@@ -2868,13 +2861,12 @@ function afficherJeune(id){
     document.getElementById("jeune-poste").textContent = joueur.poste;
     document.getElementById("jeune-photo").src = "static/images/" + joueur.img;
 
-    // Tu n'as pas encore de biographie dans ta base
-    document.getElementById("jeune-bio").textContent = "Biographie à venir.";
-
-    document.querySelectorAll(".content-section").forEach(e => e.classList.remove("active"));
-    document.getElementById("jeune-solo").classList.add("active");
+    document.getElementById("jeune-matchs").textContent = joueur.matchs || 0;
+    document.getElementById("jeune-buts").textContent = joueur.buts || 0;
+    document.getElementById("jeune-passes").textContent = joueur.passes || 0;
+    document.getElementById("jeune-minutes").textContent = joueur.minutes || 0;
 }
-
+        
 function afficherAnniversairesMois() {
     const container = document.getElementById("anniversaires");
     container.innerHTML = "";
