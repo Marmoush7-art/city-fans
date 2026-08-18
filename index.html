@@ -656,7 +656,6 @@
         <div id="actus-mercato-b" class="content-section">
             <h2>Actus Mercato 📰</h2>
             <div class="mercato-card" onclick="afficher('savinho')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/savinho2.jpg" class="mercato-photo"><div><div class="mercato-nom">Savinho</div><div class="mercato-poste">AG</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/tottenham2.jpg">Tottenham</div></div></div>
-            <div class="mercato-card" onclick="afficher('rodri')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/rodri2.jpg" class="mercato-photo"><div><div class="mercato-nom">Rodri</div><div class="mercato-poste">MDC</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/real-madrid.jpg">Real Madrid</div></div></div>
             <div class="mercato-card" onclick="afficher('reijnders')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/tijjani-reijnders.jpg" class="mercato-photo"><div><div class="mercato-nom">Tijjani Reijnders</div><div class="mercato-poste">MC</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/galatasaray.jpg">Galatasaray</div></div></div>
         </div>
 
@@ -803,6 +802,11 @@
         <div id="mercato-recap" class="content-section">
             <h2>Historique du Mercato (Été 2026)</h2>
 
+            <div class="mercato-card" onclick="afficher('rodri')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/rodri2.jpg" class="mercato-photo"><div><div class="mercato-nom">Rodri</div><div class="mercato-poste">MDC</div><div class="mercato-prix"></div></div></div><div class="mercato-date">18 Août</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/barca.jpg">FC Barcelone</div></div>
+            </div>
+
             <div class="mercato-card" onclick="afficher('samuel')">
             <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/lakyle-samuel.jpg" class="mercato-photo"><div><div class="mercato-nom">Lakyle Samuel</div><div class="mercato-poste">DD</div><div class="mercato-prix">Prêt</div></div></div><div class="mercato-date">14 Août</div></div>
             <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">🔄</div><div class="club"><img src="static/images/exeter.jpg">Exeter City</div></div>
@@ -831,6 +835,11 @@
             <div class="mercato-card" onclick="afficher('chabot')">
             <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/max-edgar-chabot.jpg" class="mercato-photo"><div><div class="mercato-nom">Max Edgar Chabot</div><div class="mercato-poste">G</div><div class="mercato-prix">Transfert Gratuit</div></div></div><div class="mercato-date">13 Août</div></div>
             <div class="mercato-clubs"><div class="club"><img src="static/images/angers.jpg">Angers SCO</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
+            </div>
+
+            <div class="mercato-card" onclick="afficher('rulli')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/geronimo-rulli.jpg" class="mercato-photo"><div><div class="mercato-nom">Geronimo Rulli</div><div class="mercato-poste">G</div><div class="mercato-prix">3.5M €</div></div></div><div class="mercato-date">12 Août</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/marseille.jpg">Marseille</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div>
             </div>
 
             <div class="mercato-card" onclick="afficher('phillips')">
@@ -1125,7 +1134,6 @@
             'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", nat: "Espagne 🇪🇸", numero: "14", paye: "314 000 €", fin: "30/06/2029", valeur: "40M €", noteea: "81", naissance: "03/01/2002", img: "gonzalez.jpg", bio: "Technique espagnole.", matchs: 4, buts: 0, passes: 0},
             'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", nat: "Croatie 🇭🇷", numero: "8", paye: "760 000 €", fin: "30/06/2027", valeur: "10M €", noteea: "82", naissance: "06/05/1994", img: "kovacic.jpg", bio: "Expérience croate.", matchs: 4, buts: 0, passes: 0},
             'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", nat: "Pays-Bas 🇳🇱", numero: "4", paye: "374 000 €", fin: "30/06/2030", valeur: "50M €", noteea: "85", naissance: "29/07/1998", img: "reijnders.jpg", bio: "Milieu élégant.", matchs: 3, buts: 1, passes: 1},
-            'rodri': { nom: "Rodri", poste: "Milieu", nat: "Espagne 🇪🇸", numero: "16", paye: "1 110 000 €", fin: "30/06/2027", valeur: "55M €", noteea: "89", naissance: "22/06/1996", img: "rodri.jpg", bio: "Ballon d'Or 2024. Le métronome.", matchs: 0, buts: 0, passes: 0},
             'doku': { nom: "Jérémy Doku", poste: "Attaquant", nat: "Belgique 🇧🇪", numero: "11", paye: "INCONNUE", fin: "30/06/2031", valeur: "75M €", noteea: "84", naissance: "27/05/2002", img: "doku.jpg", bio: "Vitesse pure.", matchs: 1, buts: 0, passes: 0},
             'grealish': { nom: "Jack Grealish", poste: "Attaquant", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "INCONNU", paye: "1 100 000", fin: "30/06/2027", valeur: "20M €", noteea: "81", naissance: "10/09/1995", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 1, buts: 0, passes: 0},
             'haaland': { nom: "Erling Haaland", poste: "Attaquant", nat: "Norvège 🇳🇴", numero: "9", paye: "2 570 000 €", fin: "30/06/2034", valeur: "220M €", noteea: "91", naissance: "21/07/2000", img: "haaland.jpg", bio: "Phénomène offensif norvégien.", matchs: 1, buts: 0, passes: 0},
@@ -1225,7 +1233,7 @@ milieuses:[
 {nom:"Sam Coffey", naissance:"31/12/1998", note:"82", img:"milieucoffey.jpg"},
 {nom:"Yui Hasegawa", naissance:"29/01/1997", note:"85", img:"milieuhasegawa.jpg"},
 {nom:"Sydney Lohmann", naissance:"19/06/2000", note:"80", img:"milieulohmann.jpg"},
-{nom:"Aemu Oyama", naissance:"14/09/2004", note:"70", img:"milieuoyama.jpg"}
+{nom:"Amelia Oldroyd", naissance:"12/06/2007", note:"INCONNUE", img:"milieuoldroyd.jpg"},
 ],
 
 attaquantes:[
@@ -1236,7 +1244,6 @@ attaquantes:[
 {nom:"Beth Mead", naissance:"09/05/1995", note:"87", img:"attaquantemead.jpg"},
 {nom:"Vivienne Miedema", naissance:"15/07/1996", note:"85", img:"attaquantemiedema.jpg"},
 {nom:"Lily Murphy", naissance:"13/02/2006", note:"63", img:"attaquantemurphy.jpg"},
-{nom:"Poppy Pritchard", naissance:"03/12/2005", note:"INCONNUE", img:"attaquantepritchard.jpg"},
 {nom:"Khadija Shaw", naissance:"31/01/1997", note:"89", img:"attaquanteshaw.jpg"}
 ]
 
@@ -2517,7 +2524,6 @@ setInterval(verifierModeNuit, 60000);
 {nom:"Nico Gonzalez", id:"gonzalez"},
 {nom:"Matéo Kovacic", id:"kovacic"},
 {nom:"Tijjani Reijnders", id:"reijnders"},
-{nom:"Rodri", id:"rodri"},
 //Attaquants//
 {nom:"Jérémy Doku", id:"doku"},
 {nom:"Jérémy Monga", id:"monga"},
