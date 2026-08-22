@@ -650,13 +650,12 @@
             <h2>Actus Mercato 📰</h2>
             <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/malo-gusto.jpg" class="mercato-photo"><div><div class="mercato-nom">Malo Gusto</div><div class="mercato-poste">DD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/chelsea.jpg">Chelsea</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
             <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ayyoub-bouaddi.jpg" class="mercato-photo"><div><div class="mercato-nom">Ayyoub Bouaddi</div><div class="mercato-poste">MDC</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/lille.jpg">LOSC Lille</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
-            <div class="mercato-card" onclick="afficherJeune('ryan-mcaidoo')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ryan-mcaidoo.jpg" class="mercato-photo"><div><div class="mercato-nom">Ryan McAidoo</div><div class="mercato-poste">AD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City U21</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
+            <div class="mercato-card"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/ryan-mcaidoo.jpg" class="mercato-photo"><div><div class="mercato-nom">Ryan McAidoo</div><div class="mercato-poste">AD</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City U21</div><div class="arrow">➜</div><div class="club"><img src="static/images/mancity.jpg">Man City</div></div></div>
         </div>
 
         <div id="actus-mercato-b" class="content-section">
             <h2>Actus Mercato 📰</h2>
             <div class="mercato-card" onclick="afficher('savinho')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/savinho2.jpg" class="mercato-photo"><div><div class="mercato-nom">Savinho</div><div class="mercato-poste">AG</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/tottenham2.jpg">Tottenham</div></div></div>
-            <div class="mercato-card" onclick="afficher('reijnders')"><div class="mercato-top"><div class="mercato-joueur"><img src="static/images/tijjani-reijnders.jpg" class="mercato-photo"><div><div class="mercato-nom">Tijjani Reijnders</div><div class="mercato-poste">MC</div><div class="mercato-prix">Rumeur</div></div></div><div class="mercato-date"></div></div><div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/galatasaray.jpg">Galatasaray</div></div></div>
         </div>
 
 
@@ -801,6 +800,11 @@
 
         <div id="mercato-recap" class="content-section">
             <h2>Historique du Mercato (Été 2026)</h2>
+
+            <div class="mercato-card" onclick="afficher('reijnders')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/tijjani-reijnders.jpg" class="mercato-photo"><div><div class="mercato-nom">Tijjani Reijnders</div><div class="mercato-poste">MC</div><div class="mercato-prix">61M €</div></div></div><div class="mercato-date">19 Août</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">➜</div><div class="club"><img src="static/images/al-qadsiah.jpg">Al Qadsiah</div></div>
+            </div>
 
             <div class="mercato-card" onclick="afficher('rodri')">
             <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/rodri2.jpg" class="mercato-photo"><div><div class="mercato-nom">Rodri</div><div class="mercato-poste">MDC</div><div class="mercato-prix">60M €</div></div></div><div class="mercato-date">18 Août</div></div>
@@ -1133,7 +1137,6 @@
             'foden': { nom: "Phil Foden", poste: "Milieu", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "47", paye: "INCONNUE", fin: "30/06/2030", valeur: "70M €", noteea: "85", naissance: "28/05/2000", img: "foden.jpg", bio: "L'enfant chéri de Stockport.", matchs: 4, buts: 0, passes: 1},
             'gonzalez': { nom: "Nico Gonzalez", poste: "Milieu", nat: "Espagne 🇪🇸", numero: "14", paye: "314 000 €", fin: "30/06/2029", valeur: "40M €", noteea: "81", naissance: "03/01/2002", img: "gonzalez.jpg", bio: "Technique espagnole.", matchs: 4, buts: 0, passes: 0},
             'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", nat: "Croatie 🇭🇷", numero: "8", paye: "760 000 €", fin: "30/06/2027", valeur: "10M €", noteea: "82", naissance: "06/05/1994", img: "kovacic.jpg", bio: "Expérience croate.", matchs: 4, buts: 0, passes: 0},
-            'reijnders': { nom: "Tijjani Reijnders", poste: "Milieu", nat: "Pays-Bas 🇳🇱", numero: "4", paye: "374 000 €", fin: "30/06/2030", valeur: "50M €", noteea: "85", naissance: "29/07/1998", img: "reijnders.jpg", bio: "Milieu élégant.", matchs: 3, buts: 1, passes: 1},
             'doku': { nom: "Jérémy Doku", poste: "Attaquant", nat: "Belgique 🇧🇪", numero: "11", paye: "INCONNUE", fin: "30/06/2031", valeur: "75M €", noteea: "84", naissance: "27/05/2002", img: "doku.jpg", bio: "Vitesse pure.", matchs: 1, buts: 0, passes: 0},
             'grealish': { nom: "Jack Grealish", poste: "Attaquant", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "INCONNU", paye: "1 100 000", fin: "30/06/2027", valeur: "20M €", noteea: "81", naissance: "10/09/1995", img: "grealish.jpg", bio: "Joueur d'expérience.", matchs: 1, buts: 0, passes: 0},
             'haaland': { nom: "Erling Haaland", poste: "Attaquant", nat: "Norvège 🇳🇴", numero: "9", paye: "2 570 000 €", fin: "30/06/2034", valeur: "220M €", noteea: "91", naissance: "21/07/2000", img: "haaland.jpg", bio: "Phénomène offensif norvégien.", matchs: 1, buts: 0, passes: 0},
@@ -1177,7 +1180,7 @@
 'ryan-mcaidoo': { nom:"Ryan McAidoo", poste:"Attaquant", naissance:"24/06/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquantryan.jpg", matchs:"matchs: 1", buts:"buts: 0", passes:"passes d: 0" },
 'mahamadou-sangare': { nom:"Mahamadou Sangaré", poste:"Attaquant", naissance:"06/03/2007", nat:"France 🇫🇷", img:"attaquantmahamadou.jpg", matchs:"matchs: 1", buts:"buts: 0", passes:"passes d: 0" },
 'christian-dunbar-mcdonald': { nom:"Christian Dunbar McDonald", poste:"Attaquant", naissance:"29/10/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquantchristian.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'teddie-lamb': { nom:"Teddie Lamb", poste:"Attaquant", naissance:"02/07/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquantteddie.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
+'kylan-midwood': { nom:"Kylan Midwood", poste:"Attaquant", naissance:"02/07/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquantkylan.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
 'timeo-whisker': { nom:"Timeo Whisker", poste:"Attaquant", naissance:"23/01/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquanttimeo.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
 'tyrone-samba': { nom:"Tyrone Samba", poste:"Attaquant", naissance:"31/12/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquanttyrone.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" }
 
