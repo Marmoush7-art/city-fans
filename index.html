@@ -149,12 +149,7 @@
         .historique-card:hover{ transform:scale(1.03); }
 
         .spot-label { font-size: 0.8rem; color: white; font-weight: bold; text-transform: uppercase; }
-        .spot-player-name {font-size: 0.75rem;color: var(--city-black);font-weight: bold;background: rgba(255,255,255,0.8);padding: 4px 6px;border-radius: 6px;width: 100%;text-align: center;display: none;line-height: 1.3;}
-        .player-info-container {display: flex;justify-content: center;align-items: center;gap: 5px;width: 100%;}
-        /* Numéro du joueur en bleu */
-        .spot-player-number {font-size: 0.75rem;color: #6CABDD;font-weight: 800;background: rgba(255,255,255,0.9);padding: 2px 6px;border-radius: 4px;min-width: 20px;text-align: center;}
-        /* Augmente légèrement la taille du conteneur image */
-        .spot-img-holder {width: 60px;height: 60px;margin-bottom: 6px;}
+        .spot-player-name { font-size: 0.7rem; color: var(--city-black); font-weight: bold; background: rgba(255,255,255,0.8); padding: 2px 4px; border-radius: 4px; width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; text-align: center; display: none; }
         .spot-img-holder.has-player + .spot-player-name { display: block; }
 
         .compo-squad-list { width: 100%; max-width: 600px; margin: 25px auto 0; text-align: left; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
@@ -3190,33 +3185,15 @@ function updateSelection(results) {
         }
         function selectSpot(element) { document.querySelectorAll('.player-spot').forEach(s => s.classList.remove('selected')); selectedSpotElement = element; selectedSpotElement.classList.add('selected'); }
         function placerJoueur(joueurId) {
-    if (!selectedSpotElement) { 
-        alert("Clique d'abord sur une place vide sur le terrain 🏟️"); 
-        return; 
-    }
-    const j = effectif[joueurId]; 
-    if (!j) return;
-    const imgHolder = selectedSpotElement.querySelector('.spot-img-holder');
-    const nameEl = selectedSpotElement.querySelector('.spot-player-name');
-    // Vérifie si le numéro existe dans les données du joueur
-    const numero = j.numero || "";
-    // Crée ou met à jour le conteneur avec nom + numéro
-    if (numero) {
-        nameEl.innerHTML = `
-            <div class="player-info-container">
-                <span>${j.nom}</span>
-                <span class="spot-player-number">${numero}</span>
-            </div>
-        `;
-    } else {
-        nameEl.innerHTML = `<span>${j.nom}</span>`;
-    }
-    imgEl.src = "static/images/" + j.img; 
-    imgHolder.classList.add('has-player');
-    nameEl.style.display = 'block';
-    selectedSpotElement.classList.remove('selected'); 
-    selectedSpotElement = null;
-}
+            if (!selectedSpotElement) { alert("Clique d'abord sur une place vide sur le terrain 🏟️"); return; }
+            const j = effectif[joueurId]; if (!j) return;
+            const imgHolder = selectedSpotElement.querySelector('.spot-img-holder');
+            const imgEl = imgHolder.querySelector('img');
+            const nameEl = selectedSpotElement.querySelector('.spot-player-name');
+            imgEl.src = "static/images/" + j.img; imgHolder.classList.add('has-player');
+            nameEl.innerText = j.nom;
+            selectedSpotElement.classList.remove('selected'); selectedSpotElement = null;
+        }
 
         let currentChatTopic = ""; 
         function ouvrirChat(nom) { currentChatTopic = nom; document.getElementById('chat-titre').innerText = "Avis : " + nom; loadMessages(); showSection('chat-section'); } 
