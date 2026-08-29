@@ -830,12 +830,12 @@
 
     <!-- 2 milieux défensifs -->
     <div class="player-spot" id="spot-mil-mc1" style="top: 60%; left: 40%;" onclick="selectSpot(this)">
-        <div class="spot-img-holder"><img><span class="spot-label">MC</span></div>
+        <div class="spot-img-holder"><img><span class="spot-label">MDC</span></div>
         <div class="spot-player-name"></div>
     </div>
 
     <div class="player-spot" id="spot-mil-mc2" style="top: 60%; left: 60%;" onclick="selectSpot(this)">
-        <div class="spot-img-holder"><img><span class="spot-label">MC</span></div>
+        <div class="spot-img-holder"><img><span class="spot-label">MDC</span></div>
         <div class="spot-player-name"></div>
     </div>
 
@@ -1248,26 +1248,26 @@
         });
 
         const effectif = {
-            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "13", paye: "177 000 €", fin: "30/06/2027", valeur: "0.3M €", noteea: "69", naissance: "24/05/1992", img: "bettinelli.jpg", bio: "Gardien expérimenté.", matchs: 1, buts: 0, passes: 0},
+            'bettinelli': { nom: "Marcus Bettinelli", poste: "Gardien", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "13", paye: "177 000 €", fin: "30/06/2027", valeur: "0.3M €", noteea: "69", naissance: "24/05/1992", img: "bettinelli.jpg", bio: "Gardien expérimenté.", matchs: 1, buts: 0, passes: 0},
             'donnarumma': { nom: "Gianluigi Donnarumma", poste: "Gardien", nat: "Italie 🇮🇹", numero: "1", paye: "1 230 000 €", fin: "30/06/2030", valeur: "45M €", noteea: "89", naissance: "25/02/1999", img: "donnarumma.jpg", bio: "Gardien d'envergure internationale.", matchs: 6, buts: 0, passes: 0},
             'rulli': { nom: "Geronimo Rulli", poste: "Gardien", nat: "Argentine 🇦🇷", numero: "28", paye: "205 000", fin: "30/06/2028", valeur: "6M €", noteea: "80", naissance: "20/05/1992", img: "rulli.jpg", bio: "Gardien d'envergure internationale.", matchs: 3, buts: 0, passes: 0},
             'ait-nouri': { nom: "Rayan Ait-Nouri", poste: "Défenseur", nat: "Algérie 🇩🇿", numero: "21", paye: "151 000 €", fin: "30/06/2030", valeur: "40M €", noteea: "81", naissance: "06/06/2001", img: "ait-nouri.jpg", bio: "Latéral percutant.", matchs: 3, buts: 2, passes: 0},
-            'braithwaite': { nom: "Kaden Braithwaite", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "61", paye: "15 000", fin: "30/06/2028", valeur: "4.5M €", noteea: "Non noté", naissance: "08/02/2008", img: "braithwaite.jpg", bio: "Jeune pépite du club.", matchs: 1, buts: 0, passes: 0},
+            'braithwaite': { nom: "Kaden Braithwaite", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "61", paye: "15 000", fin: "30/06/2028", valeur: "4.5M €", noteea: "Non noté", naissance: "08/02/2008", img: "braithwaite.jpg", bio: "Jeune pépite du club.", matchs: 1, buts: 0, passes: 0},
             'dias': { nom: "Ruben Dias", poste: "Défenseur", nat: "Portugal 🇵🇹", numero: "3", paye: "1 200 000 €", fin: "30/06/2029", valeur: "55M €", noteea: "87", naissance: "14/05/1997", img: "dias.jpg", bio: "Pilier défensif.", matchs: 5, buts: 0, passes: 0},
-            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "6", paye: "253 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "85", naissance: "13/07/2000", img: "guehi.jpg", bio: "Nouvelle recrue solide.", matchs: 3, buts: 1, passes: 0},
+            'guehi': { nom: "Marc Guéhi", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "6", paye: "253 000 €", fin: "30/06/2031", valeur: "70M €", noteea: "85", naissance: "13/07/2000", img: "guehi.jpg", bio: "Nouvelle recrue solide.", matchs: 3, buts: 1, passes: 0},
             'gvardiol': { nom: "Josko Gvardiol", poste: "Défenseur", nat: "Croatie 🇭🇷", numero: "24", paye: "1 310 000", fin: "30/06/2031", valeur: "70M €", noteea: "85", naissance: "23/01/2002", img: "gvardiol.jpg", bio: "Roc croate.", matchs: 6, buts: 1, passes: 1},
             'juma-bah': { nom: "Abdulai Juma Bah", poste: "Défenseur", nat: "Sierra Leone 🇸🇱", numero: "30/06/2031", paye: "60 000 €", fin: "30/06/2031", valeur: "10M €", noteea: "73", naissance: "11/04/2006", img: "bah.jpg", bio: "Jeune talent.", matchs: 0, buts: 0, passes: 0},
             'khusanov': { nom: "Abdukodir Khusanov", poste: "Défenseur", nat: "Ouzbékistan 🇺🇿", numero: "45", paye: "433 000", fin: "30/06/2031", valeur: "50M €", noteea: "82", naissance: "29/02/2004", img: "khusanov.jpg", bio: "Révélation ouzbèke.", matchs: 5, buts: 0, passes: 0},
-            'lewis': { nom: "Rico Lewis", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "82", paye: "123 000 €", fin: "30/06/2030", valeur: "28M €", noteea: "77", naissance: "21/11/2004", img: "lewis.jpg", bio: "Futur cadre issu de l'académie.", matchs: 5, buts: 0, passes: 0},
+            'lewis': { nom: "Rico Lewis", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "82", paye: "123 000 €", fin: "30/06/2030", valeur: "28M €", noteea: "77", naissance: "21/11/2004", img: "lewis.jpg", bio: "Futur cadre issu de l'académie.", matchs: 5, buts: 0, passes: 0},
             'nunes': { nom: "Matheus Nunes", poste: "Défenseur", nat: "Portugal 🇵🇹", numero: "27", paye: "658 000 €", fin: "30/06/2028", valeur: "50M €", noteea: "83", naissance: "27/08/1998", img: "nunes.jpg", bio: "Défenseur puissant.", matchs: 3, buts: 0, passes: 0},
-            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "33", paye: "150 000 €", fin: "30/06/2030", valeur: "70M €", noteea: "83", naissance: "21/03/2005", img: "o'reilly.jpg", bio: "Pépite locale.", matchs: 3, buts: 0, passes: 0},
+            'oreilly': { nom: "Nico O'Reilly", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "33", paye: "150 000 €", fin: "30/06/2030", valeur: "70M €", noteea: "83", naissance: "21/03/2005", img: "o'reilly.jpg", bio: "Pépite locale.", matchs: 3, buts: 0, passes: 0},
             'reis': { nom: "Vitor Reis", poste: "Défenseur", nat: "Brésil 🇧🇷", numero: "22", paye: "200 000", fin: "30/06/2029", valeur: "30M €", noteea: "76", naissance: "12/01/2006", img: "reis.jpg", bio: "Jeune talent brésilien.", matchs: 4, buts: 0, passes: 0},
-            'wilson-esbrand': { nom: "Joshua Wilson-Esbrand", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "97", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "66", naissance: "26/12/2002", img: "wilson-esbrand.jpg", bio: "Pépite anglaise.", matchs: 0, buts: 0, passes: 0},
-            'anderson': { nom: "Elliot Anderson", poste: "Milieu", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "5", paye: "350 000", fin: "30/06/2031", valeur: "110M €", noteea: "84", naissance: "06/11/2002", img: "anderson.jpg", bio: "Incroyable talent.", matchs: 3, buts: 0, passes: 0},
+            'wilson-esbrand': { nom: "Joshua Wilson-Esbrand", poste: "Défenseur", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "97", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "66", naissance: "26/12/2002", img: "wilson-esbrand.jpg", bio: "Pépite anglaise.", matchs: 0, buts: 0, passes: 0},
+            'anderson': { nom: "Elliot Anderson", poste: "Milieu", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "5", paye: "350 000", fin: "30/06/2031", valeur: "110M €", noteea: "84", naissance: "06/11/2002", img: "anderson.jpg", bio: "Incroyable talent.", matchs: 3, buts: 0, passes: 0},
             'bouaddi': { nom: "Ayyoub Bouaddi", poste: "Milieu", nat: "Maroc 🇲🇦", numero: "32", paye: "167 000", fin: "30/06/2031", valeur: "80M €", noteea: "80", naissance: "02/10/2007", img: "bouaddi.jpg", bio: "Potentiel énornme, succeseur de Rodri.", matchs: 1, buts: 0, passes: 0},
             'cherki': { nom: "Rayan Cherki", poste: "Milieu", nat: "France 🇫🇷", numero: "10", paye: "333 000 €", fin: "30/06/2030", valeur: "90M €", noteea: "86", naissance: "17/08/2003", img: "cherki.jpg", bio: "Magicien français.", matchs: 3, buts: 2, passes: 2},
             'echeverri': { nom: "Claudio Echeverri", poste: "Milieu", nat: "Argentine 🇦🇷", numero: "30", paye: "78 000", fin: "30/06/2028", valeur: "15M €", noteea: "73", naissance: "02/01/2006", img: "echeverri.jpg", bio: "Jeune pépite argentine.", matchs: 3, buts: 0, passes: 0},
-            'foden': { nom: "Phil Foden", poste: "Milieu", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "47", paye: "1 470 000", fin: "30/06/2030", valeur: "70M €", noteea: "84", naissance: "28/05/2000", img: "foden.jpg", bio: "L'enfant chéri de Stockport.", matchs: 6, buts: 0, passes: 3},
+            'foden': { nom: "Phil Foden", poste: "Milieu", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "47", paye: "1 470 000", fin: "30/06/2030", valeur: "70M €", noteea: "84", naissance: "28/05/2000", img: "foden.jpg", bio: "L'enfant chéri de Stockport.", matchs: 6, buts: 0, passes: 3},
             'kovacic': { nom: "Matéo Kovacic", poste: "Milieu", nat: "Croatie 🇭🇷", numero: "8", paye: "760 000 €", fin: "30/06/2027", valeur: "10M €", noteea: "81", naissance: "06/05/1994", img: "kovacic.jpg", bio: "Expérience croate.", matchs: 6, buts: 0, passes: 0},
             'samba': { nom: "Floyd Samba", poste: "Milieu", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "75", paye: "15 000", fin: "30/06/2028", valeur: "3.5M €", noteea: "Non noté", naissance: "15/01/2009", img: "samba.jpg", bio: "Jeune pépite du club", matchs: 0, buts: 0, passes: 0},
             'doku': { nom: "Jérémy Doku", poste: "Attaquant", nat: "Belgique 🇧🇪", numero: "11", paye: "780 000", fin: "30/06/2031", valeur: "75M €", noteea: "84", naissance: "27/05/2002", img: "doku.jpg", bio: "Vitesse pure.", matchs: 1, buts: 0, passes: 0},
@@ -1280,36 +1280,35 @@
 
         };
 
-        const centreFormation = {
-'max-hudson': { nom:"Max Hudson", poste:"Gardien", naissance:"20/09/2007", nat:"Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿", img:"gardienmax.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'max-edgar-chabot': { nom:"Max Edgar Chabot", poste:"Gardien", naissance:"01/04/2008", nat:"France 🇫🇷", img:"gardienmaxedgar.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'ben-vickery': { nom:"Ben Vickery", poste:"Gardien", naissance:"06/08/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"gardienben.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-       
-'matty-henderson-hall': { nom:"Matty Henderson-Hall", poste:"Défenseur", naissance:"08/12/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurmatty.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'luke-mbete': { nom:"Luke Mbete", poste:"Défenseur", naissance:"18/09/2003", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurluke.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'stephen-mfuni': { nom:"Stephen Mfuni", poste:"Défenseur", naissance:"12/02/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurstephen.jpg", matchs:"matchs: 2", buts:"buts: 0", passes:"passes d: 0" },
-'brooklyn-nfonkeu': { nom:"Brooklyn Nfonkeu", poste:"Défenseur", naissance:"01/07/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurbrooklyn.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'kian-noble': { nom:"Kian Noble", poste:"Défenseur", naissance:"26/02/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurkian.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'harrison-parker': { nom:"Harrison Parker", poste:"Défenseur", naissance:"22/09/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurharrison.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'rhys-thomas': { nom:"Rhys Thomas", poste:"Défenseur", naissance:"05/11/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurrhys.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'oliver-tevenan': { nom:"Oliver Tevenan", poste:"Défenseur", naissance:"12/12/2007", nat:"Irlande 🇮🇪", img:"defenseuroliver.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'dante-headley': { nom:"Dante Headley", poste:"Défenseur", naissance:"18/09/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurdante.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'leke-drake': { nom:"Leke Drake", poste:"Défenseur", naissance:"25/12/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurleke.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'freddie-lawrie': { nom:"Freddie Lawrie", poste:"Défenseur", naissance:"17/03/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurfreddie.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'charlie-courtman': { nom:"Charlie Courtman", poste:"Défenseur", naissance:"14/10/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurcharlie.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'jake-wain': { nom:"Jake Wain", poste:"Défenseur", naissance:"29/01/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"defenseurjake.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-            
-'femi-fapetu': { nom:"Femi Fapetu", poste:"Milieu", naissance:"04/08/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieufemi.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'jaden-heskey': { nom:"Jaden Heskey", poste:"Milieu", naissance:"17/12/2005", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieujaden.jpg", matchs:"matchs: 1", buts:"buts: 0", passes:"passes d: 0" },
-'finley-gorman': { nom:"Finley Gorman", poste:"Milieu", naissance:"20/09/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieufinley.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'harrison-miles': { nom:"Harrison Miles", poste:"Milieu", naissance:"28/07/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieuharrison.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'xavier-parker': { nom:"Xavier Parker", poste:"Milieu", naissance:"09/05/2010", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"milieuxavier.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-            
-'mahamadou-sangare': { nom:"Mahamadou Sangaré", poste:"Attaquant", naissance:"06/03/2007", nat:"France 🇫🇷", img:"attaquantmahamadou.jpg", matchs:"matchs: 1", buts:"buts: 0", passes:"passes d: 0" },
-'christian-dunbar-mcdonald': { nom:"Christian Dunbar McDonald", poste:"Attaquant", naissance:"29/10/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquantchristian.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'kylan-midwood': { nom:"Kylan Midwood", poste:"Attaquant", naissance:"02/07/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquantkylan.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" },
-'tyrone-samba': { nom:"Tyrone Samba", poste:"Attaquant", naissance:"31/12/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", img:"attaquanttyrone.jpg", matchs:"matchs: 0", buts:"buts: 0", passes:"passes d: 0" }
+const centreFormation = {
+    'max-hudson': { nom:"Max Hudson", poste:"Gardien", naissance:"20/09/2007", nat:"Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿", numero: "69", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"gardienmax.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'max-edgar-chabot': { nom:"Max Edgar Chabot", poste:"Gardien", naissance:"01/04/2008", nat:"France 🇫🇷", numero: "94", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"gardienmaxedgar.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'ben-vickery': { nom:"Ben Vickery", poste:"Gardien", naissance:"06/08/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "Aucun", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"gardienben.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
 
+    'matty-henderson-hall': { nom:"Matty Henderson-Hall", poste:"Défenseur", naissance:"08/12/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "89", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseurmatty.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'luke-mbete': { nom:"Luke Mbete", poste:"Défenseur", naissance:"18/09/2003", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "79", paye: "2 500", fin: "Inconnue", valeur: "0.7M €", noteea: "Non noté", img:"defenseurluke.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'stephen-mfuni': { nom:"Stephen Mfuni", poste:"Défenseur", naissance:"12/02/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "91", paye: "2 500", fin: "Inconnue", valeur: "1.5M €", noteea: "69", img:"defenseurstephen.jpg", bio: "Jeune joueur du centre de formation.", matchs:2, buts:0, passes:0 },
+    'brooklyn-nfonkeu': { nom:"Brooklyn Nfonkeu", poste:"Défenseur", naissance:"01/07/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "48", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseurbrooklyn.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'kian-noble': { nom:"Kian Noble", poste:"Défenseur", naissance:"26/02/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "90", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseurkian.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'harrison-parker': { nom:"Harrison Parker", poste:"Défenseur", naissance:"22/09/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "55", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseurharrison.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'rhys-thomas': { nom:"Rhys Thomas", poste:"Défenseur", naissance:"05/11/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "Aucun", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseurrhys.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'oliver-tevenan': { nom:"Oliver Tevenan", poste:"Défenseur", naissance:"12/12/2007", nat:"Irlande 🇮🇪", numero: "92", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseuroliver.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'dante-headley': { nom:"Dante Headley", poste:"Défenseur", naissance:"18/09/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "88", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseurdante.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'leke-drake': { nom:"Leke Drake", poste:"Défenseur", naissance:"25/12/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "83", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseurleke.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'freddie-lawrie': { nom:"Freddie Lawrie", poste:"Défenseur", naissance:"17/03/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "Aucun", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseurfreddie.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'charlie-courtman': { nom:"Charlie Courtman", poste:"Défenseur", naissance:"14/10/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "74", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseurcharlie.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'jake-wain': { nom:"Jake Wain", poste:"Défenseur", naissance:"29/01/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "Aucun", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseurjake.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+
+    'femi-fapetu': { nom:"Femi Fapetu", poste:"Milieu", naissance:"04/08/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "60", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"milieufemi.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'jaden-heskey': { nom:"Jaden Heskey", poste:"Milieu", naissance:"17/12/2005", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "81", paye: "2 500", fin: "Inconnue", valeur: "0.3M €", noteea: "65", img:"milieujaden.jpg", bio: "Jeune joueur du centre de formation.", matchs:1, buts:0, passes:0 },
+    'finley-gorman': { nom:"Finley Gorman", poste:"Milieu", naissance:"20/09/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "87", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"milieufinley.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'harrison-miles': { nom:"Harrison Miles", poste:"Milieu", naissance:"28/07/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "96", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"milieuharrison.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'xavier-parker': { nom:"Xavier Parker", poste:"Milieu", naissance:"09/05/2010", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "73", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"milieuxavier.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+
+    'mahamadou-sangare': { nom:"Mahamadou Sangaré", poste:"Attaquant", naissance:"06/03/2007", nat:"France 🇫🇷", numero: "71", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"attaquantmahamadou.jpg", bio: "Jeune joueur du centre de formation.", matchs:1, buts:0, passes:0 },
+    'christian-dunbar-mcdonald': { nom:"Christian Dunbar McDonald", poste:"Attaquant", naissance:"29/10/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "86", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"attaquantchristian.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'kylan-midwood': { nom:"Kylan Midwood", poste:"Attaquant", naissance:"02/07/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "98", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"attaquantkylan.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'tyrone-samba': { nom:"Tyrone Samba", poste:"Attaquant", naissance:"31/12/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "97", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"attaquanttyrone.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 }
 };
 
 const joueursPret = [
@@ -1414,35 +1413,81 @@ attaquantes:[
         });
 
         function afficherJoueur(id) {
-            const j = effectif[id]; if(!j) return;
-            
-            // RESTAURATION DES LABELS ET AFFICHAGES ORIGINAUX
-            document.getElementById('s-age').previousElementSibling.innerText = "Âge";
-            document.getElementById('s-nat').previousElementSibling.innerText = "Nationalité";
-            document.getElementById('s-numero').previousElementSibling.innerText = "Numéro";
-            document.getElementById('s-paye').parentNode.style.display = "";
-            document.getElementById('s-fin').parentNode.style.display = "";
-            document.getElementById('s-valeur').parentNode.style.display = "";
-            document.getElementById('s-noteea').parentNode.style.display = "";
-            const statsBlock = document.getElementById('s-matchs')?.parentNode?.parentNode;
-            if (statsBlock) statsBlock.style.display = "";
 
-            // Remplissage des données du joueur
-            document.getElementById('nom-joueur').innerText = j.nom;
-            document.getElementById('s-age').innerText = calculerAge(j.naissance);
-            document.getElementById('s-nat').innerText = j.nat;
-            document.getElementById('s-numero').innerText = j.numero;
-            document.getElementById('s-paye').innerText = j.paye;
-            document.getElementById('s-fin').innerText = j.fin;
-            document.getElementById('s-valeur').innerText = j.valeur;
-            document.getElementById('s-noteea').innerText = j.noteea;
-            document.getElementById('s-bio').innerText = j.bio;
-            document.getElementById('photo').src = "static/images/" + j.img;
-            document.getElementById('s-matchs').innerText = j.matchs || 0;
-            document.getElementById('s-buts').innerText = j.buts || 0;
-            document.getElementById('s-passes').innerText = j.passes || 0;
-            showSection('joueur-solo');
-        }
+    // Cherche d'abord dans l'équipe première
+    let j = effectif[id];
+
+    // Si pas trouvé, cherche dans l'EDS
+    if (!j) {
+        j = centreFormation[id];
+    }
+
+    if (!j) {
+        console.error("Joueur introuvable :", id);
+        return;
+    }
+
+    // Valeurs par défaut pour les joueurs EDS
+    const joueur = {
+        nom: j.nom || "Inconnu",
+        poste: j.poste || "N/A",
+        naissance: j.naissance || "",
+        nat: j.nat || "N/A",
+        numero: j.numero || "N/A",
+        paye: j.paye || "N/A",
+        fin: j.fin || "N/A",
+        valeur: j.valeur || "N/A",
+        noteea: j.noteea || "Non noté",
+        bio: j.bio || "Jeune joueur du centre de formation.",
+        img: j.img || "",
+        matchs: j.matchs || 0,
+        buts: j.buts || 0,
+        passes: j.passes || 0
+    };
+
+    // Affichage des informations
+    document.getElementById('s-age').previousElementSibling.innerText = "Âge";
+    document.getElementById('s-nat').previousElementSibling.innerText = "Nationalité";
+    document.getElementById('s-numero').previousElementSibling.innerText = "Numéro";
+
+    document.getElementById('s-paye').parentNode.style.display = "";
+    document.getElementById('s-fin').parentNode.style.display = "";
+    document.getElementById('s-valeur').parentNode.style.display = "";
+    document.getElementById('s-noteea').parentNode.style.display = "";
+
+    const statsBlock =
+        document.getElementById('s-matchs')?.parentNode?.parentNode;
+
+    if (statsBlock) statsBlock.style.display = "";
+
+    // Remplissage
+    document.getElementById('nom-joueur').innerText = joueur.nom;
+
+    document.getElementById('s-age').innerText =
+        joueur.naissance ? calculerAge(joueur.naissance) : "N/A";
+
+    document.getElementById('s-nat').innerText = joueur.nat;
+    document.getElementById('s-numero').innerText = joueur.numero;
+    document.getElementById('s-paye').innerText = joueur.paye;
+    document.getElementById('s-fin').innerText = joueur.fin;
+    document.getElementById('s-valeur').innerText = joueur.valeur;
+    document.getElementById('s-noteea').innerText = joueur.noteea;
+    document.getElementById('s-bio').innerText = joueur.bio;
+
+    document.getElementById('photo').src =
+        "static/images/" + joueur.img;
+
+    document.getElementById('s-matchs').innerText =
+        joueur.matchs || 0;
+
+    document.getElementById('s-buts').innerText =
+        joueur.buts || 0;
+
+    document.getElementById('s-passes').innerText =
+        joueur.passes || 0;
+
+    showSection('joueur-solo');
+}
         
 let bonusJoueur = "";
 let bonusBot = "";
@@ -2851,16 +2896,13 @@ function ouvrirCentreGeneral(){
         let j = centreFormation[id];
 
         zone.innerHTML += `
-        <div class="transfert-card">
+        <div class="transfert-card" onclick="afficherJoueur('${id}')">
             <img src="static/images/${j.img}">
             <div class="transfert-info">
                 <h3>${j.nom}</h3>
                 <p>${j.poste}</p>
                 <p>${calculerAge(j.naissance)}</p>
                 <p>${j.nat}</p>
-                <p>${j.matchs}</p>
-                <p>${j.buts}</p>
-                <p>${j.passes}</p>
             </div>
         </div>`;
     }
@@ -2899,7 +2941,7 @@ if(j.poste.toLowerCase() == type ||
 
 zone.innerHTML += `
 
-<div class="transfert-card">
+<div class="transfert-card" onclick="afficherJoueur('${id}')">
 
 <img src="static/images/${j.img}">
 
