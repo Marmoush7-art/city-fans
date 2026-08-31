@@ -883,6 +883,12 @@
         <div id="mercato-recap" class="content-section">
             <h2>Historique du Mercato (Été 2026)</h2>
 
+            <div class="mercato-card" onclick="afficher('mfuni')">
+            <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/stephen-mfuni.jpg" class="mercato-photo"><div><div class="mercato-nom">Stephen Mfuni</div><div class="mercato-poste">DG</div><div class="mercato-prix">Prêt</div></div></div><div class="mercato-date">30 Août</div></div>
+            <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">🔄</div><div class="club"><img src="static/images/coventry.jpg">Coventry City</div></div>
+            </div>
+
+
             <div class="mercato-card" onclick="afficher('marmoush')">
             <div class="mercato-top"><div class="mercato-joueur"><img src="static/images/omar-marmoush.jpg" class="mercato-photo"><div><div class="mercato-nom">Omar Marmoush</div><div class="mercato-poste">BU</div><div class="mercato-prix">Prêt</div></div></div><div class="mercato-date">27 Août</div></div>
             <div class="mercato-clubs"><div class="club"><img src="static/images/mancity.jpg">Man City</div><div class="arrow">🔄</div><div class="club"><img src="static/images/tottenham.jpg">Tottenham</div></div>
@@ -1287,7 +1293,6 @@ const centreFormation = {
 
     'matty-henderson-hall': { nom:"Matty Henderson-Hall", poste:"Défenseur", naissance:"08/12/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "89", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseurmatty.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     'luke-mbete': { nom:"Luke Mbete", poste:"Défenseur", naissance:"18/09/2003", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "79", paye: "2 500", fin: "Inconnue", valeur: "0.7M €", noteea: "Non noté", img:"defenseurluke.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
-    'stephen-mfuni': { nom:"Stephen Mfuni", poste:"Défenseur", naissance:"12/02/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "91", paye: "2 500", fin: "Inconnue", valeur: "1.5M €", noteea: "69", img:"defenseurstephen.jpg", bio: "Jeune joueur du centre de formation.", matchs:2, buts:0, passes:0 },
     'brooklyn-nfonkeu': { nom:"Brooklyn Nfonkeu", poste:"Défenseur", naissance:"01/07/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "48", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseurbrooklyn.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     'kian-noble': { nom:"Kian Noble", poste:"Défenseur", naissance:"26/02/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "90", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseurkian.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     'harrison-parker': { nom:"Harrison Parker", poste:"Défenseur", naissance:"22/09/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "55", paye: "2 500", fin: "Inconnue", valeur: "Inconnue", noteea: "Non noté", img:"defenseurharrison.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
@@ -1323,6 +1328,7 @@ const joueursPret = [
     { nom: "Spike Brits", poste: "Gardien", club: "Sutton United", photo: "static/images/gardienspike.jpg" },
     { nom: "Oliver Whatmuff", poste: "Gardien", club: "Stockport", photo: "static/images/gardienoliver.jpg" },
     { nom: "Jack Wint", poste: "Gardien", club: "Kidderminster", photo: "static/images/gardienjack.jpg" },
+    { nom: "Stephen Mfuni", poste: "Défenseur", club: "Coventry City", photo: "static/images/defenseurstephen.jpg" },
     { nom: "Christian McFarlane", poste: "Défenseur", club: "Leicester", photo: "static/images/defenseurchristian.jpg" },
     { nom: "Lakyle Samuel", poste: "Défenseur", club: "Exeter City", photo: "static/images/defenseurlakyle.jpg" },
     { nom: "Isaiah Dada-Mascoll", poste: "Milieu", club: "Lommel SK", photo: "static/images/milieuisaiah.jpg" },
