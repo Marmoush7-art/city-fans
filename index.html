@@ -320,16 +320,6 @@
             </div>
 
     <div class="match-card">
-        <h3>⚽ Meilleur Buteur</h3>
-        <p>Erling Haaland (3)</p>
-    </div>
-
-    <div class="match-card">
-        <h3>👟 Meilleur Passeur</h3>
-        <p>Antoine Semenyo (6)</p>
-    </div>
-
-    <div class="match-card">
         <h3>🎂 Anniversaires</h3>
         <div id="anniversaires"></div>
     </div>
@@ -1226,6 +1216,7 @@ const centreFormation = {
     'max-hudson': { nom:"Max Hudson", poste:"Gardien", naissance:"20/09/2007", nat:"Pays de Galles 🏴󠁧󠁢󠁷󠁬󠁳󠁿", numero: "69", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"gardienmax.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     'max-edgar-chabot': { nom:"Max Edgar Chabot", poste:"Gardien", naissance:"01/04/2008", nat:"France 🇫🇷", numero: "94", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"gardienmaxedgar.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
 
+    'marlow-barrett': { nom:"Marlow Barrett", poste:"Défenseur", naissance:"11/09/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "70", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"defenseurmarlow.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     'matty-henderson-hall': { nom:"Matty Henderson-Hall", poste:"Défenseur", naissance:"08/12/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "89", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"defenseurmatty.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     'luke-mbete': { nom:"Luke Mbete", poste:"Défenseur", naissance:"18/09/2003", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "79", paye: "2 500", fin: "Non précisée", valeur: "0.7M €", noteea: "Non noté", img:"defenseurluke.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     'brooklyn-nfonkeu': { nom:"Brooklyn Nfonkeu", poste:"Défenseur", naissance:"01/07/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "48", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"defenseurbrooklyn.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
@@ -1236,17 +1227,19 @@ const centreFormation = {
     'leke-drake': { nom:"Leke Drake", poste:"Défenseur", naissance:"25/12/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "83", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"defenseurleke.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     'charlie-courtman': { nom:"Charlie Courtman", poste:"Défenseur", naissance:"14/10/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "74", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"defenseurcharlie.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     'wilson-esbrand': { nom: "Joshua Wilson-Esbrand", poste: "Défenseur", naissance: "26/12/2002", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "59", paye: "25 000", fin: "30/06/2027", valeur: "2.5M €", noteea: "66", img: "wilson-esbrand.jpg", bio: "Jeune joueur du centre de formation.", matchs: 0, buts: 0, passes: 0},
- 
+    'jake-wain': { nom: "Jake Wain", poste: "Défenseur", naissance: "29/01/2009", nat: "Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿", numero: "93", paye: "25 000", fin: "Non précisé", valeur: "Non noté", noteea: "Non noté", img: "defenseurjake.jpg", bio: "Jeune joueur du centre de formation.", matchs: 0, buts: 0, passes: 0},
     
     'femi-fapetu': { nom:"Femi Fapetu", poste:"Milieu", naissance:"04/08/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "60", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"milieufemi.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     'finley-gorman': { nom:"Finley Gorman", poste:"Milieu", naissance:"20/09/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "87", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"milieufinley.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     'harrison-miles': { nom:"Harrison Miles", poste:"Milieu", naissance:"28/07/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "96", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"milieuharrison.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'dexter-oliver': { nom:"Dexter Oliver", poste:"Milieu", naissance:"02/12/2008", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "76", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"milieudexter.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     'xavier-parker': { nom:"Xavier Parker", poste:"Milieu", naissance:"09/05/2010", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "73", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"milieuxavier.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     'rhys-thomas': { nom:"Rhys Thomas", poste:"Milieu", naissance:"05/11/2006", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "Aucun", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"defenseurrhys.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     
     'christian-dunbar-mcdonald': { nom:"Christian Dunbar McDonald", poste:"Attaquant", naissance:"29/10/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "86", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"attaquantchristian.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
     'kylan-midwood': { nom:"Kylan Midwood", poste:"Attaquant", naissance:"02/07/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "98", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"attaquantkylan.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
-    'tyrone-samba': { nom:"Tyrone Samba", poste:"Attaquant", naissance:"31/12/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "97", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"attaquanttyrone.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 }
+    'tyrone-samba': { nom:"Tyrone Samba", poste:"Attaquant", naissance:"31/12/2007", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "97", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"attaquanttyrone.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 },
+    'teddie-lamb': { nom:"Teddie Lamb", poste:"Attaquant", naissance:"02/07/2009", nat:"Angleterre 🏴󠁧󠁢󠁥󠁮󠁧󠁿", numero: "79", paye: "2 500", fin: "Non précisée", valeur: "Non noté", noteea: "Non noté", img:"attaquantteddie.jpg", bio: "Jeune joueur du centre de formation.", matchs:0, buts:0, passes:0 }
 };
 
 const joueursPret = [
